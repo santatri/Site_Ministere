@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import de Link pour les redirections
 import '../styles/CreateAccount1.css';
 
 const Register = () => {
@@ -24,7 +25,7 @@ const Register = () => {
       const response = await axios.post('http://localhost:5001/api/users1/register', formData);
       setMessage(response.data.message);
     } catch (error) {
-      setMessage(error.response.data.message || 'Erreur lors de l\'inscription');
+      setMessage(error.response?.data?.message || 'Erreur lors de l\'inscription');
     }
   };
 
@@ -46,6 +47,11 @@ const Register = () => {
         <button type="submit">S'inscrire</button>
       </form>
       {message && <p>{message}</p>}
+
+      {/* Lien vers la connexion */}
+      <p>
+        Déjà un compte ? <Link to="/login">Se connecter</Link>
+      </p>
     </div>
   );
 };
