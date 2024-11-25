@@ -6,7 +6,7 @@ import '../styles/LoginPage1.css';
 
 const LoginPage1 = () => {
   const [matricule, setMatricule] = useState('');
-  const [mdp, setMdp] = useState('');
+  const [mdp, setMdp] = useState('');       
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();

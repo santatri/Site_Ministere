@@ -99,6 +99,9 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/api/users1', userRoutes);
 // app.use('/api/auth', authRoutes);
 
+const actualité_Routes = require('./routes/actualité_Routes');
+app.use('/api/actu',actualité_Routes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.post('/api/create-direction', async (req, res) => {
     const { nom_direction} = req.body;

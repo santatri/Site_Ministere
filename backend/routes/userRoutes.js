@@ -11,6 +11,11 @@ router.put('/validate/:id', userController.validateUser);
 router.get('/unvalidated', userController.getUnvalidatedUsers);
 
 router.get('/list', userController.getUsers);
+// router.get('/list', userController.getUsers);
+
+router.delete('/:id', userController.deleteUser);
+
+router.put('/update/:id', userController.updateUser);
 
 
 
