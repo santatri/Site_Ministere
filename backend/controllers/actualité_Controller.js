@@ -54,9 +54,31 @@ exports.register = [
 ];
 
 exports.getAll = (req, res) => {
-  const selectQuery = "SELECT * FROM actu ORDER BY date_insertion DESC"; // Récupérer les actualités par ordre décroissant de la date
+  const { mots, dateStart, dateEnd } = req.query;
+  let selectQuery = "SELECT * FROM actu WHERE 1=1"; // Toujours vrai, pour ajouter dynamiquement des conditions
+  const queryParams = [];
 
-  db.query(selectQuery, (err, results) => {
+  // Filtre par mots-clés
+  if (mots) {
+    selectQuery += " AND (titre LIKE ? OR description LIKE ?)";
+    queryParams.push(`%${mots}%`, `%${mots}%`);
+  }
+
+  // Filtre par date de début
+  if (dateStart) {
+    selectQuery += " AND date_insertion >= ?";
+    queryParams.push(dateStart);
+  }
+
+  // Filtre par date de fin
+  if (dateEnd) {
+    selectQuery += " AND date_insertion <= ?";
+    queryParams.push(dateEnd);
+  }
+
+  selectQuery += " ORDER BY date_insertion DESC"; // Trier par date décroissante
+
+  db.query(selectQuery, queryParams, (err, results) => {
     if (err) {
       console.error("Erreur lors de la récupération des actualités :", err.sqlMessage || err);
       return res.status(500).send({

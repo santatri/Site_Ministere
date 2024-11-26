@@ -5,6 +5,7 @@ import '../styles/Home.css';
 const Home = () => {
   const [actualités, setActualités] = useState([]);
   const [message, setMessage] = useState('');
+  const [search, setSearch] = useState({ mots: '', dateStart: '', dateEnd: '' });
 
   // Fonction pour formater la date en format lisible
   const formatDate = (dateString) => {
@@ -13,24 +14,54 @@ const Home = () => {
     return date.toLocaleDateString('fr-FR', options);
   };
 
-  // Récupération des actualités au montage du composant
-  useEffect(() => {
-    const fetchActualités = async () => {
-      try {
-        const response = await axios.get('http://localhost:5001/api/actu/all');
-        setActualités(response.data.data); // Stocker les actualités dans le state
-      } catch (error) {
-        setMessage('Erreur lors du chargement des actualités.');
-      }
-    };
+  // Récupération des actualités
+  const fetchActualités = async (filters = {}) => {
+    try {
+      const response = await axios.get('http://localhost:5001/api/actu/all', { params: filters });
+      setActualités(response.data.data); // Stocker les actualités dans le state
+    } catch (error) {
+      setMessage('Erreur lors du chargement des actualités.');
+    }
+  };
 
+  // Charger toutes les actualités au montage
+  useEffect(() => {
     fetchActualités();
   }, []);
+
+  // Gestion du formulaire de recherche
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchActualités(search);
+  };
 
   return (
     <div className="home-container">
       <h1>Bienvenue sur la page d'accueil</h1>
       {message && <p className="error-message">{message}</p>}
+
+      {/* Formulaire de recherche */}
+      <form className="search-form" onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Rechercher par mots-clés"
+          value={search.mots}
+          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
+        />
+        <input
+          type="date"
+          placeholder="Date de début"
+          value={search.dateStart}
+          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
+        />
+        <input
+          type="date"
+          placeholder="Date de fin"
+          value={search.dateEnd}
+          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
+        />
+        <button type="submit">Rechercher</button>
+      </form>
 
       <div className="actualités-container">
         {actualités.length === 0 ? (

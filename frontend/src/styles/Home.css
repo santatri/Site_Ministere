@@ -1,9 +1,66 @@
+/* Container principal */
 .home-container {
     padding: 20px;
-    background-color: #f4f4f4;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
     color: #333;
   }
   
+  /* Titre principal */
+  .home-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #007bff;
+  }
+  
+  /* Message d'erreur */
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* Formulaire de recherche */
+  .search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .search-form input {
+    flex: 1 1 auto;
+    max-width: 300px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .search-form button {
+    flex: 0 1 auto;
+    max-width: 150px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Section des actualités */
   .actualités-container {
     display: flex;
     flex-wrap: wrap;
@@ -12,98 +69,138 @@
   }
   
   .actualité-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px);
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     padding: 15px;
-    width: 100%;
-    max-width: 350px;
-    margin: 10px;
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .actualité-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .actualité-title {
-    font-size: 1.6em;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
     color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .date-publication {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 15px;
   }
   
   .actualité-description {
-    font-size: 1.1em;
-    margin-bottom: 15px;
+    font-size: 1rem;
     color: #555;
+    margin-bottom: 15px;
   }
   
+  /* Images et vidéos */
   .actualité-media {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   
   .actualité-image {
     width: 100%;
     height: auto;
-    max-width: 300px;
-    object-fit: cover;
     border-radius: 5px;
+    margin-bottom: 10px;
   }
   
   .actualité-video {
     width: 100%;
-    height: auto;
-    max-width: 300px;
     border-radius: 5px;
+    outline: none;
   }
   
-  .date-publication {
-    font-size: 0.9em;
-    color: #777;
-    margin-top: 10px;
-  }
-  
+  /* Actions (boutons) */
   .actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
   }
   
-  .like-btn, .comment-btn {
-    background-color: #007bff;
+  .like-btn,
+  .comment-btn {
+    flex: 1 1 48%;
+    padding: 10px;
+    font-size: 1rem;
     color: white;
+    background-color: #007bff;
     border: none;
-    padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-align: center;
   }
   
-  .like-btn:hover, .comment-btn:hover {
+  .like-btn:hover,
+  .comment-btn:hover {
     background-color: #0056b3;
   }
   
-  .error-message {
-    color: red;
-    font-size: 1.2em;
+  /* Responsiveness */
+  
+  /* Tablettes (768px et plus) */
+  @media (max-width: 768px) {
+    /* Formulaire */
+    .search-form {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .search-form input,
+    .search-form button {
+      width: 90%;
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    /* Cartes */
+    .actualité-card {
+      flex: 1 1 calc(50% - 20px);
+    }
+  
+    .like-btn,
+    .comment-btn {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
   }
   
-  /* Styles pour la version responsive */
-  @media (max-width: 768px) {
+  /* Smartphones (480px et moins) */
+  @media (max-width: 480px) {
+    /* Formulaire */
+    .search-form input,
+    .search-form button {
+      font-size: 12px;
+      padding: 8px;
+      max-width: 100%;
+    }
+  
+    /* Cartes */
     .actualité-card {
-      width: 100%;
+      flex: 1 1 100%;
+      margin-bottom: 20px;
+    }
+  
+    .like-btn,
+    .comment-btn {
+      font-size: 0.8rem;
+      padding: 6px;
     }
   
     .actualité-title {
-      font-size: 1.4em;
+      font-size: 1.2rem;
     }
   
     .actualité-description {
-      font-size: 1em;
-    }
-  
-    .actualité-image, .actualité-video {
-      max-width: 100%;
+      font-size: 0.9rem;
     }
   }
   

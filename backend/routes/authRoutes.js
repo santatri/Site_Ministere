@@ -1,9 +1,0 @@
-const express = require('express');
-const { login } = require('../controllers/authController1'); // Importer le contrôleur
-
-const router = express.Router();
-
-// Route pour la connexion
-router.post('/login', login);
-
-module.exports = router;

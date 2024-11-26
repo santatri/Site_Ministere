@@ -3,8 +3,10 @@ import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import '../styles/AdminPage1.css';
 import Actualité from '../components/Actualité';
+import { useAuth } from '../context/authContext';
 
 const AdminPage1 = () => {
+  const { user } = useAuth();
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState('');
   const [editingUser, setEditingUser] = useState(null);
@@ -15,7 +17,7 @@ const AdminPage1 = () => {
     role: '',
   });
 
-  // Récupération des utilisateurs
+  // Récupérer les utilisateurs
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -75,7 +77,7 @@ const AdminPage1 = () => {
   // Enregistrer les modifications
   const handleSaveEdit = async (id) => {
     try {
-      await axios.put(`http://localhost:5001/api/users1/${id}`, editForm);
+      await axios.put(`http://localhost:5001/api/users1/update/${id}`, editForm);
       setMessage('Utilisateur modifié avec succès');
       setUsers(users.map((user) =>
         user.id === id ? { ...user, ...editForm } : user
@@ -94,6 +96,14 @@ const AdminPage1 = () => {
 
   return (
     <div className="container">
+      {user ? (
+        <div>
+          <h2>Bienvenue, {user.nom} {user.prenom}!</h2>
+          {user.image && <img src={user.image} alt="User Profile" className="user-image" />}
+        </div>
+      ) : (
+        <p>Veuillez vous connecter pour voir vos informations.</p>
+      )}
       <h1>Page d'Admin</h1>
 
       <div className="validation-section">

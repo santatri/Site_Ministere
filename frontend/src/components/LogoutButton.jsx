@@ -1,33 +1,18 @@
+// components/LogoutButton.js
+import React from 'react';
+import { useAuth } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
 
 const LogoutButton = () => {
-    const navigate = useNavigate();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-        // Supprimez les données utilisateur (par exemple, le token)
-        localStorage.removeItem('authToken'); // Exemple avec localStorage
-        localStorage.removeItem('userRole');
+  const handleLogout = () => {
+    logout();  // Supprimer l'utilisateur du contexte et du stockage local
+    navigate('/login');  // Rediriger vers la page de connexion
+  };
 
-        // Redirigez l'utilisateur vers la page de connexion
-        navigate('/login');
-    };
-
-    return (
-        <button
-            onClick={handleLogout}
-            style={{
-                padding: '10px 20px',
-                fontSize: '16px',
-                backgroundColor: '#f44336',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-            }}
-        >
-            Déconnexion
-        </button>
-    );
+  return <button onClick={handleLogout}>Se déconnecter</button>;
 };
 
 export default LogoutButton;

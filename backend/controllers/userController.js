@@ -135,56 +135,5 @@ exports.updateUser = (req, res) => {
 
 
 
-// Connexion d'un utilisateur
-exports.loginUser = async (req, res) => {
-    const { matricule, mdp } = req.body;
-  
-    if (!matricule || !mdp) {
-      return res.status(400).send({ message: 'Veuillez fournir le matricule et le mot de passe.' });
-    }
-  
-    try {
-      // Vérifier si le matricule existe
-      const checkUserQuery = 'SELECT * FROM users1 WHERE matricule = ?';
-      db.query(checkUserQuery, [matricule], async (err, result) => {
-        if (err) {
-          console.error('Erreur lors de la vérification de l\'utilisateur:', err);
-          return res.status(500).send('Erreur interne du serveur');
-        }
-  
-        if (result.length === 0) {
-          return res.status(404).send({ message: 'Utilisateur introuvable.' });
-        }
-  
-        const user = result[0];
-  
-        // Vérifier si l'utilisateur est validé
-        if (!user.validated) {
-          return res.status(403).send({ message: 'Votre compte n\'est pas encore validé par l\'administrateur.' });
-        }
-  
-        // Vérifier le mot de passe
-        const isMatch = await bcrypt.compare(mdp, user.mdp);
-        if (!isMatch) {
-          return res.status(401).send({ message: 'Mot de passe incorrect.' });
-        }
-  
-        // Générer un token JWT
-        const token = jwt.sign({ id: user.id, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
-        
-        res.status(200).send({
-          message: 'Connexion réussie',
-          token,
-          user: {
-            id: user.id,
-            nom: user.nom,
-            prenom: user.prenom,
-            role: user.role,
-          },
-        });
-      });
-    } catch (err) {
-      res.status(500).send('Erreur interne du serveur');
-    }
-  };
+
   

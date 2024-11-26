@@ -40,7 +40,7 @@ const Register = () => {
         <input type="password" name="confirmMdp" placeholder="Confirmer le mot de passe" onChange={handleChange} required />
         <select name="role" onChange={handleChange}>
           <option value="Communication">Communication</option>
-          <option value="Stan">Standard de service</option>
+          <option value="Stan">Stan</option>
           <option value="Admin">Admin</option>
         </select>
         <input type="file" name="image" onChange={(e) => setFormData({ ...formData, image: e.target.files[0].name })} />

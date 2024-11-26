@@ -1,3 +1,4 @@
+// pages/LoginPage1.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'; // Import de Link pour les redirections
@@ -6,7 +7,7 @@ import '../styles/LoginPage1.css';
 
 const LoginPage1 = () => {
   const [matricule, setMatricule] = useState('');
-  const [mdp, setMdp] = useState('');       
+  const [mdp, setMdp] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -15,11 +16,12 @@ const LoginPage1 = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5001/api/users1/login', { matricule, mdp });
-      const { role, matricule: userMatricule } = response.data.user;
+      const { role, matricule: userMatricule, nom, prenom, image } = response.data.user;
 
-      login({ matricule: userMatricule, role });
+      // Stockage des informations dans le contexte d'authentification
+      login({ matricule: userMatricule, role, nom, prenom, image });
 
-      // Redirection basée sur le rôle
+      // Redirection en fonction du rôle
       if (role === 'Admin') {
         navigate('/admin');
       } else if (role === 'Communication') {
