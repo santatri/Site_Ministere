@@ -2,53 +2,56 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Home.css';
 
-const Home = () => {
+const Archives = () => {
   const [actualités, setActualités] = useState([]);
   const [message, setMessage] = useState('');
-  const [search, setSearch] = useState(''); // État pour gérer la recherche
+  const [search, setSearch] = useState({ mots: '', dateStart: '', dateEnd: '' });
 
-  // Fonction pour formater la date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     return date.toLocaleDateString('fr-FR', options);
   };
 
-  // Récupération des actualités (limité à 9)
-  const fetchActualités = async (searchTerm = '') => {
+  const fetchActualités = async (filters = {}) => {
     try {
-      const response = await axios.get('http://localhost:5001/api/actu/all', {
-        params: { mots: searchTerm, limit: 9 },
-      });
+      const response = await axios.get('http://localhost:5001/api/actu/all', { params: filters });
       setActualités(response.data.data);
     } catch (error) {
       setMessage('Erreur lors du chargement des actualités.');
     }
   };
 
-  // Charger les actualités au démarrage
   useEffect(() => {
     fetchActualités();
   }, []);
 
-  // Gérer la recherche
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchActualités(search); // Recherche avec le terme saisi
+    fetchActualités(search);
   };
 
   return (
-    <div className="home-container">
-      <h1>Bienvenue sur la page d'accueil</h1>
+    <div className="archives-container">
+      <h1>Bienvenue sur la page des Archives</h1>
       {message && <p className="error-message">{message}</p>}
 
-      {/* Barre de recherche */}
       <form className="search-form" onSubmit={handleSearch}>
         <input
           type="text"
-          placeholder="Rechercher des actualités..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Rechercher par mots-clés"
+          value={search.mots}
+          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
+        />
+        <input
+          type="date"
+          value={search.dateStart}
+          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
+        />
+        <input
+          type="date"
+          value={search.dateEnd}
+          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
         />
         <button type="submit">Rechercher</button>
       </form>
@@ -88,4 +91,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Archives;

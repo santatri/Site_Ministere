@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/authContext';
 
+import Header from './components/header';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Service from './pages/Service';
@@ -12,17 +13,17 @@ import CreateAccount1 from './pages/CreateAccount1';
 import AdminPage1 from './pages/AdminPage1';
 import CommunicationPage from './pages/CommunicationPage';
 import StanPage from './pages/StanPage';
+import Archives from './pages/Archives';
+import Footer from './components/Footer'; // Importation du Footer
 
 // Composant ProtectedRoute pour protéger les pages sensibles
 const ProtectedRoute = ({ element }) => {
   const { user } = useAuth(); // Vérifie si l'utilisateur est connecté
 
-  // Si l'utilisateur n'est pas connecté, rediriger vers Home
   if (!user) {
     return <Navigate to="/" replace />;
   }
 
-  // Sinon, afficher la page protégée
   return element;
 };
 
@@ -39,19 +40,20 @@ const App = () => {
 const AppWithNavbar = () => {
   const location = useLocation();
 
-  // Liste des pages où afficher la Navbar
-  const showNavbarPages = ['/', '/home', '/service', '/about', '/contact'];
+  // Liste des pages où afficher la Navbar et le Footer
+  const showNavbarPages = ['/', '/home', '/service', '/archives', '/about', '/contact'];
 
   return (
     <>
       {/* Afficher la Navbar seulement si la route correspond */}
+      {showNavbarPages.includes(location.pathname) && <Header />}
       {showNavbarPages.includes(location.pathname) && <Navbar />}
 
       <Routes>
-        {/* Pages accessibles à tous */}
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/service" element={<Service />} />
+        <Route path="/archives" element={<Archives />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginPage1 />} />
@@ -65,6 +67,9 @@ const AppWithNavbar = () => {
         {/* Redirection pour tout lien non défini */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+
+      {/* Afficher le Footer seulement sur les pages définies */}
+      {showNavbarPages.includes(location.pathname) && <Footer />}
     </>
   );
 };

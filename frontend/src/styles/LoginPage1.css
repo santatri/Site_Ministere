@@ -1,0 +1,102 @@
+/* LoginPage1.css */
+
+/* Conteneur pour la page de connexion */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .login-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Titre */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Champs de saisie */
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #007BFF;
+  }
+  
+  /* Bouton de soumission */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Message d'erreur */
+  p {
+    color: red;
+    font-size: 14px;
+  }
+  
+  /* Style du lien "Créer un compte" */
+  p a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Conteneur flex pour le formulaire et le lien */
+  .form-and-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Design responsive */
+  @media (max-width: 600px) {
+    .form-and-link {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    /* Réduit la taille de la boîte de connexion sur mobile */
+    .login-box {
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    input, button {
+      font-size: 14px;
+    }
+  }
+  

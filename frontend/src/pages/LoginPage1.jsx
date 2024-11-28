@@ -36,8 +36,11 @@ const LoginPage1 = () => {
     }
   };
 
-  return (
-    <div className="login-container">
+ // pages/LoginPage1.js
+
+return (
+  <div className="login-container">
+    <div className="login-box">
       <h1>Connexion</h1>
       <form onSubmit={handleLogin}>
         <input
@@ -54,14 +57,16 @@ const LoginPage1 = () => {
         />
         <button type="submit">Se connecter</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      {/* Lien vers l'inscription */}
-      <p>
-        Pas encore de compte ? <Link to="/register">Créer un compte</Link>
-      </p>
+      {error && <p>{error}</p>}
+      <div className="form-and-link">
+        <p>
+          Pas encore de compte ? <Link to="/register">Créer un compte</Link>
+        </p>
+      </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default LoginPage1;

@@ -1,23 +1,26 @@
-import React from 'react';
-import LogoutButton from '../components/LogoutButton';
+import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+import { useAuth } from '../context/authContext';
 import '../styles/StanPage.css';
-import { useAuth } from '../context/authContext';  // Importer le contexte
-
+import LogoutButton from '../components/LogoutButton';
+ 
 
 const StanPage = () => {
-  const { user } = useAuth();  // Accéder à l'utilisateu
+  const { user } = useAuth();
+  const [image, setImage] = useState('');
+
+  useEffect(() => {
+    if (user && user.image) {
+      setImage(user.image);
+    }
+  }, [user]);
+
   return (
-    <div>
-      {user ? (
-        <div>
-          <h2>Bienvenue, {user.nom} {user.prenom}!</h2>
-          {user.image && <img src={user.image} alt="User Profile" className="user-image" />}  {/* Afficher l'image */}
-        </div>
-      ) : (
-        <p>Veuillez vous connecter pour voir vos informations.</p>
-      )}
-      <h1>Page de Stan</h1>
-      <p>Bienvenue sur la page dédiée à Stan.</p>
+    <div className="stan-page">
+      <h1>Bienvenue {user?.prenom} {user?.nom}</h1>
+      {image && <img src={`http://localhost:5001/uploads/${image}`} alt="User" />}
+      <p>Votre matricule : {user?.matricule}</p>
+
       <LogoutButton />
     </div>
   );

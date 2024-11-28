@@ -1,6 +1,5 @@
 const db = require('../db');
 const multer = require('multer');
-const path = require('path');
 
 // Configuration de multer pour gérer les fichiers
 const storage = multer.diskStorage({
@@ -54,7 +53,7 @@ exports.register = [
 ];
 
 exports.getAll = (req, res) => {
-  const { mots, dateStart, dateEnd } = req.query;
+  const { mots, dateStart, dateEnd, limit } = req.query;
   let selectQuery = "SELECT * FROM actu WHERE 1=1"; // Toujours vrai, pour ajouter dynamiquement des conditions
   const queryParams = [];
 
@@ -77,6 +76,12 @@ exports.getAll = (req, res) => {
   }
 
   selectQuery += " ORDER BY date_insertion DESC"; // Trier par date décroissante
+
+  // Limiter les résultats si `limit` est fourni
+  if (limit) {
+    selectQuery += " LIMIT ?";
+    queryParams.push(parseInt(limit, 10));
+  }
 
   db.query(selectQuery, queryParams, (err, results) => {
     if (err) {

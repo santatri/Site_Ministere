@@ -1,26 +1,70 @@
-nav {
-    background-color: #343a40;
-    padding: 10px 20px;
+/* Styles for the navigation bar container */
+.navigtion-bar {
+    background-color: #333; /* Dark background */
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Center the navbar horizontally */
     align-items: center;
+    padding: 18px 0; /* Space around the navbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    /* Subtle shadow for depth */
 }
 
-nav a {
+/* Styles for the navigation links container */
+.navigation-links {
+    display: flex;
+    gap: 20px; /* Space between each navigation link */
+}
+
+/* Styles for individual links */
+.navigation-links a,
+.navigation-links .active {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    position: relative; /* For the underline effect */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
 }
 
-nav a:hover {
-    background-color: #495057;
+/* Hover effect - Gold color and underline */
+.navigation-links a:hover,
+.navigation-links a:focus,
+.navigation-links a.active {
+    color: #FFD700; /* Gold color */
 }
 
-nav a.active {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
+/* Add underline effect when active or hovered */
+.navigation-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px; /* Distance below the text */
+    height: 2px;
+    background-color: transparent; /* Default is invisible */
+    transform: scaleX(0); /* Start with no underline */
+    transform-origin: center; /* Scale effect starts from the center */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+/* Underline animation on hover or active */
+.navigation-links a:hover::after,
+.navigation-links a.active::after {
+    background-color: #FFD700; /* Gold underline */
+    transform: scaleX(1); /* Full-width underline on hover or active */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .navigtion-bar {
+        flex-direction: column; /* Stack links vertically */
+        padding: 15px;
+    }
+
+    .navigation-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px; /* Space between links */
+        text-align: center; /* Center the links */
+    }
 }

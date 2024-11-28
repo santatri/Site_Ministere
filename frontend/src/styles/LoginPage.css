@@ -1,39 +1,119 @@
-.login-page {
-    max-width: 400px;
-    margin: auto;
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+/* LoginPage1.css */
 
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-input {
+/* Conteneur pour la page de connexion */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  /* Boîte de connexion */
+  .login-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligner les éléments à gauche */
+  }
+  
+  /* Titre */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    width: 100%;
+    text-align: center; /* Centrer le titre */
+  }
+  
+  /* Champs de saisie */
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
+    font-size: 16px;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #007BFF;
+  }
+  
+  /* Bouton de soumission */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-}
-
-button:hover {
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
     background-color: #0056b3;
-}
-
-.error-message {
+  }
+  
+  /* Message d'erreur */
+  p {
     color: red;
-    margin-top: 10px;
-}
+    font-size: 14px;
+  }
+  
+  /* Conteneur pour le lien "Créer un compte" */
+  .form-and-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Bouton "Créer un compte" */
+  .form-and-link button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-and-link button:hover {
+    background-color: #218838;
+  }
+  
+  /* Design responsive */
+  @media (max-width: 600px) {
+    .login-box {
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    input, button {
+      font-size: 14px;
+    }
+  
+    .form-and-link {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .form-and-link button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  
