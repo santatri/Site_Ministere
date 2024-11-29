@@ -1,102 +1,232 @@
-/* LoginPage1.css */
-
-/* Conteneur pour la page de connexion */
+/* Conteneur principal */
 .login-container {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+   
+  position: relative;
+  padding: 10px;
+}
+
+/* Ajouter les vagues en haut et en bas */
+.wave-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 700px; /* Ajuste la hauteur selon tes besoins */
+  background-image: url('../assets/241.jpg'); /* Remplace le chemin par l'image de vague en haut */
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+.wave-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 450px; /* Ajuste la hauteur selon tes besoins */
+  background-image: url('../assets/wave\(5\).svg'); /* Remplace le chemin par l'image de vague en bas */
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* Contenu principal */
+.login-content {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  max-width: 1200px;
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+/* Formulaire */
+.login-form {
+  flex: 1;
+  padding: 50px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-logo {
+  width: 100px; /* Taille du logo */
+  margin-bottom: 10px;
+}
+
+.login-form h1 {
+  font-size: 2rem;
+  color: #0d048d;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 1rem;
+  color: #060a56;
+  margin-bottom: 0px;
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 13px 45px;
+  font-size: 0.87rem;
+  border: 1px solid #090230;
+  border-radius: 10px;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #ee0000;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.login-button {
+  width: 100%;
+  max-width: 300px;
+  padding: 15px 40px;
+  background-color: #0d0450;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e20202;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.register-link {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.register-link a {
+  color: #6200ea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Image */
+/* Image avec texte */
+.login-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.login-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+
+.text-overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(182deg, rgba(113, 0, 89, 0.858), rgba(255, 217, 0, 0.744));
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5rem;
+  z-index: 2;
+}
+
+
+/* Responsivité */
+@media (max-width: 1024px) {
+  .login-content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-content {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  
-  .login-box {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
     width: 100%;
-    max-width: 400px;
-    text-align: center;
+    border-radius: 15px;
   }
-  
-  /* Titre */
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+
+  .login-image {
+    height: 200px;
   }
-  
-  /* Champs de saisie */
-  input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+
+  .login-image img {
+    height: 100%;
+    object-fit: cover;
   }
-  
-  input:focus {
-    outline: none;
-    border-color: #007BFF;
+}
+
+@media (max-width: 480px) {
+  .login-form h1 {
+    font-size: 1.5rem;
   }
-  
-  /* Bouton de soumission */
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+
+  .input-with-icon input {
+    padding: 12px 40px;
+    font-size: 0.9rem;
   }
-  
-  button:hover {
-    background-color: #0056b3;
+
+  .login-button {
+    padding: 12px 30px;
+    font-size: 1rem;
   }
-  
-  /* Message d'erreur */
-  p {
-    color: red;
-    font-size: 14px;
-  }
-  
-  /* Style du lien "Créer un compte" */
-  p a {
-    color: #007BFF;
-    text-decoration: none;
-  }
-  
-  p a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Conteneur flex pour le formulaire et le lien */
-  .form-and-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Design responsive */
-  @media (max-width: 600px) {
-    .form-and-link {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    /* Réduit la taille de la boîte de connexion sur mobile */
-    .login-box {
-      padding: 20px;
-      max-width: 90%;
-    }
-  
-    input, button {
-      font-size: 14px;
-    }
-  }
-  
+}
