@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Home.css';
 
+
 const Home = () => {
   const [actualités, setActualités] = useState([]);
   const [message, setMessage] = useState('');

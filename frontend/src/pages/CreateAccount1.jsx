@@ -25,7 +25,7 @@ const Register = () => {
       const response = await axios.post('http://localhost:5001/api/users1/register', formData);
       setMessage(response.data.message);
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Erreur lors de l\'inscription');
+      setMessage(error.response?.data?.message || 'Erreur lors de l\'inscription ou Le matricule est déjà utilisé');
     }
   };
 

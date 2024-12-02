@@ -1,230 +1,315 @@
-/* Styles de base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Base styles */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  transition: all 0.3s ease; /* Ajout de transition pour une meilleure fluidité */
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f7fc;
-  color: #333;
-}
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+.sidebar {
+  width: 250px;
+  background-color: #5000ac;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+  height: 100vh;
+  position: relative;
+  transition: width 0.3s ease; /* Transition pour la largeur de la sidebar */
 }
 
-/* En-tête */
-h1, h2 {
-  color: #444;
-}
-
-h2 {
-  font-size: 1.8rem;
+.sidebar h2 {
   margin-bottom: 20px;
+  font-size: 25px;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  text-align: center;
+.menu {
+  width: 100%;
 }
 
-/* Message d'état */
+.menu-item {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.menu-item.active {
+  background: linear-gradient(45deg, goldenrod, goldenrod);
+  color: white;
+}
+
+.menu-item:hover {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  overflow-y: auto;
+  transition: padding 0.3s ease;
+}
+
 .message {
-  padding: 10px;
-  background-color: #f1f1f1;
-  color: #333;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  color: rgb(213, 136, 12);
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
-/* Section validation des utilisateurs */
-.validation-section {
-  margin-bottom: 40px;
-}
-
-.validation-section table {
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 30px;
+  margin: 20px 0;
 }
 
-.validation-section th, .validation-section td {
-  padding: 12px;
+table th, table td {
+  border: 1px solid #cccccc;
+  padding: 10px;
   text-align: left;
-  border: 1px solid #ddd;
 }
 
-.validation-section th {
-  background-color: #007bff;
+table th {
+  background-color: #027488;
   color: white;
 }
 
-.validation-section td {
-  background-color: #ffffff;
-}
-
-.validation-section td button {
-  padding: 8px 16px;
-  margin: 5px;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.validation-section td button:hover {
-  opacity: 0.8;
-}
-
-.validation-section td button:first-child {
-  background-color: #28a745;
-  color: white;
-}
-
-.validation-section td button:last-child {
-  background-color: #dc3545;
-  color: white;
-}
-
-/* Section utilisateurs */
-.all-users-section table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.all-users-section th, .all-users-section td {
-  padding: 12px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-.all-users-section th {
-  background-color: #343a40;
-  color: white;
-}
-
-.all-users-section td {
+table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.all-users-section td input {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+table tr:hover {
+  background-color: #f1f1f1;
 }
 
-.all-users-section td button {
-  padding: 8px 16px;
-  margin: 5px;
+button {
+  padding: 8px 12px;
+  margin: 4px;
+  border: none;
   border-radius: 5px;
-  font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px; /* Pour assurer que la taille est cohérente sur tous les écrans */
 }
 
-.all-users-section td button:hover {
+.btn-validate {
+  background-color: #28a745; /* Vert */
+  color: white;
+}
+
+.btn-validate:hover {
+  background-color: #218838; /* Couleur plus foncée au survol */
+}
+
+.btn-delete {
+  background-color: #dc3545; /* Rouge */
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c82333; /* Couleur plus foncée au survol */
+}
+
+.btn-edit {
+  background-color: #007bff; /* Bleu */
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #0069d9; /* Couleur plus foncée au survol */
+}
+
+.btn-save {
+  background-color: #ffc107; /* Jaune */
+  color: black;
+}
+
+.btn-save:hover {
+  background-color: #e0a800; /* Couleur plus foncée au survol */
+}
+
+.btn-cancel {
+  background-color: #6c757d; /* Gris */
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268; /* Couleur plus foncée au survol */
+}
+
+.btn:hover {
   opacity: 0.8;
 }
 
-.all-users-section td button.btn-save {
-  background-color: #007bff;
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #b40808;
+  border-radius: 25px;
+  width: 100%; /* Permet à l'input de s'étendre sur l'écran */
+  max-width: 300px; /* Limite la largeur pour ne pas rendre l'input trop large */
+}
+
+.search-button {
+  padding: 13px 15px;
+  background-color: rgb(15, 4, 10);
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.all-users-section td button.btn-cancel {
-  background-color: #6c757d;
+.search-button:hover {
+  background-color: #45a049;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  background-color: #941010;
   color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: auto;
+  width: 100%;
 }
 
-.all-users-section td button.btn-edit {
-  background-color: #ffc107;
-  color: white;
+.logout-button:hover {
+  background-color: #d70906;
 }
 
-.all-users-section td button.btn-delete {
-  background-color: #dc3545;
-  color: white;
+.logout-icon {
+  margin-right: 8px;
+  font-size: 18px;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #343a40;
-  color: white;
-  margin-top: 40px;
-}
+/* Responsive design */
+@media (max-width: 1024px) {
+  .dashboard {
+    flex-direction: column;
+  }
 
-footer p {
-  font-size: 14px;
-}
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+    height: auto; /* Permet à la sidebar de se redimensionner selon son contenu */
+  }
 
-/* Styles responsive */
-@media (max-width: 768px) {
-  .container {
+  .content {
     padding: 10px;
   }
 
-  h1 {
-    font-size: 2rem;
+  .menu-item {
+    font-size: 0.9rem;
+    padding: 10px;
   }
 
-  h2 {
-    font-size: 1.6rem;
+  .search-input {
+    width: 80%;
   }
 
-  .validation-section table, .all-users-section table {
-    font-size: 12px;
+  .btn {
+    font-size: 12px; /* Ajustement de la taille des boutons pour tablettes */
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    padding: 10px;
   }
 
-  .validation-section th, .validation-section td,
-  .all-users-section th, .all-users-section td {
+  .menu-item {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .search-input {
+    width: 70%;
+  }
+
+  .search-button {
+    padding: 10px 12px;
+  }
+
+  table th, table td {
     padding: 8px;
   }
 
-  .all-users-section td input {
-    font-size: 12px;
+  .logout-button {
+    font-size: 14px;
+    padding: 8px 16px;
   }
 
-  .validation-section td button,
-  .all-users-section td button {
-    padding: 6px 12px;
-    font-size: 12px;
+  /* Forcing a column layout for very small screens */
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .content {
+    padding: 15px;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.8rem;
+  .sidebar {
+    width: 100%;
+    padding: 8px;
   }
 
-  h2 {
-    font-size: 1.4rem;
+  .menu-item {
+    font-size: 0.85rem;
+    padding: 8px;
   }
 
-  .container {
-    padding: 5px;
+  .content {
+    padding: 8px;
   }
 
-  .validation-section table, .all-users-section table {
-    font-size: 10px;
+  table {
+    font-size: 0.9rem;
   }
 
-  .validation-section th, .validation-section td,
-  .all-users-section th, .all-users-section td {
+  table th, table td {
     padding: 6px;
   }
 
-  .validation-section td button,
-  .all-users-section td button {
-    padding: 5px 10px;
-    font-size: 10px;
+  .search-input {
+    width: 60%;
+  }
+
+  .search-button {
+    padding: 8px 10px;
+  }
+
+  .logout-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  /* Full screen layout for very small devices */
+  .dashboard {
+    flex-direction: column;
   }
 }

@@ -1,0 +1,111 @@
+/* Conteneur principal */
+.admin-navbar {
+    width: 100%;
+    background:linear-gradient(45deg, #6403e4,rgba(2, 134, 134, 0.475), rgb(15, 123, 224));
+    border-radius: 8px; /* Bordure arrondie */
+    padding: 3px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  /* Contenu */
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Limite la largeur */
+    flex-wrap: wrap; /* Permet aux colonnes de se replier */
+    gap: 10px;
+    margin-top: 0.5%;
+  }
+  
+  /* Partie gauche */
+  .navbar-left {
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(238, 236, 236);
+    font-weight: bold;
+    flex: 1;
+    text-align: left;
+  }
+  
+  /* Partie centrale */
+  .navbar-center {
+    text-align: center;
+    flex: 1;
+  }
+  
+  .navbar-center .logo {
+    max-height: 120px;
+    max-width: 120px;
+    object-fit: contain;
+  }
+  
+  /* Partie droite */
+  .navbar-right {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Bouton pour changer le thème */
+  .theme-toggle-button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .theme-toggle-button:hover {
+    color: #ffc107; /* Couleur jaune au survol */
+  }
+  
+  .theme-toggle-button span {
+    margin-left: 5px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .navbar-content {
+      flex-direction: column; /* Passe en colonne */
+      align-items: center;
+      text-align: center;
+    }
+  
+    .navbar-left,
+    .navbar-center,
+    .navbar-right {
+      flex: unset; /* Désactive le flex individuel */
+      width: 100%; /* Utilise toute la largeur */
+    }
+  
+    .navbar-left {
+      margin-bottom: 10px;
+    }
+  
+    .navbar-right {
+      justify-content: center; /* Centre les éléments */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar-left p,
+    .theme-toggle-button span {
+      font-size: 14px; /* Réduit la taille du texte */
+    }
+  
+    .navbar-center .logo {
+      max-height: 40px;
+      max-width: 80px;
+    }
+  }
+  

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center; /* Center the navbar horizontally */
     align-items: center;
-    padding: 18px 0; /* Space around the navbar */
+    padding: 19px 0; /* Space around the navbar */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     gap: 20px;
     font-family: 'Times New Roman', Times, serif;

@@ -4,11 +4,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 1px 100px; /* Réduction maximale du padding */
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-bottom: 1px solid #ddd;
     position: relative;
     flex-wrap: wrap;
-    gap: 15px;
+   
     height: auto; /* Ajuste automatiquement selon le contenu */
     min-height: 40px; /* Hauteur minimale réduite */
   }
@@ -18,45 +18,49 @@
   .header-right {
     display: flex;
     align-items: center;
-    gap: 0px; /* Espacement réduit entre les éléments */
+    gap: 20px;
+     /* Espacement réduit entre les éléments */
   }
   
   /* Centre de l'entête */
   .header-center {
     display: flex;
-    justify-content: center;
-    align-items: center;
+ 
+align-items: center; 
     flex: 1; /* Occupation flexible de l'espace pour centrer l'image */
   }
   
   /* Image à gauche avec taille réduite */
   .header-image-small {
-    max-width: 160px; /* Taille réduite de l'image */
+    max-width: 22%; /* Taille réduite de l'image */
     height: auto; /* Maintient les proportions */
-    object-fit: contain; 
+
+object-fit: contain;
+
   /* Garde un affichage propre */
   }
   
   /* Logo centré */
   .header-logo {
-    max-width: 100px; /* Taille réduite de l'image */
+    max-width: 130px; /* Taille réduite de l'image */
     height: auto; /* Maintient les proportions */
-    object-fit: contain;
-    display: block;
+  
+  
     
-    margin: 0 auto;
+  
     /* Assure que le logo est centré horizontalement */
   }
   
   /* Boutons */
   .header-button {
-    background-color: whitesmoke;
+    background-color: 
+    whitesmoke;
+    gap:50px;
     color: grey;
     border: none;
     border-radius: 3px; /* Coins légèrement arrondis */
-    padding: 4px 28px; /* Boutons plus compacts */
-    cursor: pointer;
-    font-size: 11px; /* Police plus petite */
+    padding: 5px 18px; /* Boutons plus compacts */
+    font-size: 10px; /* Police plus petite */
     transition: background-color 0.3s ease;
   }
   
@@ -67,12 +71,12 @@
   /* Texte du contact */
   .header-contact {
     font-size: 13px; /* Réduction de la taille du texte */
-    color: grey;
+    color: rgb(91, 91, 91);
   }
   
   .header-contact span {
     font-weight: bold;
-    color: black;
+    color: rgb(26, 7, 151);
   }
   
   /* RESPONSIVE DESIGN */

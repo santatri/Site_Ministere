@@ -1,0 +1,160 @@
+/* Conteneur principal */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+
+/* Slide principale */
+.carousel-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image de fond */
+.carousel-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  opacity: 0.89;
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Conteneur du texte */
+.text-container {
+  position: relative;
+  z-index: 2;
+  color: white;
+  margin: 20px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Alignement à gauche */
+  height: 100%;
+  text-align: left; /* Texte aligné à gauche */
+}
+
+/* Titre principal */
+.slide-title {
+  font-size: 3.7rem;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Sous-titre */
+.slide-subtitle {
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Bouton */
+.slide-button {
+  padding: 10px 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: white;
+  background: linear-gradient(45deg, #ff9900, gold);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 20px; /* Espace au-dessus du bouton */
+}
+
+/* Effet hover sur le bouton */
+.slide-button:hover {
+  transform: scale(1.1);
+}
+
+/* Boutons de navigation modernes */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.carousel-button:hover {
+  background: #ff3d00;
+  color: white;
+  transform: scale(1.2);
+}
+
+.carousel-button.prev {
+  left: 15px;
+}
+
+.carousel-button.next {
+  right: 15px;
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 350px;
+  }
+
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1rem;
+  }
+
+  .slide-button {
+    font-size: 0.9rem;
+    padding: 8px 30px;
+  }
+
+  .carousel-button {
+    padding: 10px;
+  }
+}
+
+/* Adaptation très petit écran */
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 250px;
+  }
+
+  .slide-title {
+    font-size: 1.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .slide-button {
+    font-size: 0.8rem;
+    padding: 5px 20px;
+  }
+}

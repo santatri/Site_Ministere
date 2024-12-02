@@ -38,8 +38,8 @@
 .login-content {
   display: flex;
   flex-direction: row;
-  width: 60%;
-  max-width: 1200px;
+  width: 58%;
+  max-width: 1000px;
   background: #ffffff;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
@@ -49,7 +49,7 @@
 /* Formulaire */
 .login-form {
   flex: 1;
-  padding: 50px 10px;
+  padding: 12px 1px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,8 +57,8 @@
 }
 
 .login-form-logo {
-  width: 100px; /* Taille du logo */
-  margin-bottom: 10px;
+  width: 120px; /* Taille du logo */
+  margin-bottom: 5px;
 }
 
 .login-form h1 {
@@ -76,7 +76,6 @@
   display: block;
   font-size: 1rem;
   color: #060a56;
-  margin-bottom: 0px;
 }
 
 .input-with-icon {
@@ -86,7 +85,7 @@
 
 .input-with-icon input {
   width: 100%;
-  padding: 13px 45px;
+  padding: 12px 45px;
   font-size: 0.87rem;
   border: 1px solid #090230;
   border-radius: 10px;
@@ -120,8 +119,8 @@
 .login-button {
   width: 100%;
   max-width: 300px;
-  padding: 15px 40px;
-  background-color: #0d0450;
+  padding: 12px 20px;
+  background-color: #5000ac;
   color: white;
   border: none;
   border-radius: 20px;

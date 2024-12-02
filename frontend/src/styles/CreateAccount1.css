@@ -1,97 +1,135 @@
 
-  
-  /* Conteneur principal */
-  .form-container {
-    text-align: center;
-    width: 100%;
-    
-  }
-  
-  /* Header avec un arrière-plan */
-  .header-background {
-    background: goldenrod;
-    padding: 2rem 1rem;
-    border-bottom-left-radius: 50% 10%;
-    border-bottom-right-radius: 50% 10%;
-    margin-bottom: 2rem;
-    color: #fff;
-  }
-  
-  .header-background h1 {
-    margin: 0;
-    font-size: 2.5rem;
-  }
-  
-  .header-background p {
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-  }
-  
-  /* Wrapper du formulaire */
+
+
+
+/* Conteneur principal */
+.form-container {
+  text-align: center;
+  width: 100%;
+  height: 100%; /* Utiliser tout l'espace disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header avec un arrière-plan */
+.header-background {
+  background: #5000ac;
+  padding: 0.4rem 1rem;
+  border-bottom-left-radius: 110% 0%;
+  border-bottom-right-radius: 101% 0%;
+  color: #fff;
+  width: 100%; /* Remplir toute la largeur */
+  box-sizing: border-box; /* Inclure les marges et paddings */
+}
+
+.header-background h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header-background p {
+  font-size: 1rem;
+  margin-top: 0.9rem;
+}
+
+/* Wrapper du formulaire */
+.form-wrapper {
+  background: #ffffff;
+  color: #48484a;
+  width: 60%; /* Remplir toute la largeur */
+  max-width: 100%; /* Pas de restriction de largeur */
+  padding: 1rem;
+  border-radius: 20px; /* Retirer les bords arrondis */
+  box-shadow: 0 8px 20px rgba(5, 20, 255, 0.5);
+  margin: auto; /* Centrer verticalement */
+}
+
+.form-wrapper h2 {
+  color: gold;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 35px;
+  font-family:Arial, Helvetica, sans-serif
+}
+
+/* Styles du formulaire */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+form input,
+form select,
+form button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form input[type="file"] {
+  padding: 0;
+}
+
+form button {
+  background: #c81c09;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #373fbc;
+}
+
+/* Message */
+.form-message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: rgb(23, 0, 128);
+}
+
+/* Footer du formulaire */
+.form-footer {
+  margin-top: 1rem;
+}
+
+.form-footer a {
+  color: #4e54c8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-height: 600px) {
   .form-wrapper {
-    background: #ffffff;
-    color: #48484a;
+    padding: 0.5rem;
+  }
+  .header-background h1 {
+    font-size: 1.5rem;
+  }
+  .header-background p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-wrapper {
     width: 100%;
-    max-width: 1000px;
-    padding: 2rem;
-    margin: auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(53, 2, 255, 0.384);
+    padding: 0.5rem;
   }
-  .form-wrapper h2 {
-    color: #373fbc;
-  }
-  
-  /* Styles du formulaire */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  form input, form select, form button {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  form input[type="file"] {
-    padding: 0;
-  }
-  
+  form input,
+  form select,
   form button {
-    background: #c81c09;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
+    font-size: 0.9rem;
+    padding: 0.6rem;
   }
-  
-  form button:hover {
-    background: #373fbc;
-  }
-  
-  /* Message */
-  .form-message {
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: rgb(23, 0, 128);
-  }
-  
-  /* Footer du formulaire */
-  .form-footer {
-    margin-top: 1rem;
-  }
-  
-  .form-footer a {
-    color: #4e54c8;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .form-footer a:hover {
-    text-decoration: underline;
-  }
-  
+}

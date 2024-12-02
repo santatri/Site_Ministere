@@ -3,11 +3,13 @@ import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import '../styles/AdminPage1.css';
 import Actualité from '../components/Actualité';
-import { useAuth } from '../context/authContext';
+import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell } from 'react-icons/fa';
+import AdminNavbar from '../components/AdminNavbar';
 
 const AdminPage1 = () => {
-  const { user } = useAuth();
+
   const [users, setUsers] = useState([]);
+  const [activeSection, setActiveSection] = useState('utilisateurs');
   const [message, setMessage] = useState('');
   const [editingUser, setEditingUser] = useState(null);
   const [editForm, setEditForm] = useState({
@@ -16,8 +18,8 @@ const AdminPage1 = () => {
     matricule: '',
     role: '',
   });
+  const [searchTerm, setSearchTerm] = useState('');
 
-  // Récupérer les utilisateurs
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -30,7 +32,14 @@ const AdminPage1 = () => {
     fetchUsers();
   }, []);
 
-  // Valider un utilisateur
+  const filteredUsers = users.filter((user) =>
+    user.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.prenom.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.matricule.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.role.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
+// validation un utilisateur
   const handleValidate = async (id) => {
     try {
       await axios.put(`http://localhost:5001/api/users1/validate/${id}`);
@@ -41,8 +50,7 @@ const AdminPage1 = () => {
       setMessage('Erreur lors de la validation');
     }
   };
-
-  // Supprimer un utilisateur
+// Supprimer les utilisateurs
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5001/api/users1/${id}`);
@@ -53,8 +61,7 @@ const AdminPage1 = () => {
       setMessage('Erreur lors de la suppression');
     }
   };
-
-  // Activer le mode édition
+ // Active la mode edition
   const handleEdit = (user) => {
     setEditingUser(user.id);
     setEditForm({
@@ -64,8 +71,7 @@ const AdminPage1 = () => {
       role: user.role,
     });
   };
-
-  // Gestion des champs du formulaire
+// Gestion des champs formulaire
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditForm((prevForm) => ({
@@ -73,8 +79,7 @@ const AdminPage1 = () => {
       [name]: value,
     }));
   };
-
-  // Enregistrer les modifications
+// Enrregistrer les modifications
   const handleSaveEdit = async (id) => {
     try {
       await axios.put(`http://localhost:5001/api/users1/update/${id}`, editForm);
@@ -89,175 +94,208 @@ const AdminPage1 = () => {
     }
   };
 
-  // Annuler la modification
+  //Annuler la modification
+
   const handleCancelEdit = () => {
     setEditingUser(null);
   };
 
   return (
-    <div className="container">
-      {user ? (
-        <div>
-          <h2>Bienvenue, {user.nom} {user.prenom}!</h2>
-          {user.image && <img src={user.image} alt="User Profile" className="user-image" />}
+    
+    <div className="dashboard">
+      {/* Colonne gauche */}
+      <div className="sidebar">
+        <h2>MTEFOP</h2>
+        <div className="menu">
+          <button
+            className={`menu-item ${activeSection === 'utilisateurs' ? 'active' : ''}`}
+            onClick={() => setActiveSection('utilisateurs')}
+          >
+            <FaUsers /> Utilisateurs
+          </button>
+          <button
+            className={`menu-item ${activeSection === 'actualites' ? 'active' : ''}`}
+            onClick={() => setActiveSection('actualites')}
+          >
+            <FaNewspaper /> Actualités
+          </button>
+          <button
+            className={`menu-item ${activeSection === 'a-la-une' ? 'active' : ''}`}
+            onClick={() => setActiveSection('a-la-une')}
+          >
+            <FaStar /> À la une
+          </button>
+        
+          {/* Nouveau bouton "À propos" */}
+          <button
+            className={`menu-item ${activeSection === 'a-propos' ? 'active' : ''}`}
+            onClick={() => setActiveSection('a-propos')}
+          >
+            <FaInfoCircle /> À propos
+          </button>
+          {/* Nouveau bouton "Services" */}
+          <button
+            className={`menu-item ${activeSection === 'services' ? 'active' : ''}`}
+            onClick={() => setActiveSection('services')}
+          >
+            <FaConciergeBell /> Services
+          </button>
         </div>
-      ) : (
-        <p>Veuillez vous connecter pour voir vos informations.</p>
-      )}
-      <h1>Page d'Admin</h1>
+        <LogoutButton />
+      </div>
 
-      <div className="validation-section">
-        <h2>Utilisateurs non validés</h2>
-        {message && <p className="message">{message}</p>}
-        {users.some((user) => !user.validated) ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Matricule</th>
-                <th>Rôle</th>
-                <th>Image</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map(
-                (user) =>
-                  !user.validated && (
-                    <tr key={user.id}>
-                      <td>{user.nom}</td>
-                      <td>{user.prenom}</td>
-                      <td>{user.matricule}</td>
-                      <td>{user.role}</td>
-                      <td>
-                        {user.image ? (
-                          <img
-                            src={`http://localhost:5001/uploads/${user.image}`}
-                            alt="Profil"
-                            style={{ width: '50px', height: '50px' }}
+      {/* Colonne droite */}
+      <div className="content">
+        {/* En-tête */}
+        <AdminNavbar />
+
+        {/* Sections conditionnelles */}
+        {activeSection === 'utilisateurs' && (
+          <div className="users-section">
+            <div className="section-header">
+              <h2>Gestion des Utilisateurs</h2>
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="Rechercher..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input"
+                />
+                <button className="search-button">Rechercher</button>
+              </div>
+            </div>
+            {message && <p className="message">{message}</p>}
+            <h3>Utilisateurs non validés</h3>
+            {filteredUsers.some((user) => !user.validated) ? (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Matricule</th>
+                    <th>Rôle</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredUsers.map(
+                    (user) =>
+                      !user.validated && (
+                        <tr key={user.id}>
+                          <td>{user.nom}</td>
+                          <td>{user.prenom}</td>
+                          <td>{user.matricule}</td>
+                          <td>{user.role}</td>
+                          <td>
+                            <button
+                              onClick={() => handleValidate(user.id)}
+                              className="btn btn-validate"
+                            >
+                              <FaCheck /> Valider
+                            </button>
+                            <button
+                              onClick={() => handleDelete(user.id)}
+                              className="btn btn-delete"
+                            >
+                              <FaTrash /> Supprimer
+                            </button>
+                          </td>
+                        </tr>
+                      )
+                  )}
+                </tbody>
+              </table>
+            ) : (
+              <p>Aucun utilisateur en attente de validation</p>
+            )}
+
+            <h3>Tous les utilisateurs</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>Matricule</th>
+                  <th>Rôle</th>
+                  <th>Validation</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredUsers.map((user) => (
+                  <tr key={user.id}>
+                    {editingUser === user.id ? (
+                      <>
+                        <td>
+                          <input
+                            type="text"
+                            name="nom"
+                            value={editForm.nom}
+                            onChange={handleInputChange}
                           />
-                        ) : (
-                          'Aucune image'
-                        )}
-                      </td>
-                      <td>
-                        <button onClick={() => handleValidate(user.id)}>Valider</button>
-                        <button
-                          onClick={() => handleDelete(user.id)}
-                          style={{
-                            marginLeft: '10px',
-                            backgroundColor: 'red',
-                            color: 'white',
-                          }}
-                        >
-                          Supprimer
-                        </button>
-                      </td>
-                    </tr>
-                  )
-              )}
-            </tbody>
-          </table>
-        ) : (
-          <p>Aucun utilisateur en attente de validation</p>
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="prenom"
+                            value={editForm.prenom}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="matricule"
+                            value={editForm.matricule}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="role"
+                            value={editForm.role}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td colSpan="2">
+                          <button onClick={() => handleSaveEdit(user.id)} className="btn btn-save">
+                            Enregistrer
+                          </button>
+                          <button onClick={handleCancelEdit} className="btn btn-cancel">
+                            Annuler
+                          </button>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td>{user.nom}</td>
+                        <td>{user.prenom}</td>
+                        <td>{user.matricule}</td>
+                        <td>{user.role}</td>
+                        <td>{user.validated ? 'Validé' : 'Non validé'}</td>
+                        <td>
+                          <button onClick={() => handleEdit(user)} className="btn btn-edit">
+                            <FaEdit /> Modifier
+                          </button>
+                          <button
+                            onClick={() => handleDelete(user.id)}
+                            className="btn btn-delete"
+                          >
+                            <FaTrash /> Supprimer
+                          </button>
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
+        {activeSection === 'actualites' && <Actualité />}
       </div>
-
-      <div className="all-users-section">
-        <h2>Tous les utilisateurs</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Matricule</th>
-              <th>Rôle</th>
-              <th>Validation</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                {editingUser === user.id ? (
-                  <>
-                    <td>
-                      <input
-                        type="text"
-                        name="nom"
-                        value={editForm.nom}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="prenom"
-                        value={editForm.prenom}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="matricule"
-                        value={editForm.matricule}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="role"
-                        value={editForm.role}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                    <td colSpan="2">
-                      <button onClick={() => handleSaveEdit(user.id)} className="btn btn-save">
-                        Enregistrer
-                      </button>
-                      <button onClick={handleCancelEdit} className="btn btn-cancel">
-                        Annuler
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td>{user.nom}</td>
-                    <td>{user.prenom}</td>
-                    <td>{user.matricule}</td>
-                    <td>{user.role}</td>
-                    <td>{user.validated ? 'Validé' : 'Non validé'}</td>
-                    <td>
-                      <button onClick={() => handleEdit(user)} className="btn btn-edit">
-                        Modifier
-                      </button>
-                      <button
-                        onClick={() => handleDelete(user.id)}
-                        className="btn btn-delete"
-                      >
-                        Supprimer
-                      </button>
-                    </td>
-                  </>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div>
-        <Actualité />
-      </div>
-
-      <footer>
-        <p>© 2024 Admin Panel - Tous droits réservés</p>
-      </footer>
-
-      <LogoutButton />
     </div>
   );
 };
