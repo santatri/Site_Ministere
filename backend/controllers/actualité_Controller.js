@@ -97,3 +97,52 @@ exports.getAll = (req, res) => {
     });
   });
 };
+exports.delete = (req, res) => {
+  const { id } = req.params;
+  const deleteQuery = 'DELETE FROM actu WHERE id = ?';
+  db.query(deleteQuery, [id], (err, result) => {
+    if (err) {
+      console.error("Erreur lors de la suppression :", err.sqlMessage || err);
+      return res.status(500).send({
+        message: 'Erreur lors de la suppression.',
+        error: err.sqlMessage || err.message || err,
+      });
+    }
+    res.status(200).send({
+      message: 'Actualité supprimée avec succès.',
+    });
+  });
+};
+
+exports.update = [
+  upload.fields([
+    { name: 'media_image', maxCount: 1 },
+    { name: 'media_video', maxCount: 1 },
+  ]), // Middleware pour gérer les fichiers
+  (req, res) => {
+    const { id } = req.params;
+    const { titre, description } = req.body;
+    const media_image = req.files.media_image ? req.files.media_image[0].filename : null;
+    const media_video = req.files.media_video ? req.files.media_video[0].filename : null;
+
+    const updateQuery = `
+      UPDATE actu
+      SET titre = ?, description = ?, media_image = ?, media_video = ?
+      WHERE id = ?
+    `;
+
+    db.query(updateQuery, [titre, description, media_image, media_video, id], (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la mise à jour :", err.sqlMessage || err);
+        return res.status(500).send({
+          message: 'Erreur lors de la mise à jour.',
+          error: err.sqlMessage || err.message || err,
+        });
+      }
+      res.status(200).send({
+        message: 'Actualité mise à jour avec succès.',
+      });
+    });
+  },
+];
+
