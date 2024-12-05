@@ -71,8 +71,12 @@ app.use('/api/users1', userRoutesCRUD);
 const actualité_Routes = require('./routes/actualité_Routes');
 app.use('/api/actu',actualité_Routes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// Middleware pour servir les fichiers d'images
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// // Middleware pour servir les fichiers d'images
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+const aLaUneRoutes = require('./routes/a_la_une');
+app.use('/api/a_la_une', aLaUneRoutes);
 
 
 

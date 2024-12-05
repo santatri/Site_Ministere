@@ -1,6 +1,6 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/authContext';
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext, AuthProvider} from './context/authContext';
 
 import Header from './components/header';
 import Navbar from './components/Navbar';
@@ -18,11 +18,20 @@ import Footer from './components/Footer'; // Importation du Footer
 
 // Composant ProtectedRoute pour protéger les pages sensibles
 const ProtectedRoute = ({ element }) => {
-  const { user } = useAuth(); // Vérifie si l'utilisateur est connecté
+  const { user, setUser } = useContext(AuthContext) // Vérifie si l'utilisateur est connecté
+ const navigate = useNavigate()
+  useEffect(() =>{
+    console.log('appell');
+    
+      setUser(JSON.parse(localStorage.getItem('user')))
+    }, [])
+    
 
-  if (!user) {
-    return <Navigate to="/" replace />;
-  }
+    if (user?.role==null) {
+      return navigate('/')
+    }
+    
+  
 
   return element;
 };

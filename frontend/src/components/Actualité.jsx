@@ -91,7 +91,7 @@ const Actualité = () => {
   input.current.focus();
     
     // Permet de pré-remplir le formulaire pour l'édition
-    const actu = actualités.find((item) => item.id === id);
+    const actu = actualités.find((item) => item.id === id);  
     setFormData({
       titre: actu.titre,
       description: actu.description,

@@ -1,0 +1,33 @@
+.container {
+    width: 80%;
+    margin: auto;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  input, textarea {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  li {
+    margin-bottom: 15px;
+  }
+  
+  img {
+    width: 100px;
+    height: auto;
+  }
+  

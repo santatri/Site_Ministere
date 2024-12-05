@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/About.css';
 // import Actualité from '../components/Actualité';
 import ImageCarousel from '../components/ImageCarousel';
-import AjoutALaUne from'../components/a_la_une';
+import  ALaUne from'../components/ALaUne';
 
 
 const About = () => {
@@ -14,7 +14,7 @@ const About = () => {
                 Notre équipe est passionnée par l'innovation et le service à la clientèle.
             </p>
             <ImageCarousel/>
-            <AjoutALaUne/>
+            < ALaUne/>
         </div>
     );
 };

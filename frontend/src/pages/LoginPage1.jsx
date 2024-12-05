@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/authContext';
+import { AuthContext, useAuth } from '../context/authContext';
 import '../styles/LoginPage1.css';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage1 = () => {
   const [matricule, setMatricule] = useState('');
+  const {user, setUser} =useContext(AuthContext)
   const [mdp, setMdp] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');

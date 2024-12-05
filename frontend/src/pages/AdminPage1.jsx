@@ -5,9 +5,13 @@ import '../styles/AdminPage1.css';
 import Actualité from '../components/Actualité';
 import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell } from 'react-icons/fa';
 import AdminNavbar from '../components/AdminNavbar';
+import ALaUne from '../components/ALaUne';
+// import { useAuth } from '../context/authContext';
+;
 
 const AdminPage1 = () => {
-
+  
+  
   const [users, setUsers] = useState([]);
   const [activeSection, setActiveSection] = useState('utilisateurs');
   const [message, setMessage] = useState('');
@@ -295,6 +299,10 @@ const AdminPage1 = () => {
           </div>
         )}
         {activeSection === 'actualites' && <Actualité />}
+        {activeSection === 'a-la-une' && <ALaUne />}
+
+
+
       </div>
     </div>
   );
