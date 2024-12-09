@@ -1,0 +1,161 @@
+/* WelcomePage.css */
+
+/* Conteneur principal */
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ /* Occupe toute la hauteur de l'écran */
+  width: 100%; /* Prend toute la largeur de l'écran */
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+/* Section principale */
+.welcome-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; /* Prend 100% de la largeur disponible */
+  background: linear-gradient(200deg, rgba(255, 13, 5, 0.99), blue), url('../assets/24.jpg') no-repeat center center; 
+  color: white;
+  padding: 10px;
+  box-shadow: 0px 4px 6px transparent;
+  border-radius: 1px;
+  gap: 20px;
+  position: relative;
+  overflow: hidden; /* Masque tout ce qui dépasse */
+}
+
+/* Ajout d'un effet de texture */
+.welcome-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  background: linear-gradient(
+      700deg,
+      black 94%,
+     blue 99%,
+     gray 10%,
+     red 98%,
+      rgba(255, 255, 255, 0.1) 95%,
+      rgba(255, 215, 0, 0.1) 5%
+    ),
+    linear-gradient(
+      200deg,
+      blue 85%,
+      rgba(255, 215, 0, 0.9) 90%,
+      rgba(255, 255, 255, 0.9) 90%,
+      rgba(255, 255, 255, 0.1) 75%,
+      rgba(255, 215, 0, 0.2) 95%
+    );
+  background-size: 22px 7px; /* Taille du motif */
+  opacity: 0.5;
+  z-index: 1; /* Place l'effet derrière le contenu */
+  pointer-events: none;
+}
+
+/* Cadre image */
+.image-frame {
+  width: 25%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2; /* S'assure que l'image est au-dessus de l'effet */
+}
+
+/* Image */
+.frame-image {
+  width: 75%;
+  height: auto;
+  border-radius: 0px;
+}
+
+/* Texte */
+.text-content {
+  width: 80%;
+  text-align: left;
+  position: relative;
+  z-index: 2; /* Texte au-dessus de l'effet */
+}
+
+.welcome-titlee {
+
+  
+ 
+
+  color: gold;
+  text-align: left;
+}
+
+.welcome-subtitle {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.welcome-footer {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 24px;
+  font-style: italic;
+}
+
+.welcome-footer span {
+  font-weight: bold;
+}
+
+/* Responsive */
+
+/* Tablettes */
+@media (max-width: 768px) {
+  .welcome-section {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .image-frame {
+    width: 100%;
+  }
+
+  .text-content {
+    width: 100%;
+  }
+
+  .welcome-title {
+    font-size: 24px;
+  }
+
+  .welcome-subtitle {
+    font-size: 14px;
+  }
+
+  .welcome-footer {
+    font-size: 12px;
+  }
+}
+
+/* Téléphones */
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: 20px;
+  }
+
+  .welcome-subtitle {
+    font-size: 12px;
+  }
+
+  .welcome-footer {
+    font-size: 10px;
+  }
+}

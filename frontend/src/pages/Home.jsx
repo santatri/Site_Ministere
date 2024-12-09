@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Home.css';
+import ImageCarousel from '../components/ImageCarousel';
+import '../styles/ImageCarousel.css';
+import WelcomePage from '../components/WelcomePage';
+import '../styles/WelcomePage.css';
 
 
 const Home = () => {
@@ -40,6 +44,8 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      <ImageCarousel/>
+      <WelcomePage/>
       <h1>Bienvenue sur la page d'accueil</h1>
       {message && <p className="error-message">{message}</p>}
 

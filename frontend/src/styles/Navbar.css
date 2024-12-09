@@ -1,70 +1,163 @@
-/* Styles for the navigation bar container */
-.navigtion-bar {
-    background-color: #333; /* Dark background */
+/* Barre de navigation principale */
+.navigation-bar {
     display: flex;
-    justify-content: center; /* Center the navbar horizontally */
+    justify-content: space-between;
     align-items: center;
-    padding: 19px 0; /* Space around the navbar */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    gap: 20px;
+    padding: 8px 40px;
+    font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
-    /* Subtle shadow for depth */
+    background: linear-gradient(midnightblue, midnightblue, midnightblue, midnightblue, midnightblue, rgb(13, 13, 120), blue);
+    color: white;
+    position: relative;
+    z-index: 1000;
+    flex-wrap: wrap; /* Pour permettre un retour à la ligne si nécessaire */
 }
 
-/* Styles for the navigation links container */
+/* Liens de navigation */
 .navigation-links {
     display: flex;
-    gap: 20px; /* Space between each navigation link */
+    gap: 30px;
 }
 
-/* Styles for individual links */
-.navigation-links a,
-.navigation-links .active {
+.nav-link {
     color: white;
     text-decoration: none;
-    font-size: 16px;
-    position: relative; /* For the underline effect */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+    font-size: 17px;
+    position: relative;
+    transition: color 0.3s;
 }
 
-/* Hover effect - Gold color and underline */
-.navigation-links a:hover,
-.navigation-links a:focus,
-.navigation-links a.active {
-    color: #FFD700; /* Gold color */
+/* Animation underline gold */
+.nav-link.active {
+    position: relative;
+    color: #FFD700;
 }
 
-/* Add underline effect when active or hovered */
-.navigation-links a::after {
+.nav-link.active::after {
     content: '';
+    display: block;
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -5px; /* Distance below the text */
     height: 2px;
-    background-color: transparent; /* Default is invisible */
-    transform: scaleX(0); /* Start with no underline */
-    transform-origin: center; /* Scale effect starts from the center */
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    background-color: gold;
+    width: 0;
+    left: 50%;
+    bottom: -5px;
+    transition: all 0.5s ease;
+    transform: translateX(-50%);
 }
 
-/* Underline animation on hover or active */
-.navigation-links a:hover::after,
-.navigation-links a.active::after {
-    background-color: #FFD700; /* Gold underline */
-    transform: scaleX(1); /* Full-width underline on hover or active */
+.nav-link.active:hover::after,
+.nav-link.active::after {
+    width: 100%;
 }
 
-/* Responsive styling for smaller screens */
+/* Hover sur les liens */
+.nav-link:hover {
+    color: #e0c10d;
+}
+
+/* Menu burger pour petits écrans */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
-    .navigtion-bar {
-        flex-direction: column; /* Stack links vertically */
-        padding: 15px;
+    .menu-toggle {
+        display: block;
     }
 
     .navigation-links {
-        flex-direction: column; /* Stack links vertically */
-        gap: 10px; /* Space between links */
-        text-align: center; /* Center the links */
+        display: none;
+    }
+
+    .navigation-links.open {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: midnightblue;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 200px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+}
+
+/* Barre de recherche */
+.searche-bare {
+    display: flex;
+    margin-left: 2%;
+    
+    align-items: center;
+    justify-content: flex-start; /* Pour aligner correctement la barre */
+    gap: 0px; /* Espace entre l'input et le bouton */
+}
+
+.searche-input {
+    padding: 10px 20px;
+  
+    margin-left: 17%;
+    border-radius: 10px;margin-bottom: 0%; /* Arrondi de la barre */
+    border: 1px solid #ccc;
+
+    font-size: 15px;
+    font-family: 'Arial', sans-serif;
+    transition: border-color 0.3s ease;
+    
+    width: 220px;
+}
+
+.searche-input:focus {
+    border-color: gold;
+}
+
+.searche-buttone {
+    padding: 10px 15px;
+    
+   
+    background-color: rgba(205, 176, 14, 0.99);
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searche-buttone:hover {
+    background-color: #e0c10d;
+}
+
+/* Responsive Design pour petits écrans */
+@media (max-width: 480px) {
+    .navigation-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .searche-bare {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .menu-toggle {
+        align-self: flex-start;
+    }
+
+    .searche-input {
+        width: 100%;
+    }
+
+    .searche-buttone {
+        padding: 8px 3px;
+        font-size: 12px;
     }
 }

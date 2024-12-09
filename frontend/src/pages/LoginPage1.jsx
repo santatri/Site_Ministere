@@ -35,13 +35,21 @@ const LoginPage1 = () => {
 
   return (
     <div className="login-container">
+      
       {/* Vague en haut */}
       <div className="wave-header"></div>
 
       <div className="login-content">
-        {/* Colonne gauche : Formulaire */}
+      <div className="left-column">
+          <div className="left-contente">
+            <img src={require('../assets/MTEFOP.png')} alt="Connexion illustration" />
+            <h1>Ministère du Travail, de l'Emploi</h1>
+            <h2>et de la Fonction Publique</h2>
+          </div>
+        </div>
+        {/* Colonne droite : Formulaire */}
         <div className="login-form">
-          <img src={require('../assets/MTEFOP.png')} alt="Logo" className="login-form-logo" />
+          <img src={require('../assets/Rpp.png')} alt="Logo" className="login-form-logo" />
           <h1>Bienvenue</h1>
           <form onSubmit={handleLogin}>
             <div className="input-group">
@@ -84,12 +92,7 @@ const LoginPage1 = () => {
         </div>
 
         {/* Colonne droite : Image avec texte */}
-        <div className="login-image">
-          <img src={require('../assets/logo.jpg')} alt="Connexion illustration" />
-          <div className="text-overlay">
-            Ministère du Travail de l'Emploi<br />et de la Fonction Publique
-          </div>
-        </div>
+       
       </div>
 
       {/* Vague en bas */}

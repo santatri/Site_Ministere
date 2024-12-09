@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'; // Icônes modernes
 import '../styles/ImageCarousel.css';
-import image1 from '../assets/241.jpg';
-import image2 from '../assets/170.jpg';
+import image1 from '../assets/black5.jpg';
+import image2 from '../assets/110.jpg';
 import image3 from '../assets/44.jpg';
 
 const slides = [

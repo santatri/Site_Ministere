@@ -1,29 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Header.css';
 import logo from '../assets/MTEFOP.png'; // Importation du logo depuis le dossier assets
 import rppImage from '../assets/Rpp.png'; // Importation de l'image rpp.png
+import { FaPhone, FaEnvelope, FaCloudSun } from 'react-icons/fa'; // Importation des icônes
 
 const Header = () => {
+  const [weather, setWeather] = useState('');
+
+  useEffect(() => {
+    // Appel API pour récupérer la météo actuelle de Madagascar
+    const fetchWeather = async () => {
+      try {
+        const response = await fetch('https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=Madagascar'); // Remplacez YOUR_API_KEY par votre clé API
+        const data = await response.json();
+        setWeather(data.current.condition.text);
+      } catch (error) {
+        console.error('Erreur lors de la récupération de la météo:', error);
+      }
+    };
+
+    fetchWeather();
+  }, []);
+
   return (
     <header className="header">
-      {/* Boutons à gauche avec image */}
+      {/* Logo à gauche */}
       <div className="header-left">
-        <img src={rppImage} alt="RPP" className="header-image-small" /> {/* Image réduite */}
-        <button className="header-button">Public Services</button>
-        <button className="header-button">Documents Reference</button>
-        <button className="header-button">Recrutement</button>
+      <img src={rppImage} alt="RPP" className="header-image-small" />
+      
       </div>
 
-      {/* Logo au centre */}
+      {/* Contenu au centre */}
       <div className="header-center">
-        <img src={logo} alt="Logo du ministère" className="header-logo" />
+      <img src={logo} alt="Logo du ministère" className="header-logo" />
       </div>
+      
 
-      {/* Contact rapide à droite */}
+      {/* Informations de contact à droite avec icones */}
       <div className="header-right">
-        <p className="header-contact">
-          Contact rapide : <span><br />+261 0345599717</span>
-        </p>
+        <p>Contact rapide :</p>
+        <FaPhone className="header-icon" /> +261 0345599717 | 
+        <FaEnvelope className="header-icon" /> mtefop@gmail.com 
+        
       </div>
     </header>
   );

@@ -109,103 +109,121 @@ const Actualité = () => {
   };
 
   return (
-    <div>
-      <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-        ref={input}
-          type="text"
-          name="titre"
-          placeholder="Titre"
-          onChange={handleChange}
-          value={formData.titre}
-          required
-        />
-        <textarea
-          name="description"
-          placeholder="Description"
-          onChange={handleChange}
-          value={formData.description}
-          required
-        />
-        <label>Image (facultatif) :</label>
-        <input
-          type="file"
-          name="media_image"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        <label>Vidéo (facultatif) :</label>
-        <input
-          type="file"
-          name="media_video"
-          accept="video/*"
-          onChange={handleFileChange}
-        />
-        <button type="submit">{isEditing ? 'Mettre à jour' : 'Soumettre'}</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="actualites-container">
+  <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
+  <form className="for-actualite" onSubmit={handleSubmit}>
+    <input
+      ref={input}
+      type="text"
+      name="titre"
+      className="for-inpute"
+      placeholder="Titre"
+      onChange={handleChange}
+      value={formData.titre}
+      required
+    />
+    <textarea
+      name="description"
+      className="for-textarea"
+      placeholder="Description"
+      onChange={handleChange}
+      value={formData.description}
+      required
+    />
+    <label>Image (facultatif) :</label>
+    <input
+      type="file"
+      name="media_image"
+      className="for-file-input"
+      accept="image/*"
+      onChange={handleFileChange}
+    />
+    <label>Vidéo (facultatif) :</label>
+    <input
+      type="file"
+      name="media_video"
+      className="for-file-input"
+      accept="video/*"
+      onChange={handleFileChange}
+    />
+    <button type="submit" className="for-submite-button">
+      {isEditing ? 'Mettre à jour' : 'Soumettre'}
+    </button>
+  </form>
+  {message && <p className="for-message">{message}</p>}
 
-      <h2>Archives des actualités</h2>
-      {message && <p className="error-message">{message}</p>}
+  <h4>Archives des actualités</h4>
+  <form className="sear-forme" onSubmit={handleSearch}>
+    <input
+      type="text"
+      className="sear-inpute"
+      placeholder="Rechercher par mots-clés"
+      value={search.mots}
+      onChange={(e) => setSearch({ ...search, mots: e.target.value })}
+    />
+    <input
+      type="date"
+      className="sear-inpute"
+      value={search.dateStart}
+      onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
+    />
+    <input
+      type="date"
+      className="sear-inpute"
+      value={search.dateEnd}
+      onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
+    />
+    <button type="submit" className="sear-buttone">Rechercher</button>
+  </form>
 
-      <form className="search-form" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Rechercher par mots-clés"
-          value={search.mots}
-          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateStart}
-          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateEnd}
-          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
-        />
-        <button type="submit">Rechercher</button>
-      </form>
+  <div className="news-liste">
+    {actualités.length === 0 ? (
+      <p>Aucune actualité disponible.</p>
+    ) : (
+      actualités.map((actu) => (
+        <div key={actu.id} className="news-carde">
+          <h3 className="newse-title">{actu.titre}</h3>
+          <p className="newse-date">{formatDate(actu.date_insertion)}</p>
+       
+          {actu.media_image && (
+            <img
+              src={`http://localhost:5001/uploads/${actu.media_image}`}
+              alt="Actualité"
+              className="news-imagee"
+            />
+          )}
+          {actu.media_video && (
+            <video controls className="newse-video">
+              <source
+                src={`http://localhost:5001/uploads/${actu.media_video}`}
+                type="video/mp4"
+              />
+              Votre navigateur ne supporte pas les vidéos HTML5.
+            </video>
+          )}
+             <p className="newse-description">{actu.description}</p>
+          <div className="newse-actions">
+            <button
+              onClick={() => handleUpdate(actu.id)}
+              className="actione-button update-button"
+            >
+              Modifier
+            </button>
+            <button
+              onClick={() => handleDelete(actu.id)}
+              className="actione-button delete-button"
+            >
+              Supprimer
+            </button>
+          </div>
+        </div>
+      ))
+    )}
+  </div>
+</div>
 
-      <div className="actualités-container">
-        {actualités.length === 0 ? (
-          <p>Aucune actualité disponible.</p>
-        ) : (
-          actualités.map((actu) => (
-            <div key={actu.id} className="actualité-card">
-              <h2 className="actualité-title">{actu.titre}</h2>
-              <p className="date-publication">{formatDate(actu.date_insertion)}</p>
-              <p className="actualité-description">{actu.description}</p>
-              <div className="actualité-media">
-                {actu.media_image && (
-                  <img
-                    src={`http://localhost:5001/uploads/${actu.media_image}`}
-                    alt="Actualité"
-                    className="actualité-image"
-                  />
-                )}
-                {actu.media_video && (
-                  <video controls>
-                    <source
-                      src={`http://localhost:5001/uploads/${actu.media_video}`}
-                      type="video/mp4"
-                    />
-                    Votre navigateur ne supporte pas les vidéos HTML5.
-                  </video>
-                )}
-              </div>
-              <div className="actualité-actions">
-                <button onClick={() => handleUpdate(actu.id)}>Modifier</button>
-                <button onClick={() => handleDelete(actu.id)}>Supprimer</button>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
   );
 };
 
 export default Actualité;
+

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/About.css';
-// import Actualité from '../components/Actualité';
-import ImageCarousel from '../components/ImageCarousel';
+
 import  ALaUne from'../components/ALaUne';
 
 
@@ -13,7 +12,7 @@ const About = () => {
                 Nous sommes une entreprise dédiée à fournir les meilleures solutions pour nos clients. 
                 Notre équipe est passionnée par l'innovation et le service à la clientèle.
             </p>
-            <ImageCarousel/>
+          
             < ALaUne/>
         </div>
     );
