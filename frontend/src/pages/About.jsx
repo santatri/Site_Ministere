@@ -2,7 +2,11 @@ import React from 'react';
 import '../styles/About.css';
 // import Actualité from '../components/Actualité';
 import ImageCarousel from '../components/ImageCarousel';
-import  ALaUne from'../components/ALaUne';
+import  SecretaireGeneral from'../components/SecretaireGeneral';
+import  DirectionGenerale from'../components/DirectionGenerale';
+import  Direction from'../components/Direction';
+import  Service from'../components/Service';
+import  ServiceOffert from'../components/ServiceOffert';
 
 
 const About = () => {
@@ -14,8 +18,13 @@ const About = () => {
                 Notre équipe est passionnée par l'innovation et le service à la clientèle.
             </p>
             <ImageCarousel/>
-            < ALaUne/>
+            <SecretaireGeneral/>
+            <DirectionGenerale/>
+            <Direction/>
+            <Service/>
+            <ServiceOffert/>
         </div>
+            
     );
 };
 

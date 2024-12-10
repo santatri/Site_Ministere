@@ -78,7 +78,21 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const aLaUneRoutes = require('./routes/a_la_une');
 app.use('/api/a_la_une', aLaUneRoutes);
 
-
+//SECRETAIRE GENERALE
+const secretaireGeneralRoutes = require('./routes/secretaireGeneralRoutes');
+app.use('/api/secretaire_general', secretaireGeneralRoutes);
+//Direction generale
+const directionGeneraleRoutes = require('./routes/directionGeneraleRoutes');
+app.use('/api/direction_generale', directionGeneraleRoutes);
+//Direction
+const directionRoutes = require('./routes/directionRoutes');
+app.use('/api/direction', directionRoutes);
+//service
+const serviceRoutes = require('./routes/serviceRoutes');
+app.use('/api/service', serviceRoutes);
+//service offert
+const serviceOffertRoutes = require('./routes/ServiceOffertRoutes');
+app.use('/api/serviceOffert', serviceOffertRoutes);
 
 // Lancement du serveur
 app.listen(port, () => {
