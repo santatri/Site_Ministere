@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'; // Icônes modernes
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'; // Modern icons
 import '../styles/ImageCarousel.css';
-import image1 from '../assets/black5.jpg';
-import image2 from '../assets/110.jpg';
-import image3 from '../assets/44.jpg';
+import image1 from '../assets/1005.jpg';
+import image2 from '../assets/1004.jpg';
+import image3 from '../assets/110.jpg';
 
 const slides = [
   {
@@ -68,26 +68,26 @@ const ImageCarousel = () => {
         exit={{ opacity: 0, x: 100 }}
         transition={{ duration: 1 }}
       >
-        {/* Image de fond */}
+        {/* Image de fond statique */}
         <div
           className="carousel-image"
-          style={{ backgroundImage: `url(${image})` }}
+          style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover' }}
         ></div>
 
         {/* Texte */}
         <div className="text-container">
           <motion.h1
             className="slide-title"
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ opacity: 0, x: -200 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
             {title}
           </motion.h1>
           <motion.p
             className="slide-subtitle"
-            initial={{ x: -200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ opacity: 0, x: -200 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
             {subtitle}

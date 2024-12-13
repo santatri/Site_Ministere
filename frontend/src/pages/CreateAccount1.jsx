@@ -40,9 +40,8 @@ const Register = () => {
         {/* Partie gauche */}
         <div className="left-column">
           <div className="left-content">
-            <img src={require('../assets/MTEFOP.png')} alt="Connexion illustration" />
-            <h1>Ministère du Travail, de l'Emploi</h1>
-            <h2>et de la Fonction Publique</h2>
+            <img src={require('../assets/dgfop.png')} alt="Connexion illustration" />
+           
           </div>
         </div>
 

@@ -1,206 +1,209 @@
-Container principal
-.home-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  /* Titre principal */
-  .home-container h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
+/* Conteneur principal avec deux colonnes */
+.layout-container {
+  gap: 0px;
+  padding: 0px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(100deg, rgba(4, 27, 132, 0.964), rgba(0, 247, 255, 0.964)), url('../assets/24.jpg') no-repeat center center;
+  background-size: cover;
+}
 
+
+
+
+/* Colonne gauche : Actualités */
+.actualites-container {
+  flex: 2;
+}
+
+.actualites-title {
+  margin-top: 5%;
+  font-size: 40px;
+  margin-bottom: 0px;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center; /* Centrer le titre */
+}
+
+.actualites-filters {
+  display: flex;
+  justify-content: center; /* Aligner les boutons au centre */
+  gap: 25px;
+  margin-bottom: 50px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.filter-button {
+  padding: 10px 12px;
+  border: 1px solid rgba(85, 0, 255, 0.611);
+  background-color: rgba(3, 12, 105, 0.686);
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.filter-button.active-filter,
+.filter-button:hover {
+  background-color: red;
+  border-color: red;
+  color: white;
+}
+
+.actualites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 50px;
+}
+
+.article-card {
+  border: 0px solid #ddd;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 580px;
+  animation: fadeIn 0.8s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+
+.article-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd; /* Ligne entre l'image et le contenu */
+}
+
+.article-content {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-title {
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 20px;
+  color: black;
+  text-align: center;
+}
+
+.article-description {
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 0px;
+  color: #555;
+  text-align: center; /* Centrer la description */
+}
+
+.article-date {
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 15px;
+  text-align: center; /* Centrer la date */
+}
+
+/* Ligne séparatrice */
+.separator {
+  height: 8px;
+  background-color: rebeccapurple;
+  margin: 15px 0;
+}
+
+/* Bouton Lire Plus */
+.read-more-container {
+  text-align: center;
+  margin-top: auto; /* Pousse le bouton vers le bas */
+}
+
+.read-more {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 17px;
+  color: white;
+  background-color: midnightblue;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  background-color: red;
+}
+
+/* Colonne droite : Annonces */
+.annonces-container {
+  flex: 0.5;
+  background: rgba(220, 9, 22, 0.8); /* Couleur d'arrière-plan clair */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour le cadre */
+  border-radius: 8px; /* Angles arrondis */
+  padding: 28px;
+}
+
+.annonces-title {
+  font-size: 45px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center; /* Centrer le titre */
+}
+
+.annonce-card {
+  border: 0px solid gold;
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.annonce-title {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+.annonce-description {
+  font-size: 18px;
+  color: #555;
+}
+
+/* Animation au défilement */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  /* Message d'erreur */
-  .error-message {
-    color: red;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Formulaire de recherche */
-  .search-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
   }
-  
-  .search-form input {
-    flex: 1 1 auto;
-    max-width: 300px;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+
+  .annonces-container {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 20px;
   }
-  
-  .search-form button {
-    flex: 0 1 auto;
-    max-width: 150px;
-    padding: 8px 16px;
-    font-size: 14px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .search-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Section des actualités */
-  .actualités-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .actualité-card {
-    flex: 1 1 calc(33.333% - 20px);
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .actualité-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .actualité-title {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .date-publication {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 15px;
-  }
-  
-  .actualité-description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 15px;
-  }
-  
-  /* Images et vidéos */
-  .actualité-media {
-    margin-bottom: 15px;
-  }
-  
-  .actualité-image {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .actualité-video {
-    width: 100%;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  /* Actions (boutons) */
-  .actions {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .like-btn,
-  .comment-btn {
-    flex: 1 1 48%;
-    padding: 10px;
-    font-size: 1rem;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
-  }
-  
-  .like-btn:hover,
-  .comment-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Responsiveness */
-  
-  /* Tablettes (768px et plus) */
-  @media (max-width: 768px) {
-    /* Formulaire */
-    .search-form {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .search-form input,
-    .search-form button {
-      width: 90%;
-      font-size: 14px;
-      padding: 10px;
-    }
-  
-    /* Cartes */
-    .actualité-card {
-      flex: 1 1 calc(50% - 20px);
-    }
-  
-    .like-btn,
-    .comment-btn {
-      font-size: 0.9rem;
-      padding: 8px;
-    }
-  }
-  
-  /* Smartphones (480px et moins) */
-  @media (max-width: 480px) {
-    /* Formulaire */
-    .search-form input,
-    .search-form button {
-      font-size: 12px;
-      padding: 8px;
-      max-width: 100%;
-    }
-  
-    /* Cartes */
-    .actualité-card {
-      flex: 1 1 100%;
-      margin-bottom: 20px;
-    }
-  
-    .like-btn,
-    .comment-btn {
-      font-size: 0.8rem;
-      padding: 6px;
-    }
-  
-    .actualité-title {
-      font-size: 1.2rem;
-    }
-  
-    .actualité-description {
-      font-size: 0.9rem;
-    }
-  }
-  
+}

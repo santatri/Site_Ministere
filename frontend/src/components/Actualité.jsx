@@ -3,8 +3,7 @@ import axios from 'axios';
 import '../styles/Actualité.css';
 
 const Actualité = () => {
-
-  const input = useRef(null)
+  const input = useRef(null);
   const [formData, setFormData] = useState({
     titre: '',
     description: '',
@@ -16,8 +15,8 @@ const Actualité = () => {
   const [search, setSearch] = useState({ mots: '', dateStart: '', dateEnd: '' });
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [expandedDescriptionId, setExpandedDescriptionId] = useState(null); // New state for controlling full description visibility
 
-  // Récupérer les actualités depuis l'API
   const fetchActualités = async (filters = {}) => {
     try {
       const response = await axios.get('http://localhost:5001/api/actu/all', { params: filters });
@@ -58,7 +57,7 @@ const Actualité = () => {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setMessage(response.data.message);
-      fetchActualités(); // Recharge les actualités après modification ou ajout
+      fetchActualités();
       setFormData({
         titre: '',
         description: '',
@@ -81,17 +80,15 @@ const Actualité = () => {
     try {
       const response = await axios.delete(`http://localhost:5001/api/actu/${id}`);
       setMessage(response.data.message);
-      fetchActualités(); // Recharge les actualités après suppression
+      fetchActualités();
     } catch (error) {
       setMessage('Erreur lors de la suppression.');
     }
   };
 
   const handleUpdate = (id) => {
-  input.current.focus();
-    
-    // Permet de pré-remplir le formulaire pour l'édition
-    const actu = actualités.find((item) => item.id === id);  
+    input.current.focus();
+    const actu = actualités.find((item) => item.id === id);
     setFormData({
       titre: actu.titre,
       description: actu.description,
@@ -104,126 +101,97 @@ const Actualité = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
     return date.toLocaleDateString('fr-FR', options);
   };
 
   return (
-    <div className="actualites-container">
-  <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
-  <form className="for-actualite" onSubmit={handleSubmit}>
-    <input
-      ref={input}
-      type="text"
-      name="titre"
-      className="for-inpute"
-      placeholder="Titre"
-      onChange={handleChange}
-      value={formData.titre}
-      required
-    />
-    <textarea
-      name="description"
-      className="for-textarea"
-      placeholder="Description"
-      onChange={handleChange}
-      value={formData.description}
-      required
-    />
-    <label>Image (facultatif) :</label>
-    <input
-      type="file"
-      name="media_image"
-      className="for-file-input"
-      accept="image/*"
-      onChange={handleFileChange}
-    />
-    <label>Vidéo (facultatif) :</label>
-    <input
-      type="file"
-      name="media_video"
-      className="for-file-input"
-      accept="video/*"
-      onChange={handleFileChange}
-    />
-    <button type="submit" className="for-submite-button">
-      {isEditing ? 'Mettre à jour' : 'Soumettre'}
-    </button>
-  </form>
-  {message && <p className="for-message">{message}</p>}
+    <div className="actualites-containeres">
+      <h2>Gestion des Actualités</h2>
 
-  <h4>Archives des actualités</h4>
-  <form className="sear-forme" onSubmit={handleSearch}>
-    <input
-      type="text"
-      className="sear-inpute"
-      placeholder="Rechercher par mots-clés"
-      value={search.mots}
-      onChange={(e) => setSearch({ ...search, mots: e.target.value })}
-    />
-    <input
-      type="date"
-      className="sear-inpute"
-      value={search.dateStart}
-      onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
-    />
-    <input
-      type="date"
-      className="sear-inpute"
-      value={search.dateEnd}
-      onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
-    />
-    <button type="submit" className="sear-buttone">Rechercher</button>
-  </form>
+      {/* Barre de recherche */}
+      <form onSubmit={handleSearch} className="filters-bar">
+        <input
+          type="text"
+          placeholder="Rechercher..."
+          value={search.mots}
+          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
+        />
+        <input
+          type="date"
+          value={search.dateStart}
+          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
+        />
+        <input
+          type="date"
+          value={search.dateEnd}
+          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
+        />
+        <button type="submit">Filtrer</button>
+      </form>
 
-  <div className="news-liste">
-    {actualités.length === 0 ? (
-      <p>Aucune actualité disponible.</p>
-    ) : (
-      actualités.map((actu) => (
-        <div key={actu.id} className="news-carde">
-          <h3 className="newse-title">{actu.titre}</h3>
-          <p className="newse-date">{formatDate(actu.date_insertion)}</p>
-       
-          {actu.media_image && (
-            <img
-              src={`http://localhost:5001/uploads/${actu.media_image}`}
-              alt="Actualité"
-              className="news-imagee"
-            />
-          )}
-          {actu.media_video && (
-            <video controls className="newse-video">
-              <source
-                src={`http://localhost:5001/uploads/${actu.media_video}`}
-                type="video/mp4"
-              />
-              Votre navigateur ne supporte pas les vidéos HTML5.
-            </video>
-          )}
-             <p className="newse-description">{actu.description}</p>
-          <div className="newse-actions">
-            <button
-              onClick={() => handleUpdate(actu.id)}
-              className="actione-button update-button"
-            >
-              Modifier
-            </button>
-            <button
-              onClick={() => handleDelete(actu.id)}
-              className="actione-button delete-button"
-            >
-              Supprimer
-            </button>
+      <div className="forms-sectiones">
+        <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            ref={input}
+            type="text"
+            name="titre"
+            placeholder="Titre"
+            onChange={handleChange}
+            value={formData.titre}
+            required
+          />
+          <textarea
+            name="description"
+            placeholder="Description"
+            onChange={handleChange}
+            value={formData.description}
+            required
+          />
+          <label>Image :</label>
+          <input type="file" name="media_image" accept="image/*" onChange={handleFileChange} />
+          <label>Vidéo :</label>
+          <input type="file" name="media_video" accept="video/*" onChange={handleFileChange} />
+          <button type="submit">{isEditing ? 'Mettre à jour' : 'Soumettre'}</button>
+        </form>
+      </div>
+
+      {/* Section des actualités */}
+      <div className="news-sectiones">
+        <h1>Toutes les actualités</h1>
+        {actualités.length === 0 ? (
+          <p>Aucune actualité disponible.</p>
+        ) : (
+          <div className="news-grides">
+            {actualités.map((actu) => (
+              <div key={actu.id} className="news-cardes">
+                <h3>{actu.titre}</h3>
+                <p>{formatDate(actu.date_insertion)}</p>
+                {actu.media_image && <img src={`http://localhost:5001/uploads/${actu.media_image}`} alt="Actualité" />}
+                {actu.media_video && (
+                  <video controls>
+                    <source src={`http://localhost:5001/uploads/${actu.media_video}`} type="video/mp4" />
+                    Votre navigateur ne supporte pas les vidéos HTML5.
+                  </video>
+                )}
+                <p className={`description ${expandedDescriptionId === actu.id ? 'expanded' : ''}`}>
+                  {actu.description}
+                </p>
+                <button onClick={() => setExpandedDescriptionId(expandedDescriptionId === actu.id ? null : actu.id)}>
+                  {expandedDescriptionId === actu.id ? 'Voir moins' : 'Voir plus'}
+                </button>
+                <div>
+                  <button onClick={() => handleUpdate(actu.id)}>Modifier</button>
+                  <button onClick={() => handleDelete(actu.id)}>Supprimer</button>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      ))
-    )}
-  </div>
-</div>
-
+        )}
+      </div>
+    </div>
   );
 };
 
 export default Actualité;
-

@@ -1,50 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../styles/Header.css';
-import logo from '../assets/MTEFOP.png'; // Importation du logo depuis le dossier assets
-import rppImage from '../assets/Rpp.png'; // Importation de l'image rpp.png
-import { FaPhone, FaEnvelope, FaCloudSun } from 'react-icons/fa'; // Importation des icônes
+import logo from '../assets/Rpp.png'; // Importation du logo depuis le dossier assets
 
 const Header = () => {
-  const [weather, setWeather] = useState('');
+    return (
+        <div className="header-bar">
+            {/* Section gauche */}
+            <div className="header-left">
+                <div className="header-item">
+                    <i className="fas fa-map-marker-alt icon"></i>
+                    <p>67Ha département 1, Antananarivo</p>
+                </div>
+                <div className="header-item">
+                    <i className="fas fa-envelope icon"></i>
+                    <p>mtefop@gmail.com</p>
+                </div>
+            </div>
 
-  useEffect(() => {
-    // Appel API pour récupérer la météo actuelle de Madagascar
-    const fetchWeather = async () => {
-      try {
-        const response = await fetch('https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=Madagascar'); // Remplacez YOUR_API_KEY par votre clé API
-        const data = await response.json();
-        setWeather(data.current.condition.text);
-      } catch (error) {
-        console.error('Erreur lors de la récupération de la météo:', error);
-      }
-    };
+            {/* Section centrale pour le logo */}
+           <div className="header-logo">
+            <img src={logo} alt="logo" />
+           </div>
 
-    fetchWeather();
-  }, []);
-
-  return (
-    <header className="header">
-      {/* Logo à gauche */}
-      <div className="header-left">
-      <img src={rppImage} alt="RPP" className="header-image-small" />
-      
-      </div>
-
-      {/* Contenu au centre */}
-      <div className="header-center">
-      <img src={logo} alt="Logo du ministère" className="header-logo" />
-      </div>
-      
-
-      {/* Informations de contact à droite avec icones */}
-      <div className="header-right">
-        <p>Contact rapide :</p>
-        <FaPhone className="header-icon" /> +261 0345599717 | 
-        <FaEnvelope className="header-icon" /> mtefop@gmail.com 
-        
-      </div>
-    </header>
-  );
+            {/* Section droite */}
+            <div className="header-right">
+                <div className="header-item">
+                    <i className="fas fa-clock icon"></i>
+                    <p>Horaires d'ouverture : Lundi à Samedi - 8h à 17h</p>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Header;

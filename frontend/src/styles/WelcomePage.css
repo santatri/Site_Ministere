@@ -1,161 +1,135 @@
-/* WelcomePage.css */
-
-/* Conteneur principal */
-.welcome-container {
+/* Structure principale */
+.welcome-page {
+  font-family: Arial, sans-serif;
+  position: relative;
+  background-color: #e6f5f2;
   display: flex;
   justify-content: center;
   align-items: center;
- /* Occupe toute la hauteur de l'écran */
-  width: 100%; /* Prend toute la largeur de l'écran */
-  background-color: black;
-  margin: 0;
-  padding: 0;
-}
-
-/* Section principale */
-.welcome-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%; /* Prend 100% de la largeur disponible */
-  background: linear-gradient(200deg, rgba(255, 13, 5, 0.99), blue), url('../assets/24.jpg') no-repeat center center; 
-  color: white;
-  padding: 10px;
-  box-shadow: 0px 4px 6px transparent;
-  border-radius: 1px;
-  gap: 20px;
-  position: relative;
-  overflow: hidden; /* Masque tout ce qui dépasse */
-}
-
-/* Ajout d'un effet de texture */
-.welcome-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  
-  background: linear-gradient(
-      700deg,
-      black 94%,
-     blue 99%,
-     gray 10%,
-     red 98%,
-      rgba(255, 255, 255, 0.1) 95%,
-      rgba(255, 215, 0, 0.1) 5%
-    ),
-    linear-gradient(
-      200deg,
-      blue 85%,
-      rgba(255, 215, 0, 0.9) 90%,
-      rgba(255, 255, 255, 0.9) 90%,
-      rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 215, 0, 0.2) 95%
-    );
-  background-size: 22px 7px; /* Taille du motif */
-  opacity: 0.5;
-  z-index: 1; /* Place l'effet derrière le contenu */
-  pointer-events: none;
+  box-sizing: border-box;
 }
 
-/* Cadre image */
-.image-frame {
-  width: 25%;
+/* Section principale avec image de fond et bordure */
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(255deg, rgba(5, 190, 215, 0.7), rgba(4, 43, 116, 0.99)), 
+              url('../assets/black2.jpg') no-repeat center center; 
+  background-size: cover; /* Image couvre toute la zone */
+  padding: 0;
+  border-radius: 0;
+ 
+ 
+  width: 100vw; /* Largeur de la fenêtre */
+  
+  box-sizing: border-box;
+  color: white;
+}
+
+/* Animation */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20%);
+  }
+  100% {
+    opacity: 90;
+    transform: translateX(10%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.image-box {
+  position: relative;
   background-color: white;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 45px;
+  top: -25px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  z-index: 2; /* S'assure que l'image est au-dessus de l'effet */
+  margin-right: 70px;
+  flex-shrink: 0;
+  transition: opacity 1.5s, transform 10.5s;
 }
 
-/* Image */
-.frame-image {
-  width: 75%;
-  height: auto;
-  border-radius: 0px;
+.image-box.animate {
+  animation: slideIn 4.5s ease-out forwards;
+}
+
+.logo {
+  max-width: 260px;
+  width: 150%;
+  border-radius: 8px;
+}
+
+.logo.animate {
+  animation: fadeIn 3.5s ease-in forwards;
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 25px;
+  left: 0px;
+  background-color: rgba(5, 175, 194, 0.799);
+  color: white;
+  font-weight: bold;
+  padding: 7px 45px;
+  border-radius: 2px;
+  font-size: 14px;
+  z-index: 1;
 }
 
 /* Texte */
-.text-content {
-  width: 80%;
-  text-align: left;
-  position: relative;
-  z-index: 2; /* Texte au-dessus de l'effet */
+.text-pages {
+  flex: 1;
 }
 
-.welcome-titlee {
-
-  
- 
-
-  color: gold;
-  text-align: left;
+.text-pages h1 {
+  font-size: 1.7rem;
+  text-align: start;
+  line-height: 3.5;
+  color: white;
+  margin: 0px;
 }
 
-.welcome-subtitle {
-  font-size: 24px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  font-family: 'Times New Roman', Times, serif;
+.text-pages p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0px;
 }
 
-.welcome-footer {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 24px;
-  font-style: italic;
-}
-
-.welcome-footer span {
-  font-weight: bold;
+.text-pages h2 {
+  font-size: 1.4rem;
+  margin-top: 20px;
 }
 
 /* Responsive */
-
-/* Tablettes */
 @media (max-width: 768px) {
-  .welcome-section {
+  .pages {
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    text-align: center;
   }
 
-  .image-frame {
-    width: 100%;
+  .image-box {
+    margin-bottom: 20px;
   }
 
-  .text-content {
-    width: 100%;
-  }
-
-  .welcome-title {
-    font-size: 24px;
-  }
-
-  .welcome-subtitle {
-    font-size: 14px;
-  }
-
-  .welcome-footer {
-    font-size: 12px;
-  }
-}
-
-/* Téléphones */
-@media (max-width: 480px) {
-  .welcome-title {
-    font-size: 20px;
-  }
-
-  .welcome-subtitle {
-    font-size: 12px;
-  }
-
-  .welcome-footer {
-    font-size: 10px;
+  .text-pages h1 {
+    font-size: 1.5rem;
   }
 }

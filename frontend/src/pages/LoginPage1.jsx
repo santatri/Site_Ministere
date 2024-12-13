@@ -7,7 +7,7 @@ import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage1 = () => {
   const [matricule, setMatricule] = useState('');
-  const {user, setUser} =useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext);
   const [mdp, setMdp] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -40,11 +40,10 @@ const LoginPage1 = () => {
       <div className="wave-header"></div>
 
       <div className="login-content">
-      <div className="left-column">
+        <div className="left-column">
           <div className="left-contente">
-            <img src={require('../assets/MTEFOP.png')} alt="Connexion illustration" />
-            <h1>Ministère du Travail, de l'Emploi</h1>
-            <h2>et de la Fonction Publique</h2>
+            <img src={require('../assets/dgfop.png')} alt="Connexion illustration" />
+           
           </div>
         </div>
         {/* Colonne droite : Formulaire */}
@@ -80,15 +79,22 @@ const LoginPage1 = () => {
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </div>
               </div>
+              <Link to="/forgot-password" className="forgot-password">Mot de passe oublié ?</Link>
             </div>
+            <div className="additional-links">
+          </div>
             <div className="button-container">
               <button type="submit" className="login-button">Se connecter</button>
             </div>
           </form>
+          
           {error && <p className="error-message">{error}</p>}
           <p className="register-link">
+            
             Pas encore de compte ? <Link to="/register">Créer un compte</Link>
           </p>
+
+          
         </div>
 
         {/* Colonne droite : Image avec texte */}
