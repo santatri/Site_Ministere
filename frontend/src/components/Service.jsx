@@ -1,46 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const Service = () => {
     const [services, setServices] = useState([]);
-    const [directions, setDirections] = useState([]); // Liste des directions pour la combobox
+    const [SGList, setSGList] = useState([]);  // Liste des SG
+    const [DGList, setDGList] = useState([]);  // Liste des DG
+    const [directions, setDList] = useState([]); // Liste des directions pour la combobox
     const [nom_s, setNomS] = useState('');
     const [porte_s, setPorteS] = useState('');
     const [id_d, setIdD] = useState('');
     const [editId, setEditId] = useState(null);
 
+    // Référence pour faire défiler vers le formulaire
+    const formRef = useRef(null);
+
     // Récupérer toutes les services
     const fetchServices = async () => {
         try {
             const response = await axios.get('http://localhost:5001/api/service/all');
-            setServices(response.data.data);
+            // Trier les services par porte_s de manière croissante
+            const sortedServices = response.data.data.sort((a, b) => {
+                if (a.porte_s < b.porte_s) return -1;
+                if (a.porte_s > b.porte_s) return 1;
+                return 0;
+            });
+            setServices(sortedServices);
         } catch (error) {
             console.error("Erreur lors de la récupération des services:", error);
         }
     };
 
-    // Récupérer toutes les directions
-    const fetchDirections = async () => {
+    const fetchSGAndDGAndD = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/direction/all');
-            setDirections(response.data.data);
+            const [DResponse, sgResponse, dgResponse] = await Promise.all([
+                axios.get('http://localhost:5001/api/direction/all'),
+                axios.get('http://localhost:5001/api/direction/sg'),
+                axios.get('http://localhost:5001/api/direction/dg')
+            ]);
+            setDList(DResponse.data.data);
+            setSGList(sgResponse.data.data);
+            setDGList(dgResponse.data.data);
         } catch (error) {
-            console.error("Erreur lors de la récupération des directions:", error);
+            console.error("Erreur lors de la récupération des D, SG et DG:", error);
         }
     };
 
     useEffect(() => {
         fetchServices();
-        fetchDirections();
+        fetchSGAndDGAndD();
     }, []);
 
     // Ajouter ou mettre à jour un service
     const handleSubmit = async () => {
         try {
+            // Formater la porte avec des zéros devant si nécessaire
+            const formattedPorte = porte_s.padStart(3, '0'); // Ajoute des zéros jusqu'à ce que la longueur soit 3
+
             if (editId) {
-                await axios.put(`http://localhost:5001/api/service/${editId}`, { nom_s, porte_s, id_d });
+                await axios.put(`http://localhost:5001/api/service/${editId}`, { nom_s, porte_s: formattedPorte, id_d });
             } else {
-                await axios.post('http://localhost:5001/api/service', { nom_s, porte_s, id_d });
+                await axios.post('http://localhost:5001/api/service', { nom_s, porte_s: formattedPorte, id_d });
             }
             fetchServices();
             clearForm();
@@ -65,6 +84,9 @@ const Service = () => {
         setNomS(service.nom_s);
         setPorteS(service.porte_s);
         setIdD(service.id_d);
+
+        // Faire défiler vers le formulaire
+        formRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
     // Vider le formulaire
@@ -75,11 +97,17 @@ const Service = () => {
         setEditId(null);
     };
 
+    // Fonction pour afficher l'indentation des directions selon la hiérarchie
+    const getDirectionHierarchy = (direction, level = 0) => {
+        const indentation = ' '.repeat(level * 2);  // Espace pour l'indentation
+        return `${indentation}${direction.nom_d}`;
+    };
+
     return (
         <div>
             <h1>Gestion des Services</h1>
 
-            <form>
+            <form ref={formRef}>
                 <input
                     type="text"
                     value={nom_s}
@@ -96,7 +124,7 @@ const Service = () => {
                     <option value="">Sélectionner une direction</option>
                     {directions.map((direction) => (
                         <option key={direction.id_d} value={direction.id_d}>
-                            {direction.nom_d}
+                            {getDirectionHierarchy(direction)}
                         </option>
                     ))}
                 </select>
@@ -121,7 +149,7 @@ const Service = () => {
                         <tr key={service.id_s}>
                             <td>{service.nom_s}</td>
                             <td>{service.porte_s}</td>
-                            <td>{service.nom_d || 'N/A'}</td>
+                            <td>{service.hierarchy}</td>
                             <td>
                                 <button onClick={() => editService(service)}>Éditer</button>
                                 <button onClick={() => deleteService(service.id_s)}>Supprimer</button>

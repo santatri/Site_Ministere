@@ -26,29 +26,53 @@ exports.getAllDG = (req, res) => {
 
 // Récupérer toutes les Directions
 // Récupérer toutes les Directions avec les noms des SG et DG
+// Récupérer toutes les Directions avec les noms des SG et DG
+// Récupérer toutes les Directions avec leurs SG et DG associés
+// Récupérer toutes les Directions avec les noms des SG et DG
 exports.getAllDirections = (req, res) => {
     const query = `
         SELECT 
             d.id_d, 
-            d.nom_d, 
+            d.nom_d AS nom_d, 
             d.porte_d, 
-            sg.nom_sg, 
-            dg.nom_dg
+            dg.nom_dg AS nom_direction_generale, 
+            sg.nom_sg AS nom_secretaire_generale
         FROM 
             Direction d
         LEFT JOIN 
-            SecretaireGeneral sg ON d.id_sg = sg.id_sg
-        LEFT JOIN 
             DirectionGenerale dg ON d.id_dg = dg.id_dg
+        LEFT JOIN 
+            SecretaireGeneral sg ON 
+                d.id_sg = sg.id_sg OR 
+                dg.id_sg = sg.id_sg;
+    
     `;
 
     db.query(query, (err, results) => {
         if (err) {
-            return res.status(500).json({ message: 'Erreur lors de la récupération des directions.', error: err });
+            return res.status(500).json({ message: 'Erreur lors de la récupération des données.', error: err });
         }
-        res.status(200).json({ data: results });
+
+        // Formatage hiérarchique
+        const formattedResults = results.map(direction => {
+            let hierarchy = direction.nom_d;
+
+            if (direction.nom_direction_generale && direction.nom_secretaire_generale) {
+                hierarchy += ` / ${direction.nom_direction_generale} / ${direction.nom_secretaire_generale}`;
+            } else if (direction.nom_secretaire_generale) {
+                hierarchy += ` / ${direction.nom_secretaire_generale}`;
+            }
+
+            return { ...direction, hierarchy };
+        });
+
+        res.status(200).json({ data: formattedResults });
     });
 };
+
+
+
+
 
 
 // Créer une Direction

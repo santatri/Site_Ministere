@@ -2,6 +2,8 @@
 import React from 'react';
 import LogoutButton from '../components/LogoutButton';
 import { useAuth } from '../context/authContext';  // Importer le contexte
+import Actualité from '../components/Actualité';
+
 import '../styles/CommunicationPage.css';
 
 const CommunicationPage = () => {
@@ -18,6 +20,7 @@ const CommunicationPage = () => {
       ) : (
         <p>Veuillez vous connecter pour voir vos informations.</p>
       )}
+      <Actualité/>
       <LogoutButton />
     </div>
   );

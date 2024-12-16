@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const ServiceOffert = () => {
@@ -10,10 +10,17 @@ const ServiceOffert = () => {
     const [nom_service, setNomService] = useState('');
     const [dossier_prepare, setDossierPrepare] = useState('');
     const [delai, setDelai] = useState('');
-    const [associationType, setAssociationType] = useState(''); // "SG", "DG", "D", "S"
+    const [associationType, setAssociationType] = useState('');
     const [associationId, setAssociationId] = useState('');
     const [editId, setEditId] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [newDossierItem, setNewDossierItem] = useState('');
+    const [dossierList, setDossierList] = useState([]);
 
+    // Référence au formulaire
+    const formRef = useRef(null);
+
+    // Récupérer les services
     const fetchServices = async () => {
         try {
             const response = await axios.get('http://localhost:5001/api/serviceOffert/all');
@@ -23,6 +30,7 @@ const ServiceOffert = () => {
         }
     };
 
+    // Récupérer les données SG, DG, D, et S
     const fetchSGDGDS = async () => {
         try {
             const [sgResponse, dgResponse, dResponse, sResponse] = await Promise.all([
@@ -45,11 +53,19 @@ const ServiceOffert = () => {
         fetchSGDGDS();
     }, []);
 
+    // Créer ou mettre à jour un service
     const createOrUpdateService = async () => {
+        if (!nom_service || !associationType || !associationId) {
+            setErrorMessage('Veuillez remplir le nom du service et sélectionner une association.');
+            return;
+        }
+
+        const dossierPrepareStr = dossierList.join(', ');
+
         try {
             const data = {
                 nom_service,
-                dossier_prepare,
+                dossier_prepare: dossierPrepareStr,
                 delai,
                 id_sg: associationType === 'SG' ? associationId : null,
                 id_dg: associationType === 'DG' ? associationId : null,
@@ -77,6 +93,9 @@ const ServiceOffert = () => {
         setAssociationType('');
         setAssociationId('');
         setEditId(null);
+        setErrorMessage('');
+        setDossierList([]);
+        setNewDossierItem('');
     };
 
     const editService = (service) => {
@@ -89,6 +108,10 @@ const ServiceOffert = () => {
         else if (service.nom_d) setAssociationType('D');
         else if (service.nom_s) setAssociationType('S');
         setAssociationId(service.id_sg || service.id_dg || service.id_d || service.id_s);
+
+        const dossierItems = service.dossier_prepare ? service.dossier_prepare.split(', ') : [];
+        setDossierList(dossierItems);
+        formRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
     const deleteService = async (id) => {
@@ -100,22 +123,52 @@ const ServiceOffert = () => {
         }
     };
 
+    const addDossierItem = () => {
+        if (newDossierItem) {
+            setDossierList((prevList) => [...prevList, newDossierItem]);
+            setNewDossierItem('');
+        }
+    };
+
+    const removeDossierItem = (index) => {
+        setDossierList((prevList) => prevList.filter((_, i) => i !== index));
+    };
+
+    const getAssociationName = (service) => {
+        if (service.nom_sg) return service.nom_sg;
+        if (service.nom_dg) return service.nom_dg;
+        if (service.nom_d) return service.nom_d;
+        if (service.nom_s) return service.nom_s;
+        return 'Aucune association';
+    };
+
     return (
         <div>
             <h1>Gestion des Services Offerts</h1>
-            <form>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            <form ref={formRef}>
                 <input
                     type="text"
                     value={nom_service}
                     onChange={(e) => setNomService(e.target.value)}
                     placeholder="Nom du service"
                 />
-                <input
-                    type="text"
-                    value={dossier_prepare}
-                    onChange={(e) => setDossierPrepare(e.target.value)}
-                    placeholder="Dossier préparé"
-                />
+                <div>
+                    <input
+                        type="text"
+                        value={newDossierItem}
+                        onChange={(e) => setNewDossierItem(e.target.value)}
+                        placeholder="Ajouter un élément au dossier"
+                    />
+                    <button type="button" onClick={addDossierItem}>Ajouter</button>
+                </div>
+                <ul>
+                    {dossierList.map((item, index) => (
+                        <li key={index}>
+                            {item} <button type="button" onClick={() => removeDossierItem(index)}>Supprimer</button>
+                        </li>
+                    ))}
+                </ul>
                 <input
                     type="text"
                     value={delai}
@@ -178,14 +231,14 @@ const ServiceOffert = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {services.map((service) => (
+                    {services
+                    .sort((a, b) => a.nom_service.localeCompare(b.nom_service)) // Sort alphabetically
+                    .map((service) => (
                         <tr key={service.id_service}>
                             <td>{service.nom_service}</td>
                             <td>{service.dossier_prepare || 'N/A'}</td>
                             <td>{service.delai || 'N/A'}</td>
-                            <td>
-                                {service.nom_sg || service.nom_dg || service.nom_d || service.nom_s || 'Non associé'}
-                            </td>
+                            <td>{service.hierarchy}</td>
                             <td>
                                 <button onClick={() => editService(service)}>Modifier</button>
                                 <button onClick={() => deleteService(service.id_service)}>Supprimer</button>

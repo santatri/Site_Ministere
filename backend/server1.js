@@ -93,6 +93,10 @@ app.use('/api/service', serviceRoutes);
 //service offert
 const serviceOffertRoutes = require('./routes/ServiceOffertRoutes');
 app.use('/api/serviceOffert', serviceOffertRoutes);
+//Donner standard
+const donneRoutes = require('./routes/donneRoutes');
+app.use('/', donneRoutes);
+
 
 // Lancement du serveur
 app.listen(port, () => {

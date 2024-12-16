@@ -6,6 +6,13 @@ import Actualité from '../components/Actualité';
 import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell } from 'react-icons/fa';
 import AdminNavbar from '../components/AdminNavbar';
 import ALaUne from '../components/ALaUne';
+
+import  SecretaireGeneral from'../components/SecretaireGeneral';
+import  DirectionGenerale from'../components/DirectionGenerale';
+import  Direction from'../components/Direction';
+import  Service from'../components/Service';
+import  ServiceOffert from'../components/ServiceOffert';
+
 // import { useAuth } from '../context/authContext';
 ;
 
@@ -300,6 +307,7 @@ const AdminPage1 = () => {
         )}
         {activeSection === 'actualites' && <Actualité />}
         {activeSection === 'a-la-une' && <ALaUne />}
+        {activeSection === 'services' && [<SecretaireGeneral/> ,<DirectionGenerale/> ,<Direction/> , <Service/> , <ServiceOffert/>]}
 
 
 

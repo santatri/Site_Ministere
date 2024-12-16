@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const DirectionGenerale = () => {
@@ -12,6 +12,9 @@ const DirectionGenerale = () => {
   const [message, setMessage] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+
+  // Reference to the form section
+  const formRef = useRef(null);
 
   const fetchSecretaireGeneraux = async () => {
     try {
@@ -55,6 +58,9 @@ const DirectionGenerale = () => {
       setFormData({ id_sg: '', nom_dg: '', porte_dg: '' });
       setIsEditing(false);
       setCurrentId(null);
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: 'smooth' }); // Scroll to form after submission
+      }
     } catch (error) {
       setMessage('Erreur lors de la soumission.');
     }
@@ -69,6 +75,9 @@ const DirectionGenerale = () => {
     });
     setIsEditing(true);
     setCurrentId(id);
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth' }); // Scroll to form when editing
+    }
   };
 
   const handleDelete = async (id) => {
@@ -86,40 +95,44 @@ const DirectionGenerale = () => {
       <h1>Direction Générale</h1>
       {message && <p>{message}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <select
-          name="id_sg"
-          value={formData.id_sg}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Sélectionnez un Secrétaire Général</option>
-          {secretaireGeneraux.map((sg) => (
-            <option key={sg.id_sg} value={sg.id_sg}>
-              {sg.nom_sg}
-            </option>
-          ))}
-        </select>
+      {/* Form section */}
+      <div ref={formRef}>
+        <form onSubmit={handleSubmit}>
+          <select
+            name="id_sg"
+            value={formData.id_sg}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Sélectionnez un Secrétaire Général</option>
+            {secretaireGeneraux.map((sg) => (
+              <option key={sg.id_sg} value={sg.id_sg}>
+                {sg.nom_sg}
+              </option>
+            ))}
+          </select>
 
-        <input
-          type="text"
-          name="nom_dg"
-          placeholder="Nom Direction Générale"
-          value={formData.nom_dg}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="porte_dg"
-          placeholder="Porte Direction Générale"
-          value={formData.porte_dg}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">{isEditing ? 'Modifier' : 'Ajouter'}</button>
-      </form>
+          <input
+            type="text"
+            name="nom_dg"
+            placeholder="Nom Direction Générale"
+            value={formData.nom_dg}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="porte_dg"
+            placeholder="Porte Direction Générale"
+            value={formData.porte_dg}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">{isEditing ? 'Modifier' : 'Ajouter'}</button>
+        </form>
+      </div>
 
+      {/* List section */}
       <div>
         <h2>Directions Générales</h2>
         <table border="1">
@@ -132,24 +145,19 @@ const DirectionGenerale = () => {
             </tr>
           </thead>
           <tbody>
-            {elements.map((element) => (
-              <tr key={element.id_dg}>
-                <td>{element.nom_dg}</td>
-                <td>{element.porte_dg}</td>
-                <td>
-                  {
-                    secretaireGeneraux.find(
-                      (sg) => sg.id_sg === element.id_sg
-                    )?.nom_sg
-                  }
-                </td>
-                <td>
-                  <button onClick={() => handleEdit(element.id_dg)}>Modifier</button>
-                  <button onClick={() => handleDelete(element.id_dg)}>Supprimer</button>
-                </td>
-              </tr>
-            ))}
+              {elements.map((element) => (
+                <tr key={element.id_dg}>
+                  <td>{element.nom_dg}</td>
+                  <td>{element.porte_dg}</td>
+                  <td>{element.nom_sg}</td> {/* Affichage du nom du secrétaire général */}
+                  <td>
+                    <button onClick={() => handleEdit(element.id_dg)}>Modifier</button>
+                    <button onClick={() => handleDelete(element.id_dg)}>Supprimer</button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
+
         </table>
       </div>
     </div>

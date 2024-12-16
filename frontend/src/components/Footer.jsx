@@ -6,10 +6,10 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p className="footer-text">© 2024 Votre Site Web</p>
+        <p className="footer-text">© 2024 DGFOP Site Web</p>
         <div className="icon-container">
           {/* Lien vers Facebook */}
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="icon-link">
+          <a href="https://www.facebook.com/santatrinniaina.nasandratra " target="_blank" rel="noopener noreferrer" className="icon-link">
             <FaFacebook className="icon" />
           </a>
           {/* Lien vers Google */}

@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import '../styles/StanPage.css';
 import LogoutButton from '../components/LogoutButton';
+import  SecretaireGeneral from'../components/SecretaireGeneral';
+import  DirectionGenerale from'../components/DirectionGenerale';
+import  Direction from'../components/Direction';
+import  Service from'../components/Service';
+import  ServiceOffert from'../components/ServiceOffert';
  
 
 const StanPage = () => {
@@ -21,6 +26,11 @@ const StanPage = () => {
       {image && <img src={`http://localhost:5001/uploads/${image}`} alt="User" />}
       <p>Votre matricule : {user?.matricule}</p>
 
+      <SecretaireGeneral/>
+      <DirectionGenerale/>
+      <Direction/>
+      <Service/>
+      <ServiceOffert/>
       <LogoutButton />
     </div>
   );

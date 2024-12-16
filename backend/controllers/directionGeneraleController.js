@@ -13,14 +13,22 @@ exports.insertDirectionGenerale = (req, res) => {
   };
   
   // Récupérer toutes les directions générales
-  exports.getAllDG = (req, res) => {
-    db.query('SELECT * FROM DirectionGenerale', (err, results) => {
-      if (err) {
-        return res.status(500).send({ message: 'Erreur lors de la récupération des directions générales.', error: err });
-      }
-      res.status(200).send({ data: results });
-    });
-  };
+// Récupérer toutes les directions générales avec le nom du secrétaire général
+exports.getAllDG = (req, res) => {
+  const query = `
+    SELECT dg.id_dg, dg.nom_dg, dg.porte_dg, sg.nom_sg
+    FROM DirectionGenerale dg
+    JOIN SecretaireGeneral sg ON dg.id_sg = sg.id_sg
+  `;
+  
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).send({ message: 'Erreur lors de la récupération des directions générales.', error: err });
+    }
+    res.status(200).send({ data: results });
+  });
+};
+
   
   // Mettre à jour une direction générale
   exports.updateDirectionGenerale = (req, res) => {

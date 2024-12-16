@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/Contact.css';
+import Donne  from'../components/donne';
+
 
 const Service = () => {
     return (
@@ -53,7 +55,9 @@ const Service = () => {
         </form>
             
     </div>
-           
+           <div>
+            <Donne/>
+           </div>
                    
 </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const Direction = () => {
@@ -12,11 +12,18 @@ const Direction = () => {
     const [type, setType] = useState('');  // 'sg' pour SG, 'dg' pour DG
     const [editId, setEditId] = useState(null);
 
+    // Référence au formulaire
+    const formRef = useRef(null);
+
     // Récupérer toutes les directions
     const fetchDirections = async () => {
         try {
             const response = await axios.get('http://localhost:5001/api/direction/all');
-            setDirections(response.data.data);
+            // Trier les directions par porte en ordre croissant
+            const sortedDirections = response.data.data.sort((a, b) => {
+                return a.porte_d - b.porte_d; // Tri numérique
+            });
+            setDirections(sortedDirections);
         } catch (error) {
             console.error("Erreur lors de la récupération des directions:", error);
         }
@@ -46,9 +53,9 @@ const Direction = () => {
         try {
             // Si le type est 'sg', on ajoute un SG, sinon un DG
             if (type === 'sg') {
-                await axios.post('http://localhost:5001/api/direction', { nom_d, porte_d, id_sg, id_dg: null });
+                await axios.post('http://localhost:5001/api/direction', { nom_d, porte_d: formatPorte(porte_d), id_sg, id_dg: null });
             } else if (type === 'dg') {
-                await axios.post('http://localhost:5001/api/direction', { nom_d, porte_d, id_sg: null, id_dg });
+                await axios.post('http://localhost:5001/api/direction', { nom_d, porte_d: formatPorte(porte_d), id_sg: null, id_dg });
             }
             fetchDirections();  // Recharger la liste des directions après ajout
             clearForm();
@@ -60,7 +67,7 @@ const Direction = () => {
     // Mettre à jour une direction
     const updateDirection = async () => {
         try {
-            await axios.put(`http://localhost:5001/api/direction/${editId}`, { nom_d, porte_d, id_sg, id_dg });
+            await axios.put(`http://localhost:5001/api/direction/${editId}`, { nom_d, porte_d: formatPorte(porte_d), id_sg, id_dg });
             fetchDirections();
             clearForm();
         } catch (error) {
@@ -86,6 +93,9 @@ const Direction = () => {
         setIdSG(direction.id_sg);
         setIdDG(direction.id_dg);
         setType(direction.id_sg ? 'sg' : 'dg');
+
+        // Faire défiler la page jusqu'au formulaire
+        formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     // Vider le formulaire
@@ -98,11 +108,16 @@ const Direction = () => {
         setEditId(null);
     };
 
+    // Fonction pour formater la porte avec des zéros devant
+    const formatPorte = (porte) => {
+        return porte.padStart(3, '0'); // Ajouter des zéros devant si nécessaire
+    };
+
     return (
         <div>
             <h1>Gestion des Directions</h1>
             
-            <form>
+            <form ref={formRef}>
                 <input
                     type="text"
                     value={nom_d}
@@ -124,7 +139,7 @@ const Direction = () => {
                             checked={type === 'sg'}
                             onChange={() => setType('sg')}
                         />
-                        Ajouter un Secrétaire Général
+                        Appartenir au Secrétaire Général
                     </label>
                     <label>
                         <input
@@ -133,7 +148,7 @@ const Direction = () => {
                             checked={type === 'dg'}
                             onChange={() => setType('dg')}
                         />
-                        Ajouter une Direction Générale
+                        Appartenir a une Direction Générale
                     </label>
                 </div>
 
@@ -142,7 +157,7 @@ const Direction = () => {
                         value={id_sg}
                         onChange={(e) => setIdSG(e.target.value)}
                     >
-                        <option value="">Sélectionner un Secrétaire Général</option>
+                        <option value="">Sélectionner Secrétaire Général</option>
                         {sgList.map((sg) => (
                             <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
                         ))}
@@ -168,32 +183,30 @@ const Direction = () => {
             </form>
 
             <h2>Liste des Directions</h2>
+           
             <table>
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Porte</th>
-            <th>Nom SG</th>
-            <th>Nom DG</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {directions.map((direction) => (
-            <tr key={direction.id_d}>
-                <td>{direction.nom_d}</td>
-                <td>{direction.porte_d}</td>
-                <td>{direction.nom_sg || 'N/A'}</td> {/* Affiche 'N/A' si aucun SG */}
-                <td>{direction.nom_dg || 'N/A'}</td> {/* Affiche 'N/A' si aucun DG */}
-                <td>
-                    <button onClick={() => editDirection(direction)}>Éditer</button>
-                    <button onClick={() => deleteDirection(direction.id_d)}>Supprimer</button>
-                </td>
-            </tr>
-        ))}
-    </tbody>
-</table>
-
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Porte</th>
+                        <th>Hiérarchie</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {directions.map((direction) => (
+                        <tr key={direction.id_d}>
+                            <td>{direction.nom_d}</td>
+                            <td>{direction.porte_d}</td>
+                            <td>{direction.hierarchy || 'N/A'}</td> {/* Affichage de la hiérarchie */}
+                            <td>
+                                <button onClick={() => editDirection(direction)}>Éditer</button>
+                                <button onClick={() => deleteDirection(direction.id_d)}>Supprimer</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
