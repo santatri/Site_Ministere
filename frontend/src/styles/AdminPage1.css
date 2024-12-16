@@ -10,7 +10,7 @@
 .sidebar {
  /* background-image: url('../assets/black21.jpg');*/
   width: 230px;
-  background-color: #5000ac;
+  background: linear-gradient(5deg, rgb(2, 17, 112), rgba(3, 196, 255, 0.9)), url('../assets/26.jpg') ; 
   color: white;
   display: flex;
   flex-direction: column;
@@ -49,7 +49,7 @@
 }
 
 .menu-item.active {
-  background: linear-gradient(45deg, goldenrod, goldenrod);
+  background: linear-gradient(45deg, rgba(38, 32, 218, 0.649), rgb(4, 17, 107));
   color: white;
 }
 

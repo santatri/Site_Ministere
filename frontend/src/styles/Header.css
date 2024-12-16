@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center; /* Alignement vertical */
-  background-color: rgba(8, 175, 226, 0.389); /* Bleu clair */
+  background-color:white; /* Bleu clair */
   color: rgba(0, 0, 0, 0.579);
   padding: 0px 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -15,7 +15,7 @@
 .header-right {
   border: 0px solid rgba(8, 78, 207, 0.181); /* Bordure colorée en cyan */
   border-radius: 8px; /* Coins légèrement arrondis */
-  padding: 0px; /* Espace interne */
+  padding: 10px; /* Espace interne */
 }
 
 /* Section gauche */
@@ -53,8 +53,8 @@
 
 /* Icônes */
 .header-item i {
-  color: #ffffff;
-  font-size: 30px; /* Taille des icônes */
+  color: #0da7f4;
+  font-size: 20px; /* Taille des icônes */
   display: inline-block;
 }
 

@@ -1,209 +1,164 @@
-/* Conteneur principal avec deux colonnes */
+
+
+/* Layout principal */
 .layout-container {
-  gap: 0px;
-  padding: 0px;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(100deg, rgba(4, 27, 132, 0.964), rgba(0, 247, 255, 0.964)), url('../assets/24.jpg') no-repeat center center;
-  background-size: cover;
+  background: linear-gradient(5deg, rgba(1, 16, 102, 0.92), rgba(3, 196, 255, 0.9)), url('../assets/30.jpg') ; 
+
+  margin: 0 auto;
 }
 
-
-
-
-/* Colonne gauche : Actualités */
+/* Section des actualités */
 .actualites-container {
-  flex: 2;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .actualites-title {
-  margin-top: 5%;
   font-size: 40px;
-  margin-bottom: 0px;
-  color: white;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  text-align: center; /* Centrer le titre */
+  margin-bottom: 20px;
+  color: #ffffff;
 }
 
 .actualites-filters {
   display: flex;
-  justify-content: center; /* Aligner les boutons au centre */
-  gap: 25px;
-  margin-bottom: 50px;
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .filter-button {
-  padding: 10px 12px;
-  border: 1px solid rgba(85, 0, 255, 0.611);
-  background-color: rgba(3, 12, 105, 0.686);
-  color: white;
+  padding: 10px 15px;
+  border: 2px solid #6200ea;
+  background: transparent;
+  color: #6200ea;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
-.filter-button.active-filter,
+.filter-button.active-filter {
+  background-color: #6200ea;
+  color: #fff;
+}
+
 .filter-button:hover {
-  background-color: red;
-  border-color: red;
-  color: white;
+  background-color: #3700b3;
+  color: #fff;
 }
 
 .actualites-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px ;
+  
 }
 
 .article-card {
-  border: 0px solid #ddd;
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, opacity 0.3s ease;
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  height: 580px;
-  animation: fadeIn 0.8s ease;
+  border: 1px solid #00bafd;
+  border-radius: 2px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
 .article-card:hover {
   transform: translateY(-5px);
-  opacity: 0.9;
-}
-
-.article-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 1px solid #ddd; /* Ligne entre l'image et le contenu */
-}
-
-.article-content {
-  padding: 10px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .article-title {
   font-size: 20px;
-  font-family: 'Times New Roman', Times, serif;
-  margin-bottom: 20px;
-  color: black;
-  text-align: center;
-}
-
-.article-description {
-  font-size: 14px;
-  font-family: 'Times New Roman', Times, serif;
-  margin-bottom: 0px;
-  color: #555;
-  text-align: center; /* Centrer la description */
+  color: #25037b;
+  margin-bottom: 10px;
 }
 
 .article-date {
   font-size: 14px;
-  color: #777;
-  font-style: italic;
+  color: #888;
   margin-bottom: 15px;
-  text-align: center; /* Centrer la date */
 }
 
-/* Ligne séparatrice */
-.separator {
-  height: 8px;
-  background-color: rebeccapurple;
-  margin: 15px 0;
+.article-media img,
+.article-media video {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
-/* Bouton Lire Plus */
+.article-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
 .read-more-container {
-  text-align: center;
-  margin-top: auto; /* Pousse le bouton vers le bas */
+  text-align: right;
 }
 
 .read-more {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 17px;
-  color: white;
-  background-color: midnightblue;
+  padding: 8px 12px;
+  background-color:  #0098ea;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  text-align: center;
-  text-decoration: none;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+ 
+  transition: background-color 0.3s;
 }
 
 .read-more:hover {
-  background-color: red;
+  background-color: #3700b3;
 }
 
-/* Colonne droite : Annonces */
-.annonces-container {
-  flex: 0.5;
-  background: rgba(220, 9, 22, 0.8); /* Couleur d'arrière-plan clair */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour le cadre */
-  border-radius: 8px; /* Angles arrondis */
-  padding: 28px;
-}
-
+/* Section des annonces */
 .annonces-title {
-  font-size: 45px;
-  margin-bottom: 30px;
-  font-weight: bold;
-  color: white;
-  font-family: 'Times New Roman', Times, serif;
-  text-align: center; /* Centrer le titre */
-}
-
-.annonce-card {
-  border: 0px solid gold;
-  background: white;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 40px;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
+.annonce-card {
+  background-color: #e33b08;
+  border: 0px solid #00bbff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .annonce-title {
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 18px;
+  color: #ffffff;
   margin-bottom: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
 }
 
 .annonce-description {
-  font-size: 18px;
-  color: #555;
+  font-size: 14px;
+  color: #dedede;
 }
 
-/* Animation au défilement */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Table */
+.table-container {
+  margin-top: 30px;
 }
 
-/* Responsive */
+/* Section des ministères */
+.ministere-container {
+  margin-top: 30px;
+}
+
+/* Section des services */
+.services-container {
+  margin-top: 30px;
+}
+
+/* Responsiveness */
 @media (max-width: 768px) {
-  .layout-container {
+  .actualites-container {
     flex-direction: column;
   }
 
-  .annonces-container {
-    border-left: none;
-    padding-left: 0;
-    margin-top: 20px;
+  .actualites-grid {
+    grid-template-columns: 1fr;
   }
 }

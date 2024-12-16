@@ -10,7 +10,8 @@ import "../styles/WelcomePage.css";
 import Table from "../components/Table";
 import Ministere from "../components/Ministere"
 import "../styles/Ministere.css";
-
+import ServicesSection from "../components/ServicesSection";
+import "../styles/ServiceSection.css";
 const Home = () => {
   const [actualites, setActualites] = useState([]);
   const [filter, setFilter] = useState("Tout");
@@ -64,17 +65,7 @@ const Home = () => {
         <div style={{ width: '70%' }}>
           <h1 className="actualites-title">Actualités</h1>
           {message && <p className="error-message">{message}</p>}
-          <div className="actualites-filters">
-            {["Tout", "Nouvelles", "Nouvelles récentes", "Archive"].map((item) => (
-              <button
-                key={item}
-                onClick={() => setFilter(item)}
-                className={`filter-button ${filter === item ? "active-filter" : ""}`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
+          
           <div className="actualites-grid">
             {filteredArticles.length === 0 ? (
               <p>Aucune actualité disponible.</p>
@@ -132,8 +123,10 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+     
       <Table />
+      
+      <ServicesSection/>
       <Ministere/>
     </div>
   );

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/Home.css';
+import '../styles/archives.css';
+import ImageActu from './Archives/ImageActu';
+import '../styles/ImageActu.css';
 
 const Archives = () => {
   const [actualités, setActualités] = useState([]);
   const [message, setMessage] = useState('');
   const [search, setSearch] = useState({ mots: '', dateStart: '', dateEnd: '' });
+  const [anciennesActualites, setAnciennesActualites] = useState([]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -22,8 +25,18 @@ const Archives = () => {
     }
   };
 
+  const fetchAnciennesActualites = async () => {
+    try {
+      const response = await axios.get('http://localhost:5001/api/actu/old');
+      setAnciennesActualites(response.data.data);
+    } catch (error) {
+      setMessage('Erreur lors du chargement des actualités anciennes.');
+    }
+  };
+
   useEffect(() => {
     fetchActualités();
+    fetchAnciennesActualites();
   }, []);
 
   const handleSearch = (e) => {
@@ -33,29 +46,34 @@ const Archives = () => {
 
   return (
     <div className="archives-container">
-      <h1>Bienvenue sur la page des Archives</h1>
-      {message && <p className="error-message">{message}</p>}
-
+      <div className="image-actu-container">
+        <div className="overla">
+          <h1>Actualités</h1>
+        </div>
+      </div>
+      
       <form className="search-form" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Rechercher par mots-clés"
-          value={search.mots}
-          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateStart}
-          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateEnd}
-          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
-        />
-        <button type="submit">Rechercher</button>
+        <div className="searches-fieldses">
+          <input
+            type="text"
+            placeholder="Rechercher par mots-clés"
+            value={search.mots}
+            onChange={(e) => setSearch({ ...search, mots: e.target.value })}
+          />
+          <input
+            type="date"
+            value={search.dateStart}
+            onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
+          />
+          <input
+            type="date"
+            value={search.dateEnd}
+            onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
+          />
+          <button type="submit">Rechercher</button>
+        </div>
       </form>
-
+      <h2>Actualités Récents</h2>
       <div className="actualités-container">
         {actualités.length === 0 ? (
           <p>Aucune actualité disponible.</p>
@@ -82,6 +100,41 @@ const Archives = () => {
                     Votre navigateur ne supporte pas les vidéos HTML5.
                   </video>
                 )}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      <h2>Actualités anciens</h2>
+      <div className="actualités-container">
+        {anciennesActualites.length === 0 ? (
+          <p>Aucune actualité ancienne disponible.</p>
+        ) : (
+          anciennesActualites.map((actu) => (
+            <div key={actu.id} className="actualité-card">
+              <h2 className="actualité-title">{actu.titre}</h2>
+              <p className="date-publication">{formatDate(actu.date_insertion)}</p>
+              <div className="card-content">
+                {actu.media_image && (
+                  <img
+                    src={`http://localhost:5001/uploads/${actu.media_image}`}
+                    alt="Actualité"
+                    className="actualité-image"
+                  />
+                )}
+                {actu.media_video && (
+                  <video controls className="actualité-video">
+                    <source
+                      src={`http://localhost:5001/uploads/${actu.media_video}`}
+                      type="video/mp4"
+                    />
+                    Votre navigateur ne supporte pas les vidéos HTML5.
+                  </video>
+                )}
+                <div className="details">
+                  <p className="actualité-description">{actu.description}</p>
+                </div>
               </div>
             </div>
           ))

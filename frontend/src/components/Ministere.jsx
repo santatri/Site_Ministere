@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Ministere.css';
 
 // Importation des images
@@ -42,6 +42,32 @@ const Ministere = () => {
       description: 'Encourager les emplois respectueux de l\'environnement.',
     },
   ];
+
+  useEffect(() => {
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    const items = document.querySelectorAll('.carousel-item');
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.5,  // Triger la transition lorsque l'élément est à 50% visible
+    };
+
+    const scrollEffect = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Application de la transition lors de l'intersection
+          carouselWrapper.style.transition = 'transform 0.5s ease';
+        } else {
+          // Désactivation de la transition lorsqu'il sort de la vue
+          carouselWrapper.style.transition = 'transform 0s ease';
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(scrollEffect, observerOptions);
+
+    items.forEach(item => observer.observe(item));
+  }, []);
 
   return (
     <div className="ministere-container">

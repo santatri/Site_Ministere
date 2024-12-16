@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'; // Modern icons
 import '../styles/ImageCarousel.css';
-import image1 from '../assets/1005.jpg';
-import image2 from '../assets/1004.jpg';
+import image1 from '../assets/black5.jpg';
+import image2 from '../assets/34.jpg';
 import image3 from '../assets/110.jpg';
 
 const slides = [
@@ -68,10 +68,15 @@ const ImageCarousel = () => {
         exit={{ opacity: 0, x: 100 }}
         transition={{ duration: 1 }}
       >
-        {/* Image de fond statique */}
+        {/* Image de fond avec dégradé linéaire */}
         <div
           className="carousel-image"
-          style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover' }}
+          style={{
+            backgroundImage: `linear-gradient(to bottom,  rgba(1, 00, 200, 0.75) ,rgba(10, 210, 905, 0.9)), url(${image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: '0.99',
+          }}
         ></div>
 
         {/* Texte */}

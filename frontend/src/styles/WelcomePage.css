@@ -16,7 +16,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(255deg, rgba(5, 190, 215, 0.7), rgba(4, 43, 116, 0.99)), 
+  background: linear-gradient(255deg, rgba(0, 12, 47, 0.9), rgba(20, 165, 255, 0.862)), 
               url('../assets/black2.jpg') no-repeat center center; 
   background-size: cover; /* Image couvre toute la zone */
   padding: 0;

@@ -1,74 +1,88 @@
+/* Style global pour la barre de navigation */
 .navigation-bar {
-  background: linear-gradient(rgba(81, 151, 186, 0.093),white,white,white,white,white,white,white,white,white,white, rgba(6, 170, 220, 0.016));
-  padding: 10px 0;
+  background:rgb(1, 55, 96);
+  padding: 5px 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 60px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
+/* Conteneur principal */
 .navbar-container {
-  width: 90%;
-  max-width: 1200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
+/* Logo à gauche */
 .navbar-left {
+  flex: 1;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .navbar-logo {
   width: 85px;
-  margin-right: 10px;
+}
+
+/* Liens de navigation centrés */
+.navbar-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-link {
-  color: rgb(0, 0, 0);
+  color: #ffffff;
+  font-weight: bold;
   text-decoration: none;
-  margin: 0 5px;
-  padding: 5px 8px;
-  transition: background-color 0.3s ease;
+  margin: 0 10px;
+  padding: 5px 10px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 15px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
   border-radius: 5px;
   white-space: nowrap;
 }
 
 .nav-link:hover,
 .active-link {
- text-decoration: underline ;
- color: #0056b3;
+  text-decoration: underline;
+  color: #0bd6e0;
 }
 
+/* Contact et recherche à droite */
 .navbar-right {
+  flex: 1;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .contact-quick {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 
 .phone-icon {
-  color: rgb(57, 5, 179);
+  color: #fff;
   background: rgb(19, 196, 241);
-  border: 1px solid #0056b3;
-  border-radius: 10%;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
   padding: 10px;
-  font-size: 12px;
-  margin-right: 5px;
+  font-size: 14px;
+  margin-right: 8px;
 }
 
 .contact-text {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -76,48 +90,37 @@
 .contact-text .quick-contact {
   font-size: 12px;
   font-weight: bold;
-  color: #000000;
+  color: #f9f9fb;
 }
 
 .contact-text .phone-number {
-  font-size: 10px;
-  color: #000000;
-  font-weight: bold;
+  font-size: 13px;
+  color: #f7f7f8;
 }
 
 .search-icon {
-  color: #0481bb;
+  color: #f9fbfd;
   font-size: 18px;
-  position: relative;
+  cursor: pointer;
 }
 
-.search-icon::after {
-  content: "Get a quote";
-  position: absolute;
-  background-color: #0056b3;
-  color: #fff;
-  border-radius: 5px;
-  padding: 2px 5px;
-  font-size: 8px;
-  bottom: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
+/* Responsivité */
 @media (max-width: 768px) {
   .navbar-container {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0 10px;
+    align-items: center;
+  }
+
+  .navbar-left,
+  .navbar-center,
+  .navbar-right {
+    flex: none;
+    width: 100%;
+    justify-content: center;
   }
 
   .nav-link {
     margin: 5px 0;
-    font-size: 12px;
-    padding: 5px 5px;
-  }
-
-  .search-icon::after {
-    bottom: -30px;
+    font-size: 14px;
   }
 }
