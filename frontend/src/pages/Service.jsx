@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/Service.css';
-<<<<<<< HEAD
 import Donne  from'../components/donne';
 
 
@@ -14,15 +13,8 @@ const Service = () => {
       <footer className="service-footer">
         <p>© 2024 Nos Services - Tous droits réservés</p>
       </footer>
-=======
-import Services from './Services/Services';
-import '../styles/Services.css';
 
-const Service = () => {
-  return (
-    <div className="">
-     <Services/>
->>>>>>> toky
+
     </div>
   );
 };

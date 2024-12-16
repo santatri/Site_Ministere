@@ -1,10 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-import '../styles/Contact.css';
-import Donne  from'../components/donne';
 
-=======
->>>>>>> toky
 
 import '../styles/Contact.css';
 import ImageContact from '../pages/Contact/ImageContact';
@@ -13,6 +8,7 @@ import Contact from '../pages/Contact/Contact';
 import '../styles/ImageContact.css';
 import '../styles/ImageContact.css';
 import '../styles/CadreContact.css';
+
 const Service = () => {
     return (
         <div>
@@ -23,9 +19,7 @@ const Service = () => {
          <CadreContact/>
             
     </div>
-           <div>
-            <Donne/>
-           </div>
+           
                    
 </div>
     );

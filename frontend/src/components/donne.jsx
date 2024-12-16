@@ -65,7 +65,7 @@ const Donne = () => {
 
   return (
     <div className="donne-container">
-      <h1>Tous les Services Offerts</h1>
+      <h2>Tous les Services Offerts</h2>
 
       {/* Barre de recherche */}
       <input 

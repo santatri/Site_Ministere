@@ -6,18 +6,6 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-<<<<<<< HEAD
-        <p className="footer-text">© 2024 DGFOP Site Web</p>
-        <div className="icon-container">
-          {/* Lien vers Facebook */}
-          <a href="https://www.facebook.com/santatrinniaina.nasandratra " target="_blank" rel="noopener noreferrer" className="icon-link">
-            <FaFacebook className="icon" />
-          </a>
-          {/* Lien vers Google */}
-          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" className="icon-link">
-            <FaGoogle className="icon" />
-          </a>
-=======
         {/* Section des coordonnées */}
         <div className="footer-section">
           <img src={logo} alt="Logo" className="footer-logo" />
@@ -31,7 +19,7 @@ const Footer = () => {
           <p>
             <strong>Téléphone:</strong> +261 34 55 997 17
           </p>
->>>>>>> toky
+
         </div>
 
         {/* Section des ministères */}
