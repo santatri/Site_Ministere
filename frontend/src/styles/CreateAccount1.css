@@ -1,73 +1,127 @@
-
-
-
-
 /* Conteneur principal */
 .form-container {
   text-align: center;
   width: 100%;
-  height: 100%; /* Utiliser tout l'espace disponible */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(5deg, rgba(255, 255, 255, 0.92), rgba(3, 196, 255, 0.9)), url('../assets/26.jpg') ; 
+
+
+  background-attachment: fixed; /* Fixe le fond */
+  padding: 1rem; /* Ajoute un léger padding pour éviter les débordements */
+  box-sizing: border-box;
 }
 
-/* Header avec un arrière-plan */
-.header-background {
-  background: #5000ac;
-  padding: 0.4rem 1rem;
-  border-bottom-left-radius: 110% 0%;
-  border-bottom-right-radius: 101% 0%;
-  color: #fff;
-  width: 100%; /* Remplir toute la largeur */
-  box-sizing: border-box; /* Inclure les marges et paddings */
+/* Cadre principal */
+.form-layout {
+  display: flex;
+  max-width: 60%;
+  width: 100%;
+  height: auto;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 8px 0px rgb(10, 146, 176);
+  background-color: white;
+
+  opacity: 0; /* Initialement invisible */
+  transform: rotateY(-40deg) scale(0.8); /* Rotation et réduction initiale */
+  transition: opacity 0.4s ease-in-out, transform 1.5s ease-in-out; /* Animation */
 }
 
-.header-background h1 {
-  margin: 0;
-  font-size: 2rem;
+.form-layout.animate {
+  opacity: 1; /* Devient visible */
+  transform: rotateY(10deg) scale(1); /* Retour à la normale */
 }
 
-.header-background p {
-  font-size: 1rem;
-  margin-top: 0.9rem;
-}
-
-/* Wrapper du formulaire */
-.form-wrapper {
-  background: #ffffff;
-  color: #48484a;
-  width: 60%; /* Remplir toute la largeur */
-  max-width: 100%; /* Pas de restriction de largeur */
+/* Partie gauche */
+.left-column {
+  flex: 1;
+  background: linear-gradient(5deg, rgba(255, 255, 255, 0.92), rgba(3, 196, 255, 0.9)) ; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
   padding: 1rem;
-  border-radius: 20px; /* Retirer les bords arrondis */
-  box-shadow: 0 8px 20px rgba(5, 20, 255, 0.5);
-  margin: auto; /* Centrer verticalement */
 }
 
-.form-wrapper h2 {
-  color: gold;
+.left-column img {
+  width: 162%;
+  max-width: 240px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Contenu dans la partie gauche */
+.left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.left-content h1 {
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: white;
   font-weight: bold;
-  margin-bottom: 0.5rem;
-  font-size: 35px;
-  font-family:Arial, Helvetica, sans-serif
+  line-height: 1.4;
 }
 
-/* Styles du formulaire */
+.left-content h2 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Partie droite */
+.form-wrapper {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Sépare les contenus */
+}
+
+/* Titre formulaire */
+.form-wrapper h2 {
+  color: #5000ac;
+  font-size: 1.9rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Champs du formulaire */
 form {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
 form input,
 form select,
 form button {
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.6rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #5000ac;
+  outline: none;
 }
 
 form input[type="file"] {
@@ -75,31 +129,34 @@ form input[type="file"] {
 }
 
 form button {
-  background: #c81c09;
+  background: rgb(197, 5, 5);
   color: white;
   border: none;
   cursor: pointer;
   transition: background 0.3s;
+  font-weight: bold;
 }
 
 form button:hover {
   background: #373fbc;
 }
 
-/* Message */
 .form-message {
-  margin-top: 1rem;
-  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
   color: rgb(23, 0, 128);
+  text-align: center;
 }
 
-/* Footer du formulaire */
+/* Footer formulaire */
 .form-footer {
   margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .form-footer a {
-  color: #4e54c8;
+  color: #5000ac;
   text-decoration: none;
   font-weight: bold;
 }
@@ -109,27 +166,28 @@ form button:hover {
 }
 
 /* Responsive */
-@media (max-height: 600px) {
-  .form-wrapper {
-    padding: 0.5rem;
-  }
-  .header-background h1 {
-    font-size: 1.5rem;
-  }
-  .header-background p {
-    font-size: 0.9rem;
-  }
-}
-
 @media (max-width: 768px) {
-  .form-wrapper {
-    width: 100%;
-    padding: 0.5rem;
+  .form-layout {
+    flex-direction: column;
+    max-width: 1200%;
+    width: auto;
   }
-  form input,
-  form select,
-  form button {
-    font-size: 0.9rem;
-    padding: 0.6rem;
+
+  .left-column,
+  .form-wrapper {
+    flex: none;
+    width: 100%;
+  }
+
+  .form-wrapper {
+    padding: 1rem;
+  }
+
+  .left-content h1 {
+    font-size: 1rem;
+  }
+
+  .left-content h2 {
+    font-size: 1rem;
   }
 }

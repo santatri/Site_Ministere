@@ -1,70 +1,126 @@
-/* Styles for the navigation bar container */
-.navigtion-bar {
-    background-color: #333; /* Dark background */
-    display: flex;
-    justify-content: center; /* Center the navbar horizontally */
-    align-items: center;
-    padding: 19px 0; /* Space around the navbar */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    gap: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    /* Subtle shadow for depth */
+/* Style global pour la barre de navigation */
+.navigation-bar {
+  background:rgb(1, 55, 96);
+  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
-/* Styles for the navigation links container */
-.navigation-links {
-    display: flex;
-    gap: 20px; /* Space between each navigation link */
+/* Conteneur principal */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Styles for individual links */
-.navigation-links a,
-.navigation-links .active {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    position: relative; /* For the underline effect */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+/* Logo à gauche */
+.navbar-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }
 
-/* Hover effect - Gold color and underline */
-.navigation-links a:hover,
-.navigation-links a:focus,
-.navigation-links a.active {
-    color: #FFD700; /* Gold color */
+.navbar-logo {
+  width: 85px;
 }
 
-/* Add underline effect when active or hovered */
-.navigation-links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -5px; /* Distance below the text */
-    height: 2px;
-    background-color: transparent; /* Default is invisible */
-    transform: scaleX(0); /* Start with no underline */
-    transform-origin: center; /* Scale effect starts from the center */
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+/* Liens de navigation centrés */
+.navbar-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Underline animation on hover or active */
-.navigation-links a:hover::after,
-.navigation-links a.active::after {
-    background-color: #FFD700; /* Gold underline */
-    transform: scaleX(1); /* Full-width underline on hover or active */
+.nav-link {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 5px 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  white-space: nowrap;
 }
 
-/* Responsive styling for smaller screens */
+.nav-link:hover,
+.active-link {
+  text-decoration: underline;
+  color: #0bd6e0;
+}
+
+/* Contact et recherche à droite */
+.navbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.contact-quick {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.phone-icon {
+  color: #fff;
+  background: rgb(19, 196, 241);
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-text .quick-contact {
+  font-size: 12px;
+  font-weight: bold;
+  color: #f9f9fb;
+}
+
+.contact-text .phone-number {
+  font-size: 13px;
+  color: #f7f7f8;
+}
+
+.search-icon {
+  color: #f9fbfd;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Responsivité */
 @media (max-width: 768px) {
-    .navigtion-bar {
-        flex-direction: column; /* Stack links vertically */
-        padding: 15px;
-    }
+  .navbar-container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .navigation-links {
-        flex-direction: column; /* Stack links vertically */
-        gap: 10px; /* Space between links */
-        text-align: center; /* Center the links */
-    }
+  .navbar-left,
+  .navbar-center,
+  .navbar-right {
+    flex: none;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-link {
+    margin: 5px 0;
+    font-size: 14px;
+  }
 }

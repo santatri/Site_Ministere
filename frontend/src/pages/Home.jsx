@@ -1,90 +1,133 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../styles/Home.css';
-
-
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion"; // Import Framer Motion
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../styles/Home.css";
+import ImageCarousel from "../components/ImageCarousel";
+import "../styles/ImageCarousel.css";
+import WelcomePage from "../components/WelcomePage";
+import "../styles/WelcomePage.css";
+import Table from "../components/Table";
+import Ministere from "../components/Ministere"
+import "../styles/Ministere.css";
+import ServicesSection from "../components/ServicesSection";
+import "../styles/ServiceSection.css";
 const Home = () => {
-  const [actualités, setActualités] = useState([]);
-  const [message, setMessage] = useState('');
-  const [search, setSearch] = useState(''); // État pour gérer la recherche
+  const [actualites, setActualites] = useState([]);
+  const [filter, setFilter] = useState("Tout");
+  const [message, setMessage] = useState("");
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
-  // Fonction pour formater la date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-    return date.toLocaleDateString('fr-FR', options);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
+    return date.toLocaleDateString("fr-FR", options);
   };
 
-  // Récupération des actualités (limité à 9)
-  const fetchActualités = async (searchTerm = '') => {
+  const fetchActualites = async (searchTerm = "") => {
     try {
-      const response = await axios.get('http://localhost:5001/api/actu/all', {
-        params: { mots: searchTerm, limit: 9 },
+      const response = await axios.get("http://localhost:5001/api/actu/all", {
+        params: { mots: searchTerm, limit: 6 },
       });
-      setActualités(response.data.data);
+      setActualites(response.data.data);
     } catch (error) {
-      setMessage('Erreur lors du chargement des actualités.');
+      setMessage("Erreur lors du chargement des actualités.");
     }
   };
 
-  // Charger les actualités au démarrage
   useEffect(() => {
-    fetchActualités();
+    fetchActualites();
   }, []);
 
-  // Gérer la recherche
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchActualités(search); // Recherche avec le terme saisi
+    fetchActualites(search);
   };
 
+  const filteredArticles =
+    filter === "Tout"
+      ? actualites
+      : actualites.filter((article) => article.category === filter);
+
   return (
-    <div className="home-container">
-      <h1>Bienvenue sur la page d'accueil</h1>
-      {message && <p className="error-message">{message}</p>}
+    <div className="layout-container">
+      <ImageCarousel />
+      <WelcomePage />
+      <div className="actualites-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+        <div style={{ width: '70%' }}>
+          <h1 className="actualites-title">Actualités</h1>
+          {message && <p className="error-message">{message}</p>}
+          
+          <div className="actualites-grid">
+            {filteredArticles.length === 0 ? (
+              <p>Aucune actualité disponible.</p>
+            ) : (
+              filteredArticles.map((article, index) => (
+                <motion.div
+                  key={index}
+                  className="article-card"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h2 className="article-title">{article.titre}</h2>
+                  <p className="article-date">Publié le : {formatDate(article.date_insertion)}</p>
+                  <div className="article-media">
+                    {article.media_image && (
+                      <img
+                        src={`http://localhost:5001/uploads/${article.media_image}`}
+                        alt="Actualité"
+                        className="article-image"
+                      />
+                    )}
+                    {article.media_video && (
+                      <video controls className="article-video">
+                        <source
+                          src={`http://localhost:5001/uploads/${article.media_video}`}
+                          type="video/mp4"
+                        />
+                        Votre navigateur ne supporte pas les vidéos HTML5.
+                      </video>
+                    )}
+                  </div>
+                  <p className="article-description">{article.description}</p>
+                  <div className="read-more-container">
+                    <button
+                      className="read-more"
+                      onClick={() => navigate("/archives")}
+                    >
+                      Voir plus
+                    </button>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </div>
+        </div>
 
-      {/* Barre de recherche */}
-      <form className="search-form" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Rechercher des actualités..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button type="submit">Rechercher</button>
-      </form>
-
-      <div className="actualités-container">
-        {actualités.length === 0 ? (
-          <p>Aucune actualité disponible.</p>
-        ) : (
-          actualités.map((actu) => (
-            <div key={actu.id} className="actualité-card">
-              <h2 className="actualité-title">{actu.titre}</h2>
-              <p className="date-publication">{formatDate(actu.date_insertion)}</p>
-              <p className="actualité-description">{actu.description}</p>
-              <div className="actualité-media">
-                {actu.media_image && (
-                  <img
-                    src={`http://localhost:5001/uploads/${actu.media_image}`}
-                    alt="Actualité"
-                    className="actualité-image"
-                  />
-                )}
-                {actu.media_video && (
-                  <video controls className="actualité-video">
-                    <source
-                      src={`http://localhost:5001/uploads/${actu.media_video}`}
-                      type="video/mp4"
-                    />
-                    Votre navigateur ne supporte pas les vidéos HTML5.
-                  </video>
-                )}
-              </div>
-            </div>
-          ))
-        )}
+        <div style={{ width: '30%' }}>
+          <h1 className="annonces-title">Annonces</h1>
+          {/* Contenu des annonces */}
+          <div className="annonce-card">
+            <h2 className="annonce-title">Titre de l'annonce</h2>
+            <p className="annonce-description">Description de l'annonce.</p>
+          </div>
+        </div>
       </div>
+     
+      <Table />
+      
+      <ServicesSection/>
+      <Ministere/>
     </div>
   );
 };

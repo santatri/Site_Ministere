@@ -7,7 +7,7 @@ import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage1 = () => {
   const [matricule, setMatricule] = useState('');
-  const {user, setUser} =useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext);
   const [mdp, setMdp] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -35,13 +35,20 @@ const LoginPage1 = () => {
 
   return (
     <div className="login-container">
+      
       {/* Vague en haut */}
       <div className="wave-header"></div>
 
       <div className="login-content">
-        {/* Colonne gauche : Formulaire */}
+        <div className="left-column">
+          <div className="left-contente">
+            <img src={require('../assets/dgfop.png')} alt="Connexion illustration" />
+           
+          </div>
+        </div>
+        {/* Colonne droite : Formulaire */}
         <div className="login-form">
-          <img src={require('../assets/MTEFOP.png')} alt="Logo" className="login-form-logo" />
+          <img src={require('../assets/Rpp.png')} alt="Logo" className="login-form-logo" />
           <h1>Bienvenue</h1>
           <form onSubmit={handleLogin}>
             <div className="input-group">
@@ -72,24 +79,26 @@ const LoginPage1 = () => {
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </div>
               </div>
+              <Link to="/forgot-password" className="forgot-password">Mot de passe oublié ?</Link>
             </div>
+            <div className="additional-links">
+          </div>
             <div className="button-container">
               <button type="submit" className="login-button">Se connecter</button>
             </div>
           </form>
+          
           {error && <p className="error-message">{error}</p>}
           <p className="register-link">
+            
             Pas encore de compte ? <Link to="/register">Créer un compte</Link>
           </p>
+
+          
         </div>
 
         {/* Colonne droite : Image avec texte */}
-        <div className="login-image">
-          <img src={require('../assets/logo.jpg')} alt="Connexion illustration" />
-          <div className="text-overlay">
-            Ministère du Travail de l'Emploi<br />et de la Fonction Publique
-          </div>
-        </div>
+       
       </div>
 
       {/* Vague en bas */}

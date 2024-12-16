@@ -1,0 +1,135 @@
+/* Structure principale */
+.welcome-page {
+  font-family: Arial, sans-serif;
+  position: relative;
+  background-color: #e6f5f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Section principale avec image de fond et bordure */
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(255deg, rgba(0, 12, 47, 0.9), rgba(20, 165, 255, 0.862)), 
+              url('../assets/black2.jpg') no-repeat center center; 
+  background-size: cover; /* Image couvre toute la zone */
+  padding: 0;
+  border-radius: 0;
+ 
+ 
+  width: 100vw; /* Largeur de la fenêtre */
+  
+  box-sizing: border-box;
+  color: white;
+}
+
+/* Animation */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20%);
+  }
+  100% {
+    opacity: 90;
+    transform: translateX(10%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.image-box {
+  position: relative;
+  background-color: white;
+  padding: 45px;
+  top: -25px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 70px;
+  flex-shrink: 0;
+  transition: opacity 1.5s, transform 10.5s;
+}
+
+.image-box.animate {
+  animation: slideIn 4.5s ease-out forwards;
+}
+
+.logo {
+  max-width: 260px;
+  width: 150%;
+  border-radius: 8px;
+}
+
+.logo.animate {
+  animation: fadeIn 3.5s ease-in forwards;
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 25px;
+  left: 0px;
+  background-color: rgba(5, 175, 194, 0.799);
+  color: white;
+  font-weight: bold;
+  padding: 7px 45px;
+  border-radius: 2px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+/* Texte */
+.text-pages {
+  flex: 1;
+}
+
+.text-pages h1 {
+  font-size: 1.7rem;
+  text-align: start;
+  line-height: 3.5;
+  color: white;
+  margin: 0px;
+}
+
+.text-pages p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0px;
+}
+
+.text-pages h2 {
+  font-size: 1.4rem;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pages {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image-box {
+    margin-bottom: 20px;
+  }
+
+  .text-pages h1 {
+    font-size: 1.5rem;
+  }
+}

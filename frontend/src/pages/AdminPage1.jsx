@@ -3,7 +3,7 @@ import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import '../styles/AdminPage1.css';
 import Actualité from '../components/Actualité';
-import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell } from 'react-icons/fa';
+import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell, FaPowerOff, FaSlidersH, FaFolderOpen, FaFolder, FaSlideshare, FaAngleDown, FaLongArrowAltDown } from 'react-icons/fa';
 import AdminNavbar from '../components/AdminNavbar';
 import ALaUne from '../components/ALaUne';
 
@@ -150,6 +150,24 @@ const AdminPage1 = () => {
             onClick={() => setActiveSection('services')}
           >
             <FaConciergeBell /> Services
+          </button>
+          <button
+            className={`menu-item ${activeSection === 'indicateurs' ? 'active' : ''}`}
+            onClick={() => setActiveSection('indicateurs')}
+          >
+            <FaPowerOff /> Indicateurs
+          </button>
+          <button
+            className={`menu-item ${activeSection === 'slide' ? 'active' : ''}`}
+            onClick={() => setActiveSection('slides')}
+          >
+            <FaSlideshare /> Slides
+          </button>
+          <button
+            className={`menu-item ${activeSection === 'footer' ? 'active' : ''}`}
+            onClick={() => setActiveSection('footer')}
+          >
+            <FaLongArrowAltDown /> Footer
           </button>
         </div>
         <LogoutButton />

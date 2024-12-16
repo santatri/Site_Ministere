@@ -1,0 +1,99 @@
+/* Conteneur principal */
+.ministere-container {
+  width: 55%;
+  background: linear-gradient(5deg, rgba(1, 157, 241, 0.907), rgba(7, 133, 236, 0.601), rgba(11, 146, 243, 0.93)), url('../assets/26.jpg');
+  text-align: center;
+  margin-top: 10%;
+  border: 0px solid #ffffff; /* Réduire l'épaisseur du border à 3px pour un cadre plus étroit */
+  margin: auto; /* Centré horizontalement */
+  transition: all .5s ease; /* Ajout d'une transition globale pour le container */
+}
+
+/* Titre principal */
+.ministere-title {
+  font-size: 4rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 105px;
+  font-family: 'Arial', sans-serif;
+  color: rgb(255, 255, 255);
+}
+
+/* Carousel principal */
+.carousel {
+  perspective: 55555555551000px;
+}
+
+.carousel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 450px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease; /* Ralentissement perceptible pour tout le contenu */
+  margin-top: -2.9%;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 350px;
+  height: 450px;
+  overflow: hidden;
+  background: white;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Transition sur la rotation avec une durée de 0.5s */
+  margin: auto; /* Centré horizontalement */
+}
+
+/* Rotation en 3D pour 6 éléments */
+.carousel-item:nth-child(1) {
+  transform: rotateY(0deg) translateZ(400px);
+}
+.carousel-item:nth-child(2) {
+  transform: rotateY(60deg) translateZ(400px);
+}
+.carousel-item:nth-child(3) {
+  transform: rotateY(120deg) translateZ(400px);
+}
+.carousel-item:nth-child(4) {
+  transform: rotateY(180deg) translateZ(400px);
+}
+.carousel-item:nth-child(5) {
+  transform: rotateY(240deg) translateZ(400px);
+}
+.carousel-item:nth-child(6) {
+  transform: rotateY(300deg) translateZ(400px);
+}
+
+/* Images */
+.carousel-item-image {
+  width: 200%;
+  height: 50%;
+  object-fit: cover;
+}
+.carousel-item-description {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-family: 'Times New Roman', Times, serif;
+  color: #121414;
+}
+
+/* Contenu du cadre */
+.carousel-item-content {
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(rgba(255, 255, 255, 0.905), rgb(255, 255, 255));
+  height: 400px;
+  color: #090579;
+}
+
+/* Animation de rotation lente */
+@keyframes rotateCarousel {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}

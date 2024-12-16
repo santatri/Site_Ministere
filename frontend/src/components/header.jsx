@@ -1,32 +1,36 @@
 import React from 'react';
 import '../styles/Header.css';
-import logo from '../assets/MTEFOP.png'; // Importation du logo depuis le dossier assets
-import rppImage from '../assets/Rpp.png'; // Importation de l'image rpp.png
+import logo from '../assets/Rpp.png'; // Importation du logo depuis le dossier assets
 
 const Header = () => {
-  return (
-    <header className="header">
-      {/* Boutons à gauche avec image */}
-      <div className="header-left">
-        <img src={rppImage} alt="RPP" className="header-image-small" /> {/* Image réduite */}
-        <button className="header-button">Public Services</button>
-        <button className="header-button">Documents Reference</button>
-        <button className="header-button">Recrutement</button>
-      </div>
+    return (
+        <div className="header-bar">
+            {/* Section gauche */}
+            <div className="header-left">
+                <div className="header-item">
+                    <i className="fas fa-map-marker-alt icon"></i>
+                    <p>67Ha département 1, Antananarivo</p>
+                </div>
+                <div className="header-item">
+                    <i className="fas fa-envelope icon"></i>
+                    <p>mtefop@gmail.com</p>
+                </div>
+            </div>
 
-      {/* Logo au centre */}
-      <div className="header-center">
-        <img src={logo} alt="Logo du ministère" className="header-logo" />
-      </div>
+            {/* Section centrale pour le logo */}
+           <div className="header-logo">
+            <img src={logo} alt="logo" />
+           </div>
 
-      {/* Contact rapide à droite */}
-      <div className="header-right">
-        <p className="header-contact">
-          Contact rapide : <span><br />+261 0345599717</span>
-        </p>
-      </div>
-    </header>
-  );
+            {/* Section droite */}
+            <div className="header-right">
+                <div className="header-item">
+                    <i className="fas fa-clock icon"></i>
+                    <p>Horaires d'ouverture : Lundi à Samedi - 8h à 17h</p>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Header;

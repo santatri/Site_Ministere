@@ -57,7 +57,7 @@ const AppWithNavbar = () => {
       {/* Afficher la Navbar seulement si la route correspond */}
       {showNavbarPages.includes(location.pathname) && <Header />}
       {showNavbarPages.includes(location.pathname) && <Navbar />}
-
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
