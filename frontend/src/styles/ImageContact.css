@@ -3,8 +3,8 @@
     position: relative;
     opacity: 0.99;
     width: 100%; /* Occuper toute la largeur */
-    height: 300px; /* Hauteur définie */
-    background: linear-gradient(100deg, rgba(2, 26, 164, 0.793), rgba(1, 238, 255, 0.766)), url('../assets/black9.jpg') no-repeat center center; 
+    height: 250px; /* Hauteur définie */
+    background: linear-gradient(100deg, rgba(5, 40, 236, 0.76), rgba(1, 238, 255, 0.903)), url('../assets/black9.jpg') no-repeat center center; 
     background-size: cover; /* Adapter l'image pour couvrir tout l'écran */
     background-position: center; /* Centrer l'image */
     display: flex;
@@ -26,7 +26,7 @@
   
   .overlay h1 {
     color: white; /* Couleur du texte */
-    font-size: 50px; /* Taille du texte */
+    font-size: 2rem; /* Taille du texte */
     font-weight: bold;
     font-family: Arial, sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre portée pour le texte */

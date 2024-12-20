@@ -1,0 +1,53 @@
+.actu-details-container {
+    margin: 2rem auto;
+    max-width: 800px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .details-header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .details-header h1 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+  }
+  
+  .back-link {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .details-content {
+    text-align: left;
+  }
+  
+  .details-date {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+  }
+  
+  .details-image {
+    max-width: 100%;
+    margin: 1rem 0;
+    border-radius: 8px;
+  }
+  
+  .details-video {
+    display: block;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+  
+  .details-description {
+    margin-top: 1.5rem;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #2c3e50;
+  }
+  

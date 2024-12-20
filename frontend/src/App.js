@@ -12,8 +12,11 @@ import LoginPage1 from './pages/LoginPage1';
 import CreateAccount1 from './pages/CreateAccount1';
 import AdminPage1 from './pages/AdminPage1';
 import CommunicationPage from './pages/CommunicationPage';
+import '../src/i18n';
+
 import StanPage from './pages/StanPage';
 import Archives from './pages/Archives';
+import ActuDetails from './pages/ActuDetails'; // Cette composante affiche le contenu détaillé de l'actualité
 import Footer from './components/Footer'; // Importation du Footer
 
 // Composant ProtectedRoute pour protéger les pages sensibles
@@ -63,6 +66,9 @@ const AppWithNavbar = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/service" element={<Service />} />
         <Route path="/archives" element={<Archives />} />
+    
+        <Route path="/actualite/:id" element={<ActuDetails />} />
+
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginPage1 />} />

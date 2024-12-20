@@ -13,6 +13,8 @@ import "../styles/Ministere.css";
 import ServicesSection from "../components/ServicesSection";
 import "../styles/ServiceSection.css";
 const Home = () => {
+  const [elements, setElements] = useState([]);
+
   const [actualites, setActualites] = useState([]);
   const [filter, setFilter] = useState("Tout");
   const [message, setMessage] = useState("");
@@ -42,9 +44,19 @@ const Home = () => {
       setMessage("Erreur lors du chargement des actualités.");
     }
   };
+  const fetchElements = async () => {
+    try {
+      const response = await axios.get('http://localhost:5001/api/a_la_une/all');
+      setElements(response.data.data);
+    } catch (error) {
+      setMessage('Erreur lors du chargement des éléments.');
+    }
+  };
+
 
   useEffect(() => {
     fetchActualites();
+    fetchElements();
   }, []);
 
   const handleSearch = (e) => {
@@ -119,13 +131,26 @@ const Home = () => {
           {/* Contenu des annonces */}
           <div className="annonce-card">
             <h2 className="annonce-title">Titre de l'annonce</h2>
-            <p className="annonce-description">Description de l'annonce.</p>
+           
+            <div>
+       
+        <ul>
+          {elements.map((element) => (
+            <li key={element.id}>
+              <h3 className="titre-annonce">{element.titre}</h3>
+              <p className="descri-annonce"> {element.description}</p>
+              {element.image && <img className="annonce-image" src={`http://localhost:5001/uploads/${element.image}`} alt={element.titre} />}
+             
+            </li>
+          ))}
+        </ul>
+      </div>
           </div>
         </div>
       </div>
      
       <Table />
-      
+     
       <ServicesSection/>
       <Ministere/>
     </div>

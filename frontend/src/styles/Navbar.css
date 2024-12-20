@@ -1,6 +1,10 @@
 /* Style global pour la barre de navigation */
 .navigation-bar {
-  background:rgb(1, 55, 96);
+  position: -webkit-sticky; /* Rend l'élément "sticky" pour Safari */
+  position: sticky; /* Rend l'élément "sticky" pour tous les autres navigateurs */
+  top: 0; /* Position en haut de la page */
+  z-index: 999; /* Priorité d'affichage supérieure au header */
+  background: rgb(1, 55, 96);
   padding: 5px 0;
   display: flex;
   justify-content: center;
@@ -8,6 +12,7 @@
   height: 60px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
+  transition: all 0.3s ease; /* Ajout d'une transition pour la fluidité */
 }
 
 /* Conteneur principal */
@@ -44,9 +49,9 @@
   font-weight: bold;
   text-decoration: none;
   margin: 0 10px;
-  padding: 5px 10px;
+  padding: 3px 10px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 16px;
+  font-size: 15px;
   transition: background-color 0.3s ease;
   border-radius: 5px;
   white-space: nowrap;
@@ -123,4 +128,9 @@
     margin: 5px 0;
     font-size: 14px;
   }
+}
+
+/* Espace entre le navbar et le header suivant */
+.page-content {
+  margin-top: 60px; /* Ajustez selon la hauteur de votre navbar */
 }

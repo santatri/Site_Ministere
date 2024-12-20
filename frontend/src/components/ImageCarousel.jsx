@@ -9,7 +9,7 @@ import image3 from '../assets/110.jpg';
 const slides = [
   {
     image: image1,
-    title: 'Plateforme innovante pour le ministère',
+    title: 'Plateforme innovante pour la Direction Génerale de la Fonction Publique',
     subtitle: 'Basés sur les normes et meilleures pratiques internationales',
     buttonText: 'Voir',
   },
@@ -23,7 +23,7 @@ const slides = [
     image: image3,
     title: 'Guide pour toutes les directions et services offerts',
     subtitle: 'Directives pour les démarches et procédures',
-    buttonText: 'Voir le site web',
+    buttonText: 'Voir le service',
   },
 ];
 
@@ -56,23 +56,23 @@ const ImageCarousel = () => {
     <div className="carousel-container">
       {/* Nouveau bouton précédent avec icône moderne */}
       <button onClick={goToPrevious} className="carousel-button prev">
-        <BsChevronCompactLeft size={30} />
+        <BsChevronCompactLeft size={15} />
       </button>
 
       {/* Contenu animé */}
       <motion.div
         key={currentIndex}
         className="carousel-slide"
-        initial={{ opacity: 0, x: -100 }}
+        initial={{ opacity: 0, x: -0 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: 100 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 2 }}
       >
         {/* Image de fond avec dégradé linéaire */}
         <div
           className="carousel-image"
           style={{
-            backgroundImage: `linear-gradient(to bottom,  rgba(1, 00, 200, 0.75) ,rgba(10, 210, 905, 0.9)), url(${image})`,
+            backgroundImage: `linear-gradient(to right,  rgba(1, 0, 230, 0.78) ,rgba(10, 220, 1095, 0.9)), url(${image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: '0.99',
@@ -110,7 +110,7 @@ const ImageCarousel = () => {
 
       {/* Nouveau bouton suivant avec icône moderne */}
       <button onClick={goToNext} className="carousel-button next">
-        <BsChevronCompactRight size={30} />
+        <BsChevronCompactRight size={15} />
       </button>
     </div>
   );

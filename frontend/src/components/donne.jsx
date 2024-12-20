@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/donne.css';
+import Services from '../pages/Services/Services';
+import { FaConciergeBell, FaFolderOpen, FaBook, FaTools, FaLaptop } from 'react-icons/fa';
+import { motion } from "framer-motion";
 
 const Donne = () => {
-  const [services, setServices] = useState([]); 
-  const [servicesByDirection, setServicesByDirection] = useState([]); 
-  const [selectedService, setSelectedService] = useState(null); 
-  const [serviceDetails, setServiceDetails] = useState(null); 
-  const [searchQuery, setSearchQuery] = useState(""); // Ajout d'un état pour la recherche
+  const [services, setServices] = useState([]);
+  const [servicesByDirection, setServicesByDirection] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
+  const [serviceDetails, setServiceDetails] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchCategory, setSearchCategory] = useState("all");
+  const [isSearchVisible, setIsSearchVisible] = useState(true);
 
   useEffect(() => {
     // Récupérer la liste des services
     axios.get('http://localhost:5001/api/services')
       .then((response) => {
-        const sortedServices = response.data.sort((a, b) => 
-          a.nom_service.localeCompare(b.nom_service) // Tri par nom de service
+        const sortedServices = response.data.sort((a, b) =>
+          a.nom_service.localeCompare(b.nom_service)
         );
         setServices(sortedServices);
       })
@@ -22,11 +27,11 @@ const Donne = () => {
         console.error('Erreur lors de la récupération des services:', error);
       });
 
-    // Récupérer les services offerts par une Direction
+    // Récupérer les services par Direction
     axios.get('http://localhost:5001/api/services/by-direction')
       .then((response) => {
-        const sortedServicesByDirection = response.data.sort((a, b) => 
-          a.nom_service.localeCompare(b.nom_service) // Tri par nom de service
+        const sortedServicesByDirection = response.data.sort((a, b) =>
+          a.nom_service.localeCompare(b.nom_service)
         );
         setServicesByDirection(sortedServicesByDirection);
       })
@@ -35,127 +40,186 @@ const Donne = () => {
       });
   }, []);
 
-  // Afficher les détails d'un service
   const handleViewDetails = (serviceId) => {
     axios.get(`http://localhost:5001/api/service/${serviceId}`)
       .then((response) => {
         setSelectedService(serviceId);
         setServiceDetails(response.data);
+        setIsSearchVisible(false); // Hide search bar when entering details
       })
       .catch((error) => {
         console.error('Erreur lors de la récupération des détails du service:', error);
       });
   };
 
-  // Retour à la liste des services
   const handleBackToList = () => {
     setSelectedService(null);
     setServiceDetails(null);
+    setIsSearchVisible(true); // Show search bar when going back to the list
   };
 
-  // Filtrer les services par la recherche
-  const filteredServices = services.filter(service => 
+  const filteredServices = services.filter(service =>
     service.nom_service.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Filtrer les services par direction
-  const filteredServicesByDirection = servicesByDirection.filter(service => 
+  const filteredServicesByDirection = servicesByDirection.filter(service =>
     service.nom_service.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const icons = [ FaBook];
+  const animationVariants = {
+    hidden: { opacity: 0, y: 0 },
+    visible: { opacity: 500, y: 0, transition: { duration: 2 } },
+  };
 
   return (
-    <div className="donne-container">
-      <h2>Tous les Services Offerts</h2>
-
-      {/* Barre de recherche */}
-      <input 
-        type="text" 
-        placeholder="Rechercher un service..." 
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        className="search-input"
-      />
+    <motion.div
+      className="donne-container"
+      initial="hidden"
+      animate="visible"
+      variants={animationVariants}
+    >
+      <Services />
+      {isSearchVisible && (
+        <div className="searches-section">
+          <div className="searches-bar">
+            <select
+              value={searchCategory}
+              onChange={(e) => setSearchCategory(e.target.value)}
+              className="searches-category"
+            >
+              <option value="all">Tous les services</option>
+              <option value="direction">Services par direction</option>
+              <option value="offered">Services offerts</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Rechercher un service..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="searches-input"
+            />
+            <button className="searches-button" onClick={() => console.log("Recherche effectuée")}>
+              Rechercher
+            </button>
+          </div>
+        </div>
+      )}
 
       {!selectedService && (
         <>
-          <div className="services-list">
-            {filteredServices.map((service) => (
-              <button 
-                key={service.id_service}
-                onClick={() => handleViewDetails(service.id_service)} 
-                className="view-details-button"
+          {(searchCategory === "all" || searchCategory === "offered") && (
+            <>
+              <h2 className="services-titlees">Tous les Services Offerts</h2>
+              <p className='servi'> Trouver les services publics que vous souhaitez parmi toutes les services.</p>
+              <motion.div
+                className="services-list"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.2 },
+                  },
+                }}
               >
-                <div className="service-card">
-                  <p>{service.nom_service}</p>
-                </div>
-              </button>
-            ))}
-          </div>
+                {filteredServices.map((service, index) => {
+                  const Icon = icons[index % icons.length];
+                  return (
+                    <motion.button
+                      key={service.id_service}
+                      className="view-details-button"
+                      variants={animationVariants}
+                      onClick={() => handleViewDetails(service.id_service)}
+                    >
+                      <div className="service-card">
+                        <span className="service-badge">#{index + 1}</span>
+                        <Icon className="service-icon" />
+                        <p className="service-text">{service.nom_service}</p>
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </motion.div>
+            </>
+          )}
 
-          <h2>Services Offerts par une Direction</h2>
-          <div className="services-list">
-            {filteredServicesByDirection.map((service) => (
-              <button 
-                key={service.id_service}
-                onClick={() => handleViewDetails(service.id_service)} 
-                className="view-details-button"
-              >
-                <div className="service-card">
-                  <p><strong>{service.nom_service}</strong></p>
-                </div>
-              </button>
-            ))}
-          </div>
+          {(searchCategory === "all" || searchCategory === "direction") && (
+            <>
+              <h2 className="services-titlees">Services Offerts par une Direction</h2>
+              <div className="services-list">
+                {filteredServicesByDirection.map((service, index) => {
+                  const Icon = icons[index % icons.length];
+                  return (
+                    <motion.button
+                      key={service.id_service}
+                      className="view-details-button"
+                      variants={animationVariants}
+                      onClick={() => handleViewDetails(service.id_service)}
+                    >
+                      <div className="service-card">
+                        <span className="service-badge">#{index + 1}</span>
+                        <Icon className="service-icon" />
+                        <p className="service-text">{service.nom_service}</p>
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </>
       )}
 
       {selectedService && serviceDetails && (
         <div className="service-details">
-          <h2>Détails du Service</h2>
-          
-          {/* Nom du service */}
-          <p><strong>Titre :</strong> {serviceDetails.nom_service}</p>
-          
-          {/* Hiérarchie */}
-          <p>
-            <strong>Hiérarchie :</strong> {serviceDetails.hierarchy || 'Non définie'}
-          </p>
-          
-          {/* Porte */}
-          <p>
-            <strong>Porte :</strong> {serviceDetails.porte_hierarchique || 'Non définie'}
-          </p>
-          
-          {/* Délai */}
-          <p className={serviceDetails.delai ? '' : 'empty'}>
-            <strong>Délai :</strong>{' '}
-            {serviceDetails.delai ? serviceDetails.delai : 'Aucun délai disponible'}
-          </p>
-
-          {/* Dossier Préparé */}
-          <div>
-            <strong>Dossier Préparé :</strong>
-            {serviceDetails.dossier_prepare ? (
-              <ul>
-                {serviceDetails.dossier_prepare.split(',').map((item, index) => (
-                  <li key={index}>{item.trim()}</li>
-                ))}
-              </ul>
-            ) : (
-              <p className="empty">Aucun dossier préparé disponible</p>
-            )}
-          </div>
-          
-          {/* Bouton Retour */}
-          <button 
-            onClick={handleBackToList} 
-            className="back-button"
-          >
-            Retour à la liste
+          {/* Bouton de retour */}
+          <button className="back-button" onClick={handleBackToList}>
+            Retour à la service
           </button>
+          <h2 className="details-title">Détail du Service</h2>
+          <div className="service-content">
+            {/* Colonne gauche */}
+            <div className="service-left">
+              <div className="service-title-box">
+                <h3>{serviceDetails.nom_service}</h3>
+              </div>
+              <div className="service-description-box">
+                <p>{serviceDetails.description || "Description indisponible."}</p>
+              </div>
+              <div className="service-dossier-box">
+                <h4>Dossier Préparé</h4>
+                {serviceDetails.dossier_prepare ? (
+                  <ul>
+                    {serviceDetails.dossier_prepare.split(',').map((item, index) => (
+                      <li key={index}>{item.trim()}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>Aucun dossier préparé disponible.</p>
+                )}
+              </div>
+            </div>
+            {/* Colonne droite */}
+            <div className="service-right">
+              <div className="service-info-box">
+                <h4>Hiérarchie</h4>
+                <p>{serviceDetails.hierarchy || "Non définie"}</p>
+              </div>
+              <div className="service-info-box">
+                <h4>Porte</h4>
+                <p>{serviceDetails.porte_hierarchique || "Non définie"}</p>
+              </div>
+              <div className="service-info-box">
+                <h4>Délai</h4>
+                <p>{serviceDetails.delai || "Aucun délai disponible"}</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

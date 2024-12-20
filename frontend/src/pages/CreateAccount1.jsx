@@ -19,15 +19,24 @@ const Register = () => {
   useEffect(() => {
     setTimeout(() => setAnimate(true), 100); // Déclenche l'animation après 100ms
   }, []);
-
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] });
+  };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const data = new FormData();
+    if (formData.image) data.append('image', formData.image);
+
     try {
-      const response = await axios.post('http://localhost:5001/api/users1/register', formData);
+      const url='http://localhost:5001/api/users1/register';
+      const method ='post';
+      const response = await axios[method](url, formData,{
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       setMessage(response.data.message);
 
       // Vider le formulaire après la soumission réussie
@@ -38,20 +47,24 @@ const Register = () => {
         mdp: '',
         confirmMdp: '',
         role: 'Communication',
-        image: '',
+        image: null,
       });
     } catch (error) {
       setMessage(error.response?.data?.message || 'Erreur lors de l\'inscription ou Le matricule est déjà utilisé');
     }
   };
-
   return (
     <div className="form-container">
 
-      <header className="header-background">
-        <h1>Bienvenue à bord</h1>
-        <p>Inscrivez-vous pour profiter de nos services</p>
-      </header>
+<div className={`form-layout ${animate ? 'animate' : ''}`}>
+        {/* Partie gauche */}
+        <div className="left-column">
+          <div className="left-content">
+            <img src={require('../assets/dgfop.png')} alt="Connexion illustration" />
+           
+          </div>
+        </div>
+
       <div className="form-wrapper">
         <h2>Inscription</h2>
         <form className="custom-form" onSubmit={handleSubmit}>
@@ -107,7 +120,7 @@ const Register = () => {
           <input
             type="file"
             name="image"
-            onChange={(e) => setFormData({ ...formData, image: e.target.files[0].name })}
+            onChange={handleFileChange}
           />
           <button type="submit">S'inscrire</button>
         </form>
@@ -117,6 +130,7 @@ const Register = () => {
         </p>
 
         </div>
+    </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import Actualité from '../components/Actualité';
 import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell, FaPowerOff, FaSlidersH, FaFolderOpen, FaFolder, FaSlideshare, FaAngleDown, FaLongArrowAltDown } from 'react-icons/fa';
 import AdminNavbar from '../components/AdminNavbar';
 import ALaUne from '../components/ALaUne';
+import logo from '../assets/dgfop.png'; // Remplacez par le chemin réel de votre logo
 
 import  SecretaireGeneral from'../components/SecretaireGeneral';
 import  DirectionGenerale from'../components/DirectionGenerale';
@@ -114,9 +115,12 @@ const AdminPage1 = () => {
   return (
     
     <div className="dashboard">
+      
       {/* Colonne gauche */}
       <div className="sidebar">
-        <h2>MTEFOP</h2>
+      <div className="logo-containeres">
+        <img src={logo} alt="DGFOP Logo" className="log" />
+    </div>
         <div className="menu">
           <button
             className={`menu-item ${activeSection === 'utilisateurs' ? 'active' : ''}`}
@@ -134,7 +138,7 @@ const AdminPage1 = () => {
             className={`menu-item ${activeSection === 'a-la-une' ? 'active' : ''}`}
             onClick={() => setActiveSection('a-la-une')}
           >
-            <FaStar /> À la une
+            < FaStar /> À la une
           </button>
         
           {/* Nouveau bouton "À propos" */}
@@ -176,7 +180,7 @@ const AdminPage1 = () => {
       {/* Colonne droite */}
       <div className="content">
         {/* En-tête */}
-        <AdminNavbar />
+        <AdminNavbar/>
 
         {/* Sections conditionnelles */}
         {activeSection === 'utilisateurs' && (

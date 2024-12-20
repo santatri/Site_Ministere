@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; // Utilisez useNavigate à la place de useHistory
 import '../styles/archives.css';
-import ImageActu from './Archives/ImageActu';
+
 import '../styles/ImageActu.css';
 
 const Archives = () => {
@@ -9,6 +11,11 @@ const Archives = () => {
   const [message, setMessage] = useState('');
   const [search, setSearch] = useState({ mots: '', dateStart: '', dateEnd: '' });
   const [anciennesActualites, setAnciennesActualites] = useState([]);
+  const [activeActu, setActiveActu] = useState(null); // L'ID de l'actualité cliquée
+  const [currentActu, setCurrentActu] = useState(null); // Contenu actuel en fonction de la sélection
+  const [detailsView, setDetailsView] = useState(false); // Pour déterminer si le contenu actuel est affiché en vue de détails
+
+  const navigate = useNavigate(); // Hook for navigation
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -44,14 +51,41 @@ const Archives = () => {
     fetchActualités(search);
   };
 
+  const isToday = (dateString) => {
+    const date = new Date(dateString);
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  };
+
+  const handleTitleClick = (actu) => {
+    navigate(`/actualite/${actu.id}`);
+    console.log(`Navigation vers l'actualité avec l'ID : ${actu.id}`);
+
+  };
+
+  // Animation des sections avec Framer Motion
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1.5 } }
+  };
+
+  const listVariants = {
+    hidden: { x: '-20vw' },
+    visible: { x: 0, transition: { type: 'spring', stiffness: 200 } }
+  };
+
   return (
-    <div className="archives-container">
+    <motion.div className="archives-container" variants={containerVariants} initial="hidden" animate="visible">
       <div className="image-actu-container">
         <div className="overla">
           <h1>Actualités</h1>
         </div>
       </div>
-      
+
       <form className="search-form" onSubmit={handleSearch}>
         <div className="searches-fieldses">
           <input
@@ -70,20 +104,22 @@ const Archives = () => {
             value={search.dateEnd}
             onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
           />
-          <button type="submit">Rechercher</button>
         </div>
       </form>
-      <h2>Actualités Récents</h2>
-      <div className="actualités-container">
-        {actualités.length === 0 ? (
-          <p>Aucune actualité disponible.</p>
-        ) : (
-          actualités.map((actu) => (
-            <div key={actu.id} className="actualité-card">
-              <h2 className="actualité-title">{actu.titre}</h2>
-              <p className="date-publication">{formatDate(actu.date_insertion)}</p>
-              <p className="actualité-description">{actu.description}</p>
-              <div className="actualité-media">
+
+      <h2 className='chap'>Actualités Récents</h2>
+      <motion.div className="actualités-container" variants={listVariants}>
+        {actualités
+          .filter((actu) => isToday(actu.date_insertion)) // Filtrer par date aujourd'hui
+          .slice(0, 3) // Limiter à 3 éléments
+          .map((actu) => (
+            <motion.div
+              key={actu.id}
+              className={`actualité-card ${activeActu === actu.id ? 'active' : ''}`}
+              whileHover={{ scale: 1.05 }} // Effet d'agrandissement lors du survol
+              onClick={() => handleTitleClick(actu)} // Fonction appelée lors du clic
+            >
+              <div className="actualité-card-inner">
                 {actu.media_image && (
                   <img
                     src={`http://localhost:5001/uploads/${actu.media_image}`}
@@ -91,28 +127,29 @@ const Archives = () => {
                     className="actualité-image"
                   />
                 )}
-                {actu.media_video && (
-                  <video controls className="actualité-video">
-                    <source
-                      src={`http://localhost:5001/uploads/${actu.media_video}`}
-                      type="video/mp4"
-                    />
-                    Votre navigateur ne supporte pas les vidéos HTML5.
-                  </video>
-                )}
+                <div className="actualité-details">
+                  <p className="date-publication">{formatDate(actu.date_insertion)}</p>
+                  <h2 className="actualité-title">{actu.titre}</h2>
+                </div>
               </div>
-            </div>
-          ))
+            </motion.div>
+          ))}
+        {actualités.filter((actu) => isToday(actu.date_insertion)).length === 0 && (
+          <p>Aucune actualité pour aujourd'hui.</p>
         )}
-      </div>
+      </motion.div>
 
-      <h2>Actualités anciens</h2>
-      <div className="actualités-container">
+      <h2 className='chap'>Actualités anciens</h2>
+      <motion.div className="actualités-container" variants={listVariants}>
         {anciennesActualites.length === 0 ? (
           <p>Aucune actualité ancienne disponible.</p>
         ) : (
           anciennesActualites.map((actu) => (
-            <div key={actu.id} className="actualité-card">
+            <motion.div
+              key={actu.id}
+              className="actualité-card"
+              whileHover={{ scale: 1.05 }} // Effet d'agrandissement lors du survol
+            >
               <h2 className="actualité-title">{actu.titre}</h2>
               <p className="date-publication">{formatDate(actu.date_insertion)}</p>
               <div className="card-content">
@@ -136,12 +173,12 @@ const Archives = () => {
                   <p className="actualité-description">{actu.description}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
-};
+}
 
 export default Archives;

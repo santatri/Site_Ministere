@@ -1,17 +1,13 @@
 import React from 'react';
-import waveBackground from '../assets/wave(2).svg';
-import service1 from '../assets/image10.jpg';
-import service2 from '../assets/image16.jpg';
-import service3 from '../assets/21.jpg';
+import service1 from '../assets/image1.jpg';
+import service2 from '../assets/1.jpg';
+import service3 from '../assets/44.jpg';
 
 
 const ServicesSection = () => {
   return (
     <div className="my-services-section">
-      {/* Fond en forme de vague */}
-      <div className="my-wave-background">
-        <img src={waveBackground} alt="Wave Background" className="my-wave-image" />
-      </div>
+     
 
       {/* Section principale */}
       <div className="my-container">

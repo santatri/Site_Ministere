@@ -43,19 +43,19 @@ const WelcomePage = () => {
         </div>
 
         <div className="text-pages">
-          <h1>
+          <h2>
             Bienvenue sur le plateforme innovante Direction Génerale de la Fonction Publique
-          </h1>
+          </h2>
           <p>
             La Présidence s’est engagée à créer une administration de proximité,
             à l’écoute de la population et de ses besoins, et à améliorer la
             qualité de vie des citoyens et de faciliter le travail des
             entreprises.
           </p>
-          <h2>Monsieur FANOHIZA Claude</h2>
+          <h2>Monsieur RAMAROSON Heridja Patrick</h2>
           <p>
             <i>
-              Secrétaire Général de la Présidence de la République de
+            Directeur Génerale de la Fonction Pulique
               Madagascar
             </i>
           </p>

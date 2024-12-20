@@ -1,20 +1,43 @@
-/* Base styles */
+
 .dashboard {
+  margin:  0px;
+   
   display: flex;
   height: 100vh;
+  width: 100%;
+  border-radius: 15px;
   
-  flex-direction: row;
-  transition: all 0.3s ease; /* Ajout de transition pour une meilleure fluidité */
+}
+  .logo-containeres {
+    padding: 0px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px;
+    width: 80%;
 }
 
+.log {
+  position: relative;
+    width: 100px; /* Ajustez la taille de l'image ici */
+    height: 85px; /* et les dimensions ici */
+
+}
+
+
+
+  
+ 
 .sidebar {
  /* background-image: url('../assets/black21.jpg');*/
-  width: 230px;
-  background: linear-gradient(5deg, rgb(2, 17, 112), rgba(3, 196, 255, 0.9)), url('../assets/26.jpg') ; 
-  color: white;
+  width: 180px;
+  background-color: #e7f6ff;
+
   display: flex;
   flex-direction: column;
-  
+  border-right: 15px;
+ 
   align-items: center;
   padding:0px;
   height: 100vh;
@@ -28,28 +51,29 @@
 }
 
 .menu {
-  width: 100%;
+  width: 90%;
 }
 
 .menu-item {
-  width: 93%;
+  width: 90%;
   padding: 12px;
+ 
   margin-bottom: 12px;
   background: none;
-  border: none;
-  color: white;
+  
+  color: rgb(79, 48, 129);
   cursor: pointer;
   font-family: 'Times New Roman', Times, serif;
   text-align: left;
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 1rem;
+  font-size: 0.85rem;
   transition: all 0.3s ease;
 }
 
 .menu-item.active {
-  background: linear-gradient(45deg, rgba(38, 32, 218, 0.649), rgb(4, 17, 107));
+  background-color:  #121254b3;
   color: white;
 }
 
@@ -59,18 +83,21 @@
 }
 .section-header h2{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
+  color: #6a11cb;
 }
 .users-section h3{
-  font-size: 18px;
+  color: #6a11cb;
+  font-size: 14px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .content {
   
   flex: 1;
-  padding: 17px;
-  background-color: #f5f5f5;
+  margin: 0px;
+  padding: 30px;
+  background-color: #f8fafb;
   overflow-y: auto;
   transition: padding 0.3s ease;
 }
@@ -79,34 +106,39 @@
   color: rgb(213, 136, 12);
   margin-bottom: 10px;
   font-weight: bold;
+  font-size: 12px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 30px 0;
+  margin: 20px 0;
 
 }
 
-table th, table td {
-  border: 1px solid #dddddd;
-  font-size: 15px; 
+table th{
   padding: 10px;
-  text-align: left;
+  border: 2px solid #ffffff;
+} table td {
+  border: 2px solid #fffbfb;
+  font-size: 12px; 
+  padding: 2px;
+  text-align: center;
 }
 
 table th {
-  background-color:#5000ac;
-  color: white;
-  font-size: 15px; 
+  background-color:#d1e5fd;
+  color: rgb(3, 3, 3);
+  font-size: 12px; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 table tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 table tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f8f5f5;
 }
 
 button {
@@ -120,31 +152,31 @@ button {
 }
 
 .btn-validate {
-  background-color: #28a745; /* Vert */
+  background-color: #2bc720; /* Vert */
   color: white;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .btn-validate:hover {
-  font-size: 15px;
+  font-size: 11px;
   background-color: #218838; /* Couleur plus foncée au survol */
 }
 
 .btn-delete {
   background-color: #dc3545; /* Rouge */
   color: white;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .btn-delete:hover {
   background-color: #c82333;
-  font-size: 15px; /* Couleur plus foncée au survol */
+  font-size: 12px; /* Couleur plus foncée au survol */
 }
 
 .btn-edit {
-  background-color: #3007aa; /* Bleu */
+  background-color: #0779aa; /* Bleu */
   color: white;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .btn-edit:hover {
@@ -154,7 +186,7 @@ button {
 .btn-save {
   background-color: #ffc107; /* Jaune */
   color: rgb(60, 68, 123);
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .btn-save:hover {
@@ -164,7 +196,7 @@ button {
 .btn-cancel {
   background-color: #6c757d; /* Gris */
   color: white;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .btn-cancel:hover {
@@ -179,25 +211,28 @@ button {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+ 
 }
 
 .search-input {
-  padding: 12px;
+  font-size: 12px;
+  padding: 10px;
   margin-top: 1%;
+  border-color: #34bef9;
   margin-right: 10px;
-
+   
   border-radius: 10px;
   width: 100%; /* Permet à l'input de s'étendre sur l'écran */
-  max-width:1000px; /* Limite la largeur pour ne pas rendre l'input trop large */
+  max-width:10000px; /* Limite la largeur pour ne pas rendre l'input trop large */
 }
 
 .search-button {
   padding: 13px 19px;
-  background-color: midnightblue;
+  background-color: rgb(31, 181, 204);
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -208,15 +243,15 @@ button {
 .logout-button {
   display: flex;
   align-items: center;
-  background-color: #941010;
+  background-color:#0c0352;
   font-family: 'Times New Roman', Times, serif;
   color: white;
   border: none;
   border-radius: 10px;
-  font-size: 17px;
+  font-size: 15px;
   cursor: pointer;
   margin-top: auto;
-  width: 90%;
+  width: 80%;
 }
 
 .logout-button:hover {

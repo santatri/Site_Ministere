@@ -1,14 +1,27 @@
 const db = require('../db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); // JWT pour générer les tokens sécurisés
+const multer = require('multer');
 
 const SECRET_KEY = '8219'; // Remplacez par une clé secrète complexe
-
+ 
+// Configuration Multer pour le téléchargement des fichiers
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
 
 // Inscription d'un utilisateur
-// Inscription d'un utilisateur
-exports.registerUser = async (req, res) => {
-  const { nom, prenom, matricule, mdp, confirmMdp, role, image } = req.body;
+exports.registerUser = [ 
+  upload.single('image'),
+  (req, res) => {
+  const { nom, prenom, matricule, mdp, confirmMdp, role } = req.body;
+  const image = req.file ? req.file.filename : null;
 
   if (mdp !== confirmMdp) {
     return res.status(400).send({ message: 'Les mots de passe ne correspondent pas' });
@@ -42,7 +55,7 @@ exports.registerUser = async (req, res) => {
   } catch (err) {
     res.status(500).send('Erreur interne du serveur');
   }
-};
+},];
 // Validation d'un utilisateur par l'admin
 exports.validateUser = (req, res) => {
     const { id } = req.params;

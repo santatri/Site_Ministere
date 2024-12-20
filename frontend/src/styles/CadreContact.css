@@ -17,15 +17,15 @@
     margin: 0 auto; /* Centrer horizontalement */
   }
   
-  h1 {
+  .formes {
     text-align: center;
     margin-bottom: 40px;
     font-size: 1.5rem;
-    color: #153686; /* Changer la couleur du texte en blanc pour contraster avec le fond */
+    color: #861533; /* Changer la couleur du texte en blanc pour contraster avec le fond */
   }
   
   .forme-groupe {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -41,7 +41,7 @@
   }
   
   .labele {
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: bold;
     margin-bottom: 8px;
     display: block;

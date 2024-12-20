@@ -6,8 +6,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background: linear-gradient(5deg, rgba(255, 255, 255, 0.92), rgba(3, 196, 255, 0.9)), url('../assets/26.jpg') ; 
+  align-items: center;background: linear-gradient(5deg, rgba(255, 255, 255, 0.92), #aed2fd), url('../assets/black4.jpg') ; 
+  
 
 
   background-attachment: fixed; /* Fixe le fond */
@@ -21,7 +21,7 @@
   max-width: 60%;
   width: 100%;
   height: auto;
-  border-radius: 25px;
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 8px 0px rgb(10, 146, 176);
   background-color: white;
@@ -67,7 +67,7 @@
 }
 
 .left-content h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   color: white;
@@ -76,7 +76,7 @@
 }
 
 .left-content h2 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-top: 1rem;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
@@ -94,7 +94,7 @@
 /* Titre formulaire */
 .form-wrapper h2 {
   color: #5000ac;
-  font-size: 1.9rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -112,6 +112,7 @@ form select,
 form button {
   width: 100%;
   padding: 0.6rem;
+  font-size: 12px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -129,8 +130,9 @@ form input[type="file"] {
 }
 
 form button {
-  background: rgb(197, 5, 5);
+  background: rgb(5, 146, 197);
   color: white;
+  font-size: 13px;
   border: none;
   cursor: pointer;
   transition: background 0.3s;
@@ -151,7 +153,7 @@ form button:hover {
 /* Footer formulaire */
 .form-footer {
   margin-top: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 

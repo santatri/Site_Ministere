@@ -1,117 +1,60 @@
-/* Conteneur principal */
+/* AdminNavbar.css */
 .admin-navbar {
-  background: linear-gradient(170deg, rgb(25, 2, 126), rgba(255, 217, 0, 0.727));
-    width: 100%;
-    opacity: 0.99;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-   
-    border-radius: 0px; /* Bordure arrondie */
-    padding: 12px 10px;
+    background-color: #021c32; /* Couleur de fond de la navbar */
+    padding: 10px;
+    margin-top: -2.5%;
+    margin-left: -2.5%;
+    border-bottom: 25px;
 
-    display: flex;
     
-    justify-content: center;
-    align-items: center;
-
   }
   
-  /* Contenu */
   .navbar-content {
     display: flex;
     justify-content: space-between;
-
     align-items: center;
-    width: 100%;
-    max-width: 1200px; /* Limite la largeur */
-    flex-wrap: wrap; /* Permet aux colonnes de se replier */
-    gap: 10px;
-    margin-top: 0%;
   }
   
-  /* Partie gauche */
   .navbar-left {
-    font-size: 25px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: rgb(238, 236, 236);
+    font-size: 12px;
+    color: #e2efef; /* Bordure cyan */
+    padding-left: 20px;
+  }
+  
+  .navbar-title {
     font-weight: bold;
-    flex: 1;
-    text-align: left;
+    font-size: 13px;
   }
   
-  /* Partie centrale */
-  .navbar-center {
-    text-align: center;
-    flex: 1;
-  }
-  
-  .navbar-center .logo {
-    max-height: 130px;
-    max-width: 150px;
-    object-fit: contain;
-  }
-  
-  /* Partie droite */
   .navbar-right {
-    flex: 1;
-    text-align: right;
     display: flex;
-    justify-content: flex-end;
+    font-size: 14px;
+    color: #f3fafa;
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* Espacement entre l'image et le texte */
   }
   
-  /* Bouton pour changer le thème */
-  .theme-toggle-button {
+  .user-info {
     display: flex;
     align-items: center;
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+
+    padding: 5px;
+    border-radius: 50%; /* Rendre l'avatar circulaire */
   }
   
-  .theme-toggle-button:hover {
-    color: #ffc107; /* Couleur jaune au survol */
+  .avatar-container {
+    margin-right: 10px;
   }
   
-  .theme-toggle-button span {
-    margin-left: 5px;
+  .avatar-frame {
+    border-radius: 50%; /* Pour rendre l'image en avatar circulaire */
+    width: 40px; /* Ajustez la taille selon votre besoin */
+    height: 40px;
   }
   
-  /* Responsive */
-  @media (max-width: 768px) {
-    .navbar-content {
-      flex-direction: column; /* Passe en colonne */
-      align-items: center;
-      text-align: center;
-    }
-  
-    .navbar-left,
-    .navbar-center,
-    .navbar-right {
-      flex: unset; /* Désactive le flex individuel */
-      width: 100%; /* Utilise toute la largeur */
-    }
-  
-    .navbar-left {
-      margin-bottom: 10px;
-    }
-  
-    .navbar-right {
-      justify-content: center; /* Centre les éléments */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .navbar-left p,
-    .theme-toggle-button span {
-      font-size: 14px; /* Réduit la taille du texte */
-    }
-  
-    .navbar-center .logo {
-      max-height: 40px;
-      max-width: 80px;
-    }
+  .user-name {
+    color: #e8efef; /* Bordure cyan */
+    font-weight: bold;
+    font-size: 12px;
   }
   

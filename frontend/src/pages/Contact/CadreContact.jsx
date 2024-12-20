@@ -23,7 +23,7 @@ const CadreContact = () => {
 
   return (
     <div className="forme-containere">
-      <h1>Laissez-nous un message et vos coordonnées pour échanger ensemble</h1>
+      <h1 className='formes'>Laissez-nous un message et vos coordonnées pour échanger ensemble</h1>
       <form onSubmit={handleSubmit}>
         
         {/* Champ Nom Complet (Prénom et Nom) */}

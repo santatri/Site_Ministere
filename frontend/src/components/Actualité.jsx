@@ -127,13 +127,13 @@ const Actualité = () => {
           value={search.dateEnd}
           onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
         />
-        <button type="submit">Filtrer</button>
+      
       </form>
 
       <div className="forms-sectiones">
         <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
         <form onSubmit={handleSubmit}>
-          <input
+          <input className='tri'
             ref={input}
             type="text"
             name="titre"
@@ -142,18 +142,18 @@ const Actualité = () => {
             value={formData.titre}
             required
           />
-          <textarea
+          <textarea className='tra'
             name="description"
             placeholder="Description"
             onChange={handleChange}
             value={formData.description}
             required
           />
-          <label>Image :</label>
-          <input type="file" name="media_image" accept="image/*" onChange={handleFileChange} />
-          <label>Vidéo :</label>
-          <input type="file" name="media_video" accept="video/*" onChange={handleFileChange} />
-          <button type="submit">{isEditing ? 'Mettre à jour' : 'Soumettre'}</button>
+          <label className='texte-image'>Image :</label>
+          <input  type="file" name="media_image" accept="image/*" onChange={handleFileChange} />
+          <label className='texte-video'>Vidéo :</label>
+          <input className='tro' type="file" name="media_video" accept="video/*" onChange={handleFileChange} />
+          <button className='butto' type="submit">{isEditing ? 'Mettre à jour' : 'Soumettre'}</button>
         </form>
       </div>
 

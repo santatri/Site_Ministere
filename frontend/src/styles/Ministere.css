@@ -1,7 +1,8 @@
 /* Conteneur principal */
 .ministere-container {
-  width: 55%;
-  background: linear-gradient(5deg, rgba(1, 157, 241, 0.907), rgba(7, 133, 236, 0.601), rgba(11, 146, 243, 0.93)), url('../assets/26.jpg');
+
+  width: 90%;
+  background: linear-gradient(5deg, rgba(1, 157, 241, 0.801), rgba(7, 133, 236, 0.768), rgba(11, 139, 243, 0.829)), url('../assets/26.jpg');
   text-align: center;
   margin-top: 10%;
   border: 0px solid #ffffff; /* Réduire l'épaisseur du border à 3px pour un cadre plus étroit */
@@ -11,10 +12,10 @@
 
 /* Titre principal */
 .ministere-title {
-  font-size: 4rem;
+  font-size: 2.5rem;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 105px;
+  margin-bottom: 45px;
   font-family: 'Arial', sans-serif;
   color: rgb(255, 255, 255);
 }
@@ -33,13 +34,13 @@
   height: 450px;
   transform-style: preserve-3d;
   transition: transform 0.5s ease; /* Ralentissement perceptible pour tout le contenu */
-  margin-top: -2.9%;
+  margin-top: -5.9%;
 }
 
 .carousel-item {
   position: absolute;
-  width: 350px;
-  height: 450px;
+  width: 320px;
+  height: 350px;
   overflow: hidden;
   background: white;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Transition sur la rotation avec une durée de 0.5s */
@@ -71,12 +72,17 @@
   width: 200%;
   height: 50%;
   object-fit: cover;
-}
-.carousel-item-description {
-  font-size: 1.2rem;
+} .carousel-item-title {
+  font-size: 1.5rem;
   line-height: 1.5;
   font-family: 'Times New Roman', Times, serif;
-  color: #121414;
+  color: #0a025cf8;
+}
+.carousel-item-description {
+  font-size: 17px;
+  line-height: 1.5;
+  font-family: 'Times New Roman', Times, serif;
+  color: #151515;
 }
 
 /* Contenu du cadre */

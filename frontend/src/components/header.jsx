@@ -13,7 +13,7 @@ const Header = () => {
                 </div>
                 <div className="header-item">
                     <i className="fas fa-envelope icon"></i>
-                    <p>mtefop@gmail.com</p>
+                    <p>DGFOP@gmail.com</p>
                 </div>
             </div>
 
@@ -26,7 +26,7 @@ const Header = () => {
             <div className="header-right">
                 <div className="header-item">
                     <i className="fas fa-clock icon"></i>
-                    <p>Horaires d'ouverture : Lundi à Samedi - 8h à 17h</p>
+                    <p>Horaires d'ouverture : Lundi à Samedi - 8h à 18h</p>
                 </div>
             </div>
         </div>

@@ -16,8 +16,8 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(255deg, rgba(0, 12, 47, 0.9), rgba(20, 165, 255, 0.862)), 
-              url('../assets/black2.jpg') no-repeat center center; 
+  background: linear-gradient(255deg, rgba(1, 23, 92, 0.9), rgba(20, 165, 255, 0.862)), 
+              url('../assets/60.jpg') no-repeat center center; 
   background-size: cover; /* Image couvre toute la zone */
   padding: 0;
   border-radius: 0;
@@ -55,7 +55,7 @@
 .image-box {
   position: relative;
   background-color: white;
-  padding: 45px;
+  padding: 40px;
   top: -25px;
   border-radius: 5px;
   display: flex;
@@ -71,7 +71,7 @@
 }
 
 .logo {
-  max-width: 260px;
+  max-width: 270px;
   width: 150%;
   border-radius: 8px;
 }
@@ -85,10 +85,10 @@
   position: absolute;
   top: 25px;
   left: 0px;
-  background-color: rgba(5, 175, 194, 0.799);
+  background-color: rgb(5, 139, 228);
   color: white;
   font-weight: bold;
-  padding: 7px 45px;
+  padding: 7px 20px;
   border-radius: 2px;
   font-size: 14px;
   z-index: 1;
@@ -100,7 +100,7 @@
 }
 
 .text-pages h1 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   text-align: start;
   line-height: 3.5;
   color: white;
@@ -109,12 +109,13 @@
 
 .text-pages p {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0px;
 }
 
 .text-pages h2 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  line-height: 1.8;
   margin-top: 20px;
 }
 
