@@ -3,7 +3,6 @@
   width: 100%;
   height: 320px;
   overflow: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,7 +73,7 @@
   text-align: center;
   font-size: 1rem;
   color: white;
-  background:  rgba(255, 0, 0, 0.793);
+  background: rgba(255, 0, 0, 0.793);
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -117,13 +116,13 @@
 }
 
 /* Adaptation mobile */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .carousel-container {
-    height: 350px;
+    height: 280px;
   }
 
   .slide-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .slide-subtitle {
@@ -141,21 +140,72 @@
 }
 
 /* Adaptation très petit écran */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .carousel-container {
     height: 250px;
   }
 
   .slide-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .slide-subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .slide-button {
+    font-size: 0.85rem;
+    padding: 8px 25px;
+  }
+
+  .carousel-button {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 220px;
+  }
+
+  .slide-title {
+    font-size: 1.4rem;
+  }
+
+  .slide-subtitle {
     font-size: 0.8rem;
-    padding: 10px 20px;
+  }
+
+  .slide-button {
+    font-size: 0.75rem;
+    padding: 6px 20px;
+  }
+
+  .text-container {
+    padding: 0 15px;
+  }
+}
+
+/* Adaptation ultra-petits écrans */
+@media (max-width: 360px) {
+  .carousel-container {
+    height: 200px;
+  }
+
+  .slide-title {
+    font-size: 1.2rem;
+  }
+
+  .slide-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .slide-button {
+    font-size: 0.7rem;
+    padding: 5px 15px;
+  }
+
+  .carousel-button {
+    padding: 5px;
   }
 }

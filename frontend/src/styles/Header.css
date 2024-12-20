@@ -6,11 +6,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(194, 232, 249);
+  background-color: rgb(255, 255, 255);
   color: rgba(0, 0, 0, 0.579);
   padding: 0px 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
+
+@media  screen and (max-width:767px) {
+ .header-bar .header-left{
+    display: none;
+  }
+ .header-bar .header-right{
+    display: none;
+  }
 }
 
 /* Bordures colorées */

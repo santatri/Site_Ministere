@@ -183,3 +183,97 @@
     grid-template-columns: 1fr;
   }
 }
+/* Responsiveness pour tablettes */
+@media (max-width: 1024px) {
+  .annonces-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .annonce-card {
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .annonce-image {
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .annonce-title {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .annonce-description {
+    font-size: 14px;
+    text-align: justify;
+  }
+}
+
+/* Responsiveness pour téléphones */
+@media (max-width: 768px) {
+  .annonces-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .annonce-card {
+    padding: 10px;
+    border-radius: 5px;
+    gap: 10px;
+    box-shadow: none; /* Optionnel pour alléger l'affichage */
+  }
+
+  .annonce-image {
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .annonce-title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .annonce-description {
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: justify;
+  }
+}
+
+/* Responsiveness pour petits écrans (moins de 480px) */
+@media (max-width: 480px) {
+  .annonces-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  .annonce-card {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .annonce-image {
+    max-height: 120px;
+    border-radius: 5px;
+  }
+
+  .annonce-title {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .annonce-description {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+}
