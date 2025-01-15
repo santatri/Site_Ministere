@@ -115,7 +115,7 @@ const Direction = () => {
 
     return (
         <div>
-            <h1>Gestion des Directions</h1>
+            <h1>Gestion des Directions et et les personnes responsable </h1>
             
             <form ref={formRef}>
                 <input
@@ -139,7 +139,7 @@ const Direction = () => {
                             checked={type === 'sg'}
                             onChange={() => setType('sg')}
                         />
-                        Appartenir au Secrétaire Général
+                        Appartenir au SG ou Ministre
                     </label>
                     <label>
                         <input
@@ -157,7 +157,7 @@ const Direction = () => {
                         value={id_sg}
                         onChange={(e) => setIdSG(e.target.value)}
                     >
-                        <option value="">Sélectionner Secrétaire Général</option>
+                        <option value="">Sélectionner SG ou Ministre</option>
                         {sgList.map((sg) => (
                             <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
                         ))}

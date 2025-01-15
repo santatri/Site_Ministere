@@ -154,7 +154,7 @@ const ServiceOffert = () => {
                     placeholder="Nom du service"
                 />
                 <div>
-                    <input
+                    <textarea
                         type="text"
                         value={newDossierItem}
                         onChange={(e) => setNewDossierItem(e.target.value)}
@@ -177,14 +177,14 @@ const ServiceOffert = () => {
                 />
                 <select value={associationType} onChange={(e) => setAssociationType(e.target.value)}>
                     <option value="">Associer à</option>
-                    <option value="SG">Secrétaire Général</option>
+                    <option value="SG">SG ou Ministre</option>
                     <option value="DG">Direction Générale</option>
                     <option value="D">Direction</option>
                     <option value="S">Service</option>
                 </select>
                 {associationType === 'SG' && (
                     <select value={associationId} onChange={(e) => setAssociationId(e.target.value)}>
-                        <option value="">Sélectionner un SG</option>
+                        <option value="">Sélectionner SG ou Ministre</option>
                         {sgList.map((sg) => (
                             <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
                         ))}

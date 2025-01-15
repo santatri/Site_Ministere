@@ -7,14 +7,23 @@ const Header = () => {
         <div className="header-bar">
             {/* Section gauche */}
             <div className="header-left">
-                <div className="header-item">
-                    <i className="fas fa-map-marker-alt icon"></i>
-                    <p>67Ha département 1, Antananarivo</p>
-                </div>
+            <div className="header-item">
+                <i className="fas fa-map-marker-alt icon"></i>
+                <a 
+                    href="https://www.google.com/maps/search/?api=1&query= Ministère de la Fonction Publique, Ministère de la Fonction Publique, du Travail et des Lois Sociales, 67 ha, Antananarivo" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="location-link"
+                >
+                    67Ha , Antananarivo
+                </a>
+            </div>
+
                 <div className="header-item">
                     <i className="fas fa-envelope icon"></i>
-                    <p>DGFOP@gmail.com</p>
+                    <a href="mailto:santatriniainafeno01@gmail.com" className="email-link">DGFOP@gmail.com</a>
                 </div>
+
             </div>
 
             {/* Section centrale pour le logo */}

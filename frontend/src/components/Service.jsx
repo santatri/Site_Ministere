@@ -105,7 +105,7 @@ const Service = () => {
 
     return (
         <div>
-            <h1>Gestion des Services</h1>
+            <h1>Gestion des Services et des secretaires</h1>
 
             <form ref={formRef}>
                 <input
