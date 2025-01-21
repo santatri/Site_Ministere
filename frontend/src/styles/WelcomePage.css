@@ -18,8 +18,8 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(40deg,rgba(47, 0, 255, 0.836), rgb(10, 82, 169), rgb(9, 65, 154), rgba(39, 57, 195, 0.348)), 
-              url('../assets/4.svg') no-repeat center center; 
+  background: linear-gradient(90deg,rgb(0, 170, 255), rgb(10, 82, 169), rgb(9, 65, 154), rgba(0, 30, 255, 0.474)), 
+              url('../assets/wave\(3\).svg') no-repeat center center; 
   background-size: cover; /* Image couvre toute la zone */
   padding: 0;
   margin: 0px;

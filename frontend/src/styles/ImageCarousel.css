@@ -1,7 +1,7 @@
 .carousel-container {
   position: relative;
   width: 100%;
-  height:400px;
+  height:370px;
   overflow: hidden;
   margin-left: 00%;
   display: flex;
@@ -51,7 +51,7 @@
 /* Titre principal */
 .slide-title {
    
-  font-size: 1.9rem; /* Augmenté la taille pour plus de visibilité */
+  font-size: 1.7rem; /* Augmenté la taille pour plus de visibilité */
   color: white;
   font-weight:bold;
   margin-bottom: 0px;
