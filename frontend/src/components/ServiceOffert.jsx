@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const ServiceOffert = () => {
     const [services, setServices] = useState([]);
+    const [filteredServices, setFilteredServices] = useState([]); // Services filtrés
+    const [searchTerm, setSearchTerm] = useState(''); // Terme de recherche
     const [sgList, setSGList] = useState([]);
     const [dgList, setDGList] = useState([]);
     const [dList, setDList] = useState([]);
@@ -14,23 +16,22 @@ const ServiceOffert = () => {
     const [associationId, setAssociationId] = useState('');
     const [editId, setEditId] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
-    const [newDossierItem, setNewDossierItem] = useState('');
-    const [dossierList, setDossierList] = useState([]);
 
-    // Référence au formulaire
     const formRef = useRef(null);
 
-    // Récupérer les services
     const fetchServices = async () => {
         try {
             const response = await axios.get('http://localhost:5001/api/serviceOffert/all');
-            setServices(response.data.data);
+            const sortedServices = response.data.data.sort((a, b) =>
+                a.nom_service.localeCompare(b.nom_service, 'fr', { sensitivity: 'base' })
+            );
+            setServices(sortedServices);
+            setFilteredServices(sortedServices); // Initialiser la liste filtrée
         } catch (error) {
             console.error("Erreur lors de la récupération des services:", error);
         }
     };
 
-    // Récupérer les données SG, DG, D, et S
     const fetchSGDGDS = async () => {
         try {
             const [sgResponse, dgResponse, dResponse, sResponse] = await Promise.all([
@@ -53,19 +54,25 @@ const ServiceOffert = () => {
         fetchSGDGDS();
     }, []);
 
-    // Créer ou mettre à jour un service
+    const handleSearch = (e) => {
+        const term = e.target.value.toLowerCase();
+        setSearchTerm(term);
+        const filtered = services.filter((service) =>
+            service.nom_service.toLowerCase().includes(term)
+        );
+        setFilteredServices(filtered);
+    };
+
     const createOrUpdateService = async () => {
         if (!nom_service || !associationType || !associationId) {
             setErrorMessage('Veuillez remplir le nom du service et sélectionner une association.');
             return;
         }
 
-        const dossierPrepareStr = dossierList.join(', ');
-
         try {
             const data = {
                 nom_service,
-                dossier_prepare: dossierPrepareStr,
+                dossier_prepare,
                 delai,
                 id_sg: associationType === 'SG' ? associationId : null,
                 id_dg: associationType === 'DG' ? associationId : null,
@@ -94,8 +101,6 @@ const ServiceOffert = () => {
         setAssociationId('');
         setEditId(null);
         setErrorMessage('');
-        setDossierList([]);
-        setNewDossierItem('');
     };
 
     const editService = (service) => {
@@ -108,9 +113,6 @@ const ServiceOffert = () => {
         else if (service.nom_d) setAssociationType('D');
         else if (service.nom_s) setAssociationType('S');
         setAssociationId(service.id_sg || service.id_dg || service.id_d || service.id_s);
-
-        const dossierItems = service.dossier_prepare ? service.dossier_prepare.split(', ') : [];
-        setDossierList(dossierItems);
         formRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
@@ -121,17 +123,6 @@ const ServiceOffert = () => {
         } catch (error) {
             console.error("Erreur lors de la suppression du service:", error);
         }
-    };
-
-    const addDossierItem = () => {
-        if (newDossierItem) {
-            setDossierList((prevList) => [...prevList, newDossierItem]);
-            setNewDossierItem('');
-        }
-    };
-
-    const removeDossierItem = (index) => {
-        setDossierList((prevList) => prevList.filter((_, i) => i !== index));
     };
 
     const getAssociationName = (service) => {
@@ -146,6 +137,15 @@ const ServiceOffert = () => {
         <div>
             <h1>Gestion des Services Offerts</h1>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+            <input
+                type="text"
+                value={searchTerm}
+                onChange={handleSearch}
+                placeholder="Rechercher un service"
+                style={{ marginBottom: '10px' }}
+            />
+
             <form ref={formRef}>
                 <input
                     type="text"
@@ -153,22 +153,12 @@ const ServiceOffert = () => {
                     onChange={(e) => setNomService(e.target.value)}
                     placeholder="Nom du service"
                 />
-                <div>
-                    <textarea
-                        type="text"
-                        value={newDossierItem}
-                        onChange={(e) => setNewDossierItem(e.target.value)}
-                        placeholder="Ajouter un élément au dossier"
-                    />
-                    <button type="button" onClick={addDossierItem}>Ajouter</button>
-                </div>
-                <ul>
-                    {dossierList.map((item, index) => (
-                        <li key={index}>
-                            {item} <button type="button" onClick={() => removeDossierItem(index)}>Supprimer</button>
-                        </li>
-                    ))}
-                </ul>
+                <textarea
+                    value={dossier_prepare}
+                    onChange={(e) => setDossierPrepare(e.target.value)}
+                    placeholder="Liste des éléments du dossier (séparés par des virgules)"
+                    rows="4"
+                />
                 <input
                     type="text"
                     value={delai}
@@ -219,9 +209,17 @@ const ServiceOffert = () => {
                 </button>
                 <button type="button" onClick={clearForm}>Annuler</button>
             </form>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
+                <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    placeholder="Rechercher un service offert"
+                   
+                />
             <table>
-                <thead>
+                <thead>   
                     <tr>
                         <th>Nom</th>
                         <th>Dossier Préparé</th>
@@ -231,14 +229,12 @@ const ServiceOffert = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {services
-                    .sort((a, b) => a.nom_service.localeCompare(b.nom_service)) // Sort alphabetically
-                    .map((service) => (
+                    {filteredServices.map((service) => (
                         <tr key={service.id_service}>
                             <td>{service.nom_service}</td>
                             <td>{service.dossier_prepare || 'N/A'}</td>
                             <td>{service.delai || 'N/A'}</td>
-                            <td>{service.hierarchy}</td>
+                            <td>{service.hierarchy }</td>
                             <td>
                                 <button onClick={() => editService(service)}>Modifier</button>
                                 <button onClick={() => deleteService(service.id_service)}>Supprimer</button>

@@ -1,8 +1,11 @@
 const db = require('../db');
 
 // Enregistrer une visite unique
+// Enregistrer une visite unique
 exports.recordVisit = (req, res) => {
     const ipAddress = req.ip; // Récupère l'adresse IP de l'utilisateur
+    console.log("Adresse IP de la visite : ", ipAddress);  // Log de l'IP
+
     const queryCheck = `
         SELECT * FROM visitors 
         WHERE ip_address = ? AND DATE(visit_date) = CURDATE()
@@ -19,15 +22,20 @@ exports.recordVisit = (req, res) => {
             return res.status(200).json({ message: 'Visite déjà enregistrée aujourd\'hui' });
         }
 
+        // Log de l'insertion avant l'exécution de la requête
+        console.log("Insertion dans la base de données...");
+
         db.query(queryInsert, [ipAddress], (err) => {
             if (err) {
                 console.error('Erreur lors de l\'enregistrement de la visite :', err);
                 return res.status(500).json({ error: 'Erreur serveur' });
             }
+            console.log("Visite enregistrée avec succès");
             res.status(200).json({ message: 'Visite enregistrée avec succès' });
         });
     });
 };
+
 
 // Récupérer le nombre total de visiteurs uniques
 exports.getVisitorCount = (req, res) => {

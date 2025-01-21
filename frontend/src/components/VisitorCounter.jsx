@@ -13,6 +13,16 @@ import {
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
+const recordVisit = async () => {
+    try {
+        const response = await axios.post('http://localhost:5001/api/visit');
+        console.log('Réponse de l\'API:', response.data);
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement de la visite :', error);
+    }
+};
+
+
 
 const VisitorCharts = () => {
     const [chartDataWeek, setChartDataWeek] = useState(null);
@@ -82,6 +92,7 @@ const VisitorCharts = () => {
     };
 
     useEffect(() => {
+        recordVisit();
         fetchTotalVisitors();
         fetchVisitorsByWeek();
         fetchVisitorsByMonth();
