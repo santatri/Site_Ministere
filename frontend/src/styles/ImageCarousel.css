@@ -1,12 +1,13 @@
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 320px;
+  height:400px;
   overflow: hidden;
+  margin-left: 00%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(0, 204, 255);
+  background-color: rgba(31, 123, 173, 0.862);
 }
 
 /* Slide principale */
@@ -37,24 +38,26 @@
   position: relative;
   z-index: 2;
   color: white;
-  margin: 20px;
+  margin: 0px;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start; /* Alignement à gauche */
   height: 100%;
-  text-align: left; /* Texte aligné à gauche */
+
 }
 
 /* Titre principal */
 .slide-title {
-  font-size: 2.1rem; /* Augmenté la taille pour plus de visibilité */
+   
+  font-size: 1.9rem; /* Augmenté la taille pour plus de visibilité */
   color: white;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight:bold;
+  margin-bottom: 0px;
 
-  transition: font-size 0.5s ease; /* Transition pour la responsivité */
+
+  transition: font-size 1s ease; /* Transition pour la responsivité */
 }
 
 /* Sous-titre */
@@ -73,7 +76,7 @@
   text-align: center;
   font-size: 1rem;
   color: white;
-  background: rgba(255, 0, 0, 0.793);
+  background: rgb(212, 3, 3);
   border: none;
   border-radius: 25px;
   cursor: pointer;

@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Ministere.css';
 
 // Importation des images
-import image1 from '../assets/25.jpg';
-import image2 from '../assets/22.jpg';
-import image3 from '../assets/23.jpg';
-import image4 from '../assets/24.jpg';
-import image5 from '../assets/41.jpg';
-import image6 from '../assets/40.jpg';
+import image1 from '../assets/61.jpg';
+import image2 from '../assets/51.jpg';
+import image3 from '../assets/52.jpg';
+import image4 from '../assets/53.jpg';
 
 const Ministere = () => {
+  const [visibleItems, setVisibleItems] = useState([]);
+
   const cards = [
     {
       image: image1,
@@ -31,26 +31,24 @@ const Ministere = () => {
       title: 'Direction de la Réforme de la Fonction Publique (DRFP)',
       description: 'Accompagner les startups et les initiatives locales.',
     },
-   
   ];
 
   useEffect(() => {
-    const carouselWrapper = document.querySelector('.carousel-wrapper');
     const items = document.querySelectorAll('.carousel-item');
 
     const observerOptions = {
       root: null,
-      threshold: 0,  // Triger la transition lorsque l'élément est à 50% visible
+      threshold: 1, // Déclenche l'animation quand 50% de l'élément est visible
     };
 
     const scrollEffect = (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Application de la transition lors de l'intersection
-          carouselWrapper.style.transition = 'transform 0s ease';
+          // Ajouter la classe visible à l'élément pour déclencher l'animation
+          entry.target.classList.add('visible');
         } else {
-          // Désactivation de la transition lorsqu'il sort de la vue
-          carouselWrapper.style.transition = 'transform 0s ease';
+          // Retirer la classe visible quand l'élément sort de la vue
+          entry.target.classList.remove('visible');
         }
       });
     };
@@ -58,23 +56,25 @@ const Ministere = () => {
     const observer = new IntersectionObserver(scrollEffect, observerOptions);
 
     items.forEach(item => observer.observe(item));
+
+    return () => {
+      observer.disconnect(); // Déconnexion de l'observateur lors du démontage
+    };
   }, []);
 
   return (
     <div className="ministere-container">
-      <h1 className="ministere-title">DGFOP</h1>
+      <h1 className="ministere-title">Direction Générale de la Fonction Publique</h1>
       <div className="carousel">
-        <div className="carousel-wrapper">
-          {cards.map((card, index) => (
-            <div className="carousel-item" key={index}>
-              <img src={card.image} alt={card.title} className="carousel-item-image" />
-              <div className="carousel-item-content">
-                <h2 className="carousel-item-title">{card.title}</h2>
-                <p className="carousel-item-description">{card.description}</p>
-              </div>
+        {cards.map((card, index) => (
+          <div className="carousel-item" key={index}>
+            <img src={card.image} alt={card.title} className="carousel-item-image" />
+            <div className="carousel-item-content">
+              <h2 className="carousel-item-title">{card.title}</h2>
+      
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

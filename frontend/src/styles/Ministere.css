@@ -1,19 +1,16 @@
 /* Conteneur principal */
 .ministere-container {
-
   width: 90%;
-  background: linear-gradient(5deg, rgba(1, 157, 241, 0.801), rgba(7, 133, 236, 0.768), rgba(11, 139, 243, 0.829)), url('../assets/26.jpg');
+  background: linear-gradient(180deg, rgb(114, 205, 251), rgb(255, 255, 255), rgba(215, 237, 255, 0.829)), url('../assets/26.jpg');
   text-align: center;
-  margin-top: 10%;
-  border: 0px solid #ffffff; /* Réduire l'épaisseur du border à 3px pour un cadre plus étroit */
+  margin-top: 20%;
   margin: auto; /* Centré horizontalement */
-  transition: all .5s ease; /* Ajout d'une transition globale pour le container */
+  transition: all .5s ease;
 }
 
 /* Titre principal */
 .ministere-title {
-  font-size: 2.5rem;
-  text-align: center;
+  font-size: 2.3rem;
   font-weight: bold;
   margin-bottom: 45px;
   font-family: 'Arial', sans-serif;
@@ -22,65 +19,50 @@
 
 /* Carousel principal */
 .carousel {
-  perspective: 55555555551000px;
-}
-
-.carousel-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   width: 100%;
   height: 450px;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease; /* Ralentissement perceptible pour tout le contenu */
-  margin-top: -5.9%;
+  margin-top: -2.9%;
+  flex-wrap: wrap;  /* Pour s'assurer que les éléments ne se chevauchent pas */
 }
 
+/* Carrousel - Animation de chute */
 .carousel-item {
-  position: absolute;
-  width: 320px;
+  position: relative;
+  width: 280px;
   height: 350px;
+  border-radius: 5%;
+  margin: 20px;
   overflow: hidden;
   background: white;
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Transition sur la rotation avec une durée de 0.5s */
-  margin: auto; /* Centré horizontalement */
+  opacity: 0; /* Commence invisible */
+  transform: translateY(-100px); /* Départ en dehors de l'écran */
+  transition: transform 1s ease, opacity 1s ease; /* Transition pour l'animation de chute */
 }
 
-/* Rotation en 3D pour 6 éléments */
-.carousel-item:nth-child(1) {
-  transform: rotateY(0deg) translateZ(400px);
-}
-.carousel-item:nth-child(2) {
-  transform: rotateY(60deg) translateZ(400px);
-}
-.carousel-item:nth-child(3) {
-  transform: rotateY(120deg) translateZ(400px);
-}
-.carousel-item:nth-child(4) {
-  transform: rotateY(180deg) translateZ(400px);
-}
-.carousel-item:nth-child(5) {
-  transform: rotateY(240deg) translateZ(400px);
-}
-.carousel-item:nth-child(6) {
-  transform: rotateY(300deg) translateZ(400px);
+.carousel-item.visible {
+  opacity: 1;
+  transform: translateY(0); /* Animation de chute */
 }
 
 /* Images */
 .carousel-item-image {
-  width: 200%;
-  height: 50%;
+  width: 100%;
+  height: 55%;
   object-fit: cover;
-} .carousel-item-title {
-  font-size: 1.5rem;
-  line-height: 1.5;
-  font-family: 'Times New Roman', Times, serif;
-  color: #0a025cf8;
+
 }
+
+.carousel-item-title {
+  font-size: 1.2rem;
+  font-family: 'Times New Roman', Times, serif;
+  color: #620b95f8;
+}
+
 .carousel-item-description {
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 15px;
   font-family: 'Times New Roman', Times, serif;
   color: #151515;
 }
@@ -94,12 +76,5 @@
   color: #090579;
 }
 
-/* Animation de rotation lente */
-@keyframes rotateCarousel {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
+
+

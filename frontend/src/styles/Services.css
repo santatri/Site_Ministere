@@ -3,9 +3,9 @@
     
   position: relative;
   opacity: 0.99;
-  width: 100%; /* Occuper toute la largeur */
-  height: 250px; /* Hauteur définie */
-  background: linear-gradient(100deg, rgba(5, 40, 236, 0.76), rgba(1, 238, 255, 0.903)), url('../assets/black2.jpg') no-repeat center center; 
+  width: 90%; /* Occuper toute la largeur */
+  height: 180px; /* Hauteur définie */
+  background: linear-gradient(100deg, rgba(239, 11, 205, 0.77), rgba(61, 13, 220, 0.825), rgba(203, 12, 28, 0.759)), url('../assets/black9.jpg');
   background-size: cover; /* Adapter l'image pour couvrir tout l'écran */
   background-position: center; /* Centrer l'image */
   display: flex;

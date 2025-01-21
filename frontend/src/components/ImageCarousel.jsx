@@ -4,7 +4,7 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'; //
 import '../styles/ImageCarousel.css';
 import image1 from '../assets/black5.jpg';
 import image2 from '../assets/34.jpg';
-import image3 from '../assets/110.jpg';
+import image3 from '../assets/44.jpg';
 
 const slides = [
   {
@@ -72,12 +72,14 @@ const ImageCarousel = () => {
         <div
           className="carousel-image"
           style={{
-            backgroundImage: `linear-gradient(to right,  rgba(1, 0, 230, 0.78) ,rgba(10, 220, 1095, 0.9)), url(${image})`,
+            backgroundImage: `linear-gradient(to bottom, rgb(10, 70, 940,.98) , rgb(10, 10,20,0.1),rgba(10,20,820, 0.88)), url(${image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: '0.99',
           }}
-        ></div>
+        >
+          
+        </div>
 
         {/* Texte */}
         <div className="text-container">

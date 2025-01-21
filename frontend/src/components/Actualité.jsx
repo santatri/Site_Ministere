@@ -109,26 +109,7 @@ const Actualité = () => {
     <div className="actualites-containeres">
       <h2>Gestion des Actualités</h2>
 
-      {/* Barre de recherche */}
-      <form onSubmit={handleSearch} className="filters-bar">
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          value={search.mots}
-          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateStart}
-          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateEnd}
-          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
-        />
-      
-      </form>
+   
 
       <div className="forms-sectiones">
         <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
@@ -160,6 +141,26 @@ const Actualité = () => {
       {/* Section des actualités */}
       <div className="news-sectiones">
         <h1>Toutes les actualités</h1>
+           {/* Barre de recherche */}
+      <form onSubmit={handleSearch} className="filters-bar">
+        <input
+          type="text"
+          placeholder="Rechercher..."
+          value={search.mots}
+          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
+        />
+        <input
+          type="date"
+          value={search.dateStart}
+          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
+        />
+        <input
+          type="date"
+          value={search.dateEnd}
+          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
+        />
+      
+      </form>
         {actualités.length === 0 ? (
           <p>Aucune actualité disponible.</p>
         ) : (
@@ -182,8 +183,8 @@ const Actualité = () => {
                   {expandedDescriptionId === actu.id ? 'Voir moins' : 'Voir plus'}
                 </button>
                 <div>
-                  <button onClick={() => handleUpdate(actu.id)}>Modifier</button>
-                  <button onClick={() => handleDelete(actu.id)}>Supprimer</button>
+                  <button  onClick={() => handleUpdate(actu.id)}>Modifier</button>
+                  <button  onClick={() => handleDelete(actu.id)}>Supprimer</button>
                 </div>
               </div>
             ))}

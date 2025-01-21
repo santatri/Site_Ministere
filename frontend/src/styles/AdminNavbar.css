@@ -1,10 +1,11 @@
 /* AdminNavbar.css */
 .admin-navbar {
-    background-color: #021c32; /* Couleur de fond de la navbar */
-    padding: 10px;
+    background-color: #06063e; /* Couleur de fond de la navbar */
+    padding: 5px;
     margin-top: -2.5%;
-    margin-left: -2.5%;
-    border-bottom: 25px;
+    margin-left: -3.5%;
+  
+    width: 105%;
 
     
   }
@@ -16,45 +17,45 @@
   }
   
   .navbar-left {
-    font-size: 12px;
-    color: #e2efef; /* Bordure cyan */
-    padding-left: 20px;
+    font-size: 10px;
+    color: #f2fefe; /* Bordure cyan */
+    padding-left: 30px;
   }
   
   .navbar-title {
     font-weight: bold;
-    font-size: 13px;
+    font-size: 11px;
   }
   
   .navbar-right {
     display: flex;
-    font-size: 14px;
-    color: #f3fafa;
+    font-size: 11px;
+    color: #021a1a;
     align-items: center;
-    gap: 10px; /* Espacement entre l'image et le texte */
+    gap: 20px; /* Espacement entre l'image et le texte */
   }
   
   .user-info {
     display: flex;
     align-items: center;
 
-    padding: 5px;
+    padding: 0px;
     border-radius: 50%; /* Rendre l'avatar circulaire */
   }
   
   .avatar-container {
-    margin-right: 10px;
+    margin-right: 20px;
   }
   
   .avatar-frame {
     border-radius: 50%; /* Pour rendre l'image en avatar circulaire */
-    width: 40px; /* Ajustez la taille selon votre besoin */
-    height: 40px;
+    width: 45px; /* Ajustez la taille selon votre besoin */
+    height: 45px;
   }
   
   .user-name {
-    color: #e8efef; /* Bordure cyan */
+    color: #f6ffff; /* Bordure cyan */
     font-weight: bold;
-    font-size: 12px;
+    font-size: 11px;
   }
   

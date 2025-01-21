@@ -43,9 +43,9 @@ const WelcomePage = () => {
         </div>
 
         <div className="text-pages">
-          <h2>
+          <h1>
             Bienvenue sur le plateforme innovante Direction Génerale de la Fonction Publique
-          </h2>
+          </h1>
           <p>
             La Présidence s’est engagée à créer une administration de proximité,
             à l’écoute de la population et de ses besoins, et à améliorer la
@@ -55,7 +55,7 @@ const WelcomePage = () => {
           <h2>Monsieur RAMAROSON Heridja Patrick</h2>
           <p>
             <i>
-            Directeur Génerale de la Fonction Pulique
+            Directeur Génerale du Direction de la Fonction Pulique
               Madagascar
             </i>
           </p>

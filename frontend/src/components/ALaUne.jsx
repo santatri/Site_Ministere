@@ -9,8 +9,6 @@ const ALaUne = () => {
     image: null,
   });
 
-  console.log('a la une');
-  
   const [elements, setElements] = useState([]);
   const [message, setMessage] = useState('');
   const [isEditing, setIsEditing] = useState(false);
@@ -68,7 +66,7 @@ const ALaUne = () => {
     setFormData({
       titre: element.titre,
       description: element.description,
-      image: null, // Ne réutilisez pas l'image existante directement
+      image: null,
     });
     setIsEditing(true);
     setCurrentId(id);
@@ -86,10 +84,10 @@ const ALaUne = () => {
 
   return (
     <div className="container">
-      <h1>À la Une</h1>
-      {message && <p>{message}</p>}
+      <h1 className="title">À la Une</h1>
+      {message && <p className="message">{message}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
           name="titre"
@@ -106,22 +104,28 @@ const ALaUne = () => {
           required
         />
         <input type="file" name="image" onChange={handleFileChange} />
-        <button type="submit">{isEditing ? 'Modifier' : 'Ajouter'}</button>
+        <button type="submit" className="submit-button">
+          {isEditing ? 'Modifier' : 'Ajouter'}
+        </button>
       </form>
 
-      <div>
-        <h2>Éléments à la Une</h2>
-        <ul>
-          {elements.map((element) => (
-            <li key={element.id}>
-              <h3>{element.titre}</h3>
-              <p>{element.description}</p>
-              {element.image && <img src={`http://localhost:5001/uploads/${element.image}`} alt={element.titre} />}
-              <button onClick={() => handleEdit(element.id)}>Modifier</button>
-              <button onClick={() => handleDelete(element.id)}>Supprimer</button>
-            </li>
-          ))}
-        </ul>
+      <div className="elements-container">
+        {elements.map((element) => (
+          <div key={element.id} className="element-card">
+            <h3 className="element-title">{element.titre}</h3>
+            <p className="element-description">{element.description}</p>
+
+            {element.image && (
+              <img
+                src={`http://localhost:5001/uploads/${element.image}`}
+                alt={element.titre}
+                className="element-image"
+              />
+            )}
+            <button onClick={() => handleEdit(element.id)}>Modifier</button>
+            <button onClick={() => handleDelete(element.id)}>Supprimer</button>
+          </div>
+        ))}
       </div>
     </div>
   );

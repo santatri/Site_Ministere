@@ -2,15 +2,16 @@
 .navigation-bar {
   position: -webkit-sticky; /* Rend l'élément "sticky" pour Safari */
   position: sticky; /* Rend l'élément "sticky" pour tous les autres navigateurs */
-  top: 98px; /* Position en haut de la page */
+  top: 100px; /* Position en haut de la page */
   z-index: 1; /* Priorité d'affichage supérieure au header */
-  background: rgb(1, 55, 96);
-  padding: 5px 0;
+  background: #032b4f;
+  padding: 0px 0;
   display: flex;
+  margin-left: 0%;
   justify-content: center;
   z-index: 100000000000000;
   align-items: center;
-  height: 60px;
+  height: 65px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
 
@@ -23,11 +24,11 @@
   justify-content: space-between;
   align-items: center;
   width: 95%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   position: sticky;
   z-index: 10000000000000000000000000000000000;
-  top: 130px;
+  top: 100px;
 }
 
 /* Logo à gauche */
@@ -35,10 +36,12 @@
   flex: 1;
   display: flex;
   justify-content: flex-start;
+  
 }
 
 .navbar-logo {
   width: 85px;
+
 }
 
 /* Liens de navigation centrés */
@@ -56,7 +59,7 @@
   margin: 0 10px;
   padding: 3px 10px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 15px;
+  font-size: 14px;
   transition: background-color 0.3s ease;
   border-radius: 5px;
   white-space: nowrap;
@@ -166,7 +169,7 @@
 
 .show{
   position: absolute;
-  top: 70px;
+  top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,6 +179,7 @@
 
 .burger {
   width: 50%;
+  color: white;
   /* background: red; */
   display: flex;
   justify-content: right;
@@ -185,7 +189,7 @@
 .navigation-bar{
   position: sticky;
   z-index: 10000000000000000000000000000000000;
-  top: 130px;
+  top: 115px;
 
 }
 
@@ -201,3 +205,37 @@
 
  
  }
+/* Sous-liste verticale pour "À propos" */
+.nav-link-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  flex-direction: column; /* Alignement vertical */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 10px 0;
+  z-index: 10;
+}
+
+.dropdown-menu.show {
+  display: flex; /* Permet l'alignement vertical */
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s;
+  display: block; /* Chaque élément prend toute la largeur */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}

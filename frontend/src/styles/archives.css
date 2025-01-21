@@ -1,0 +1,150 @@
+.image-actu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-left:150px;
+    padding: 0px;
+    margin-top: 0px;
+  
+  }
+  
+  .overla {
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    padding: 0px 0;
+    border-radius: 0%;
+  }
+  
+  .overla h1 {
+    font-size: 2rem;
+    font-family:'Times New Roman', Times, serif;
+    color: #ffffff;
+  }
+  
+  .archives-containeres {
+    width: 100%;
+    margin:10px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .archives-containeres h2 {
+    font-size: 1.4rem;
+    color: #0756a5;
+    text-align: left;
+    margin-bottom: 0px;
+    border-bottom: 3px solid #d70303 ;
+    padding-bottom: 20px;
+  }
+  
+  /* Section des actualités récentes */
+  .top-archives {
+  
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #f3f9fe;
+    
+  }
+  
+  .archive-card {
+    background: #fcfcff;
+    border: 1px solid #efedfb;
+    border-radius: 2px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    text-align: left; /* Texte aligné à gauche */
+  }
+  
+  .archive-card.highlighted {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne contenu à gauche */
+    max-width: 48%;
+  
+  }
+  
+  .highlighted-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 0px;
+    margin-top: 10px;
+  }
+  
+  .archive-date {
+    font-size: 0.9rem;
+    color: #12be12;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .archive-date svg {
+    margin-right: 5px;
+    color: rgb(252, 203, 7); /* Icône colorée en orange */
+  }
+  
+  .archive-title {
+    font-size: 1.1rem;
+    color: #062a43;
+    margin-bottom: 10px;
+    text-align: left; /* Texte aligné à gauche */
+  }
+  .archive-description{
+    font-size: 1rem;
+font-family: 'Times New Roman', Times, serif;
+    color: #030506;
+    margin-bottom: 40px;
+    text-align: left; /* Texte aligné à gauche */
+  }
+  
+  /* Section des actualités anciennes */
+  .archives-grid {
+    background-color: #f3f9fe;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .small-image {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .page-number {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .page-number.active {
+    background-color: #6200ea;
+    color: #fff;
+    border-color: #6200ea;
+  }
+  
+  .page-number:hover {
+    background-color: #3700b3;
+    color: #fff;
+    border-color: #3700b3;
+  }
+  

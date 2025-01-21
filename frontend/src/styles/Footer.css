@@ -1,6 +1,6 @@
 /* Styles généraux pour le footer */
 .footer {
-  background: linear-gradient(178deg, rgba(1, 16, 102, 0.91), rgba(1, 157, 241, 0.907)), 
+  background: linear-gradient(178deg, rgba(1, 16, 102, 0.99), rgba(1, 157, 241, 0.97)), 
     url('../assets/min.jpg') no-repeat center center; 
   background-size: cover; /* Remplit tout l'écran */
   color: white;

@@ -2,9 +2,11 @@
 .welcome-page {
   font-family: Arial, sans-serif;
   position: relative;
-  background-color: #e6f5f2;
+  background: linear-gradient(444deg, rgb(3, 29, 109), rgb(7, 171, 236),rgb(238, 247, 255),rgb(148, 225, 255), rgba(3, 30, 109, 0.633)), 
+  url('../assets/black1.jpg') ; 
   display: flex;
   justify-content: center;
+  margin-left: 0%;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
@@ -16,17 +18,18 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(255deg, rgba(1, 23, 92, 0.9), rgba(20, 165, 255, 0.862)), 
-              url('../assets/60.jpg') no-repeat center center; 
+  background: linear-gradient(40deg,rgba(47, 0, 255, 0.836), rgb(10, 82, 169), rgb(9, 65, 154), rgba(39, 57, 195, 0.348)), 
+              url('../assets/4.svg') no-repeat center center; 
   background-size: cover; /* Image couvre toute la zone */
   padding: 0;
-  border-radius: 0;
+  margin: 0px;
+  border-radius: 5px;
  
  
-  width: 100vw; /* Largeur de la fenêtre */
+  width: 95vw; /* Largeur de la fenêtre */
   
   box-sizing: border-box;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 /* Animation */
@@ -100,11 +103,13 @@
 }
 
 .text-pages h1 {
-  font-size: 1.5rem;
-  text-align: start;
-  line-height: 3.5;
+  font-size: 1.4rem;
+
+
+  line-height: 2.5;
   color: white;
-  margin: 0px;
+  margin: -20px;
+  
 }
 
 .text-pages p {
@@ -114,9 +119,9 @@
 }
 
 .text-pages h2 {
-  font-size: 1.3rem;
-  line-height: 1.8;
-  margin-top: 20px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-top: 25px;
 }
 
 /* Responsive */

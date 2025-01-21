@@ -37,7 +37,7 @@ const Home = () => {
   const fetchActualites = async (searchTerm = "") => {
     try {
       const response = await axios.get("http://localhost:5001/api/actu/all", {
-        params: { mots: searchTerm, limit: 6 },
+        params: { mots: searchTerm, limit: 6},
       });
       setActualites(response.data.data);
     } catch (error) {
@@ -74,7 +74,7 @@ const Home = () => {
       <ImageCarousel />
       <WelcomePage />
       <div className="actualites-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-        <div style={{ width: '70%' }}>
+        <div style={{ width: '60%' }}>
           <h1 className="actualites-title">Actualités</h1>
           {message && <p className="error-message">{message}</p>}
           
@@ -111,7 +111,7 @@ const Home = () => {
                       </video>
                     )}
                   </div>
-                  <p className="article-description">{article.description}</p>
+               
                   <div className="read-more-container">
                     <button
                       className="read-more"
@@ -148,11 +148,11 @@ const Home = () => {
           </div>
         </div>
       </div>
-     
+      <Ministere/>
       <Table />
      
       <ServicesSection/>
-      <Ministere/>
+    
     </div>
   );
 };
