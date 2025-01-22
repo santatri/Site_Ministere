@@ -2,24 +2,24 @@
 
 /* Layout principal */
 .layout-container {
-  background: linear-gradient(2deg, rgb(227, 245, 251), rgba(255, 255, 255, 0.92)), url('../assets/130.jpg') ; 
+  background: linear-gradient(20deg, rgba(23, 9, 115, 0.689), #032b4f), url('../assets/2.gif')  ; 
 
 
 }
 
 /* Section des actualités */
 .actualites-container {
-  margin: 85px;
+  margin: 95px;
   
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 0px;
 }
 
 .actualites-title {
   font-size: 2.5rem;
   margin-bottom: 50px;
-  color: rgb(5, 15, 121);
+  color: rgb(255, 255, 255);
 }
 
 .actualites-filters {
@@ -50,17 +50,17 @@
 
 .actualites-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px ;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px ;
   
 }
 
 .article-card {
   background-color: #fff;
   border: 1px solid #e3e1e1;
-  border-radius: 12px;
+  border-radius: 1px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.829);
   transition: transform 0.2s ease;
 }
 
@@ -118,11 +118,11 @@
 .annonces-title {
   font-size: 2rem;
   margin-bottom: 50px;
-  color: #0790d4;
+  color: #f6fcff;
 }
 
 .annonce-card {
-  background-color: #1304b9cd;
+  background-color: #b91604;
   border: 0px solid #00bbff;
   border-radius: 8px;
   padding: 25px;

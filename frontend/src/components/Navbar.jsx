@@ -7,13 +7,10 @@ import '../styles/Navbar.css';
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const [showSubmenu, setShowSubmenu] = useState(false);
+  const [showDgfopSubmenu, setShowDgfopSubmenu] = useState(false); // État pour le sous-menu DGFOP
 
   const toggle = () => {
     setShow(!show);
-  };
-
-  const toggleSubmenu = () => {
-    setShowSubmenu(!showSubmenu);
   };
 
   return (
@@ -38,28 +35,40 @@ const Navbar = () => {
           <NavLink to="/archives" className="nav-link" activeClassName="active-link">
             Actualités
           </NavLink>
-          {/* Sous-liste pour À propos */}
-          <div
+{/* Sous-liste pour À propos */}
+<div
   className="nav-link nav-link-dropdown"
   onMouseEnter={() => setShowSubmenu(true)}
   onMouseLeave={() => setShowSubmenu(false)}
 >
-  À propos
+  <NavLink  className="nav-link" >
+    À propos
+  </NavLink>
   <div className={`dropdown-menu ${showSubmenu ? 'show' : ''}`}>
-    <NavLink to="/about/dgfop" className="dropdown-item" activeClassName="active-link">
-      DGFOP
-    </NavLink>
-    <NavLink to="/about/deped" className="dropdown-item" activeClassName="active-link">
-      DEPED
-    </NavLink>
-    <NavLink to="/about/derhe" className="dropdown-item" activeClassName="active-link">
-      DERHE
-    </NavLink>
-    <NavLink to="/about/drfpae" className="dropdown-item" activeClassName="active-link">
-      DRFPAE
-    </NavLink>
+    {/* Sous-menu de DGFOP */}
+    <div
+      className="dropdown-item dropdown-item-with-submenu"
+      onMouseEnter={() => setShowDgfopSubmenu(true)}
+      onMouseLeave={() => setShowDgfopSubmenu(false)}
+    >
+      <NavLink to="/about/dgfop" className="submenu-item" activeClassName="active-link">
+        DGFOP
+      </NavLink>
+      <div className={`submenu ${showDgfopSubmenu ? 'show' : ''}`}>
+        <NavLink to="/about/deped" className="submenu-item" activeClassName="active-link">
+          DEPED
+        </NavLink>
+        <NavLink to="/about/derhe" className="submenu-item" activeClassName="active-link">
+          DERHE
+        </NavLink>
+        <NavLink to="/about/drfpae" className="submenu-item" activeClassName="active-link">
+          DRFPAE
+        </NavLink>
+      </div>
+    </div>
   </div>
 </div>
+
 
           <NavLink to="/contact" className="nav-link" activeClassName="active-link">
             Contact
@@ -76,6 +85,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
+        {/* Bouton burger pour mobile */}
         <div className="burger">
           {show ? (
             <FaTimes size={30} color={'red'} cursor={'pointer'} onClick={toggle} />

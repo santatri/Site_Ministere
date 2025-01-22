@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'; // Modern icons
 import '../styles/ImageCarousel.css';
-import image1 from '../assets/q.jpg';
-import image2 from '../assets/100.jpg';
+import image1 from '../assets/4.jpg';
+import image2 from '../assets/u.jpg';
 import image3 from '../assets/44.jpg';
 
 const slides = [
@@ -72,7 +72,7 @@ const ImageCarousel = () => {
         <div
           className="carousel-image"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgb(00, 0, 200,.98) , rgb(10, 10,20,0.1),rgba(00,10,900, 0.55)), url(${image})`,
+            backgroundImage: `linear-gradient(to bottom, rgb(22, 10, 200,0.99) , rgb(10, 10,20,0.1),rgb(00, 10, 110,.9)), url(${image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: '0.99',

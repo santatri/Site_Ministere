@@ -64,7 +64,7 @@ const Ministere = () => {
 
   return (
     <div className="ministere-container">
-      <h1 className="ministere-title">Direction Générale de la Fonction Publique</h1>
+      <h1 className="ministere-title">Direction Général de la Fonction Publique</h1>
       <div className="carousel">
         {cards.map((card, index) => (
           <div className="carousel-item" key={index}>

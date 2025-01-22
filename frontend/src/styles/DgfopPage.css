@@ -14,12 +14,12 @@
   flex-direction: column; /* Aligne l'image et la carte verticalement */
   align-items: center;
   text-align: center;
-  max-width: 50%;
+  max-width: 100%;
   position: relative; /* Définit un contexte pour la position absolue */
 }
 
 .images-containeres img {
-  width: 380px; /* Ajustez selon vos besoins */
+  width: 400px; /* Ajustez selon vos besoins */
   height: auto;
   border-radius: 10px;
   box-shadow: 10 4px 8px rgba(22, 104, 139, 0.732); /* Ajoute une ombre subtile */

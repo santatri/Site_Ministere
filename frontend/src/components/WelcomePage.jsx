@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import '../styles/WelcomePage.css';
-import LogoMadagascar from '../assets/dgfop.png'; // Chemin vers votre image
+import LogoMadagascar from '../assets/DG1.jpg'; // Chemin vers votre image
 
 const WelcomePage = () => {
   const imageBoxRef = useRef(null);
@@ -34,7 +34,7 @@ const WelcomePage = () => {
     <div className="welcome-page">
       <div className="pages">
         <div className="image-box" ref={imageBoxRef}>
-          <div className="badge">LOGO</div>
+          <div className="badge"> Directeur Générale</div>
           <img
             src={LogoMadagascar}
             alt="Logo Madagascar"
@@ -55,8 +55,8 @@ const WelcomePage = () => {
           <h2>Monsieur RAMAROSON Heridja Patrick</h2>
           <p>
             <i>
-            Directeur Génerale du Direction de la Fonction Pulique
-              Madagascar
+            Directeur Génerale de la Fonction Pulique, Administrateur civil
+              
             </i>
           </p>
         </div>

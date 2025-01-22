@@ -212,7 +212,7 @@
 }
 
 .dropdown-menu {
-  display: none;
+  display: flex;
   flex-direction: column; /* Alignement vertical */
   position: absolute;
   top: 100%;
@@ -231,11 +231,69 @@
 .dropdown-item {
   padding: 10px 20px;
   text-decoration: none;
-  color: #333;
+  color: #053464;
   transition: background-color 0.2s;
   display: block; /* Chaque élément prend toute la largeur */
+}
+/* Sous-titres alignés verticalement */
+.submenu-vertical {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  border-radius: 10%;
+  padding: 5px 0;
+}
+
+.submenu-item {
+  padding: 15px 0px;
+  text-decoration: none;
+  display: flex;
+border-radius: 2%;
+  color: rgb(32, 5, 208);
+  transition: color 0.3s ease;
+}
+.submenu-item:hover {
+  color: #0bd6e0;
 }
 
 .dropdown-item:hover {
   background-color: #f0f0f0;
 }
+/* Sous-menu principal */
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 0px;
+  display: none;
+  z-index: 10;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+/* Sous-menu DGFOP */
+.submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+}
+
+.submenu.show {
+  display: block;
+}
+
+/* Styles supplémentaires */
+.dropdown-item-with-submenu {
+  position: relative;
+}
+
+.submenu-item {
+  padding: 5px 10px;
+}
+
