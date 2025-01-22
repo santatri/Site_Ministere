@@ -27,6 +27,7 @@ const recordVisit = async () => {
 const VisitorCharts = () => {
     const [chartDataWeek, setChartDataWeek] = useState(null);
     const [chartDataMonth, setChartDataMonth] = useState(null);
+    const [chartDataYear, setChartDataYear] = useState(null);
     const [totalVisitors, setTotalVisitors] = useState(0);
 
     // Récupérer le total des visiteurs
@@ -90,15 +91,42 @@ const VisitorCharts = () => {
             console.error('Erreur lors de la récupération des données pour le graphique des mois :', err);
         }
     };
-
+        // Récupérer les données des visiteurs par année
+        const fetchVisitorsByYear = async () => {
+            try {
+                const response = await axios.get('http://localhost:5001/api/visitors-by-year');
+                const data = response.data;
+    
+                const years = data.map(item => `Année ${item.year_number}`);
+                const visitors = data.map(item => item.total);
+    
+                setChartDataYear({
+                    labels: years,
+                    datasets: [
+                        {
+                            label: 'Visiteurs uniques',
+                            data: visitors,
+                            backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1,
+                        },
+                    ],
+                });
+            } catch (err) {
+                console.error('Erreur lors de la récupération des données pour le graphique des années :', err);
+            }
+        };
+    
     useEffect(() => {
         recordVisit();
         fetchTotalVisitors();
         fetchVisitorsByWeek();
         fetchVisitorsByMonth();
+        fetchVisitorsByYear();  // Appeler la fonction pour récupérer les visiteurs par année
+    
     }, []);
 
-    if (!chartDataWeek || !chartDataMonth) {
+    if (!chartDataWeek || !chartDataMonth || !chartDataYear) {
         return <p>Chargement des données...</p>;
     }
 
@@ -132,6 +160,25 @@ const VisitorCharts = () => {
                     plugins: {
                         legend: { position: 'top' },
                         title: { display: true, text: 'Visiteurs par mois' },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            color: 'black',
+                            font: { weight: 'bold', size: 12 },
+                            formatter: (value) => `${value}`,
+                        },
+                    },
+                }}
+            />
+
+        <h3>Visiteurs uniques par année</h3>
+            <Bar
+                data={chartDataYear}
+                options={{
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: 'Visiteurs par année' },
                         datalabels: {
                             anchor: 'end',
                             align: 'top',

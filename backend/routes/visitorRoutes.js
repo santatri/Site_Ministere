@@ -12,4 +12,5 @@ router.get('/visitors-by-week', visitorController.getVisitorsByWeek);
 
 router.get('/visitors-by-month', visitorController.getVisitorsByMonth);
 
+ router.get('/visitors-by-year', visitorController.getVisitorsByYear);
 module.exports = router;
