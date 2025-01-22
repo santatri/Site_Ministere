@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/donne.css';
 import Services from '../pages/Services/Services';
-import { FaConciergeBell, FaFolderOpen, FaBook, FaTools, FaLaptop } from 'react-icons/fa';
+import {  FaBook} from 'react-icons/fa';
 import { motion } from "framer-motion";
 
 const Donne = () => {
@@ -42,20 +42,26 @@ const Donne = () => {
 
   const handleViewDetails = (serviceId) => {
     axios.get(`http://localhost:5001/api/service/${serviceId}`)
-      .then((response) => {
-        setSelectedService(serviceId);
-        setServiceDetails(response.data);
-        setIsSearchVisible(false); // Hide search bar when entering details
-      })
-      .catch((error) => {
-        console.error('Erreur lors de la récupération des détails du service:', error);
-      });
-  };
+        .then((response) => {
+            setSelectedService(serviceId);
+            setServiceDetails(response.data);
+            setIsSearchVisible(false); // Hide search bar when entering details
+            
+            // Wait for UI updates before scrolling
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
+        })
+        .catch((error) => {
+            console.error('Erreur lors de la récupération des détails du service:', error);
+        });
+};
 
   const handleBackToList = () => {
     setSelectedService(null);
     setServiceDetails(null);
     setIsSearchVisible(true); // Show search bar when going back to the list
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const filteredServices = services.filter(service =>
@@ -70,6 +76,24 @@ const Donne = () => {
   const animationVariants = {
     hidden: { opacity: 0, y: 0 },
     visible: { opacity: 500, y: 0, transition: { duration: 2 } },
+  };
+
+  const getEtage = (porteNumber) => {
+    const porte = parseInt(porteNumber, 10); // Assurez-vous que le numéro de porte est un nombre entier
+
+    if (porte >= 1 && porte <= 17) {
+      return "1er étage";
+    } else if (porte >= 201 && porte <= 222) {
+      return "2ème étage";
+    } else if (porte >= 301 && porte <= 321) {
+      return "3ème étage";
+    } else if (porte >= 401 && porte <= 421) {
+      return "4ème étage";
+    } else if (porte >= 422) {
+      return "5ème étage";
+    } else {
+      return "Numéro de porte invalide";
+    }
   };
 
   return (
@@ -189,7 +213,7 @@ const Donne = () => {
                 <p>{serviceDetails.description || "Description indisponible."}</p>
               </div>
               <div className="service-dossier-box">
-                <h4>Dossier Préparé</h4>
+                <h4>Documents à fournir</h4>
                 {serviceDetails.dossier_prepare ? (
                   <ul>
                     {serviceDetails.dossier_prepare.split(',').map((item, index) => (
@@ -197,7 +221,7 @@ const Donne = () => {
                     ))}
                   </ul>
                 ) : (
-                  <p>Aucun dossier préparé disponible.</p>
+                  <p>Aucun Document à fournir disponible.</p>
                 )}
               </div>
             </div>
@@ -209,7 +233,11 @@ const Donne = () => {
               </div>
               <div className="service-info-box">
                 <h4>Porte</h4>
-                <p>{serviceDetails.porte_hierarchique || "Non définie"}</p>
+                <p>
+                  {serviceDetails.porte_hierarchique 
+                    ? `${serviceDetails.porte_hierarchique} - ${getEtage(serviceDetails.porte_hierarchique)}`
+                    : "Non définie"}
+                </p>
               </div>
               <div className="service-info-box">
                 <h4>Délai</h4>

@@ -1,24 +1,25 @@
 /* Styles de la section Contact */
 .contact-section {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 120px;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+    justify-content: center; /* Centrer les items sur les écrans plus petits */
+    align-items: flex-start;
+    padding: 20px 10px; /* Réduction des marges pour les petits écrans */
     background-color: #f8f9fa; /* Couleur de fond */
-    text-align: center;
-    flex-wrap: wrap;
+    gap: 20px; /* Espacement entre les items */
 }
 
 .contact-item {
-    flex: 1;
-    max-width: 350px;
-    margin: 20px;
-    padding: 50px;
+    flex: 1 1 300px; /* Largeur minimale de 300px, largeur flexible */
+    max-width: 350px; /* Largeur maximale */
+    margin: 10px;
+    padding: 30px;
     border: 5px solid white; /* Bordure autour de chaque élément */
     border-radius: 10px; /* Arrondi des angles */
     background-color: white; /* Couleur de fond pour chaque section */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet élégant */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Assure un alignement centré */
 }
 
 .contact-item:hover {
@@ -27,57 +28,77 @@
 }
 
 .contact-icon {
-    font-size: 40px; /* Taille des icônes */
+    font-size: 2em; /* Taille des icônes en unités relatives */
     color: darkblue; /* Couleur des icônes */
-    margin-bottom: 10px;
+    margin-bottom: 0.5em;
 }
 
 .contact-item h3 {
-    font-size: 18px;
+    font-size: 1.2em; /* Taille relative pour s'adapter */
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 10px 0;
+    margin: 0.8em 0;
     color: #333;
 }
 
 .contact-item p {
-    font-size: 17px;
+    font-size: 1em; /* Taille relative, ajustée à l'appareil */
     color: #555;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin: 5px 0;
+    margin: 0.4em 0;
 }
 
 /* Responsive Design */
+
+/* Tablettes (écran max de 768px) */
 @media (max-width: 768px) {
     .contact-section {
-        flex-direction: column; /* Les items se placent verticalement */
-        text-align: center;
-    }
-
-    .contact-item {
-        border-right: none; /* Pas de bordure sur mobile */
-        margin: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .contact-item {
-        margin: 10px;
+        flex-direction: row; /* Les items restent en ligne mais sont flexibles */
         justify-content: center;
-        text-align: center;
+        padding: 10px;
+    }
+
+    .contact-item {
+        flex: 1 1 45%; /* Largeur d'environ 45% pour deux colonnes */
+        margin: 10px;
     }
 
     .contact-icon {
-        font-size: 40px;
-        justify-content: center;
-        text-align: center; /* Réduction de la taille des icônes */
+        font-size: 1.8em; /* Réduction légère pour les tablettes */
     }
 
     .contact-item h3 {
-        font-size: 16px;
+        font-size: 1.1em; /* Ajustement de la taille des titres */
     }
 
     .contact-item p {
-        font-size: 12px;
+        font-size: 0.9em; /* Texte légèrement plus petit */
+    }
+}
+
+/* Smartphones (écran max de 480px) */
+@media (max-width: 480px) {
+    .contact-section {
+        flex-direction: column; /* Les items passent en colonne */
+        padding: 5px;
+    }
+
+    .contact-item {
+        flex: 1 1 100%; /* Largeur complète sur les petits écrans */
+        margin: 10px;
+        text-align: center; /* Assure un alignement centré */
+    }
+
+    .contact-icon {
+        font-size: 1.6em; /* Réduction de la taille des icônes */
+        margin-bottom: 0.4em;
+    }
+
+    .contact-item h3 {
+        font-size: 1em; /* Police plus petite pour les titres */
+    }
+
+    .contact-item p {
+        font-size: 0.8em; /* Réduction pour les paragraphes */
     }
 }

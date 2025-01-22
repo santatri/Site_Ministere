@@ -97,6 +97,13 @@ app.use('/api/serviceOffert', serviceOffertRoutes);
 const donneRoutes = require('./routes/donneRoutes');
 app.use('/', donneRoutes);
 
+//contact
+const contactRoutes = require('./routes/contactRoutes');
+app.use('/api', contactRoutes);
+
+// visiteur
+const visitorRoutes = require('./routes/visitorRoutes');
+app.use('/api', visitorRoutes);
 
 // Lancement du serveur
 app.listen(port, () => {

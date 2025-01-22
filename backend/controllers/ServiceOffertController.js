@@ -128,14 +128,28 @@ exports.createService = (req, res) => {
         return res.status(400).json({ message: "Un service ne peut être associé qu'à un seul SG, DG, Direction ou Service." });
     }
 
-    const query = 'INSERT INTO ServiceOffert (nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [nom_service, dossier_prepare, delai, id_sg || null, id_dg || null, id_d || null, id_s || null], (err, result) => {
+    // Vérifier si le service existe déjà
+    const checkQuery = 'SELECT * FROM ServiceOffert WHERE nom_service = ?';
+    db.query(checkQuery, [nom_service], (err, result) => {
         if (err) {
-            return res.status(500).json({ message: 'Erreur lors de l\'ajout du service.', error: err });
+            return res.status(500).json({ message: 'Erreur lors de la vérification du service.', error: err });
         }
-        res.status(201).json({ message: 'Service ajouté avec succès', data: result });
+
+        if (result.length > 0) {
+            return res.status(400).json({ message: 'Un service avec ce nom existe déjà.' });
+        }
+
+        // Insérer le nouveau service
+        const insertQuery = 'INSERT INTO ServiceOffert (nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        db.query(insertQuery, [nom_service, dossier_prepare, delai, id_sg || null, id_dg || null, id_d || null, id_s || null], (err, result) => {
+            if (err) {
+                return res.status(500).json({ message: 'Erreur lors de l\'ajout du service.', error: err });
+            }
+            res.status(201).json({ message: 'Service ajouté avec succès', data: result });
+        });
     });
 };
+
 
 // Mettre à jour un Service Offert
 exports.updateService = (req, res) => {

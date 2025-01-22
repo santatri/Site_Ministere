@@ -15,6 +15,25 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   
 }
+.email-link {
+  color: inherit; /* Garde la couleur actuelle du texte */
+  text-decoration: none; /* Enlève le soulignement par défaut */
+}
+
+.email-link:hover {
+  text-decoration: underline; /* Ajoute un soulignement au survol */
+  color: #007bff; /* Change la couleur au survol */
+}
+.location-link {
+  color: inherit; /* Conserve la couleur du texte parent */
+  text-decoration: none; /* Enlève le soulignement par défaut */
+}
+
+.location-link:hover {
+  text-decoration: underline; /* Ajoute un soulignement au survol */
+  color: #007bff; /* Change la couleur au survol */
+}
+
 
 @media  screen and (max-width:767px) {
  .header-bar .header-left{

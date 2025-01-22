@@ -1,119 +1,131 @@
+.forme-containere {
+  background: linear-gradient(to right, white, white); /* Dégradé doré */
+  width: 79%; /* Formulaire occupe 80% de la largeur de l'écran */
+  height: 100%;
+  padding: 30px; /* Réduction du padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow-y: auto;
+  border-radius: 20px; /* Border-radius pour arrondir les coins */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre douce autour du cadre */
+  margin: 0 auto; /* Centrer horizontalement */
+}
 
-  
- 
-  
+.formes {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2vw; /* Utilisation de vw pour une taille de texte réactive */
+  color: #861533; /* Changer la couleur du texte en blanc pour contraster avec le fond */
+}
+
+.forme-groupe {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.halfe-widthe {
+  width: 48%;
+  margin-right: 4%;
+}
+
+.halfe-widthe:last-child {
+  margin-right: 0;
+}
+
+.labele {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: black; /* Couleur des labels en blanc */
+}
+
+.input-field {
+  width: 100%;
+  padding: 17px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #FFD700; /* Bordure dorée lors de la sélection */
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.submite-buttone {
+  background-color: midnightblue; /* Couleur dorée pour le bouton */
+  color: white;
+  padding: 17px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submite-buttone:hover {
+  background-color: rgba(175, 166, 9, 0.666);
+}
+
+/* Responsivité */
+@media screen and (max-width: 1024px) {
   .forme-containere {
-    background: linear-gradient(to right, white, white); /* Dégradé doré */
-    width: 79%; /* Formulaire occupe 80% de la largeur de l'écran */
-    height: 100%;
-    padding: 30px; /* Réduction du padding */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    overflow-y: auto;
-    border-radius: 20px; /* Border-radius pour arrondir les coins */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre douce autour du cadre */
-    margin: 0 auto; /* Centrer horizontalement */
+    padding: 20px;
   }
-  
-  .formes {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 1.5rem;
-    color: #861533; /* Changer la couleur du texte en blanc pour contraster avec le fond */
-  }
-  
-  .forme-groupe {
-    margin-bottom: 10px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .halfe-widthe {
-    width: 48%;
-    margin-right: 4%;
-  }
-  
-  .halfe-widthe:last-child {
-    margin-right: 0;
-  }
-  
-  .labele {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 8px;
-    display: block;
-    color: black; /* Couleur des labels en blanc */
-  }
-  
+
   .input-field {
     width: 100%;
-    padding: 17px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1rem;
-    margin-bottom: 10px;
   }
-  
-  .input-field:focus {
-    outline: none;
-    border-color: #FFD700; /* Bordure dorée lors de la sélection */
-  }
-  
-  textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    height: 200px;
-    margin-bottom: 10px;
-  }
-  
+
   .submite-buttone {
-    background-color: midnightblue; /* Couleur dorée pour le bouton */
-    color: white;
-    padding: 17px 20px;
-    border: none;
-    border-radius: 12px;
- 
-    font-size: 1rem;
-    cursor: pointer;
+    width: 100%;
   }
-  
-  .submite-buttone:hover {
-    background-color: rgba(175, 166, 9, 0.666);
+
+  .halfe-widthe {
+    width: 100%;
+    margin-right: 0;
   }
-  
-  /* Responsivité */
-  @media screen and (max-width: 768px) {
-    .forme-containere {
-      padding: 20px;
-    }
-  
-    .input-field {
-      width: 100%;
-    }
-  
-    .submite-buttone {
-      width: 100%;
-    }
-  
-    .halfe-widthe {
-      width: 100%;
-      margin-right: 0;
-    }
+
+  .formes {
+    font-size: 3vw; /* Taille de texte encore plus petite sur tablette */
   }
-  
-  @media screen and (max-width: 480px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-  
-    .submite-buttone {
-      font-size: 1.2rem;
-    }
+}
+
+@media screen and (max-width: 768px) {
+  .forme-containere {
+    padding: 15px;
   }
-  
+
+  .formes {
+    font-size: 4vw; /* Réduction de la taille du texte sur mobile */
+  }
+
+  .submite-buttone {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 4vw; /* Plus petit sur les écrans très petits (téléphones) */
+  }
+
+  .submite-buttone {
+    font-size: 1.4rem;
+  }
+}

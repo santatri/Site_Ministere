@@ -5,7 +5,6 @@ const SecretaireGeneral = () => {
   const [formData, setFormData] = useState({
     nom_sg: '',
     porte_sg: '',
-    image: null,
   });
 
   const [elements, setElements] = useState([]);
@@ -39,7 +38,6 @@ const SecretaireGeneral = () => {
     const data = new FormData();
     data.append('nom_sg', formData.nom_sg);
     data.append('porte_sg', formData.porte_sg);
-    if (formData.image) data.append('image', formData.image);
 
     try {
       const url = isEditing
@@ -51,7 +49,8 @@ const SecretaireGeneral = () => {
       });
       setMessage(response.data.message);
       fetchElements();
-      setFormData({ nom_sg: '', porte_sg: '', image: null });
+
+      setFormData({ nom_sg: '', porte_sg: '' });
       setIsEditing(false);
       setCurrentId(null);
     } catch (error) {
@@ -64,7 +63,7 @@ const SecretaireGeneral = () => {
     setFormData({
       nom_sg: element.nom_sg,
       porte_sg: element.porte_sg,
-      image: null,
+     
     });
     setIsEditing(true);
     setCurrentId(id_sg);
@@ -87,7 +86,7 @@ const SecretaireGeneral = () => {
 
   return (
     <div className="container">
-      <h1>Secrétaire Général</h1>
+      <h1>Les hautes hierarchie</h1>
       {message && <p>{message}</p>}
 
       <form ref={formRef} onSubmit={handleSubmit}>
@@ -111,7 +110,7 @@ const SecretaireGeneral = () => {
       </form>
 
       <div>
-        <h2>Liste des Secrétaires Généraux</h2>
+        <h2>Liste des hautes hierarchie</h2>
         <table>
           <thead>
             <tr>

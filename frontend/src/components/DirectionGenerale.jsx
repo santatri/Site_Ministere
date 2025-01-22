@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const DirectionGenerale = () => {
+
   const [formData, setFormData] = useState({
     id_sg: '', // L'ID du Secrétaire Général sélectionné
     nom_dg: '',
@@ -24,6 +25,9 @@ const DirectionGenerale = () => {
       setMessage('Erreur lors du chargement des secrétaires généraux.');
     }
   };
+  useEffect(() => {
+    fetchSecretaireGeneraux();
+  }, []);
 
   const fetchElements = async () => {
     try {
