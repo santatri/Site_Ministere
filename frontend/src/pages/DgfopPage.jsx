@@ -5,12 +5,14 @@ import Navbar from '../components/Navbar';
 import dgfopImage from '../assets/DG1.jpg'; // Remplacez par le chemin correct vers l'image
 import '../styles/DgfopPage.css';
 import Footer from '../components/Footer';
+import ImagePropos from './Apropos/ImagePropos';
 
 const DgfopPage = () => {
   return ( 
     <div className="page-container">
       <Header />
       <Navbar />
+      <ImagePropos/>
     <div className="containeres">
       
       {/* Section Image et Détails */}

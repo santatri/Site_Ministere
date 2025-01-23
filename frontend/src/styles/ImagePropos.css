@@ -2,8 +2,8 @@
 .image-propos-container {
     position: relative;
     width: 100%;
-    height: 35vh; /* Remplir toute la hauteur de l'écran */
-    background: linear-gradient(100deg, rgba(0, 24, 163, 0.932), rgba(1, 238, 255, 0.91)), url('../assets/black10.jpg') no-repeat center center; 
+    height: 17vh; /* Remplir toute la hauteur de l'écran */
+    background: linear-gradient(0deg, rgba(3, 43, 73, 0.893), rgba(1, 187, 255, 0.953)), url('../assets/black5.jpg') ; 
     background-size: cover;
     background-position: center;
     
@@ -26,7 +26,7 @@
   
   /* Le titre à l'intérieur de l'image */
   .image-overlay h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: white;
     margin: 0;
     font-weight: 600;

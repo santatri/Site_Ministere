@@ -9,7 +9,7 @@
 
 /* Section des actualités */
 .actualites-container {
-  margin: 95px;
+  margin: 100px;
   
   display: flex;
   justify-content: space-between;
@@ -50,8 +50,8 @@
 
 .actualites-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px ;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px ;
   
 }
 
@@ -69,7 +69,7 @@
 }
 
 .article-title {
-  font-size: 14px;
+  font-size: 13px;
   color: #25037b;
   margin-bottom: 10px;
 }
@@ -83,6 +83,7 @@
 .article-media img,
 .article-media video {
   width: 100%;
+  padding: auto;
   border-radius: 1px;
   margin-bottom:10px;
 }
@@ -116,7 +117,7 @@
 
 /* Section des annonces */
 .annonces-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 50px;
   color: #f6fcff;
 }
@@ -125,7 +126,7 @@
   background-color: #b91604;
   border: 0px solid #00bbff;
   border-radius: 8px;
-  padding: 25px;
+  padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 

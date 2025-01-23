@@ -18,12 +18,12 @@ const Ministere = () => {
     },
     {
       image: image2,
-      title: 'Direction de la Formation et du Perfectionnement des Agents (DEPED)',
+      title: 'Direction de la Formation et du Perfectionnement des Agents de l\'Etat(DFPAE) ',
       description: 'Des programmes de formation adaptés aux besoins du marché.',
     },
     {
       image: image3,
-      title: 'Direction de l\'evaluation et de la Promotion de l\'Ethique et de la Déontologie (DFPAE)',
+      title: 'Direction de l\'evaluation et de la Promotion de l\'Ethique et de la Déontologie (DEPED)',
       description: 'Garantir des droits et des conditions de travail équitables.',
     },
     {

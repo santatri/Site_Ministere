@@ -57,11 +57,11 @@
   font-weight: bold;
   text-decoration: none;
   margin: 0 10px;
-  padding: 3px 10px;
+  padding: 10px 14px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 14px;
+  font-size: 13.5px;
   transition: background-color 0.3s ease;
-  border-radius: 5px;
+  border-radius: 0px;
   white-space: nowrap;
 }
 
@@ -219,7 +219,7 @@
   left: 0;
   background-color: #fff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 0px;
   padding: 10px 0;
   z-index: 10;
 }
@@ -257,13 +257,13 @@ border-radius: 2%;
 }
 
 .dropdown-item:hover {
-  background-color: #f0f0f0;
+  background-color: #ffffff;
 }
 /* Sous-menu principal */
 .dropdown-menu {
   position: absolute;
   background-color: white;
-  border: 1px solid #ccc;
+
   padding: 0px;
   display: none;
   z-index: 10;
@@ -279,7 +279,7 @@ border-radius: 2%;
   left: 100%;
   top: 0;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #f1f1f1;
   padding: 10px;
   display: none;
 }

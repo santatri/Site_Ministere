@@ -2,8 +2,8 @@
 .welcome-page {
   font-family: Arial, sans-serif;
   position: relative;
-  background: linear-gradient(444deg, rgb(3, 29, 109), rgb(7, 171, 236),rgb(238, 247, 255),rgb(148, 225, 255), rgba(3, 30, 109, 0.633)), 
-  url('../assets/black1.jpg') ; 
+  background: linear-gradient(444deg, rgba(3, 23, 82, 0.818), rgb(7, 171, 236),rgb(238, 247, 255),rgb(18, 156, 211), rgba(3, 30, 109, 0.633)), 
+  url('../assets/2.jpg') ; 
   display: flex;
   justify-content: center;
   margin-left: 0%;
@@ -26,7 +26,7 @@
   border-radius: 5px;
  
  
-  width: 95vw; /* Largeur de la fenêtre */
+  width: 87vw; /* Largeur de la fenêtre */
   
   box-sizing: border-box;
   color: rgb(255, 255, 255);
@@ -60,7 +60,7 @@
   background-color: white;
   padding: 31px;
   top: -0px;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,7 +88,7 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  background-color: rgb(202, 96, 4);
+  background-color: rgb(232, 119, 19);
   color: white;
   font-weight: bold;
   padding: 7px 20px;
@@ -103,7 +103,7 @@
 }
 
 .text-pages h1 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 
 
   line-height: 2.5;
@@ -114,13 +114,13 @@
 
 .text-pages p {
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.9;
   margin: 0px;
 }
 
 .text-pages h2 {
-  font-size: 1.1rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 2;
   margin-top: 25px;
 }
 

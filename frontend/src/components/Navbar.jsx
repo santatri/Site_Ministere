@@ -58,11 +58,14 @@ const Navbar = () => {
         <NavLink to="/about/deped" className="submenu-item" activeClassName="active-link">
           DEPED
         </NavLink>
-        <NavLink to="/about/derhe" className="submenu-item" activeClassName="active-link">
-          DERHE
+        <NavLink to="/about/drhe" className="submenu-item" activeClassName="active-link">
+          DRHE
         </NavLink>
-        <NavLink to="/about/drfpae" className="submenu-item" activeClassName="active-link">
-          DRFPAE
+        <NavLink to="/about/dfpae" className="submenu-item" activeClassName="active-link">
+          DFPAE
+        </NavLink>
+        <NavLink to="/about/drfp" className="submenu-item" activeClassName="active-link">
+          DRFP
         </NavLink>
       </div>
     </div>
