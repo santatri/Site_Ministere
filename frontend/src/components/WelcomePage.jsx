@@ -34,7 +34,7 @@ const WelcomePage = () => {
     <div className="welcome-page">
       <div className="pages">
         <div className="image-box" ref={imageBoxRef}>
-          <div className="badge"> Directeur Générale</div>
+          <div className="badge"> Directeur Général</div>
           <img
             src={LogoMadagascar}
             alt="Logo Madagascar"

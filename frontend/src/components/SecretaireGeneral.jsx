@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import '../styles/SecretaireGenerale.css'; // Assurez-vous que les styles ci-dessus sont dans ce fichier
 
 const SecretaireGeneral = () => {
   const [formData, setFormData] = useState({
@@ -11,8 +12,8 @@ const SecretaireGeneral = () => {
   const [message, setMessage] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [activeTab, setActiveTab] = useState('list'); // Onglet actif
 
-  // Ref pour le formulaire
   const formRef = useRef(null);
 
   const fetchElements = async () => {
@@ -49,7 +50,6 @@ const SecretaireGeneral = () => {
       });
       setMessage(response.data.message);
       fetchElements();
-
       setFormData({ nom_sg: '', porte_sg: '' });
       setIsEditing(false);
       setCurrentId(null);
@@ -63,12 +63,9 @@ const SecretaireGeneral = () => {
     setFormData({
       nom_sg: element.nom_sg,
       porte_sg: element.porte_sg,
-     
     });
     setIsEditing(true);
     setCurrentId(id_sg);
-
-    // Faire défiler la page jusqu'au formulaire
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -86,31 +83,26 @@ const SecretaireGeneral = () => {
 
   return (
     <div className="container">
-      <h1>Les hautes hierarchie</h1>
+      <h1>Les hautes hiérarchies</h1>
       {message && <p>{message}</p>}
 
-      <form ref={formRef} onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="nom_sg"
-          placeholder="Nom"
-          value={formData.nom_sg}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="porte_sg"
-          placeholder="Porte"
-          value={formData.porte_sg}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">{isEditing ? 'Modifier' : 'Ajouter'}</button>
-      </form>
+      <div className="tab-container">
+        <div
+          className={`tab ${activeTab === 'list' ? 'active' : ''}`}
+          onClick={() => setActiveTab('list')}
+        >
+          Liste des hiérarchies
+        </div>
+        <div
+          className={`tab ${activeTab === 'form' ? 'active' : ''}`}
+          onClick={() => setActiveTab('form')}
+        >
+          Ajouter / Modifier
+        </div>
+      </div>
 
-      <div>
-        <h2>Liste des hautes hierarchie</h2>
+      <div className={`tab-content ${activeTab === 'list' ? 'active' : ''}`}>
+        <h2>Liste des hiérarchies</h2>
         <table>
           <thead>
             <tr>
@@ -132,6 +124,28 @@ const SecretaireGeneral = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className={`tab-content ${activeTab === 'form' ? 'active' : ''}`}>
+        <form ref={formRef} onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="nom_sg"
+            placeholder="Nom"
+            value={formData.nom_sg}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="porte_sg"
+            placeholder="Porte"
+            value={formData.porte_sg}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">{isEditing ? 'Modifier' : 'Ajouter'}</button>
+        </form>
       </div>
     </div>
   );

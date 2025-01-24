@@ -65,7 +65,7 @@ const LoginPage1 = () => {
               </div>
             </div>
             <div className="input-group">
-              <label htmlFor="mdp">Mot de passe</label>
+  <label htmlFor="mdp">Mot de passe</label>
               <div className="input-with-icon">
                 <FaLock className="input-icon" />
                 <input
@@ -79,7 +79,7 @@ const LoginPage1 = () => {
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </div>
               </div>
-              <Link to="/forgot-password" className="forgot-password">Mot de passe oublié ?</Link>
+            
             </div>
             <div className="additional-links">
           </div>

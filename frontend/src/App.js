@@ -12,9 +12,11 @@ import LoginPage1 from './pages/LoginPage1';
 import CreateAccount1 from './pages/CreateAccount1';
 import AdminPage1 from './pages/AdminPage1';
 import DepedPage from './pages/DepedPage';
-import DerhePage from './pages/DerhePage';
+import DfpaePage from './pages/DfpaePage';
+import DrhePage from './pages/DrhePage';
 import DgfopPage from './pages/DgfopPage';
 import CommunicationPage from './pages/CommunicationPage';
+import DrfpPage from './pages/DrfpPage';
 import '../src/i18n';
 
 import StanPage from './pages/StanPage';
@@ -80,7 +82,9 @@ const AppWithNavbar = () => {
   
         <Route path="/about/dgfop" element={<DgfopPage />} />
         <Route path="/about/deped" element={<DepedPage />} />
-        <Route path="/about/derhe" element={<DerhePage />} />
+        <Route path="/about/drhe" element={<DrhePage />} />
+        <Route path="/about/dfpae" element={<DfpaePage />} />
+        <Route path="/about/drfp" element={<DrfpPage />} />
       
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginPage1 />} />

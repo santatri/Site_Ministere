@@ -1,29 +1,28 @@
 /* Conteneur principal */
 .form-container {
-  text-align: center;
-  width: 100%;
-  min-height: 100vh;
+  position: fixed; /* Pour rester fixé même lors du défilement */
+  top: 0;
+  left: 0;
+  width: 100vw; /* 100% de la largeur de la fenêtre */
+  height: 100vh; /* 100% de la hauteur de la fenêtre */
+  background: linear-gradient(920deg ,rgb(255, 255, 255), rgba(0, 183, 255, 0.87) ,rgba(0, 153, 255, 0.87) ,rgb(9, 13, 57)),url('../assets/5.svg') ; /* Centrer l'image */
+  background-size: cover; /* S'assure que l'image couvre tout l'écran */
+  opacity: 0.99;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;background: linear-gradient(5deg, rgba(255, 255, 255, 0.92), #aed2fd), url('../assets/black4.jpg') ; 
-  
+  align-items: center;
 
-
-  background-attachment: fixed; /* Fixe le fond */
-  padding: 1rem; /* Ajoute un léger padding pour éviter les débordements */
-  box-sizing: border-box;
 }
 
 /* Cadre principal */
 .form-layout {
   display: flex;
-  max-width: 60%;
+  max-width: 55%;
   width: 100%;
   height: auto;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 8px 0px rgb(10, 146, 176);
+  box-shadow: 0 8px 30px rgba(7, 22, 181, 0.56);
   background-color: white;
 
   opacity: 0; /* Initialement invisible */
@@ -39,17 +38,18 @@
 /* Partie gauche */
 .left-column {
   flex: 1;
-  background: linear-gradient(5deg, rgba(255, 255, 255, 0.92), rgba(3, 196, 255, 0.9)) ; 
+  background: linear-gradient(5deg, rgba(255, 255, 255, 0.92), rgba(3, 184, 255, 0.999)) ; 
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius:0 25px 0 0;
   color: white;
   text-align: center;
   padding: 1rem;
 }
 
 .left-column img {
-  width: 162%;
+  width: 150%;
   max-width: 240px;
   height: auto;
   border-radius: 10px;
@@ -76,7 +76,7 @@
 }
 
 .left-content h2 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-top: 1rem;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
@@ -93,8 +93,9 @@
 
 /* Titre formulaire */
 .form-wrapper h2 {
-  color: #5000ac;
+  color: #1400ac;
   font-size: 1rem;
+  text-align: center;
   font-weight: bold;
   margin-bottom: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -104,18 +105,18 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 form input,
 form select,
 form button {
   width: 100%;
-  padding: 0.6rem;
-  font-size: 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 0.7rem;
+
+  font-size: 0.75rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 9px;
   box-sizing: border-box;
 }
 

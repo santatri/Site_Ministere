@@ -4,7 +4,7 @@
   flex-direction: row; /* Aligne l'image et la description horizontalement */
   align-items: flex-start; /* Aligne les éléments en haut */
   justify-content: center; /* Centre le contenu horizontalement */
-  gap: 50px; /* Espace entre l'image et la section texte */
+  gap: 30px; /* Espace entre l'image et la section texte */
   margin: 40px auto;
   max-width: 1200px; /* Limite la largeur totale */
 }
@@ -19,10 +19,11 @@
 }
 
 .images-containeres img {
-  width: 400px; /* Ajustez selon vos besoins */
+  width: 450px; /* Ajustez selon vos besoins */
   height: auto;
-  border-radius: 10px;
-  box-shadow: 10 4px 8px rgba(22, 104, 139, 0.732); /* Ajoute une ombre subtile */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(9, 5, 34, 0.732); /* Ajoute une ombre subtile */
+  border: 3px solid #007bff;
   margin-bottom: 16px; /* Espace entre l'image et la carte */
 }
 
@@ -60,24 +61,26 @@
 /* Section contenant le texte */
 .text-section {
   background: #ffffff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 10 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 150%; /* Limite la largeur à 60% */
   text-align: left;
+  margin-top: -4%;
 }
 
 .text-section h1 {
   font-size: 1.5rem;
-  color: #60036a;
+  margin-left: -3.5%;
+  color: #007bff;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .underline {
   width:90px;
   height: 5px;
-  background: linear-gradient( #ff4800, rgb(255, 98, 0));
+  background: linear-gradient( #00aeff, #007bff);
   margin: 25px 50;
 }
 

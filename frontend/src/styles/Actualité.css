@@ -5,12 +5,15 @@ body {
   }
   
   .actualites-containeres {
-    padding: 10px;
-    margin: 20px;
+    padding: 20px;
+
+    margin: 10px;
   }
   .actualites-containeres h2 {
-    color: #6a11cb;
-  font-size: 18px;
+    
+    color: #0520d1;
+  font-size: 1.3rem;
+  margin-bottom: 0px;
 
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
@@ -18,15 +21,16 @@ body {
   .filters-bar {
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
   }
   
   .filters-bar input {
     margin-right: 10px;
-    font-size: 12px;
-    padding: 8px;
-    border: 2px solid #87d3ff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 12px;
+    border: 1px solid #cccdcd;
     border-radius: 8px;
   }
   
@@ -34,7 +38,7 @@ body {
     padding: 10px 12px;
    
     background-color: #ba0606;
-    color: #fff;
+    color: #c51313;
    
     border: none;
     border-radius: 4px;
@@ -50,54 +54,63 @@ body {
   }
   
   .forms-sectiones h2 {
-    color: #6a11cb;
-  font-size: 14px;
+    margin-top: 2%;
+    color: #340ca4;
+  font-size: 16px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
   
   .forms-sectiones form {
+    margin-top: 2%;
     display: flex;
     flex-direction: column;
   }
   
   .forms-sectiones input {
-    margin-bottom: 15px;
-    font-size: 13px;
-    padding: 10px 20px;
-    border: 1px solid #82828455;
-    border-radius: 10px;   
+    margin-bottom: 2px;
+
+
+  font-size: 0.78rem;
+  border: 1px solid #e2e2e2;
+  color: #152536;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding: 15px 20px;
+    border: 1px solid #dddedeb6;
+    border-radius: 5px;   
   }
   .forms-sectiones textarea {
-    margin-bottom: 15px;
-    padding: 10px 10px;
+    margin-bottom: 2px;
+    padding: 20px 10px ;
+    color: #043161;
+   
+    font-size: 0.78rem;
+    border: 1px solid #e4e4e4;
+    font-weight: bold;
 
-    font-size: 13px;
-    text-align: left;
+    margin-left: -0%;
+     text-align: left;
     justify-content: center;
     align-items: start;
 
-    border: 1px solid #b9c4cf55;
-    border-radius: 10px;
+  
+    border-radius: 5px;
   }
-  .texte-image{
-
-    color: #6a11cb;
-    font-size: 14px;
+  .texte-image {
+    
+    color: #340ca4;
+    font-size: 1.1rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
   .texte-video{
-
-    color: #6a11cb;
-  font-size: 14px;
+  
+    color: #340ca4;
+    font-size: 1.1rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
-  .texte-image input {
-    margin-bottom: 15px;
-    font-size: 13px;
-    padding: 10px 20px;
-    border: 1px solid #0d113c55;
-    border-radius: 10px;   
-  }
+
+ 
+  
   .butto {
     padding: 10px 15px;
     background-color: #00ea33;
@@ -108,10 +121,11 @@ body {
   
   .forms-sectiones button {
     width: 100%;
-  max-width: 180px;
+  max-width: 150px;
   padding: 12px 20px;
   margin-top: 0px;
-  background-color:   #025ce2b8;
+  background-color:   #1890d5f4;
+  margin-left: -0.1%;
   color: white;
   border: none;
   border-radius: 5px;
@@ -131,38 +145,40 @@ body {
   
   .news-sectiones h1 {
     font-size: 20px;
-    margin-bottom: 20px;
-    color: #6200ea;
+    margin-left: -2%;
+    margin-bottom: 0px;
+    color: #d31616;
   }
   
   .news-grides {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 40px;
   }
   
   .news-cardes {
-    border: 1px solid #dadada;
+    border: 1px solid #e9fcff;
     padding: 15px;
-    border-radius: 8px;
-    background-color: #f6fafe;
-    transition: background-color 0.3s;
+    border-radius: 4px;
+    background: linear-gradient(rgb(250, 254, 255),rgb(255, 255, 255),rgb(255, 255, 255),rgb(255, 255, 255),rgb(255, 255, 255),rgb(255, 255, 255), rgb(169, 223, 252));
+    transition: background-color 0.7s;
   }
   
   .news-cardes:hover {
-    background-color: #e0e0e0;
+    background-color: #0c0539;
   }
   
   .news-cardes h3 {
-    font-size: 12px;
+    font-size: 0.8rem;
+    
     margin-bottom: 10px;
-    color: #191786;
+    color: #1111a8;
   }
   
   .news-cardes p {
     font-size: 12px;
     margin-bottom: 15px;
-    color: #333;
+    color: #000000;
   }
   
   .news-cardes img,
@@ -190,7 +206,7 @@ body {
   
   .news-cardes button {
     padding: 5px 10px;
-    background-color: #0071ea;
+  
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -206,7 +222,7 @@ body {
   }
   
   .news-cardes button:last-of-type {
-    background: linear-gradient(45deg, #ff0000, #ff6347);
+    background: linear-gradient(45deg, #121d85, #141764);
   }
   
   .news-cardes button:last-of-type:hover {

@@ -1,6 +1,6 @@
 /* Conteneur principal */
 .donne-container{
-  background: linear-gradient(0deg, rgb(255, 255, 255), rgba(238, 245, 249, 0.9)), url('../assets/black2.jpg') ; 
+  background: linear-gradient(0deg, rgb(255, 253, 253), rgba(238, 245, 249, 0.9)), url('../assets/black2.jpg') ; 
 }
 .searches-section {
   display: flex;
@@ -224,10 +224,10 @@
 
 /* Conteneur pour le dossier préparé */
 .service-dossier-box {
-  border: 2px dashed #9ba904;
+
   padding: 15px;
   border-radius: 8px;
-  background-color: #f7f9ff;
+  background-color: #153698;
 }
 
 .service-dossier-box h4 {

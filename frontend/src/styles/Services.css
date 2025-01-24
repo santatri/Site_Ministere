@@ -2,16 +2,17 @@
 .services-container {
     
   position: relative;
-  opacity: 0.99;
-  width: 90%; /* Occuper toute la largeur */
-  height: 180px; /* Hauteur définie */
-  background: linear-gradient(100deg, rgba(239, 11, 205, 0.77), rgba(61, 13, 220, 0.825), rgba(203, 12, 28, 0.759)), url('../assets/black9.jpg');
+  opacity: 0.89;
+  width: 100%; /* Occuper toute la largeur */
+  height: 150px; /* Hauteur définie */
+  background: linear-gradient(100deg, rgba(0, 157, 255, 0.89), rgba(33, 5, 124, 0.825), rgba(0, 174, 255, 0.836)), url('../assets/dig.jpg');
   background-size: cover; /* Adapter l'image pour couvrir tout l'écran */
   background-position: center; /* Centrer l'image */
   display: flex;
   justify-content: center;
+  border-bottom: #2090eb;
   align-items: center;
-  margin: auto;
+margin-top:  1.8%;
   }
   
   /* En-tête des services */
@@ -38,7 +39,7 @@
   }
   
   .current-page {
-    color: #fff;
+    color: #ffffff;
     font-weight: normal;
   }
   
@@ -48,7 +49,7 @@
     justify-content: center;
     display: inline-block;
    
-    background: #2090eb;
+    background: #b0b310;
     padding: 1rem 2rem;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);

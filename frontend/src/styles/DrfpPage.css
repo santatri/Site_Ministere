@@ -1,0 +1,102 @@
+/* Style pour la page DRFP */
+.page-container-drfp {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 0px;
+  }
+  
+  .container-drfp {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .images-container-drfp {
+    display: flex;
+    
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .image-frame-drfp {
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 3px solid #007bff;
+  }
+  
+  .card-drfp {
+    flex: 1;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-drfp h2 {
+    font-size: 24px;
+    color: #007bff;
+  }
+  
+  .card-drfp h3 {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .card-drfp p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .text-section-drfp {
+    margin-top: 20px;
+  }
+  
+  .text-section-drfp h1 {
+    font-size: 28px;
+    color: #007bff;
+    text-align: center;
+  }
+  
+  .underline-drfp {
+    width: 100px;
+    height: 4px;
+    background-color: #007bff;
+    margin: 10px auto;
+    border-radius: 2px;
+  }
+  
+  .text-section-drfp p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .text-section-drfp ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .text-section-drfp ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .text-section-drfp ul li i {
+    color: #007bff;
+    margin-right: 10px;
+  }
+  
+  .text-section-drfp ul li i.fas {
+    font-size: 14px;
+  }
+  

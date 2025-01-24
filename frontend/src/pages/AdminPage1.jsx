@@ -200,7 +200,7 @@ const AdminPage1 = () => {
                 <button className="search-button">Rechercher</button>
               </div>
             </div>
-            {message && <p className="message">{message}</p>}
+            {message && <p className="messagess">{message}</p>}
             <h3>Utilisateurs non validés</h3>
             {filteredUsers.some((user) => !user.validated) ? (
               <table>
@@ -227,13 +227,13 @@ const AdminPage1 = () => {
                               onClick={() => handleValidate(user.id)}
                               className="btn btn-validate"
                             >
-                              <FaCheck /> Valider
+                              <FaCheck /> 
                             </button>
                             <button
                               onClick={() => handleDelete(user.id)}
                               className="btn btn-delete"
                             >
-                              <FaTrash /> Supprimer
+                              <FaTrash /> 
                             </button>
                           </td>
                         </tr>
@@ -242,7 +242,7 @@ const AdminPage1 = () => {
                 </tbody>
               </table>
             ) : (
-              <p>Aucun utilisateur en attente de validation</p>
+              <p className='messages'>Aucun utilisateur en attente de validation</p>
             )}
 
             <h3>Tous les utilisateurs</h3>
@@ -312,13 +312,13 @@ const AdminPage1 = () => {
                         <td>{user.validated ? 'Validé' : 'Non validé'}</td>
                         <td>
                           <button onClick={() => handleEdit(user)} className="btn btn-edit">
-                            <FaEdit /> Modifier
+                            <FaEdit />
                           </button>
                           <button
                             onClick={() => handleDelete(user.id)}
                             className="btn btn-delete"
                           >
-                            <FaTrash /> Supprimer
+                            <FaTrash /> 
                           </button>
                         </td>
                       </>

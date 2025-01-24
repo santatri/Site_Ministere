@@ -1,75 +1,71 @@
+.table-containere {
+  text-align: center;
+  margin: 95px;
+  margin-top: 5%;
+  padding: 50px;
+  border-radius: 1px; /* Coins arrondis */
+  background: linear-gradient(0deg, rgb(2, 17, 28), rgba(13, 28, 32, 0.979)), url('../assets/giphy.gif') ; 
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Ombre douce */
+  color: white; /* Tout le texte en blanc */
+}
+
+.table-title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.table-subtitle {
+  font-size: 16px;
+  color: #e0e0e0; /* Texte légèrement gris */
+  margin-bottom: 20px;
+}
+
+.table-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icone {
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 36px;
+  margin: 0;
+  color: white; /* Chiffres en blanc */
+}
+
+h2 .name {
+  font-size: 18px;
+  display: block; /* Nom en dessous des chiffres */
+  margin-top: 5px;
+}
+
+.rights-columns {
+  flex: 2;
+  text-align: left;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+
+}
+
+/* Centrage et limite de largeur */
 .table-container {
-    background: linear-gradient(175deg,  #69046d, rgba(20, 80, 120, 0.866)), url('../assets/26.jpg') no-repeat center center; 
-    background-size: cover;
-    background-position: center;
-  
-    border: 0px solid #ffffff;
-    
-    
-    padding: 30px 20px;
-    color: white;
-    text-align: center;
-    opacity: 0.99;
-    margin-top: 7.5%;
-  }
-  
-  .table-title {
-    color: white;
-    font-size: 1.6rem;
-    font-weight: bold;
-  
-  }
-  
-  .table-subtitle {
-    font-size: 1.3rem;
-    font-style: italic;
-    margin-bottom: 40px;
-  }
-  
-  .table-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 70px;
-  }
-  
-  .card {
-    background-color: rgba(10, 138, 147, 0.607); /* Fond semi-transparent */
-    border: 1px solid #ffffff; /* Couleur verte */
-    border-radius:20px;
-    padding: 0px;
-    width: 250px;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.1); /* Zoom au survol */
-  }
-  
-  .icone {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    color: #dbe63d;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    margin: 10px 0;
-  }
-  
-  p {
-    font-size: 1.2rem;
-  }
-  
-  @media (max-width: 768px) {
-    .table-cards {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .card {
-      width: 90%; /* Adapte la taille pour les petits écrans */
-    }
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+}

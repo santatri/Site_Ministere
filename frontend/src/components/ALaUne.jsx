@@ -13,6 +13,7 @@ const ALaUne = () => {
   const [message, setMessage] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchElements = async () => {
     try {
@@ -82,9 +83,20 @@ const ALaUne = () => {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    return date.toLocaleDateString('fr-FR', options);
+  };
+
+  const filteredElements = elements.filter((element) =>
+    element.titre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="container">
-      <h1 className="title">À la Une</h1>
+      <h1 className='Gestion'>Gestion à la une</h1>
+      <h2 className="titre">Insertion à la Une</h2>
       {message && <p className="message">{message}</p>}
 
       <form onSubmit={handleSubmit} className="form">
@@ -109,24 +121,39 @@ const ALaUne = () => {
         </button>
       </form>
 
-      <div className="elements-container">
-        {elements.map((element) => (
-          <div key={element.id} className="element-card">
-            <h3 className="element-title">{element.titre}</h3>
-            <p className="element-description">{element.description}</p>
+      <h2 className="titra">Toutes les à la une</h2>
+      <input
+        type="text"
+        className="searches-bare"
+        placeholder="Rechercher une à la une..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
 
-            {element.image && (
-              <img
-                src={`http://localhost:5001/uploads/${element.image}`}
-                alt={element.titre}
-                className="element-image"
-              />
-            )}
-            <button onClick={() => handleEdit(element.id)}>Modifier</button>
-            <button onClick={() => handleDelete(element.id)}>Supprimer</button>
-          </div>
-        ))}
+<div className="elements-container">
+  {filteredElements.length > 0 ? (
+    filteredElements.map((element) => (
+      <div key={element.id} className="element-card">
+        <h3 className="element-title">{element.titre}</h3>
+        <p className="element-description">{element.description}</p>
+        {element.image && (
+          <img
+            src={`http://localhost:5001/uploads/${element.image}`}
+            alt={element.titre}
+            className="element-image"
+          />
+        )}
+        <div className="button-group">
+          <button onClick={() => handleEdit(element.id)}>Modifier</button>
+          <button onClick={() => handleDelete(element.id)}>Supprimer</button>
+        </div>
       </div>
+    ))
+  ) : (
+    <p className="no-elements">Aucune à la une</p>
+  )}
+</div>
+
     </div>
   );
 };

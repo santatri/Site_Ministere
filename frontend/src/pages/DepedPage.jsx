@@ -1,62 +1,74 @@
 import React from 'react';
-import depedImage from '../assets/madame.jpg'; // Remplacez par l'image appropriée
+
 import Header from '../components/header';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import depedImage from '../assets/madame.jpg'; // Remplacez par le chemin correct vers l'image
 import '../styles/DepedPage.css';
+import Footer from '../components/Footer';
+
 
 const DepedPage = () => {
   return ( 
-    <div className="page-container">
+    <div className="page-container-deped">
       <Header />
       <Navbar />
-    <div className="containeres">
-      
-      {/* Section Image et Détails */}
-      <div className="images-containeres">
-        {/* Image à gauche */}
-        <img src={depedImage} alt="DGFOP" className="image-framees" />
-        
-        {/* Cadre de description à droite */}
-        <div className="cardesiz">
-          <h2>Ny Antsa Alisandy Itokiana</h2>
-          <h3>RASOLOFONIAINA</h3>
-          <p>Directeur d’Appui aux Investissements Touristiques</p>
+     
+      <div className="container-deped">
+
+        {/* Section Image et Détails */}
+        <div className="images-container-deped">
+          {/* Image à gauche */}
+          <img src={depedImage} alt="DEPED" className="image-frame-deped" />
+
+          {/* Cadre de description à droite */}
+          <div className="card-deped">
+            <h2>Jean Claude</h2>
+            <h3>ANDRIAMANANA</h3>
+            <p>Directeur de l'Evaluation et de la Promotion de l'Ethique et de la Déontologie</p>
+          </div>
+        </div>
+
+        {/* Section Description */}
+        <div className="text-section-deped">
+          <h1>Direction de l'Evaluation et de la Promotion de l'Ethique et de la Déontologie (DEPED)</h1>
+          <div className="underline-deped"></div>
+
+          <p>
+            La Direction de l'Evaluation et de la Promotion de l'Ethique et de la Déontologie (DEPED) joue un rôle crucial au sein du Ministère du Travail, de l'Emploi et de la Fonction Publique. Elle se consacre à la promotion des valeurs éthiques et déontologiques dans la fonction publique.
+          </p>
+
+          <p>
+            Sa mission principale est de renforcer l'intégrité, la transparence et la responsabilité dans l'administration publique à travers des mécanismes d'évaluation et des initiatives de sensibilisation.
+          </p>
+
+          <p>
+            Les missions de la DEPED incluent :
+          </p>
+          <ul>
+            <li>
+              <i className="fas fa-star"></i> Élaborer et mettre en œuvre des politiques d'éthique et de déontologie.
+            </li>
+            <li>
+              <i className="fas fa-star"></i> Former et sensibiliser les agents publics aux valeurs éthiques.
+            </li>
+            <li>
+              <i className="fas fa-star"></i> Évaluer les pratiques administratives pour garantir le respect des normes déontologiques.
+            </li>
+            <li>
+              <i className="fas fa-star"></i> Mettre en place des mécanismes de prévention et de lutte contre la corruption.
+            </li>
+            <li>
+              <i className="fas fa-star"></i> Promouvoir une culture de responsabilité et de transparence dans la gestion publique.
+            </li>
+          </ul>
+
+          <p>
+            En travaillant en synergie avec d'autres directions, la DEPED aspire à instaurer une administration exemplaire qui inspire confiance et respect auprès des citoyens.
+          </p>
         </div>
       </div>
-
-      {/* Section Description */}
-      <div className="texte-sectiones">
-      <h1>Direction Générale de la Formation et de l’Orientation Professionnelle (DGFOP)</h1>
-        <div className="underlinees"></div>
-        
-          <p>
-            La Direction Générale de la Formation et de l’Orientation Professionnelle (DGFOP) joue un rôle crucial 
-            dans la gestion de la formation professionnelle et de l'orientation. Elle vise à assurer une adéquation optimale 
-            entre les compétences des individus et les exigences du marché du travail.
-          </p>
-         
-          <p>
-            À travers ses multiples initiatives, la DGFOP incarne le lien entre le développement des talents et 
-            l'essor économique du pays, garantissant que chaque individu trouve sa place dans un monde en constante évolution.
-          </p>
-          <p>
-          La Direction Générale de la Formation et de l’Orientation Professionnelle (DGFOP) comporte :
-          </p>
-        <ul>
-          <li>
-            <i className="fas fa-check-circle"></i>
-            LE SERVICE DES AGRÉMENTS TOURISTIQUES (SAT)
-          </li>
-          <li>
-            <i className="fas fa-check-circle"></i>
-            LE SERVICE DE LA PROMOTION DES INVESTISSEMENTS TOURISTIQUES (SPIT)
-          </li>
-        </ul>
-      </div>
-      </div>
-      <Footer/> </div>
-      
+      <Footer />
+    </div>
   );
 };
 

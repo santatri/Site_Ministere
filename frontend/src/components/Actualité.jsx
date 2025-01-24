@@ -133,7 +133,7 @@ const Actualité = () => {
           <label className='texte-image'>Image :</label>
           <input  type="file" name="media_image" accept="image/*" onChange={handleFileChange} />
           <label className='texte-video'>Vidéo :</label>
-          <input className='tro' type="file" name="media_video" accept="video/*" onChange={handleFileChange} />
+          <input className='textevideo' type="file" name="media_video" accept="video/*" onChange={handleFileChange} />
           <button className='butto' type="submit">{isEditing ? 'Mettre à jour' : 'Soumettre'}</button>
         </form>
       </div>
