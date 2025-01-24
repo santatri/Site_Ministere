@@ -7,6 +7,8 @@ import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, F
 import AdminNavbar from '../components/AdminNavbar';
 import ALaUne from '../components/ALaUne';
 import logo from '../assets/dgfop.png'; // Remplacez par le chemin réel de votre logo
+import DGFormAndDisplay from '../components/DGFormAndDisplay';
+import VisitorCounter from '../components/VisitorCounter';
 
 import  SecretaireGeneral from'../components/SecretaireGeneral';
 import  DirectionGenerale from'../components/DirectionGenerale';
@@ -330,7 +332,9 @@ const AdminPage1 = () => {
         {activeSection === 'actualites' && <Actualité />}
         {activeSection === 'a-la-une' && <ALaUne />}
         {activeSection === 'services' && [<SecretaireGeneral/> ,<DirectionGenerale/> ,<Direction/> , <Service/> , <ServiceOffert/>]}
-
+        
+        {activeSection === 'a-propos' && <DGFormAndDisplay />}
+        {activeSection === 'indicateurs' && <VisitorCounter/>}
 
 
       </div>
