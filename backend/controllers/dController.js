@@ -167,3 +167,99 @@ exports.updateD = [upload.single("image"), (req, res) => {
     res.status(200).send({ message: "DG mis à jour avec succès" });
   });
 }];
+
+
+
+exports.getDEPED = (req, res) => {
+    const searchTerm = "DEPED"; // Mot que vous cherchez dans le post
+    const query = `SELECT * FROM d_info WHERE d_name LIKE ?`;
+
+    db.query(query, [`%${searchTerm}%`], (err, results) => {
+        if (err) {
+            console.error("Erreur lors de la récupération des informations du DG:", err);
+            return res.status(500).send("Erreur interne du serveur");
+        }
+
+        // Transformer les listes en tableaux
+        const formattedResults = results.map(d => {
+            return {
+                ...d,
+                list_1: d.list_1 ? d.list_1.split(",") : [], 
+                list_2: d.list_2 ? d.list_2.split(",") : [], 
+                list_3: d.list_3 ? d.list_3.split(",") : [], 
+            };
+        });
+
+        res.status(200).json(formattedResults);
+    });
+};
+exports.getDRHE = (req, res) => {
+    const searchTerm = "DRHE"; // Mot que vous cherchez dans le post
+    const query = `SELECT * FROM d_info WHERE d_name LIKE ?`;
+
+    db.query(query, [`%${searchTerm}%`], (err, results) => {
+        if (err) {
+            console.error("Erreur lors de la récupération des informations du DG:", err);
+            return res.status(500).send("Erreur interne du serveur");
+        }
+
+        // Transformer les listes en tableaux
+        const formattedResults = results.map(d => {
+            return {
+                ...d,
+                list_1: d.list_1 ? d.list_1.split(",") : [], 
+                list_2: d.list_2 ? d.list_2.split(",") : [], 
+                list_3: d.list_3 ? d.list_3.split(",") : [], 
+            };
+        });
+
+        res.status(200).json(formattedResults);
+    });
+};
+exports.getDFPAE = (req, res) => {
+    const searchTerm = "DFPAE"; // Mot que vous cherchez dans le post
+    const query = `SELECT * FROM d_info WHERE d_name LIKE ?`;
+
+    db.query(query, [`%${searchTerm}%`], (err, results) => {
+        if (err) {
+            console.error("Erreur lors de la récupération des informations du DG:", err);
+            return res.status(500).send("Erreur interne du serveur");
+        }
+
+        // Transformer les listes en tableaux
+        const formattedResults = results.map(d => {
+            return {
+                ...d,
+                list_1: d.list_1 ? d.list_1.split(",") : [], 
+                list_2: d.list_2 ? d.list_2.split(",") : [], 
+                list_3: d.list_3 ? d.list_3.split(",") : [], 
+            };
+        });
+
+        res.status(200).json(formattedResults);
+    });
+};
+exports.getDRFP = (req, res) => {
+    const searchTerm = "DRFP"; // Mot que vous cherchez dans le post
+    const query = `SELECT * FROM d_info WHERE d_name LIKE ?`;
+
+    db.query(query, [`%${searchTerm}%`], (err, results) => {
+        if (err) {
+            console.error("Erreur lors de la récupération des informations du DG:", err);
+            return res.status(500).send("Erreur interne du serveur");
+        }
+
+        // Transformer les listes en tableaux
+        const formattedResults = results.map(d => {
+            return {
+                ...d,
+                list_1: d.list_1 ? d.list_1.split(",") : [], 
+                list_2: d.list_2 ? d.list_2.split(",") : [], 
+                list_3: d.list_3 ? d.list_3.split(",") : [], 
+            };
+        });
+
+        res.status(200).json(formattedResults);
+    });
+};
+

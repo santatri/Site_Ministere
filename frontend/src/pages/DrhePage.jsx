@@ -1,73 +1,98 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import Header from '../components/header';
 import Navbar from '../components/Navbar';
-import drheImage from '../assets/madame.jpg'; // Remplacez par le chemin correct vers l'image
-import '../styles/DrhePage.css';
+import '../styles/DgfopPage.css';
 import Footer from '../components/Footer';
 
-const DrhePage = () => {
-  return (
-    <div className="page-container-drhe">
+
+const  DrhePage = () => {
+    const [dData, setdData] = useState([]); // Stockage des données récupérées
+    const [loading, setLoading] = useState(false); // Gestion du chargement
+  
+    // Récupérer les données depuis le backend
+    const fetchdData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:5001/api/d/DRHE");
+        setdData(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    // Charger les données au montage du composant
+    useEffect(() => {
+      fetchdData();
+    }, []);
+    
+  return ( 
+    <div className="page-container">
       <Header />
       <Navbar />
-
-      <div className="container-drhe">
-
-        {/* Section Image et Détails */}
-        <div className="images-container-drhe">
-          {/* Image à gauche */}
-          <img src={drheImage} alt="DRHE" className="image-frame-drhe" />
-
-          {/* Cadre de description à droite */}
-          <div className="card-drhe">
-            <h2>Jean Claude</h2>
-            <h3>ANDRIAMANANA</h3>
-            <p>Directeur des Ressources Humaines de l'État</p>
+      {loading ? (
+        <p>Chargement des données...</p>
+      ) : ( <div> {dData.map((d) => (
+            <div className="containeres" key={d.id}>
+              <div className="images-containeres">
+                {d.image_url && (
+                  <img
+                    src={`http://localhost:5001${d.image_url}`}
+                    alt="dFOP" className="image-framees"
+                  />
+                )}
+                {/* Cadre de description à droite */}
+        	    <div className="cardes">
+                      <h2>{d.first_name}</h2>
+                      <h3> {d.last_name}</h3>
+                      <p>{d.post}</p>
+		    </div>
+              </div>
+	      {/* Section Description */}
+	      <div className="text-section">
+                  <h1>{d.d_name}</h1>
+		  <div className="underline"></div>
+                       <p> {d.description_1}</p>
+                        <ul>
+                        {d.list_1.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                      {d.description_2 && (
+                        <p>{d.description_2}</p>
+                      )}
+                      {d.list_2.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_2.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                      {d.description_3 && (
+                        <p>{d.description_3}</p>
+                      )}
+                      {d.list_3.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_3.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                </div>
+              </div>
+           
+          ))}
           </div>
-        </div>
-
-        {/* Section Description */}
-        <div className="text-section-drhe">
-          <h1>Direction des Ressources Humaines de l'État (DRHE)</h1>
-          <div className="underline-drhe"></div>
-
-          <p>
-            La Direction des Ressources Humaines de l'État (DRHE) est un organe stratégique du Ministère du Travail, de l'Emploi et de la Fonction Publique. Elle est chargée de la gestion et du développement des ressources humaines au sein de l'administration publique.
-          </p>
-
-          <p>
-            Sa mission principale est d'assurer une gestion efficace, équitable et transparente des ressources humaines, tout en veillant au respect des principes d'éthique et de déontologie.
-          </p>
-
-          <p>
-            Les missions de la DRHE incluent :
-          </p>
-          <ul>
-            <li>
-              <i className="fas fa-star"></i> Élaborer des politiques et des stratégies de gestion des ressources humaines.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Superviser les recrutements et les nominations dans la fonction publique.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Mettre en œuvre des plans de formation pour le développement des compétences des agents publics.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Garantir la gestion équitable des carrières et des promotions.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Assurer le suivi et l'évaluation des performances des agents publics.
-            </li>
-          </ul>
-
-          <p>
-            Grâce à ses actions, la DRHE contribue à renforcer l'efficacité et la performance des institutions publiques, tout en créant un environnement de travail favorable pour les agents de l'État.
-          </p>
-        </div>
-      </div>
-      <Footer />
-    </div>
+      )}
+      <Footer/> </div>
+      
   );
 };
 

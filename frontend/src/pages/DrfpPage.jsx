@@ -1,68 +1,99 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import Header from '../components/header';
 import Navbar from '../components/Navbar';
-import drfpImage from '../assets/madame.jpg'; // Remplacez par le chemin correct vers l'image
-import '../styles/DrfpPage.css';
+import '../styles/DgfopPage.css';
 import Footer from '../components/Footer';
 
-const DrfpPage = () => {
-  return (
-    <div className="page-container-drfp">
+
+const  DrfpPage = () => {
+  
+    const [dData, setdData] = useState([]); // Stockage des données récupérées
+    const [loading, setLoading] = useState(false); // Gestion du chargement
+  
+    // Récupérer les données depuis le backend
+    const fetchdData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:5001/api/d/DRFP");
+        setdData(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    // Charger les données au montage du composant
+    useEffect(() => {
+      fetchdData();
+    }, []);
+    
+  return ( 
+    <div className="page-container">
       <Header />
       <Navbar />
-
-      <div className="container-drfp">
-
-        {/* Section Image et Détails */}
-        <div className="images-container-drfp">
-          {/* Image à gauche */}
-          <img src={drfpImage} alt="DRFP" className="image-frame-drfp" />
-
-          {/* Cadre de description à droite */}
-          <div className="card-drfp">
-            <h2>Jean Claude</h2>
-            <h3>ANDRIAMANANA</h3>
-            <p>Directeur de la Réforme de la Fonction Publique</p>
+      {loading ? (
+        <p>Chargement des données...</p>
+      ) : ( <div> {dData.map((d) => (
+            <div className="containeres" key={d.id}>
+              <div className="images-containeres">
+                {d.image_url && (
+                  <img
+                    src={`http://localhost:5001${d.image_url}`}
+                    alt="dFOP" className="image-framees"
+                  />
+                )}
+                {/* Cadre de description à droite */}
+        	    <div className="cardes">
+                      <h2>{d.first_name}</h2>
+                      <h3> {d.last_name}</h3>
+                      <p>{d.post}</p>
+		    </div>
+              </div>
+	      {/* Section Description */}
+	      <div className="text-section">
+                  <h1>{d.d_name}</h1>
+		  <div className="underline"></div>
+                       <p> {d.description_1}</p>
+                        <ul>
+                        {d.list_1.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                      {d.description_2 && (
+                        <p>{d.description_2}</p>
+                      )}
+                      {d.list_2.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_2.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                      {d.description_3 && (
+                        <p>{d.description_3}</p>
+                      )}
+                      {d.list_3.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_3.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                </div>
+              </div>
+           
+          ))}
           </div>
-        </div>
-
-        {/* Section Description */}
-        <div className="text-section-drfp">
-          <h1>Direction de la Réforme de la Fonction Publique (DRFP)</h1>
-          <div className="underline-drfp"></div>
-
-          <p>
-            La Direction de la Réforme de la Fonction Publique (DRFP) joue un rôle central dans la modernisation et l'optimisation de la fonction publique. Sa mission principale est d'assurer une gestion efficace, équitable et transparente des ressources humaines dans l'administration publique.
-          </p>
-
-          <p>Les missions de la DRFP incluent :</p>
-          <ul>
-            <li>
-              <i className="fas fa-star"></i> Élaborer et mettre en œuvre des politiques et stratégies de réforme administrative.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Promouvoir l'efficacité et la performance dans la gestion des ressources humaines de l'État.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Réviser les cadres juridiques et réglementaires pour les adapter aux besoins actuels.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Accompagner les administrations dans l'implémentation des réformes structurelles.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Sensibiliser et former les agents publics aux nouvelles réformes.
-            </li>
-          </ul>
-
-          <p>
-            En collaborant avec d'autres directions et partenaires, la DRFP s'efforce de garantir une administration publique compétente, innovante et centrée sur les citoyens.
-          </p>
-        </div>
-      </div>
-
-      <Footer />
-    </div>
+      )}
+      <Footer/> </div>
+      
   );
 };
 
