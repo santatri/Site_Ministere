@@ -1,0 +1,49 @@
+/* Alignement du titre principal */
+.darkblue-title {
+    color: darkblue;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-top: 20px;
+    text-align: left; /* Alignement à gauche */
+}
+
+/* Conteneur global des graphiques */
+.chart-container {
+    width: 45%; /* Ajuste la largeur des graphiques */
+    margin-bottom: 40px;
+}
+
+/* Conteneur des graphiques en colonne */
+.chart-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Alignement du titre de chaque graphique */
+.chart-title,
+.chart-title1,
+.chart-title2,
+.chart-title3 {
+    text-align: left;
+    color: rgb(98, 21, 176);
+    margin-top: 5%;
+    font-size: 1.5rem;
+}
+
+.chart-title1 {
+    color: rgb(15, 12, 51);
+    font-size: 1.1rem;
+}
+
+.chart-title2 {
+    color: rgb(213, 28, 28);
+    font-size: 1.1rem;
+}
+
+.chart-title3 {
+    color: rgb(16, 111, 149);
+    font-size: 1.1rem;
+    margin-top: 3%;
+}

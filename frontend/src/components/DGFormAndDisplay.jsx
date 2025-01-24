@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import '../styles/Dgform.css';
 const DGFormAndDisplay = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -113,7 +113,7 @@ const DGFormAndDisplay = () => {
 
   return (
     <div>
-      <h1>A propos de DGFOP</h1>
+      <h1 className="dfgop">A propos de DGFOP</h1>
       <h2>{isEditMode ? "Modifier le DG" : "Formulaire d'insertion A propos de DGFOP"}</h2>
       <form onSubmit={handleSubmit}>
         <input
