@@ -1,59 +1,99 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import Header from '../components/header';
 import Navbar from '../components/Navbar';
-import dfpaeImage from '../assets/DFPAE.JPG'; // Remplacez par le chemin correct vers l'image
-import '../styles/DfpaePage.css';
+import '../styles/DgfopPage.css';
 import Footer from '../components/Footer';
-import ImagePropos from './Apropos/ImagePropos';
 
-const DfpaePage = () => {
+
+const  DfpaePage = () => {
+  
+    const [dData, setdData] = useState([]); // Stockage des données récupérées
+    const [loading, setLoading] = useState(false); // Gestion du chargement
+  
+    // Récupérer les données depuis le backend
+    const fetchdData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:5001/api/d/DFPAE");
+        setdData(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    // Charger les données au montage du composant
+    useEffect(() => {
+      fetchdData();
+    }, []);
+    
   return ( 
-    <div className="page-container-drpae">
+    <div className="page-container">
       <Header />
       <Navbar />
-     
-      <div className="container-drpae">
-
-        {/* Section Image et Détails */}
-        <div className="images-container-drpae">
-          {/* Image à gauche */}
-          <img src={dfpaeImage} alt="DFPAE" className="image-frame-drpae" />
-
-          {/* Cadre de description à droite */}
-          <div className="card-drpae">
-            <h2>Jean Claude</h2>
-            <h3>ANDRIAMANANA</h3>
-            <p>Directeur de l'Évaluation et de la Promotion de l'Éthique et de la Déontologie</p>
+      {loading ? (
+        <p>Chargement des données...</p>
+      ) : ( <div> {dData.map((d) => (
+            <div className="containeres" key={d.id}>
+              <div className="images-containeres">
+                {d.image_url && (
+                  <img
+                    src={`http://localhost:5001${d.image_url}`}
+                    alt="dFOP" className="image-framees"
+                  />
+                )}
+                {/* Cadre de description à droite */}
+        	    <div className="cardes">
+                      <h2>{d.first_name}</h2>
+                      <h3> {d.last_name}</h3>
+                      <p>{d.post}</p>
+		    </div>
+              </div>
+	      {/* Section Description */}
+	      <div className="text-section">
+                  <h1>{d.d_name}</h1>
+		  <div className="underline"></div>
+                       <p> {d.description_1}</p>
+                        <ul>
+                        {d.list_1.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                      {d.description_2 && (
+                        <p>{d.description_2}</p>
+                      )}
+                      {d.list_2.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_2.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                      {d.description_3 && (
+                        <p>{d.description_3}</p>
+                      )}
+                      {d.list_3.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_3.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                </div>
+              </div>
+           
+          ))}
           </div>
-        </div>
-
-        {/* Section Description */}
-        <div className="text-section-drpae">
-          <h1>Direction de l'Évaluation et de la Promotion de l'Éthique et de la Déontologie (DFPAE)</h1>
-          <div className="underline-drpae"></div>
-
-          <p>
-            La Direction de l'Évaluation et de la Promotion de l'Éthique et de la Déontologie (DFPAE) est un organe central au sein du Ministère du Travail, de l'Emploi et de la Fonction Publique. 
-            Sa vocation première est de promouvoir une culture éthique et déontologique dans l'administration publique afin d'assurer une gouvernance transparente, intègre et orientée vers le service des citoyens.
-          </p>
-
-          <p>
-            La DFPAE se distingue par son rôle d'évaluation continue des pratiques administratives et des réformes en matière d'éthique. Elle s'attache à identifier les défis liés à l'intégrité, au professionnalisme et à la transparence dans la fonction publique, tout en proposant des solutions concrètes pour y remédier.
-          </p>
-
-          <p>
-            Parmi ses objectifs, la DFPAE vise à renforcer la sensibilisation des agents publics aux valeurs éthiques, à développer des mécanismes de suivi et d'évaluation des pratiques déontologiques, et à instaurer des normes élevées en matière de conduite administrative. 
-            Elle œuvre également à l'élaboration de politiques innovantes pour prévenir et lutter contre les comportements non conformes aux principes éthiques.
-          </p>
-
-          <p>
-            Grâce à sa collaboration étroite avec les autres directions du ministère et ses partenaires internationaux, la DFPAE contribue à la modernisation de l'administration publique en mettant en avant l'importance de l'éthique et de la déontologie comme piliers fondamentaux de la bonne gouvernance.
-          </p>
-        </div>
-      </div>
-      <Footer />
-    </div>
+      )}
+      <Footer/> </div>
+      
   );
 };
 

@@ -1,74 +1,99 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import Header from '../components/header';
 import Navbar from '../components/Navbar';
-import depedImage from '../assets/madame.jpg'; // Remplacez par le chemin correct vers l'image
-import '../styles/DepedPage.css';
+import '../styles/DgfopPage.css';
 import Footer from '../components/Footer';
 
 
-const DepedPage = () => {
+const  DepedPage = () => {
+  
+    const [dData, setdData] = useState([]); // Stockage des données récupérées
+    const [loading, setLoading] = useState(false); // Gestion du chargement
+  
+    // Récupérer les données depuis le backend
+    const fetchdData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:5001/api/d/DEPED");
+        setdData(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    // Charger les données au montage du composant
+    useEffect(() => {
+      fetchdData();
+    }, []);
+    
   return ( 
-    <div className="page-container-deped">
+    <div className="page-container">
       <Header />
       <Navbar />
-     
-      <div className="container-deped">
-
-        {/* Section Image et Détails */}
-        <div className="images-container-deped">
-          {/* Image à gauche */}
-          <img src={depedImage} alt="DEPED" className="image-frame-deped" />
-
-          {/* Cadre de description à droite */}
-          <div className="card-deped">
-            <h2>Jean Claude</h2>
-            <h3>ANDRIAMANANA</h3>
-            <p>Directeur de l'Evaluation et de la Promotion de l'Ethique et de la Déontologie</p>
+      {loading ? (
+        <p>Chargement des données...</p>
+      ) : ( <div> {dData.map((d) => (
+            <div className="containeres" key={d.id}>
+              <div className="images-containeres">
+                {d.image_url && (
+                  <img
+                    src={`http://localhost:5001${d.image_url}`}
+                    alt="dFOP" className="image-framees"
+                  />
+                )}
+                {/* Cadre de description à droite */}
+        	    <div className="cardes">
+                      <h2>{d.first_name}</h2>
+                      <h3> {d.last_name}</h3>
+                      <p>{d.post}</p>
+		    </div>
+              </div>
+	      {/* Section Description */}
+	      <div className="text-section">
+                  <h1>{d.d_name}</h1>
+		  <div className="underline"></div>
+                       <p> {d.description_1}</p>
+                        <ul>
+                        {d.list_1.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                      {d.description_2 && (
+                        <p>{d.description_2}</p>
+                      )}
+                      {d.list_2.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_2.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                      {d.description_3 && (
+                        <p>{d.description_3}</p>
+                      )}
+                      {d.list_3.length > 0 && (
+                      
+                     
+                      <ul>
+                        {d.list_3.map((item, index) => (
+                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                        ))}
+                      </ul>
+                       )}
+                </div>
+              </div>
+           
+          ))}
           </div>
-        </div>
-
-        {/* Section Description */}
-        <div className="text-section-deped">
-          <h1>Direction de l'Evaluation et de la Promotion de l'Ethique et de la Déontologie (DEPED)</h1>
-          <div className="underline-deped"></div>
-
-          <p>
-            La Direction de l'Evaluation et de la Promotion de l'Ethique et de la Déontologie (DEPED) joue un rôle crucial au sein du Ministère du Travail, de l'Emploi et de la Fonction Publique. Elle se consacre à la promotion des valeurs éthiques et déontologiques dans la fonction publique.
-          </p>
-
-          <p>
-            Sa mission principale est de renforcer l'intégrité, la transparence et la responsabilité dans l'administration publique à travers des mécanismes d'évaluation et des initiatives de sensibilisation.
-          </p>
-
-          <p>
-            Les missions de la DEPED incluent :
-          </p>
-          <ul>
-            <li>
-              <i className="fas fa-star"></i> Élaborer et mettre en œuvre des politiques d'éthique et de déontologie.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Former et sensibiliser les agents publics aux valeurs éthiques.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Évaluer les pratiques administratives pour garantir le respect des normes déontologiques.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Mettre en place des mécanismes de prévention et de lutte contre la corruption.
-            </li>
-            <li>
-              <i className="fas fa-star"></i> Promouvoir une culture de responsabilité et de transparence dans la gestion publique.
-            </li>
-          </ul>
-
-          <p>
-            En travaillant en synergie avec d'autres directions, la DEPED aspire à instaurer une administration exemplaire qui inspire confiance et respect auprès des citoyens.
-          </p>
-        </div>
-      </div>
-      <Footer />
-    </div>
+      )}
+      <Footer/> </div>
+      
   );
 };
 
