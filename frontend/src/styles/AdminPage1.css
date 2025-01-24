@@ -20,7 +20,7 @@
 
 .log {
   position: relative;
-    width: 100px; /* Ajustez la taille de l'image ici */
+    width: 90px; /* Ajustez la taille de l'image ici */
     height: 85px; /* et les dimensions ici */
 
 }
@@ -31,13 +31,14 @@
  
 .sidebar {
  /* background-image: url('../assets/black21.jpg');*/
-  width: 200px;
-  background-color: #aac0fd38;
-
+  width: 190px;
+  background-color:  #dbf4ff;
+  box-shadow: 0 9px 10px rgb(157, 208, 255); /* Ajoute une ombre subtile */
+  font-family:'Times New Roman', Times, serif;
   display: flex;
   flex-direction: column;
-  border-right: 15px;
- 
+  border-radius: 0 25px 0 0;
+   
   align-items: center;
   padding:0px;
   height: 100vh;
@@ -51,45 +52,49 @@
 }
 
 .menu {
-  width: 90%;
+  width: 80%;
 }
 
 .menu-item {
   width: 90%;
-  padding: 12px;
+  padding: 10px;
  
   margin-bottom: 12px;
   background: none;
   
-  color: rgb(39, 13, 94);
+  color: rgb(11, 22, 149);
   cursor: pointer;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: left;
+  border-radius: 6px;
  
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
+  font-weight: 550;
   transition: all 0.3s ease;
+  
 }
 
 .menu-item.active {
-  background-color:  #121254b3;
+  background: linear-gradient(45deg, #3503ff, #25a2fc);
   color: white;
 }
 
 .menu-item:hover {
-  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  background: linear-gradient(45deg, #7009ff, #2575fc);
   color: white;
 }
 .section-header h2{
+  margin-top: 3%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  color: #6a11cb;
+  font-size: 1.2rem;
+  color: #410413;
 }
 .users-section h3{
-  color: #6a11cb;
-  font-size: 14px;
+  color: #030109;
+  font-size: 13px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -97,45 +102,58 @@
   
   flex: 1;
   margin: 0px;
-  padding: 30px;
-  background-color: #f8fafb;
+  padding: 29px;
+  background-color: #ffffff;
   overflow-y: auto;
   transition: padding 0.3s ease;
 }
 
-.message {
-  color: rgb(213, 136, 12);
-  margin-bottom: 10px;
+.messagess {
+  color: rgb(0, 170, 255);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 table {
-  width: 100%;
+  width: 70%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 30px 0;
+
 
 }
-
+.messages{
+  color: orangered;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+}
 table th{
-  padding: 10px;
-  border: 2px solid #ffffff;
+  padding: 7px
+  ;
+  border: 3px solid #ffffff;
 } table td {
-  border: 2px solid #fffbfb;
-  font-size: 12px; 
-  padding: 2px;
+  border: 1px solid #f4f4ff;
+  font-size: 10px;
+  font-weight: bold; 
+
+  padding: 0px;
+  box-shadow:  0 10px 30px rgba(255, 255, 255, 0.907); /* Ajoute une ombre subtile */
   text-align: center;
+  
 }
 
 table th {
-  background-color:#d1e5fd;
-  color: rgb(3, 3, 3);
-  font-size: 12px; 
-  font-family: Arial, Helvetica, sans-serif;
+  background-color:#f2faff;
+  color: rgb(15, 27, 253);
+  font-size: 12.2px;
+  font-weight: bold; 
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 table tr:nth-child(even) {
-  background-color: #ffffff;
+  background-color: #fbfafa;
+
 }
 
 table tr:hover {
@@ -146,48 +164,53 @@ button {
   padding: 8px 15px;
   margin: 7px;
   border: none;
-  border-radius: 5px;
+ 
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 12px; /* Pour assurer que la taille est cohérente sur tous les écrans */
 }
 
 .btn-validate {
-  background-color: #2bc720; /* Vert */
-  color: white;
-  font-size: 12px;
+  background-color: #ffffff; /* Vert */
+  
+  color: rgb(63, 255, 92);
+  font-size: 17px;
 }
 
 .btn-validate:hover {
   font-size: 11px;
-  background-color: #218838; /* Couleur plus foncée au survol */
+  background-color: #ffffff; /* Couleur plus foncée au survol */
 }
 
 .btn-delete {
-  background-color: #dc3545; /* Rouge */
-  color: white;
-  font-size: 12px;
+  border-radius: 0%;
+  border-radius: 10%;
+  background-color: #ffffff; /* Rouge */
+  color: rgb(254, 6, 6);
+  font-size: 17px;
 }
 
 .btn-delete:hover {
-  background-color: #c82333;
+  background-color: #ffffff;
   font-size: 12px; /* Couleur plus foncée au survol */
 }
 
 .btn-edit {
-  background-color: #0779aa; /* Bleu */
-  color: white;
-  font-size: 12px;
+  background-color: #ffffff ; /* Bleu */
+  color: rgb(0, 47, 255);
+  font-size: 17px;
 }
 
 .btn-edit:hover {
-  background-color: #1600d9; /* Couleur plus foncée au survol */
+  background-color:#ffffff; /* Couleur plus foncée au survol */
 }
 
 .btn-save {
-  background-color: #ffc107; /* Jaune */
-  color: rgb(60, 68, 123);
-  font-size: 12px;
+  background-color: #dba80e; /* Jaune */
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  border-radius: 7px;
+ 
 }
 
 .btn-save:hover {
@@ -195,9 +218,10 @@ button {
 }
 
 .btn-cancel {
-  background-color: #6c757d; /* Gris */
+  background-color: #6c757dd1; /* Gris */
   color: white;
-  font-size: 12px;
+  font-size: 13px;
+  border-radius: 7px;
 }
 
 .btn-cancel:hover {
@@ -217,10 +241,10 @@ button {
 
 .search-input {
   font-size: 12px;
-  padding: 10px;
+  padding: 12px;
   margin-top: 1%;
-  border-color: #34bef9;
-  margin-right: 10px;
+  border-color: #0c1414;
+  margin-right: 5px;
    
   border-radius: 10px;
   width: 100%; /* Permet à l'input de s'étendre sur l'écran */
@@ -229,22 +253,24 @@ button {
 
 .search-button {
   padding: 13px 19px;
-  background-color: rgb(31, 181, 204);
+  background-color: rgb(101, 12, 255);
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 12px;
+  margin-top: 1.4%;
+  font-size: 13px;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .search-button:hover {
-  background-color: #b63108;
+  background-color: #5910f6;
 }
 
 .logout-button {
   display: flex;
   align-items: center;
-  background-color:#0c0352;
+  background-color:#1e2cf1;
   font-family: 'Times New Roman', Times, serif;
   color: white;
   border: none;

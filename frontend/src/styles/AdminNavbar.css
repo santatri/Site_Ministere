@@ -1,9 +1,10 @@
 /* AdminNavbar.css */
 .admin-navbar {
-    background-color: #06063e; /* Couleur de fond de la navbar */
+    background-color: #ffffff; /* Couleur de fond de la navbar */
     padding: 5px;
     margin-top: -2.5%;
     margin-left: -3.5%;
+    box-shadow: 0 4px 20px rgba(87, 210, 255, 0.504); /* Ajoute une ombre subtile */
   
     width: 105%;
 
@@ -17,19 +18,20 @@
   }
   
   .navbar-left {
-    font-size: 10px;
-    color: #f2fefe; /* Bordure cyan */
+    font-size: 28px;
+    color: #0c0521; /* Bordure cyan */
     padding-left: 30px;
   }
   
   .navbar-title {
     font-weight: bold;
-    font-size: 11px;
+    font-size: 13px;
   }
   
   .navbar-right {
     display: flex;
-    font-size: 11px;
+    font-weight: bold;
+    font-size: 13px;
     color: #021a1a;
     align-items: center;
     gap: 20px; /* Espacement entre l'image et le texte */
@@ -54,8 +56,8 @@
   }
   
   .user-name {
-    color: #f6ffff; /* Bordure cyan */
+    color: #101111; /* Bordure cyan */
     font-weight: bold;
-    font-size: 11px;
+    font-size: 13px;
   }
   

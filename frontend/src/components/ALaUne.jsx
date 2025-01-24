@@ -81,10 +81,17 @@ const ALaUne = () => {
       setMessage('Erreur lors de la suppression.');
     }
   };
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    return date.toLocaleDateString('fr-FR', options);
+  };
+  
 
   return (
     <div className="container">
-      <h1 className="title">À la Une</h1>
+      <h1 className='Gestion'>Gestion à la une</h1>
+      <h2 className="titre "> Insertion à la Une</h2>
       {message && <p className="message">{message}</p>}
 
       <form onSubmit={handleSubmit} className="form">
@@ -110,9 +117,12 @@ const ALaUne = () => {
       </form>
 
       <div className="elements-container">
+      
         {elements.map((element) => (
           <div key={element.id} className="element-card">
+           
             <h3 className="element-title">{element.titre}</h3>
+            
             <p className="element-description">{element.description}</p>
 
             {element.image && (

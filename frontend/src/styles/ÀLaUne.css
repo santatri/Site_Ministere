@@ -1,16 +1,26 @@
 .container {
   padding: 10px;
-    margin: 20px;
+    margin: 0px;
     transition: transform 0.9s ease, box-shadow 0.3s ease;
 
     
 
 }
+.Gestion {
+  color: #0520d1;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  margin-left: -1.8%;
 
-.title {
-  color: #6a11cb;
 
-  font-size: 14px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.titre {
+  color: #0e219e;
+  margin-bottom: 20px;
+  margin-left: 0%;
+  font-size: 1rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -24,26 +34,32 @@
   margin-bottom: 15px;
     font-size: 13px;
     padding: 10px 20px;
-    border: 1px solid #82828455;
+    border: 3px solid #078dafb8;
     border-radius: 10px; 
 }
 .form input {
-  margin-bottom: 15px;
-  font-size: 13px;
-  padding: 10px 20px;
-  border: 1px solid #82828455;
-  border-radius: 5px;   
+  margin-bottom: 2px;
+
+
+  font-size: 0.78rem;
+  border: 1px solid #bbc1ca55;
+  color: #152536;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding: 15px 20px;
+    border: 1px solid #bbc1ca55;
+    border-radius: 5px;   
 }
 .form textarea {
   margin-bottom: 15px;
   padding: 10px 10px;
-
-  font-size: 13px;
+  font-size: 0.85rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: left;
   justify-content: center;
   align-items: start;
-
-  border: 1px solid #b9c4cf55;
+font-weight: bold;
+  border: 1px solid #bbc1ca55;
   border-radius: 5px;
 }
 .submit-button {
@@ -51,11 +67,12 @@
   max-width: 180px;
   padding: 12px 20px;
   margin-top: 0px;
-  background-color:   #025ce2b8;
+  background-color:   #025ce2f2;
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  margin-left: -0.1%;
   cursor: pointer;
   text-align: center;
   transition: background 0.3s ease;
