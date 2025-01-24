@@ -1,78 +1,83 @@
 .container {
   padding: 10px;
-    margin: 0px;
-    transition: transform 0.9s ease, box-shadow 0.3s ease;
-
-    
-
+  margin: 0;
+  transition: transform 0.9s ease, box-shadow 0.3s ease;
 }
+
 .Gestion {
+  margin-left: -1.6%;
   color: #0520d1;
   font-size: 1.3rem;
   margin-bottom: 10px;
-  margin-left: -1.8%;
-
-
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: left; /* Alignement à gauche */
 }
 
 .titre {
+  margin-top: -1%;
   color: #0e219e;
   margin-bottom: 20px;
-  margin-left: 0%;
   font-size: 1rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: left; /* Alignement à gauche */
 }
 
 .message {
   color: green;
   font-weight: bold;
   margin-bottom: 15px;
+  text-align: left; /* Alignement à gauche */
 }
 
 .form {
   margin-bottom: 15px;
-    font-size: 13px;
-    padding: 10px 20px;
-    border: 3px solid #078dafb8;
-    border-radius: 10px; 
+  font-size: 13px;
+  padding: 10px 20px;
+  border: 3px solid #b8eefc9b;
+  border-radius: 10px;
+  text-align: left; /* Alignement à gauche */
 }
+
 .form input {
-  margin-bottom: 2px;
-
-
-  font-size: 0.78rem;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
   border: 1px solid #bbc1ca55;
   color: #152536;
-font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
-    padding: 15px 20px;
-    border: 1px solid #bbc1ca55;
-    border-radius: 5px;   
-}
-.form textarea {
-  margin-bottom: 15px;
-  padding: 10px 10px;
-  font-size: 0.85rem;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  text-align: left;
-  justify-content: center;
-  align-items: start;
-font-weight: bold;
-  border: 1px solid #bbc1ca55;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  padding: 10px 15px;
   border-radius: 5px;
 }
+.form textarea {
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  border: 1px solid #bbc1ca55;
+  color: #152536;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+.titra{
+  margin-top: 3%;
+  color: #0e219e;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: left; /* Alignement à gauche */
+}
+
 .submit-button {
   width: 100%;
   max-width: 180px;
-  padding: 12px 20px;
-  margin-top: 0px;
-  background-color:   #025ce2f2;
+  padding: 10px 15px;
+  margin-top: 0;
+  background-color: #025ce2f2;
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 0.75rem;
   margin-left: -0.1%;
+  font-size: 0.85rem;
   cursor: pointer;
   text-align: center;
   transition: background 0.3s ease;
@@ -90,32 +95,42 @@ font-weight: bold;
 }
 
 .element-card {
-  background: #f9f9f9;
-  border: 2px solid #ddd;
+  background: #011949;
+  border: 2px solid #f1f0f0;
   border-radius: 10px;
   padding: 20px;
   width: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start; /* Alignement des éléments à gauche */
+  text-align: left; /* Alignement du texte à gauche */
 }
 
 .element-title {
-  font-size: 1rem;
-  color: #6a11cb;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
+.element-description {
+  font-size: 13px;
+  font-family: 'Times New Roman', Times, serif;
+  color: #e1e1e1;
+  line-height: 1.5;
+  text-align: left; /* Alignement à gauche */
+}
+
 .element-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 1px;
   margin: 10px 0;
 }
 
 .element-card button {
-  margin: 5px;
+  margin: 5px 5px 5px 0; /* Espacement entre les boutons */
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -126,32 +141,58 @@ font-weight: bold;
 }
 
 .element-card button:first-of-type {
-  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  background: linear-gradient(45deg, #0080ff, #00bfff);
 }
 
 .element-card button:first-of-type:hover {
-  background: linear-gradient(45deg, #00bfff, #1e90ff);
+  background: linear-gradient(45deg, #3300ff, #1e90ff);
 }
 
 .element-card button:last-of-type {
-  background: linear-gradient(45deg, #ff4500, #ff6347);
+  background: linear-gradient(45deg, #ff4500, #c02308);
 }
 
 .element-card button:last-of-type:hover {
   background: linear-gradient(45deg, #ff6347, #ff4500);
 }
-.element-image {
-  width: 100%; /* L'image occupe toute la largeur du cadre */
-  height: 200px; /* Hauteur fixe pour un rendu carré */
-  object-fit: cover; /* Remplissage proportionnel avec recadrage */
-  border-radius: 5px; /* Optionnel : coins arrondis */
-  margin: 10px 0;
+
+.element-card .buttons-container {
+  display: flex; /* Disposition horizontale des boutons */
+  gap: 10px; /* Espacement entre les boutons */
 }
-.element-description {
-  max-width: 100%;
-  font-size: 13px; /* Réduit la largeur du texte à 80% du cadre */
-  margin: 0 auto; /* Centre le texte horizontalement */
-  text-align: center; /* Optionnel : Centre le texte à l'intérieur */
-  color: #555; /* Couleur du texte pour plus de lisibilité */
-  line-height: 1.5; /* Ajoute de l'espacement entre les lignes */
+/* Style pour la barre de recherche */
+.searches-bare {
+  width: 70%;
+  max-width: 500px;
+  padding: 10px 15px;
+  margin: 20px auto;
+  margin-top: -0.9%;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #d3d3d3;
+  color: rgb(22, 22, 12);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au focus */
+.searches-bare:focus {
+  border-color: #100c12; /* Couleur violette pour le focus */
+  box-shadow: 10 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Placeholder stylisé */
+.searches-bare::placeholder {
+  color: #aaa;
+  font-style:normal;
+}
+
+/* Design responsive */
+@media (max-width: 768px) {
+  .searches-bare {
+    width: 90%;
+    font-size: 14px;
+  }
 }
