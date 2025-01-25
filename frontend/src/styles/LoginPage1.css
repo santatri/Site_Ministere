@@ -6,7 +6,7 @@
 
   height: 100vh; /* Assure que le conteneur prend toute la hauteur de l'écran */
  
-
+  
   
   padding:0px; /* Retire les marges ou espaces inutiles */
    
@@ -35,6 +35,7 @@
   flex-direction: row;
   width: 50%;
   max-width: 1000px;
+
   background: #ffffff;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 25px 25px;
@@ -58,7 +59,7 @@
 .login-form {
   
   flex: 1;
-  padding: 25px 10px;
+  padding: 35px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -2,8 +2,8 @@
 .welcome-page {
   font-family: Arial, sans-serif;
   position: relative;
-  background: linear-gradient(444deg, rgba(3, 23, 82, 0.818), rgb(7, 171, 236),rgb(238, 247, 255),rgb(18, 156, 211), rgba(3, 30, 109, 0.633)), 
-  url('../assets/2.jpg') ; 
+  background: linear-gradient(444deg, rgb(3, 23, 82), rgb(7, 171, 236),rgb(238, 247, 255),rgb(18, 156, 211), rgb(3, 30, 109)), 
+  url('../assets/3.jpg') ; 
   display: flex;
   justify-content: center;
   margin-left: 0%;

@@ -202,7 +202,7 @@ const Donne = () => {
           <button className="back-button" onClick={handleBackToList}>
             Retour à la service
           </button>
-          <h2 className="details-title">Détail du Service</h2>
+        
           <div className="service-content">
             {/* Colonne gauche */}
             <div className="service-left">
@@ -210,7 +210,7 @@ const Donne = () => {
                 <h3>{serviceDetails.nom_service}</h3>
               </div>
               <div className="service-description-box">
-                <p>{serviceDetails.description || "Description indisponible."}</p>
+            
               </div>
               <div className="service-dossier-box">
                 <h4>Documents à fournir</h4>

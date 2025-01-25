@@ -1,0 +1,208 @@
+/* Styles pour le conteneur principal */
+.dform-container {
+ 
+ 
+  padding: 20px;
+  margin-top: 2%;
+  width: 100%;
+  margin-top: 3%;
+
+ 
+  font-family: 'Arial', sans-serif;
+}
+
+/* Titre principal */
+.dform-container h1 {
+ 
+  font-size: 2rem;
+  text-align: left;  /* Aligné à gauche */
+  margin-bottom: 20px;
+  color: #022e61;
+  font-weight: bold;
+  margin-left: 4.5%;
+}
+
+/* Sous-titre */
+
+.dform-title h2{
+color: #0f74e8;
+}
+.dform-container h2{
+  font-weight: bold;
+  margin-left: 6%;
+  margin-top: -1%;
+ 
+  font-size: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  color: #bd0e0e;}
+
+/* Formulaire */
+.dform-container form {
+  margin-left: 6%;
+  margin-top: 2%;
+  display: flex;
+  max-width: 830px;
+  flex-direction: column;
+  gap: 25px;
+  background: #fefefe;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(8, 30, 33, 0.1);
+  margin-bottom: 40px;
+}
+
+/* Champs de texte et textarea */
+.dform-container input[type="text"]{
+  width: calc(100% - 0rem);
+    padding: 0.8rem;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    font-size: 0.7rem;
+}
+.dform-container textarea{
+   width: calc(98.5% - 1rem); /* Même largeur que les autres champs */
+        padding: 0.8rem;
+        border: 1px solid #ececec;
+        border-radius: 10px;
+        font-size: 0.8rem;
+        resize: none;
+}
+.dform-container input[type="file"] {
+  width: 99.5%;
+  padding: 12px;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  background: #f9f9f9;
+}
+
+/* Alignement du texte dans les champs de texte */
+.dform-container input[type="text"]:focus,
+.dform-container textarea:focus {
+  border-color: #4a90e2;
+  outline: none;
+  background: #fff;
+  text-align: left; /* Aligné à gauche */
+}
+
+/* Boutons */
+.dform-container button {
+  background: linear-gradient(to right, #3203cb, #805ad5);
+  color: #fff;
+  width: calc(100% - 1rem);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.70rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center; /* Assurez-vous que le texte dans le bouton est centré */
+}
+
+.dform-container button:hover {
+  background: linear-gradient(to right, #357ab8, #1b0173);
+}
+
+/* Liste des éléments */
+.dform-list {
+  margin-top: 20px;
+  display: flex;  
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+.dform-list-title{
+  color: #f11616;
+}
+
+/* Élément individuel */
+.dform-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligner à gauche */
+  background: #fff;
+  border: 1px solid #f1f1f1;
+  border-radius: 15px;
+  padding: 22px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 230px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left; /* Aligné à gauche */
+}
+
+.dform-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image */
+.dform-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #f5f5f5;
+  margin-bottom: 15px;
+}
+
+/* Contenu texte */
+.dform-item-content h3 {
+  font-size: 1.2rem;
+  color: #013877;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left; /* Aligné à gauche */
+}
+
+.dform-item-content p {
+  font-size: 0.8rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #555;
+  margin-bottom: 10px;
+  text-align: left; /* Aligné à gauche */
+}
+
+.dform-item-content ul {
+  list-style-type: disc;
+  margin: 10px 0;
+  padding-left: 20px;
+  text-align: left; /* Aligné à gauche */
+}
+
+.dform-item-content ul li {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Boutons dans les cadres */
+.dform-item button {
+  margin-top: auto;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.dform-edit {
+  background-color: #4caf50;
+  color: white;
+  margin-top: 10px;
+}
+
+.dform-edit:hover {
+  background-color: #3d8c41;
+}
+
+.dform-delete {
+  background-color: #f15b5b;
+  color: white;
+  margin-top: 10px;
+}
+
+.dform-delete:hover {
+  background-color: #d44a4a;
+}

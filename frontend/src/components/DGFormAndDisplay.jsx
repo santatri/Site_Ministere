@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import '../styles/Dgform.css';
+import '../styles/Dform.css';
+
 const DGFormAndDisplay = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     dgName: "",
-    post: "",  // Ajout du champ post
+    post: "",
     description_1: "",
     list_1: "",
     description_2: "",
@@ -16,11 +17,10 @@ const DGFormAndDisplay = () => {
     image: null,
   });
 
-  const [dgData, setDgData] = useState([]); // Stockage des données récupérées
-  const [loading, setLoading] = useState(false); // Gestion du chargement
-  const [isEditMode, setIsEditMode] = useState(false); // Nouveau état pour gérer le mode édition
+  const [dgData, setDgData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
-  // Récupérer les données depuis le backend
   const fetchDGData = async () => {
     setLoading(true);
     try {
@@ -33,12 +33,10 @@ const DGFormAndDisplay = () => {
     }
   };
 
-  // Charger les données au montage du composant
   useEffect(() => {
     fetchDGData();
   }, []);
 
-  // Gérer les changements dans le formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -47,10 +45,10 @@ const DGFormAndDisplay = () => {
   const handleFileChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] });
   };
-  
+
   const handleEdit = (dg) => {
     setFormData({
-      id: dg.id, // Charger l'ID du DG
+      id: dg.id,
       firstName: dg.first_name,
       lastName: dg.last_name,
       dgName: dg.dg_name,
@@ -61,11 +59,11 @@ const DGFormAndDisplay = () => {
       list_2: dg.list_2.join(","),
       description_3: dg.description_3 || "",
       list_3: dg.list_3.join(","),
-      image: null, // Ne pas recharger l'image
+      image: null,
     });
-    setIsEditMode(true); // Passer en mode édition
+    setIsEditMode(true);
   };
-  // Soumettre le formulaire
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -75,8 +73,8 @@ const DGFormAndDisplay = () => {
 
     try {
       const url = isEditMode
-        ? `http://localhost:5001/api/dg/${formData.id}` // Route PUT pour mise à jour
-        : "http://localhost:5001/api/dg"; // Route POST pour ajout
+        ? `http://localhost:5001/api/dg/${formData.id}`
+        : "http://localhost:5001/api/dg";
       const method = isEditMode ? "put" : "post";
 
       await axios[method](url, data);
@@ -85,7 +83,7 @@ const DGFormAndDisplay = () => {
         firstName: "",
         lastName: "",
         dgName: "",
-        post: "",  // Réinitialiser le champ post
+        post: "",
         description_1: "",
         list_1: "",
         description_2: "",
@@ -93,8 +91,8 @@ const DGFormAndDisplay = () => {
         description_3: "",
         list_3: "",
         image: null,
-      }); // Réinitialiser le formulaire
-      fetchDGData(); // Rafraîchir les données affichées
+      });
+      fetchDGData();
     } catch (error) {
       console.error("Erreur lors de l'envoi des informations :", error);
     }
@@ -104,7 +102,7 @@ const DGFormAndDisplay = () => {
     if (window.confirm("Voulez-vous vraiment supprimer ce DG ?")) {
       try {
         await axios.delete(`http://localhost:5001/api/dg/${id}`);
-        fetchDGData(); // Rafraîchir les données après la suppression
+        fetchDGData();
       } catch (error) {
         console.error("Erreur lors de la suppression :", error);
       }
@@ -112,11 +110,14 @@ const DGFormAndDisplay = () => {
   };
 
   return (
-    <div>
-      <h1 className="dfgop">A propos de DGFOP</h1>
-      <h2>{isEditMode ? "Modifier le DG" : "Formulaire d'insertion A propos de DGFOP"}</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="dgform-container">
+      <h1 className="dgform-title">A propos de DGFOP</h1>
+      <h2 className="dgform-subtitle">
+        {isEditMode ? "Modifier le DG" : "Formulaire d'insertion A propos de DGFOP"}
+      </h2>
+      <form onSubmit={handleSubmit} className="dgform-form">
         <input
+          className="dgform-input"
           type="text"
           name="firstName"
           placeholder="Prénom"
@@ -125,6 +126,7 @@ const DGFormAndDisplay = () => {
           required
         />
         <input
+          className="dgform-input"
           type="text"
           name="lastName"
           placeholder="Nom"
@@ -133,6 +135,7 @@ const DGFormAndDisplay = () => {
           required
         />
         <input
+          className="dgform-input"
           type="text"
           name="dgName"
           placeholder="Nom de la DG"
@@ -141,14 +144,16 @@ const DGFormAndDisplay = () => {
           required
         />
         <input
+          className="dgform-input"
           type="text"
           name="post"
-          placeholder="Poste"  // Nouveau champ
+          placeholder="Poste"
           value={formData.post}
           onChange={handleChange}
           required
         />
         <textarea
+          className="dgform-textarea"
           name="description_1"
           placeholder="Description 1"
           value={formData.description_1}
@@ -156,6 +161,7 @@ const DGFormAndDisplay = () => {
           required
         ></textarea>
         <input
+          className="dgform-input"
           type="text"
           name="list_1"
           placeholder="Liste 1 (séparée par des virgules)"
@@ -164,12 +170,14 @@ const DGFormAndDisplay = () => {
           required
         />
         <textarea
+          className="dgform-textarea"
           name="description_2"
           placeholder="Description 2 (optionnel)"
           value={formData.description_2}
           onChange={handleChange}
         ></textarea>
         <input
+          className="dgform-input"
           type="text"
           name="list_2"
           placeholder="Liste 2 (optionnel)"
@@ -177,46 +185,51 @@ const DGFormAndDisplay = () => {
           onChange={handleChange}
         />
         <textarea
+          className="dgform-textarea"
           name="description_3"
           placeholder="Description 3 (optionnel)"
           value={formData.description_3}
           onChange={handleChange}
         ></textarea>
         <input
+          className="dgform-input"
           type="text"
           name="list_3"
           placeholder="Liste 3 (optionnel)"
           value={formData.list_3}
           onChange={handleChange}
         />
-        <input type="file" name="image" onChange={handleFileChange} />
-        <button type="submit">Enregistrer</button>
+        <input
+         
+          type="file"
+          name="image"
+          onChange={handleFileChange}
+        />
+        <button className="dgform-button" type="submit">
+          {isEditMode ? "Mettre à jour" : "Enregistrer"}
+        </button>
       </form>
 
-      <h2>Liste des DG</h2>
+      <h2 className="dgform-section-title">Liste des DG</h2>
       {loading ? (
-        <p>Chargement des données...</p>
+        <p className="dgform-loading">Chargement des données...</p>
       ) : (
-        <div>
+        <div className="dgform-list">
           {dgData.map((dg) => (
-            <div key={dg.id} style={{ marginBottom: "20px" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
+            <div key={dg.id} className="dgform-item">
+              <div className="dgform-item-content">
                 {dg.image_url && (
                   <img
                     src={`http://localhost:5001${dg.image_url}`}
                     alt="Image du DG"
-                    style={{
-                      maxWidth: "150px",
-                      marginRight: "20px",
-                      borderRadius: "10px",
-                    }}
+                    className="dgform-item-image"
                   />
                 )}
                 <div>
-                  <h3>{dg.dg_name}</h3>
+                  <h3 className="dgform-item-title">{dg.dg_name}</h3>
                   <p><strong>Prénom :</strong> {dg.first_name}</p>
                   <p><strong>Nom :</strong> {dg.last_name}</p>
-                  <p><strong>Poste :</strong> {dg.post}</p>  {/* Affichage du champ post */}
+                  <p><strong>Poste :</strong> {dg.post}</p>
                   <p><strong>Description 1 :</strong> {dg.description_1}</p>
                   <p><strong>Liste 1 :</strong></p>
                   <ul>
@@ -224,35 +237,21 @@ const DGFormAndDisplay = () => {
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
-                  {dg.description_2 && (
-                    <p><strong>Description 2 :</strong> {dg.description_2}</p>
-                  )}
-                  {dg.list_2.length > 0 && (
-                    <p><strong>Liste 2 :</strong></p>
-                  )}
-                  <ul>
-                    {dg.list_2.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                  {dg.description_3 && (
-                    <p><strong>Description 3 :</strong> {dg.description_3}</p>
-                  )}
-                  {dg.list_3.length > 0 && (
-                    <p><strong>Liste 3 :</strong></p>
-                  )}
-                  <ul>
-                    {dg.list_3.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
                 </div>
-                
               </div>
-              <button onClick={() => handleEdit(dg)}>Modifier</button>
-              <button onClick={() => handleDelete(dg.id)}>Supprimer</button>
+              <button
+                className="dgform-button-edit"
+                onClick={() => handleEdit(dg)}
+              >
+                Modifier
+              </button>
+              <button
+                className="dgform-button-delete"
+                onClick={() => handleDelete(dg.id)}
+              >
+                Supprimer
+              </button>
             </div>
-            
           ))}
         </div>
       )}

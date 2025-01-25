@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Message from './Message';
+
 const CadreContact = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -168,9 +168,6 @@ const CadreContact = () => {
         </div>
       </form>
 
-      <div>
-        <Message/>
-      </div>
     </div>
   );
 };

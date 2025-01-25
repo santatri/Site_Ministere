@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './message.css';
+import '../../styles/Message.css';
 
 const Message = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [searchText, setSearchText] = useState('');
+  const [searchDate, setSearchDate] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const messagesPerPage = 5;
 
   // Fonction pour récupérer les messages
   const fetchMessages = async () => {
@@ -20,21 +24,26 @@ const Message = () => {
     }
   };
 
-  // Utilisation de useEffect pour charger les messages au montage
+  // Filtrer les messages en fonction de la recherche
+  const filteredMessages = messages.filter((msg) => {
+    const matchesText =
+      searchText === '' ||
+      msg.subject.toLowerCase().includes(searchText.toLowerCase()) ||
+      msg.message.toLowerCase().includes(searchText.toLowerCase());
+    const matchesDate =
+      searchDate === '' || new Date(msg.created_at).toISOString().split('T')[0] === searchDate;
+    return matchesText && matchesDate;
+  });
+
+  // Pagination
+  const indexOfLastMessage = currentPage * messagesPerPage;
+  const indexOfFirstMessage = indexOfLastMessage - messagesPerPage;
+  const currentMessages = filteredMessages.slice(indexOfFirstMessage, indexOfLastMessage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     fetchMessages();
-
-    const handleMessageAdded = () => {
-      fetchMessages(); // Recharge les messages lorsque l'événement est déclenché
-    };
-
-    // Écoute l'événement 'messageAdded'
-    window.addEventListener('messageAdded', handleMessageAdded);
-
-    // Nettoyage de l'écouteur d'événement au démontage du composant
-    return () => {
-      window.removeEventListener('messageAdded', handleMessageAdded);
-    };
   }, []);
 
   if (loading) {
@@ -45,12 +54,39 @@ const Message = () => {
     return <p style={{ color: 'red' }}>{error}</p>;
   }
 
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(filteredMessages.length / messagesPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="w3-container w3-padding-64">
-      <h1 className="w3-center w3-text-dark-grey">Messages reçus</h1>
-      {messages.length > 0 ? (
-        <div className="w3-margin-top message-container">
-          {messages.map((msg) => (
+      {/* Grand titre */}
+      <h1 className="main-title">Gestion de tous les messages</h1>
+
+      {/* Texte Messages reçus */}
+      <h2 className="messages-title">Messages reçus</h2>
+
+      {/* Barre de recherche */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Rechercher par texte"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <input
+          type="date"
+          value={searchDate}
+          onChange={(e) => setSearchDate(e.target.value)}
+        />
+        <button onClick={fetchMessages}>Rechercher</button>
+      </div>
+
+      {/* Affichage des messages */}
+      {currentMessages.length > 0 ? (
+        <div className="message-container">
+          {currentMessages.map((msg) => (
             <div key={msg.id} className="message-bubble">
               <p className="message-email">{msg.email || 'Anonyme'}</p>
               <div className="message-content">
@@ -64,8 +100,33 @@ const Message = () => {
           ))}
         </div>
       ) : (
-        <p className="w3-text-grey w3-center">Aucun message pour le moment.</p>
+        <p className="w3-text-grey w3-center">Aucun message ne correspond à votre recherche.</p>
       )}
+
+      {/* Pagination */}
+      <div className="pagination">
+        <button
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Précédent
+        </button>
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => paginate(number)}
+            className={currentPage === number ? 'active' : ''}
+          >
+            {number}
+          </button>
+        ))}
+        <button
+          onClick={() => paginate(currentPage + 1)}
+          disabled={currentPage === pageNumbers.length}
+        >
+          Suivant
+        </button>
+      </div>
     </div>
   );
 };

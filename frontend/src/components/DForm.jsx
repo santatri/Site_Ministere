@@ -1,12 +1,14 @@
+// DForm.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../styles/DgformStyle.css"; // Importer le fichier CSS
 
 const DForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     dName: "",
-    post: "",  // Ajout du champ post
+    post: "",
     description_1: "",
     list_1: "",
     description_2: "",
@@ -16,11 +18,11 @@ const DForm = () => {
     image: null,
   });
 
-  const [dData, setdData] = useState([]); // Stockage des données récupérées
-  const [loading, setLoading] = useState(false); // Gestion du chargement
-  const [isEditMode, setIsEditMode] = useState(false); // Nouveau état pour gérer le mode édition
+  const [dData, setdData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
-  // Récupérer les données depuis le backend
+  // Fonction pour récupérer les données
   const fetchdData = async () => {
     setLoading(true);
     try {
@@ -33,12 +35,10 @@ const DForm = () => {
     }
   };
 
-  // Charger les données au montage du composant
   useEffect(() => {
     fetchdData();
   }, []);
 
-  // Gérer les changements dans le formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -47,10 +47,10 @@ const DForm = () => {
   const handleFileChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] });
   };
-  
+
   const handleEdit = (d) => {
     setFormData({
-      id: d.id, // Charger l'ID du d
+      id: d.id,
       firstName: d.first_name,
       lastName: d.last_name,
       dName: d.d_name,
@@ -61,31 +61,39 @@ const DForm = () => {
       list_2: d.list_2.join(","),
       description_3: d.description_3 || "",
       list_3: d.list_3.join(","),
-      image: null, // Ne pas recharger l'image
+      image: null,
     });
-    setIsEditMode(true); // Passer en mode édition
+    setIsEditMode(true);
   };
-  // Soumettre le formulaire
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
-      data.append(key, formData[key]);
+      if (key === "image" && formData[key] instanceof File) {
+        data.append(key, formData[key]);
+      } else {
+        data.append(key, formData[key]);
+      }
     });
 
     try {
       const url = isEditMode
-        ? `http://localhost:5001/api/d/${formData.id}` // Route PUT pour mise à jour
-        : "http://localhost:5001/api/d"; // Route POST pour ajout
+        ? `http://localhost:5001/api/d/${formData.id}`
+        : "http://localhost:5001/api/d";
       const method = isEditMode ? "put" : "post";
 
       await axios[method](url, data);
-      alert(isEditMode ? "d mis à jour avec succès !" : "Informations envoyées avec succès !");
+      alert(
+        isEditMode
+          ? "Direction mise à jour avec succès !"
+          : "Direction ajoutée avec succès !"
+      );
       setFormData({
         firstName: "",
         lastName: "",
         dName: "",
-        post: "",  // Réinitialiser le champ post
+        post: "",
         description_1: "",
         list_1: "",
         description_2: "",
@@ -93,18 +101,19 @@ const DForm = () => {
         description_3: "",
         list_3: "",
         image: null,
-      }); // Réinitialiser le formulaire
-      fetchdData(); // Rafraîchir les données affichées
+      });
+      fetchdData();
+      setIsEditMode(false);
     } catch (error) {
       console.error("Erreur lors de l'envoi des informations :", error);
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Voulez-vous vraiment supprimer ce d ?")) {
+    if (window.confirm("Voulez-vous vraiment supprimer cette Direction ?")) {
       try {
         await axios.delete(`http://localhost:5001/api/d/${id}`);
-        fetchdData(); // Rafraîchir les données après la suppression
+        fetchdData();
       } catch (error) {
         console.error("Erreur lors de la suppression :", error);
       }
@@ -112,10 +121,14 @@ const DForm = () => {
   };
 
   return (
-    <div>
-      <h1>A propos de dFOP</h1>
-      <h2>{isEditMode ? "Modifier le d" : "Formulaire d'insertion A propos de dFOP"}</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="dform-container">
+      <h1 className="dform-title">A propos de toutes les Directions</h1>
+      <h2 className="dgform-subtitle">
+        {isEditMode
+          ? "Modifier la Direction"
+          : "Formulaire d'insertion à propos de la Direction"}
+      </h2>
+      <form onSubmit={handleSubmit} className="dform-form">
         <input
           type="text"
           name="firstName"
@@ -135,7 +148,7 @@ const DForm = () => {
         <input
           type="text"
           name="dName"
-          placeholder="Nom de la d"
+          placeholder="Nom de la Direction"
           value={formData.dName}
           onChange={handleChange}
           required
@@ -143,7 +156,7 @@ const DForm = () => {
         <input
           type="text"
           name="post"
-          placeholder="Poste"  // Nouveau champ
+          placeholder="Poste"
           value={formData.post}
           onChange={handleChange}
           required
@@ -190,69 +203,60 @@ const DForm = () => {
           onChange={handleChange}
         />
         <input type="file" name="image" onChange={handleFileChange} />
-        <button type="submit">Enregistrer</button>
+        <button type="submit" className="dform-submit">
+          Enregistrer
+        </button>
       </form>
 
-      <h2>Liste des d</h2>
+      <h2 className="dgform-section-title">Liste toutes les Directions</h2>
       {loading ? (
         <p>Chargement des données...</p>
       ) : (
-        <div>
+        <div className="dform-list">
           {dData.map((d) => (
-            <div key={d.id} style={{ marginBottom: "20px" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                {d.image_url && (
-                  <img
-                    src={`http://localhost:5001${d.image_url}`}
-                    alt="Image du d"
-                    style={{
-                      maxWidth: "150px",
-                      marginRight: "20px",
-                      borderRadius: "10px",
-                    }}
-                  />
-                )}
-                <div>
-                  <h3>{d.d_name}</h3>
-                  <p><strong>Prénom :</strong> {d.first_name}</p>
-                  <p><strong>Nom :</strong> {d.last_name}</p>
-                  <p><strong>Poste :</strong> {d.post}</p>  {/* Affichage du champ post */}
-                  <p><strong>Description 1 :</strong> {d.description_1}</p>
-                  <p><strong>Liste 1 :</strong></p>
-                  <ul>
-                    {d.list_1.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                  {d.description_2 && (
-                    <p><strong>Description 2 :</strong> {d.description_2}</p>
-                  )}
-                  {d.list_2.length > 0 && (
-                    <p><strong>Liste 2 :</strong></p>
-                  )}
-                  <ul>
-                    {d.list_2.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                  {d.description_3 && (
-                    <p><strong>Description 3 :</strong> {d.description_3}</p>
-                  )}
-                  {d.list_3.length > 0 && (
-                    <p><strong>Liste 3 :</strong></p>
-                  )}
-                  <ul>
-                    {d.list_3.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                
+            <div key={d.id} className="dform-item">
+              {d.image_url && (
+                <img
+                  src={`http://localhost:5001${d.image_url}`}
+                  alt="Image de la Direction"
+                  className="dform-item-image"
+                />
+              )}
+              <div className="dform-item-content">
+                <h3>{d.d_name}</h3>
+                <p>
+                  <strong>Prénom :</strong> {d.first_name}
+                </p>
+                <p>
+                  <strong>Nom :</strong> {d.last_name}
+                </p>
+                <p>
+                  <strong>Poste :</strong> {d.post}
+                </p>
+                <p>
+                  <strong>Description :</strong> {d.description_1}
+                </p>
+                <ul>
+                  {d.list_1.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
               </div>
-              <button onClick={() => handleEdit(d)}>Modifier</button>
-              <button onClick={() => handleDelete(d.id)}>Supprimer</button>
+              <div>
+                <button
+                  onClick={() => handleEdit(d)}
+                  className="dform-edit"
+                >
+                  Modifier
+                </button>
+                <button
+                  onClick={() => handleDelete(d.id)}
+                  className="dform-delete"
+                >
+                  Supprimer
+                </button>
+              </div>
             </div>
-            
           ))}
         </div>
       )}

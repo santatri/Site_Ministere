@@ -16,6 +16,10 @@ import  Direction from'../components/Direction';
 import  Service from'../components/Service';
 import  ServiceOffert from'../components/ServiceOffert';
 
+import DForm from '../components/DForm';
+import Message from './Contact/Message';
+
+
 // import { useAuth } from '../context/authContext';
 ;
 
@@ -168,6 +172,12 @@ const AdminPage1 = () => {
             onClick={() => setActiveSection('slides')}
           >
             <FaSlideshare /> Slides
+          </button>
+          <button
+            className={`menu-item ${activeSection === 'Message' ? 'active' : ''}`}
+            onClick={() => setActiveSection('Message')}
+          >
+            <FaSlideshare /> Message
           </button>
           <button
             className={`menu-item ${activeSection === 'footer' ? 'active' : ''}`}
@@ -333,8 +343,9 @@ const AdminPage1 = () => {
         {activeSection === 'a-la-une' && <ALaUne />}
         {activeSection === 'services' && [<SecretaireGeneral/> ,<DirectionGenerale/> ,<Direction/> , <Service/> , <ServiceOffert/>]}
         
-        {activeSection === 'a-propos' && <DGFormAndDisplay />}
-        {activeSection === 'indicateurs' && <VisitorCounter/>}
+        {activeSection === 'a-propos' &&  [<DGFormAndDisplay />, <DForm/>]}
+        {activeSection === 'indicateurs' &&<VisitorCounter/>}
+        {activeSection === 'Message' &&<Message/>}
 
 
       </div>

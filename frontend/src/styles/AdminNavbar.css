@@ -1,12 +1,12 @@
 /* AdminNavbar.css */
 .admin-navbar {
     background-color: #ffffff; /* Couleur de fond de la navbar */
-    padding: 5px;
+    padding: 5px 20px;
     margin-top: -2.5%;
     margin-left: -3.5%;
-    box-shadow: 0 4px 20px rgba(87, 210, 255, 0.504); /* Ajoute une ombre subtile */
+    box-shadow: 0 4px 12px rgb(201, 241, 255); /* Ajoute une ombre subtile */
   
-    width: 105%;
+    width: 100%;
 
     
   }

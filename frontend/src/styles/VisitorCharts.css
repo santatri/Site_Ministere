@@ -1,5 +1,6 @@
 /* Alignement du titre principal */
 .darkblue-title {
+  
     color: darkblue;
     font-size: 20px;
     font-weight: bold;
@@ -12,13 +13,14 @@
 .chart-container {
     width: 45%; /* Ajuste la largeur des graphiques */
     margin-bottom: 40px;
+    background-color: rgb(255, 255, 255);
 }
 
 /* Conteneur des graphiques en colonne */
 .chart-row {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 40px;
 }
 
 /* Alignement du titre de chaque graphique */
@@ -38,6 +40,7 @@
 }
 
 .chart-title2 {
+    margin-top: 8%;
     color: rgb(213, 28, 28);
     font-size: 1.1rem;
 }

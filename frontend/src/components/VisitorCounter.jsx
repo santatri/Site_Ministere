@@ -159,9 +159,9 @@ const VisitorCharts = () => {
                                 title: { display: true, text: 'Visiteurs par mois' },
                                 datalabels: {
                                     anchor: 'end',
-                                    align: 'top',
+                                    align: 'top : 4%',  
                                     color: 'black',
-                                    font: { weight: 'bold', size: 12 },
+                                    font: { weight: 'bold', size: 12,  },
                                     formatter: (value) => `${value}`,
                                 },
                             },
@@ -178,7 +178,7 @@ const VisitorCharts = () => {
                     options={{
                         responsive: true,
                         plugins: {
-                            legend: { position: 'top' },
+                            legend: { position: 'top ' },
                             title: { display: true, text: 'Visiteurs par année' },
                             datalabels: {
                                 anchor: 'end',

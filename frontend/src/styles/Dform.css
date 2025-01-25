@@ -1,0 +1,222 @@
+
+  
+  /* Conteneur principal */
+  .dgform-container {
+    max-width: 800px;
+     margin-top: 3%;
+     margin-left: 8%;
+    padding: 2rem;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* Titres */
+  .dgform-title {
+    text-align: left;
+    margin-left: -2.2%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #06127b;
+  }
+  
+  .dgform-subtitle{
+    text-align: left;
+    font-size: 1rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 1rem 0;
+    color: #333;
+  }
+  .dgform-section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: #00158a;
+  }
+  
+  /* Formulaire */
+  .dgform-form {
+   
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+
+  .dgform-textarea{
+     
+        width: calc(97% - 1rem); /* Même largeur que les autres champs */
+        padding: 0.8rem;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        resize: none; /* Empêche le redimensionnement */
+      
+  }  .dgform-input{
+  width: calc(100.3% - 1rem);
+  padding: 0.8rem;
+  border: 1px solid #e7e7e7;
+  border-radius: 7px;
+  font-size: 0.7rem;
+  }
+  .dgform-container input[type="file"] {
+    width: 98.3%;
+    padding: 12px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    background: #f9f9f9;
+  }
+  
+  .dgform-input:focus,
+  .dgform-textarea:focus {
+    outline: none;
+    border-color: #5a67d8;
+  }
+  
+  .dgform-textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  /* Boutons */
+  .dgform-button {
+    background: linear-gradient(to right, #3203cb, #805ad5);
+    color: #fff;
+    width: calc(99% - 1rem);
+    border: none;
+    border-radius: 5px;
+    font-size: 0.70rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .dform-container h2 {
+
+    font-size: 1rem;
+    text-align: left;  /* Aligné à gauche */
+    margin-bottom: 0px;
+    margin-left: 6.2%;
+    color: #333;
+    font-weight: normal;
+  }
+  
+  .dgform-button:hover {
+    background: linear-gradient(to right, #805ad5, #5a67d8);
+    transform: scale(1.05);
+  }
+  
+  .dgform-button-edit {
+    background: #0099ff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .dgform-button-edit:hover {
+    background: #14ccd2;
+    transform: scale(1.05);
+  }
+  
+  .dgform-button-delete {
+    background: #ff1100;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .dgform-button-delete:hover {
+    background: #d32f2f;
+    transform: scale(1.05);
+  }
+  
+  /* Liste des DG */
+  .dgform-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .dgform-item {
+    flex: 1 1 calc(33% - 1rem);
+    background: #ffffff71;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(195, 250, 255, 0.71);
+    transition: all 0.3s ease;
+  }
+  
+  .dgform-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .dgform-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .dgform-item-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    object-fit: cover;
+    border: 1px solid #b3eefb;
+  }
+  
+  .dgform-item-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6a00ff;
+  }
+  
+  .dgform-item-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  /* Description et listes */
+  .dgform-item p {
+    margin: 0.5rem 0;
+    font-size: 0.7rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .dgform-item ul {
+    list-style-type: square;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .dgform-item ul li {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+    color: #555;
+  }
+  
+  /* Chargement */
+  .dgform-loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #888;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .dgform-input,
+    .dgform-textarea {
+      width: 100%;
+    }
+  
+    .dgform-item {
+      flex: 1 1 100%;
+    }
+  }
+  
