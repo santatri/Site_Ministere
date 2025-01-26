@@ -1,7 +1,7 @@
 import React from 'react';
-import service1 from '../assets/image1.jpg';
-import service2 from '../assets/1.jpg';
-import service3 from '../assets/44.jpg';
+import service1 from '../assets/image2.jpg';
+import service2 from '../assets/service.jpg';
+import service3 from '../assets/dig.jpg';
 
 
 const ServicesSection = () => {

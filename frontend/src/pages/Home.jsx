@@ -148,10 +148,11 @@ const Home = () => {
           </div>
         </div>
       </div>
+    
       <Ministere/>
       <Table />
-     
       <ServicesSection/>
+     
     
     </div>
   );

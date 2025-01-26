@@ -1,9 +1,10 @@
 /* Conteneur principal */
 .ministere-container {
   width: 81%;
-  background: linear-gradient(180deg, rgba(22, 175, 251, 0.956), rgba(16, 143, 202, 0.808), rgba(253, 252, 255, 0.967)), url('../assets/242.jpg');
+  background: linear-gradient(0deg ,rgb(255, 255, 255), rgba(0, 183, 255, 0.797) ,rgba(0, 153, 255, 0.97) ,rgb(14, 8, 91)),url('../assets/black16.jpg') ;
   text-align: center;
   margin-top: 20%;
+  border-radius: 25px;
   margin: auto; /* Centré horizontalement */
   transition: all .1s ease;
 }

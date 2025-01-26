@@ -1,12 +1,13 @@
 .container {
   padding: 10px;
+  width: 90%;
   margin: 0;
   transition: transform 0.9s ease, box-shadow 0.3s ease;
 }
 
 .Gestion {
   margin-left: -1.6%;
-  color: #0520d1;
+  color: #021065;
   font-size: 1.3rem;
   margin-bottom: 10px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -30,33 +31,38 @@
 }
 
 .form {
-  margin-bottom: 15px;
+  margin-bottom: 1px;
   font-size: 13px;
   padding: 10px 20px;
-  border: 3px solid #b8eefc9b;
+  border: 3px solid #efecff9b;
   border-radius: 10px;
   text-align: left; /* Alignement à gauche */
 }
 
-.form input {
-  margin-bottom: 10px;
-  font-size: 0.85rem;
-  border: 1px solid #bbc1ca55;
-  color: #152536;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: bold;
-  padding: 10px 15px;
-  border-radius: 5px;
+.container input {
+  width: calc(99.3% - 1rem);
+  padding: 0.8rem;
+  border: 1px solid #e7e7e7;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 7px;
+  font-size: 0.8rem;
 }
-.form textarea {
-  margin-bottom: 10px;
-  font-size: 0.85rem;
-  border: 1px solid #bbc1ca55;
-  color: #152536;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: bold;
-  padding: 10px 10px;
-  border-radius: 5px;
+.container textarea {
+  width: calc(97% - 1rem); /* Même largeur que les autres champs */
+  padding: 0.8rem;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 0.8rem;
+  resize: none; /* Empêche le redimensionnement */
+}
+.container input[type="file"] {
+  width: 98.3%;
+  padding: 12px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  background: #f9f9f9;
 }
 .titra{
   margin-top: 3%;
@@ -72,7 +78,7 @@
   max-width: 180px;
   padding: 10px 15px;
   margin-top: 0;
-  background-color: #025ce2f2;
+  background-color: #053bff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -95,8 +101,8 @@
 }
 
 .element-card {
-  background: #011949;
-  border: 2px solid #f1f0f0;
+  background: #f4fbff;
+  border: 2px solid #e1f8fe;
   border-radius: 10px;
   padding: 20px;
   width: 300px;
@@ -109,14 +115,15 @@
 .element-title {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #191111;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin-bottom: 10px;
 }
 
 .element-description {
   font-size: 13px;
-  font-family: 'Times New Roman', Times, serif;
-  color: #e1e1e1;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+ ; color: #575757;
   line-height: 1.5;
   text-align: left; /* Alignement à gauche */
 }
@@ -168,6 +175,7 @@
   margin: 20px auto;
   margin-top: -0.9%;
   font-size: 12px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
   border: 1px solid #d3d3d3;
   color: rgb(22, 22, 12);
@@ -179,7 +187,7 @@
 
 /* Effet au focus */
 .searches-bare:focus {
-  border-color: #100c12; /* Couleur violette pour le focus */
+  border-color: #901ccb; /* Couleur violette pour le focus */
   box-shadow: 10 4px 12px rgba(0, 0, 0, 0.4);
 }
 

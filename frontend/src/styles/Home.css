@@ -2,15 +2,15 @@
 
 /* Layout principal */
 .layout-container {
-  background: linear-gradient(20deg, rgba(12, 62, 86, 0.862), #093153), url('../assets/2.gif')  ; 
+  background: linear-gradient(20deg, #032b4f, #032c4f), url('../assets/2.gif')  ; 
 
 
 }
 
 /* Section des actualités */
 .actualites-container {
+
   margin: 100px;
-  
   display: flex;
   justify-content: space-between;
   gap: 0px;

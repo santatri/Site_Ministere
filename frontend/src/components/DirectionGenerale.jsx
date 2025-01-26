@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import '../styles/DirectionGenerale.css';
 
 const DirectionGenerale = () => {
-
   const [formData, setFormData] = useState({
     id_sg: '', // L'ID du Secrétaire Général sélectionné
     nom_dg: '',
@@ -13,10 +13,12 @@ const DirectionGenerale = () => {
   const [message, setMessage] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [currentView, setCurrentView] = useState('list'); // Ajout d'un état pour déterminer quelle vue afficher
 
-  // Reference to the form section
+  // Référence pour le formulaire
   const formRef = useRef(null);
 
+  // Fonction pour récupérer la liste des secrétaires généraux
   const fetchSecretaireGeneraux = async () => {
     try {
       const response = await axios.get('http://localhost:5001/api/secretaire_general/all');
@@ -25,10 +27,14 @@ const DirectionGenerale = () => {
       setMessage('Erreur lors du chargement des secrétaires généraux.');
     }
   };
+
+  // Utilisation de useEffect pour charger les données
   useEffect(() => {
     fetchSecretaireGeneraux();
+    fetchElements();
   }, []);
 
+  // Fonction pour récupérer la liste des directions générales
   const fetchElements = async () => {
     try {
       const response = await axios.get('http://localhost:5001/api/direction_generale/all');
@@ -38,16 +44,13 @@ const DirectionGenerale = () => {
     }
   };
 
-  useEffect(() => {
-    fetchSecretaireGeneraux();
-    fetchElements();
-  }, []);
-
+  // Fonction pour gérer les changements dans le formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Fonction pour soumettre le formulaire (ajouter/modifier)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { ...formData };
@@ -62,6 +65,7 @@ const DirectionGenerale = () => {
       setFormData({ id_sg: '', nom_dg: '', porte_dg: '' });
       setIsEditing(false);
       setCurrentId(null);
+      setCurrentView('list'); // Revenir à la vue liste après soumission
       if (formRef.current) {
         formRef.current.scrollIntoView({ behavior: 'smooth' }); // Scroll to form after submission
       }
@@ -70,6 +74,7 @@ const DirectionGenerale = () => {
     }
   };
 
+  // Fonction pour activer le mode édition
   const handleEdit = (id) => {
     const element = elements.find((el) => el.id_dg === id);
     setFormData({
@@ -79,11 +84,13 @@ const DirectionGenerale = () => {
     });
     setIsEditing(true);
     setCurrentId(id);
+    setCurrentView('form'); // Passer à la vue formulaire lors de la modification
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: 'smooth' }); // Scroll to form when editing
     }
   };
 
+  // Fonction pour supprimer un élément
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(`http://localhost:5001/api/direction_generale/${id}`);
@@ -95,60 +102,69 @@ const DirectionGenerale = () => {
   };
 
   return (
-    <div>
+    <div className="direction-generale">
       <h1>Direction Générale</h1>
       {message && <p>{message}</p>}
 
-      {/* Form section */}
-      <div ref={formRef}>
-        <form onSubmit={handleSubmit}>
-          <select
-            name="id_sg"
-            value={formData.id_sg}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Sélectionnez un Secrétaire Général</option>
-            {secretaireGeneraux.map((sg) => (
-              <option key={sg.id_sg} value={sg.id_sg}>
-                {sg.nom_sg}
-              </option>
-            ))}
-          </select>
-
-          <input
-            type="text"
-            name="nom_dg"
-            placeholder="Nom Direction Générale"
-            value={formData.nom_dg}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="porte_dg"
-            placeholder="Porte Direction Générale"
-            value={formData.porte_dg}
-            onChange={handleChange}
-            required
-          />
-          <button type="submit">{isEditing ? 'Modifier' : 'Ajouter'}</button>
-        </form>
+      {/* Boutons de navigation */}
+      <div className="toggle-buttons">
+        <button className="toggle-button"onClick={() => setCurrentView('form')}>Ajout Direction Générale</button>
+        <button className="toggle-button"onClick={() => setCurrentView('list')}>Liste Direction Générale</button>
       </div>
 
-      {/* List section */}
-      <div>
-        <h2>Directions Générales</h2>
-        <table border="1">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Porte</th>
-              <th>Secrétaire Général</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
+      {/* Formulaire d'ajout/modification */}
+      {currentView === 'form' && (
+        <div ref={formRef} className="direction-generale-form">
+          <form onSubmit={handleSubmit}>
+            <select
+              name="id_sg"
+              value={formData.id_sg}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Sélectionnez un Secrétaire Général</option>
+              {secretaireGeneraux.map((sg) => (
+                <option key={sg.id_sg} value={sg.id_sg}>
+                  {sg.nom_sg}
+                </option>
+              ))}
+            </select>
+
+            <input
+              type="text"
+              name="nom_dg"
+              placeholder="Nom Direction Générale"
+              value={formData.nom_dg}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="porte_dg"
+              placeholder="Porte Direction Générale"
+              value={formData.porte_dg}
+              onChange={handleChange}
+              required
+            />
+            <button type="submit">{isEditing ? 'Modifier' : 'Ajouter'}</button>
+          </form>
+        </div>
+      )}
+
+      {/* Liste des directions générales */}
+      {currentView === 'list' && (
+        <div className="direction-generale-list">
+          <h2> Liste Directions Générales</h2>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Porte</th>
+                <th>Secrétaire Général</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
               {elements.map((element) => (
                 <tr key={element.id_dg}>
                   <td>{element.nom_dg}</td>
@@ -160,10 +176,10 @@ const DirectionGenerale = () => {
                   </td>
                 </tr>
               ))}
-          </tbody>
-
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

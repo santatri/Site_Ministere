@@ -13,12 +13,7 @@ const slides = [
     subtitle: 'Basés sur les normes et meilleures pratiques internationales',
     buttonText: 'Voir',
   },
-  {
-    image: image2,
-    title: 'Vision pour la transformation numérique',
-    subtitle: 'Rejoignez-nous',
-    buttonText: 'Détails',
-  },
+
   {
     image: image3,
     title: 'Guide pour toutes les directions et services offerts',
@@ -72,7 +67,7 @@ const ImageCarousel = () => {
         <div
           className="carousel-image"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgb(10, 20, 150,0.9) , rgb(10, 10,200,0.1),rgb(00, 10, 150,.9)), url(${image})`,
+            backgroundImage: `linear-gradient(to bottom, rgb(10, 40, 100,0.989) , rgb(10, 10,120,0.4),rgb(10,40 , 80,0.99)), url(${image})`,
             backgroundSize: 'cover',
           
             backgroundPosition: 'center',

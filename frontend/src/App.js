@@ -17,7 +17,7 @@ import DrhePage from './pages/DrhePage';
 import DgfopPage from './pages/DgfopPage';
 import CommunicationPage from './pages/CommunicationPage';
 import DrfpPage from './pages/DrfpPage';
-import ServiceDetails from './pages/ServiceDetails';
+
 import '../src/i18n';
 
 import StanPage from './pages/StanPage';
@@ -75,7 +75,7 @@ const AppWithNavbar = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/service" element={<Service />} />
-      //  <Route path="/service/:id" element={<ServiceDetails />} />
+   
 
         <Route path="/archives" element={<Archives />} />
         <Route path="/details/:id" component={DetailsActu} />

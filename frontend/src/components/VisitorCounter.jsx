@@ -97,8 +97,8 @@ const VisitorCharts = () => {
                     {
                         label: 'Visiteurs uniques',
                         data: visitors,
-                        backgroundColor: 'rgba(255, 109, 4, 0.7)',
-                        borderColor: 'rgba(255, 159, 64, 1)',
+                        backgroundColor: 'rgba(25,10, 914, 0.7)',
+                        borderColor: 'rgba(25, 19, 640, 1)',
                         borderWidth: 1,
                     },
                 ],

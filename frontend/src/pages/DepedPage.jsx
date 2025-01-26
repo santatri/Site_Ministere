@@ -59,7 +59,7 @@ const  DepedPage = () => {
                        <p> {d.description_1}</p>
                         <ul>
                         {d.list_1.map((item, index) => (
-                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                          <li key={index}> <i className="fas fa-check"></i>{item}</li>
                         ))}
                       </ul>
                       {d.description_2 && (
@@ -82,7 +82,7 @@ const  DepedPage = () => {
                      
                       <ul>
                         {d.list_3.map((item, index) => (
-                          <li key={index}> <i className="fas fa-check-circle"></i>{item}</li>
+                          <li key={index}> <i className="fas fa-check"></i>{item}</li>
                         ))}
                       </ul>
                        )}

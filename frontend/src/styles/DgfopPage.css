@@ -22,8 +22,8 @@
   width: 450px; /* Ajustez selon vos besoins */
   height: auto;
   border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(9, 5, 34, 0.732); /* Ajoute une ombre subtile */
-  border: 3px solid #007bff;
+  box-shadow: 0 4px 8px rgba(151, 219, 255, 0.732); /* Ajoute une ombre subtile */
+  border: 1px solid #f7fdff;
   margin-bottom: 16px; /* Espace entre l'image et la carte */
 }
 
@@ -49,13 +49,15 @@
 
 .cardes h3 {
   font-size: 1.2rem;
-  color: #5a1ae3;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #122ab3;
   margin-bottom: 8px;
 }
 
 .cardes p {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: #6b7280;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Section contenant le texte */
@@ -72,7 +74,8 @@
 .text-section h1 {
   font-size: 1.5rem;
   margin-left: -3.5%;
-  color: #007bff;
+  color: #009dff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
   margin-bottom: 5px;
 }
@@ -80,20 +83,23 @@
 .underline {
   width:90px;
   height: 5px;
-  background: linear-gradient( #00aeff, #007bff);
+  background: linear-gradient( #00bfff, #00b7ff);
   margin: 25px 50;
 }
 
 .text-section p {
   font-size: 0.9rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #374151;
   line-height: 1.6;
   margin-bottom: 16px;
 }
 
 .text-section ul {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   list-style: none;
   padding: 0;
+  font-size: 1rem;
   margin-top: 16px;
 }
 
@@ -101,12 +107,13 @@
   display: flex;
   align-items: center;
   font-size: 0.8rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #1f2937;
   margin-bottom: 10px;
 }
 
 .text-section li i {
-  color: #0cec17;
+  color: #11237d;
   margin-right: 10px;
   font-size: 1.2rem;
 }
