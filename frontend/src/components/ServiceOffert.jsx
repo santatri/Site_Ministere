@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import '../styles/ServiceOffert.css';
 
 const ServiceOffert = () => {
     const [services, setServices] = useState([]);
-    const [filteredServices, setFilteredServices] = useState([]); // Services filtrés
-    const [searchTerm, setSearchTerm] = useState(''); // Terme de recherche
+    const [filteredServices, setFilteredServices] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [sgList, setSGList] = useState([]);
     const [dgList, setDGList] = useState([]);
     const [dList, setDList] = useState([]);
@@ -16,6 +17,7 @@ const ServiceOffert = () => {
     const [associationId, setAssociationId] = useState('');
     const [editId, setEditId] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    const [activeFrame, setActiveFrame] = useState('liste'); // Etat pour gérer le cadre actif
 
     const formRef = useRef(null);
 
@@ -26,12 +28,16 @@ const ServiceOffert = () => {
                 a.nom_service.localeCompare(b.nom_service, 'fr', { sensitivity: 'base' })
             );
             setServices(sortedServices);
-            setFilteredServices(sortedServices); // Initialiser la liste filtrée
+            setFilteredServices(sortedServices);
         } catch (error) {
             console.error("Erreur lors de la récupération des services:", error);
         }
     };
 
+    useEffect(() => {
+        fetchSGDGDS();
+    }, []);
+    
     const fetchSGDGDS = async () => {
         try {
             const [sgResponse, dgResponse, dResponse, sResponse] = await Promise.all([
@@ -40,14 +46,21 @@ const ServiceOffert = () => {
                 axios.get('http://localhost:5001/api/direction/all'),
                 axios.get('http://localhost:5001/api/service/all'),
             ]);
-            setSGList(sgResponse.data.data);
-            setDGList(dgResponse.data.data);
-            setDList(dResponse.data.data);
-            setSList(sResponse.data.data);
+    
+            console.log("SG Data:", sgResponse.data.data);
+            console.log("DG Data:", dgResponse.data.data);
+            console.log("D Data:", dResponse.data.data);
+            console.log("S Data:", sResponse.data.data);
+    
+            setSGList(sgResponse.data.data || []);
+            setDGList(dgResponse.data.data || []);
+            setDList(dResponse.data.data || []);
+            setSList(sResponse.data.data || []);
         } catch (error) {
             console.error("Erreur lors de la récupération des données:", error);
         }
     };
+    
 
     useEffect(() => {
         fetchServices();
@@ -81,7 +94,7 @@ const ServiceOffert = () => {
             };
 
             if (editId) {
-                await axios.put(`http://localhost:5001/api/serviceOffert/${editId}`, data);
+                await axios.put('http://localhost:5001/api/serviceOffert/${editId}', data);
             } else {
                 await axios.post('http://localhost:5001/api/serviceOffert', data);
             }
@@ -113,12 +126,21 @@ const ServiceOffert = () => {
         else if (service.nom_d) setAssociationType('D');
         else if (service.nom_s) setAssociationType('S');
         setAssociationId(service.id_sg || service.id_dg || service.id_d || service.id_s);
-        formRef.current.scrollIntoView({ behavior: 'smooth' });
+        
+        // Mettre à jour l'état de activeFrame pour afficher le formulaire d'ajout
+        setActiveFrame('ajout');
+    
+        // Forcer le défilement vers le formulaire même si formRef.current est null
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
     };
+    
+    
 
     const deleteService = async (id) => {
         try {
-            await axios.delete(`http://localhost:5001/api/serviceOffert/${id}`);
+            await axios.delete('http://localhost:5001/api/serviceOffert/${id}');
             fetchServices();
         } catch (error) {
             console.error("Erreur lors de la suppression du service:", error);
@@ -134,117 +156,159 @@ const ServiceOffert = () => {
     };
 
     return (
-        <div>
-            <h1>Gestion des Services Offerts</h1>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        <div className="ServiceOffert">
+            <h1 className="ServiceOffert__title">Gestion des Services Offerts</h1>
+            {errorMessage && <p className="ServiceOffert__error">{errorMessage}</p>}
 
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={handleSearch}
-                placeholder="Rechercher un service"
-                style={{ marginBottom: '10px' }}
-            />
-
-            <form ref={formRef}>
-                <input
-                    type="text"
-                    value={nom_service}
-                    onChange={(e) => setNomService(e.target.value)}
-                    placeholder="Nom du service"
-                />
-                <textarea
-                    value={dossier_prepare}
-                    onChange={(e) => setDossierPrepare(e.target.value)}
-                    placeholder="Liste des éléments du dossier (séparés par des virgules)"
-                    rows="4"
-                />
-                <input
-                    type="text"
-                    value={delai}
-                    onChange={(e) => setDelai(e.target.value)}
-                    placeholder="Délai"
-                />
-                <select value={associationType} onChange={(e) => setAssociationType(e.target.value)}>
-                    <option value="">Associer à</option>
-                    <option value="SG">SG ou Ministre</option>
-                    <option value="DG">Direction Générale</option>
-                    <option value="D">Direction</option>
-                    <option value="S">Service</option>
-                </select>
-                {associationType === 'SG' && (
-                    <select value={associationId} onChange={(e) => setAssociationId(e.target.value)}>
-                        <option value="">Sélectionner SG ou Ministre</option>
-                        {sgList.map((sg) => (
-                            <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
-                        ))}
-                    </select>
-                )}
-                {associationType === 'DG' && (
-                    <select value={associationId} onChange={(e) => setAssociationId(e.target.value)}>
-                        <option value="">Sélectionner un DG</option>
-                        {dgList.map((dg) => (
-                            <option key={dg.id_dg} value={dg.id_dg}>{dg.nom_dg}</option>
-                        ))}
-                    </select>
-                )}
-                {associationType === 'D' && (
-                    <select value={associationId} onChange={(e) => setAssociationId(e.target.value)}>
-                        <option value="">Sélectionner une Direction</option>
-                        {dList.map((d) => (
-                            <option key={d.id_d} value={d.id_d}>{d.nom_d}</option>
-                        ))}
-                    </select>
-                )}
-                {associationType === 'S' && (
-                    <select value={associationId} onChange={(e) => setAssociationId(e.target.value)}>
-                        <option value="">Sélectionner un Service</option>
-                        {sList.map((s) => (
-                            <option key={s.id_s} value={s.id_s}>{s.nom_s}</option>
-                        ))}
-                    </select>
-                )}
-                <button type="button" onClick={createOrUpdateService}>
-                    {editId ? 'Mettre à jour' : 'Ajouter'}
+            <div className="ServiceOffert__buttons">
+                <button
+                    className="ServiceOffert__button"
+                    onClick={() => setActiveFrame('ajout')}
+                >
+                    Ajouter un service
                 </button>
-                <button type="button" onClick={clearForm}>Annuler</button>
-            </form>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                <button
+                    className="ServiceOffert__button"
+                    onClick={() => setActiveFrame('liste')}
+                >
+                    Liste des services
+                </button>
+            </div>
 
-                <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={handleSearch}
-                    placeholder="Rechercher un service offert"
-                   
-                />
-            <table>
-                <thead>   
-                    <tr>
+            {/* Formulaire d'ajout */}
+            {activeFrame === 'ajout' && (
+                <form className="ServiceOffert__form" ref={formRef}>
+                    <input
+                        className="ServiceOffert__input"
+                        type="text"
+                        value={nom_service}
+                        onChange={(e) => setNomService(e.target.value)}
+                        placeholder="Nom du service"
+                    />
+                    <textarea
+                        className="ServiceOffert__textarea"
+                        value={dossier_prepare}
+                        onChange={(e) => setDossierPrepare(e.target.value)}
+                        placeholder="Liste des éléments du dossier (séparés par des virgules)"
+                        rows="4"
+                    />
+                    <input
+                        className="ServiceOffert__input"
+                        type="text"
+                        value={delai}
+                        onChange={(e) => setDelai(e.target.value)}
+                        placeholder="Délai"
+                    />
+                    <select
+                        className="ServiceOffert__select"
+                        value={associationType}
+                        onChange={(e) => setAssociationType(e.target.value)}
+                    >
+                        <option value="">Associer à</option>
+                        <option value="SG">SG ou Ministre</option>
+                        <option value="DG">Direction Générale</option>
+                        <option value="D">Direction</option>
+                        <option value="S">Service</option>
+                    </select>
+                    {associationType === 'SG' && (
+                        <select
+                            className="ServiceOffert__select"
+                            value={associationId}
+                            onChange={(e) => setAssociationId(e.target.value)}
+                        >
+                            <option value="">Sélectionner SG ou Ministre</option>
+                            {sgList.map((sg) => (
+                                <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
+                            ))}
+                        </select>
+                    )}
+                    {associationType === 'DG' && (
+                        <select
+                            className="ServiceOffert__select"
+                            value={associationId}
+                            onChange={(e) => setAssociationId(e.target.value)}
+                        >
+                            <option value="">Sélectionner un DG</option>
+                            {dgList.map((dg) => (
+                                <option key={dg.id_dg} value={dg.id_dg}>{dg.nom_dg}</option>
+                            ))}
+                        </select>
+                    )}
+                    {associationType === 'D' && (
+                        <select
+                            className="ServiceOffert__select"
+                            value={associationId}
+                            onChange={(e) => setAssociationId(e.target.value)}
+                        >
+                            <option value="">Sélectionner une Direction</option>
+                            {dList.map((d) => (
+                                <option key={d.id_d} value={d.id_d}>{d.nom_d}</option>
+                            ))}
+                        </select>
+                    )}
+                    {associationType === 'S' && (
+                        <select
+                            className="ServiceOffert__select"
+                            value={associationId}
+                            onChange={(e) => setAssociationId(e.target.value)}
+                        >
+                            <option value="">Sélectionner un Service</option>
+                            {sList.map((s) => (
+                                <option key={s.id_s} value={s.id_s}>{s.nom_s}</option>
+                            ))}
+                        </select>
+                    )}
+                    <button type="button" onClick={createOrUpdateService}>
+                        {editId ? 'Mettre à jour le service' : 'Ajouter le service'}
+                    </button>
+                    <button type="button" onClick={clearForm}>Annuler</button>
+                </form>
+            )}
+
+            {/* Liste des services */}
+            {activeFrame === 'liste' && (
+                <div className="ServiceOffert__list">
+                    <h1>Liste des services offerts</h1>
+                    <input
+                        className="ServiceOffert__search"
+                        type="text"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                        placeholder="Rechercher un service"
+                    />
+                    {filteredServices.length > 0 ? (
+                        <table className="ServiceOffert__table">
+                            <thead>
+                            <tr>
                         <th>Nom</th>
                         <th>Dossier Préparé</th>
                         <th>Delai</th>
                         <th>Association</th>
                         <th>Actions</th>
                     </tr>
-                </thead>
-                <tbody>
-                    {filteredServices.map((service) => (
+                            </thead>
+                            <tbody>
+                            {filteredServices.map((service) => (
                         <tr key={service.id_service}>
                             <td>{service.nom_service}</td>
                             <td>{service.dossier_prepare || 'N/A'}</td>
                             <td>{service.delai || 'N/A'}</td>
                             <td>{service.hierarchy }</td>
                             <td>
-                                <button onClick={() => editService(service)}>Modifier</button>
-                                <button onClick={() => deleteService(service.id_service)}>Supprimer</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                                            <button className='ServiceOffert__button--edit' onClick={() => editService(service)}>Modifier</button>
+                                            <button className='ServiceOffert__button--delete' onClick={() => deleteService(service.id_service)}>Supprimer</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <p>Aucun service trouvé.</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
 
-export default ServiceOffert;
+export default ServiceOffert; 

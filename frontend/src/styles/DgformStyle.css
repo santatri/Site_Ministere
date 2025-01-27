@@ -2,10 +2,10 @@
 .dform-container {
  
  
-  padding: 20px;
+
   margin-top: 2%;
   width: 100%;
-  margin-top: 3%;
+
 
  
   font-family: 'Arial', sans-serif;
@@ -19,7 +19,7 @@
   margin-bottom: 20px;
   color: #022e61;
   font-weight: bold;
-  margin-left: 4.5%;
+
 }
 
 /* Sous-titre */
@@ -29,17 +29,17 @@ color: #0f74e8;
 }
 .dform-container h2{
   font-weight: bold;
-  margin-left: 6%;
+
   margin-top: -1%;
- 
-  font-size: 1rem;
+ margin-left: 1.5%;
+  font-size: 1.2rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-  color: #bd0e0e;}
+  color: #0e28bd;}
 
 /* Formulaire */
 .dform-container form {
-  margin-left: 6%;
+
   margin-top: 2%;
   display: flex;
   max-width: 830px;

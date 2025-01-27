@@ -32,8 +32,8 @@ const  DrfpPage = () => {
     
   return ( 
     <div className="page-container">
-      <Header />
-      <Navbar />
+      {/* <Header />
+      <Navbar /> */}
       {loading ? (
         <p>Chargement des données...</p>
       ) : ( <div> {dData.map((d) => (
@@ -92,7 +92,8 @@ const  DrfpPage = () => {
           ))}
           </div>
       )}
-      <Footer/> </div>
+      {/* <Footer/>  */}
+      </div>
       
   );
 };

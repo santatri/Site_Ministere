@@ -4,8 +4,8 @@
     color: darkblue;
     font-size: 20px;
     font-weight: bold;
-    margin-top: 5%;
-    margin-top: 20px;
+    margin-top: 1%;
+    margin-top: 10px;
     text-align: left; /* Alignement à gauche */
 }
 
@@ -30,7 +30,7 @@
 .chart-title3 {
     text-align: left;
     color: rgb(98, 21, 176);
-    margin-top: 5%;
+    margin-top: 2%;
     font-size: 1.5rem;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .chart-title2 {
-    margin-top: 8%;
+    margin-top: 3%;
     color: rgb(213, 28, 28);
     font-size: 1.1rem;
 }

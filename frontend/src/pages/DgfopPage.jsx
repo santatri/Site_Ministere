@@ -32,8 +32,8 @@ const DgfopPage = () => {
     
   return ( 
     <div className="page-container">
-      <Header />
-      <Navbar />
+      {/* <Header />
+      <Navbar /> */}
       {loading ? (
         <p>Chargement des données...</p>
       ) : ( <div> {dgData.map((dg) => (
@@ -92,7 +92,8 @@ const DgfopPage = () => {
           ))}
           </div>
       )}
-      <Footer/> </div>
+      {/* <Footer/>  */}
+      </div>
       
   );
 };

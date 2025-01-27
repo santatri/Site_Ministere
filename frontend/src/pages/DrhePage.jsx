@@ -31,8 +31,8 @@ const  DrhePage = () => {
     
   return ( 
     <div className="page-container">
-      <Header />
-      <Navbar />
+      {/* <Header />
+      <Navbar /> */}
       {loading ? (
         <p>Chargement des données...</p>
       ) : ( <div> {dData.map((d) => (
@@ -91,7 +91,8 @@ const  DrhePage = () => {
           ))}
           </div>
       )}
-      <Footer/> </div>
+      {/* <Footer/>  */}
+      </div>
       
   );
 };

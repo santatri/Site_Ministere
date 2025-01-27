@@ -82,8 +82,11 @@ const Donne = () => {
     const porte = parseInt(porteNumber, 10); // Assurez-vous que le numéro de porte est un nombre entier
 
     if (porte >= 1 && porte <= 17) {
-      return "1er étage";
-    } else if (porte >= 201 && porte <= 222) {
+      return "rdc";
+    } 
+    else if (porte >= 101 && porte <= 123) {
+    return "1er étage";
+    }else if (porte >= 201 && porte <= 222) {
       return "2ème étage";
     } else if (porte >= 301 && porte <= 321) {
       return "3ème étage";
@@ -221,7 +224,7 @@ const Donne = () => {
                     ))}
                   </ul>
                 ) : (
-                  <p>Aucun Document à fournir disponible.</p>
+                  <p>Sans document à fournir .</p>
                 )}
               </div>
             </div>
@@ -241,7 +244,7 @@ const Donne = () => {
               </div>
               <div className="service-info-box">
                 <h4>Délai</h4>
-                <p>{serviceDetails.delai || "Aucun délai disponible"}</p>
+                <p>{serviceDetails.delai || "Sans delai"}</p>
               </div>
             </div>
           </div>

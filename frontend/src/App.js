@@ -59,7 +59,7 @@ const AppWithNavbar = () => {
   const location = useLocation();
 
   // Liste des pages où afficher la Navbar et le Footer
-  const showNavbarPages = ['/', '/home', '/service', '/archives', '/about', '/contact'];
+  const showNavbarPages = ['/', '/home', '/service', '/archives', '/about','/about/dgfop','/about/deped','/about/drhe','/about/dfpae','/about/drfp', '/contact'];
   
   useEffect(() => {
     window.scrollTo(0, 0); // Défile vers le haut à chaque changement de route

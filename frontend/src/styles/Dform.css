@@ -4,8 +4,8 @@
   .dgform-container {
     max-width: 800px;
      margin-top: 3%;
-     margin-left: 8%;
-    padding: 2rem;
+     margin-left: .0%;
+    padding: 1.5rem;
     background: #fff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -78,6 +78,7 @@
   
   .dgform-textarea {
     height: 100px;
+    flex-direction: column;
     resize: none;
   }
   

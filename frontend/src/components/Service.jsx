@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import '../styles/Service.css';
 
 const Service = () => {
     const [services, setServices] = useState([]);
@@ -10,6 +11,7 @@ const Service = () => {
     const [porte_s, setPorteS] = useState('');
     const [id_d, setIdD] = useState('');
     const [editId, setEditId] = useState(null);
+    const [showForm, setShowForm] = useState(true); // Nouvel état pour afficher le formulaire ou la liste
 
     // Référence pour faire défiler vers le formulaire
     const formRef = useRef(null);
@@ -85,8 +87,11 @@ const Service = () => {
         setPorteS(service.porte_s);
         setIdD(service.id_d);
 
-        // Faire défiler vers le formulaire
-        formRef.current.scrollIntoView({ behavior: 'smooth' });
+        // Faire défiler vers le formulaire si formRef existe
+        setShowForm(true);  // Afficher le formulaire d'édition
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     // Vider le formulaire
@@ -104,60 +109,71 @@ const Service = () => {
     };
 
     return (
-        <div>
-            <h1>Gestion des Services et des secretaires</h1>
+        <div className="servi-container">
+            <h1>Gestion des Services et des secrétaires</h1>
 
-            <form ref={formRef}>
-                <input
-                    type="text"
-                    value={nom_s}
-                    onChange={(e) => setNomS(e.target.value)}
-                    placeholder="Nom du service"
-                />
-                <input
-                    type="text"
-                    value={porte_s}
-                    onChange={(e) => setPorteS(e.target.value)}
-                    placeholder="Porte du service"
-                />
-                <select value={id_d} onChange={(e) => setIdD(e.target.value)}>
-                    <option value="">Sélectionner une direction</option>
-                    {directions.map((direction) => (
-                        <option key={direction.id_d} value={direction.id_d}>
-                            {getDirectionHierarchy(direction)}
-                        </option>
-                    ))}
-                </select>
-                <button type="button" onClick={handleSubmit}>
-                    {editId ? 'Mettre à jour' : 'Ajouter'}
-                </button>
-                <button type="button" onClick={clearForm}>Annuler</button>
-            </form>
+            {/* Boutons pour afficher le formulaire ou la liste */}
+            <div className="toggle-buttons">
+                <button className="toggle-button" onClick={() => { setShowForm(true); clearForm(); }} >Ajout Gestion des Services et des secrétaires</button>
+                <button className="toggle-button" onClick={() => { setShowForm(false); }} >Liste Gestion des Services et des secrétaires</button>
+            </div>
 
-            <h2>Liste des Services</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Porte</th>
-                        <th>Direction</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {services.map((service) => (
-                        <tr key={service.id_s}>
-                            <td>{service.nom_s}</td>
-                            <td>{service.porte_s}</td>
-                            <td>{service.hierarchy}</td>
-                            <td>
-                                <button onClick={() => editService(service)}>Éditer</button>
-                                <button onClick={() => deleteService(service.id_s)}>Supprimer</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            {/* Affichage conditionnel basé sur l'état showForm */}
+            {showForm ? (
+                <div className="service-form" ref={formRef}>
+                    <input
+                        type="text"
+                        value={nom_s}
+                        onChange={(e) => setNomS(e.target.value)}
+                        placeholder="Nom du service"
+                    />
+                    <input
+                        type="text"
+                        value={porte_s}
+                        onChange={(e) => setPorteS(e.target.value)}
+                        placeholder="Porte du service"
+                    />
+                    <select value={id_d} onChange={(e) => setIdD(e.target.value)}>
+                        <option value="">Sélectionner une direction</option>
+                        {directions.map((direction) => (
+                            <option key={direction.id_d} value={direction.id_d}>
+                                {getDirectionHierarchy(direction)}
+                            </option>
+                        ))}
+                    </select>
+                    <button type="button" onClick={handleSubmit}>
+                        {editId ? 'Mettre à jour' : 'Ajouter'}
+                    </button>
+                    <button type="button" onClick={clearForm}>Annuler</button>
+                </div>
+            ) : (
+                <div className="service-list">
+                    <h2>Liste des Services</h2>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Porte</th>
+                                <th>Direction</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {services.map((service) => (
+                                <tr key={service.id_s}>
+                                    <td>{service.nom_s}</td>
+                                    <td>{service.porte_s}</td>
+                                    <td>{service.hierarchy}</td>
+                                    <td>
+                                        <button onClick={() => editService(service)} className='direction-btn-edit-new'>Éditer</button>
+                                        <button onClick={() => deleteService(service.id_s)}className="direction-btn-delete-new">Supprimer</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 };
