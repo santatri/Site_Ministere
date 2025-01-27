@@ -35,7 +35,7 @@ const Header = () => {
             <div className="header-right">
                 <div className="header-item">
                     <i className="fas fa-clock icon"></i>
-                    <p>Horaires d'ouverture : Lundi à Samedi - 8h à 18h</p>
+                    <p>Horaires d'ouverture : Lundi à Vendredi - 9h à 16h</p>
                 </div>
             </div>
         </div>

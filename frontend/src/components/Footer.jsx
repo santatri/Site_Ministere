@@ -1,57 +1,35 @@
-import React from "react";
-import "../styles/Footer.css";
-import logo from "../assets/dgfop.png"; // Chemin vers votre logo
+import React from 'react';
+import '../styles/Footer.css'; // Assurez-vous de créer un fichier CSS pour les styles
+import logo1 from '../assets/dgfop.png';
+import logo2 from '../assets/Rpp.png'; // Remplacez par le chemin de votre deuxième logo
 
 const Footer = () => {
+  // Obtenir l'année en cours dynamiquement
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <div className="footer-content">
-        {/* Section des coordonnées */}
-        <div className="footer-section">
-          <img src={logo} alt="Logo" className="footer-logo" />
-          <p>
-            <strong>Adresse:</strong> 67Ha, Bâtiment D1, Antananarivo Madagascar 101
-          </p>
-          <p>
-            <strong>Email:</strong>{" "}
-            <a href="mailto:contact@digital.gov.mg">dgfop@gmail.com.</a>
-          </p>
-          <p>
-            <strong>Téléphone:</strong> +261 34 55 997 17
-          </p>
-
+        <div className="footer-section logos">
+          <img src={logo1} alt="Logo 1" className="footer-logo" />
+          <img src={logo2} alt="Logo 2" className="footer-logo" />
         </div>
-
-        {/* Section des ministères */}
         <div className="footer-section">
-          <h3>Les Ministères</h3>
-          <ul>
-            <li>Présidence de la République</li>
-            <li>Intérieur et Décentralisation</li>
-            <li>Économie et Finances</li>
-            <li>Éducation Nationale et Enseignement Technique/Professionnel</li>
-            <li>Santé Publique</li>
-            <li>Postes, Télécommunications et Développement Numérique</li>
-          </ul>
+          <h3>Contact</h3>
+          <p>67Ha, Rue Département</p>
+          <p>Antananarivo, Madagascar</p>
+          <p>dgofp@.gov.mg</p>
         </div>
-
-        {/* Section des sites à visiter */}
         <div className="footer-section">
-          <h3>Sites à visiter à Madagascar</h3>
+          <h3>Liens utiles</h3>
           <ul>
-            <li>Banque Centrale</li>
-            <li>CNLEGIS</li>
-            <li>Economic Development Board of Madagascar</li>
-            <li>e-VISA</li>
-            <li>Tourisme, Transport, Météorologie</li>
+            <li><a href="https://www.presidence.gov.mg">Présidence de la République de Madagascar</a></li>
+            <li><a href="https://www.primature.gov.mg">Primature de Madagascar</a></li>
           </ul>
         </div>
       </div>
-
-      {/* Bas du footer */}
       <div className="footer-bottom">
-        <p>Direction Génerale et de la Fonction Publique Rights Reserved © 2024</p>
-        
+        <p>© Direction Générale de la Fonction Publique - Madagascar, {currentYear} | Développé par Toky et Santatra</p>
       </div>
     </footer>
   );
