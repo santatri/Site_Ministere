@@ -6,7 +6,7 @@
 
 /* Titre principal */
 .ministere-title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
 }
 
@@ -14,16 +14,16 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
-  gap: 20px; /* Espace entre les éléments */
+  gap: 50px; /* Espace entre les éléments */
 }
 
 /* Style pour chaque élément de la grille */
 .grid-item {
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   padding: 16px;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,8 @@
 
 /* Style du titre */
 .grid-item h2 {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  color: rgb(7, 7, 108);
   margin: 0;
 }
 /* Style de l'image */

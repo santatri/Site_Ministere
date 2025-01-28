@@ -1,169 +1,119 @@
-
-
 .overla {
-  background: linear-gradient(0deg ,rgb(148, 144, 251), rgba(0, 183, 255, 0.962) ,rgba(0, 153, 255, 0.94) ,rgb(11, 20, 122)),url('../assets/giphy.gif') ;
+  background: linear-gradient(0deg, rgb(187, 144, 251), rgba(0, 183, 255, 0.962), rgba(0, 153, 255, 0.94), rgb(11, 20, 122)),
+              url('../assets/giphy.gif');
+  background-size: cover;
+  background-position: center;
   color: white;
   text-align: center;
-  padding: 20px 0;
+  padding: 20px 10px;
   margin-top: 2%;
   width: 100%;
-
   position: relative;
-  border-radius: 0px;
-  
+  border-radius: 4px;
 }
 
 h1 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0;
   color: white;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .chap {
-  margin-left: 50px;
+  margin-left: 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
 }
 
 .search-form {
   display: flex;
   justify-content: center;
-  margin-left: 30px;
-  padding: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
 }
 
 .searches-fieldses {
   display: flex;
-  gap: 30px;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
 
 .searches-fieldses input {
   padding: 10px;
   border: 1px solid #4eb5ff;
   border-radius: 5px;
+  width: 300px; /* Largeur par défaut */
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .searches-fieldses button {
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 150px; /* Largeur par défaut */
 }
 
 .searches-fieldses button:hover {
   background-color: #0056b3;
 }
 
-.actualités-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-left: 40px;
-  padding: 10px;
-}
-
-.actualité-card {
-  position: relative;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: calc(33.333% - 20px);
-  text-align: center;
-  padding: 0px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Pour que l'image et le contenu soient coupés */
-}
-
-.actualité-card img {
-  width: 100%;
-  border-radius: 5px;
-  opacity: 0.99;
-  object-fit: cover;
-}
-
-.date-publication {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-  border-radius: 3px;
-  font-size: 0.9rem;
-  color: #fff;
-}
-
-.actualité-title {
-  position: absolute;
-  top: -10px;
-  font-family: robo;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 3px;
-  font-size: 1rem;
-  color: #fff;
-  cursor: pointer; /* Changer la forme du pointeur lorsque survole le titre */
-  transition: all 0.3s ease;
-}
-
-.actualité-title:hover {
-  color: #00d9ff; /* Changer la couleur du texte en bleu */
-  text-decoration: underline; /* Souligner le texte */
-  transition: all 0.3s ease;
-}
-
-.actualité-description {
-  font-size: 1rem;
-  margin: 10px 0;
-}
-
-/* Animation pour les anciens articles */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 1rem;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .chap {
+    margin-left: 10px;
+    font-size: 0.9rem;
+  }
+
+  .searches-fieldses {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .searches-fieldses input,
+  .searches-fieldses button {
+    width: 80%; /* Occuper 80% de la largeur */
+    max-width: 400px;
   }
 }
 
-.actualité-card-animation {
-  animation: fadeIn 0.5s ease-in-out;
-}
+@media screen and (max-width: 480px) {
+  .overla {
+    padding: 15px 5px;
+  }
 
-/* Animation des titres cliquables avec Framer Motion */
-.actualité-title-motion {
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-  z-index: 1;
-  color: black; /* Couleur par défaut du texte */
-}
+  h1 {
+    font-size: 0.9rem;
+  }
 
-.actualité-title-motion:hover {
-  color: #eeff00; /* Changer la couleur du texte en bleu */
-  z-index: 2;
-  transition: all 0.3s ease;
-  text-decoration: underline; /* Souligner le texte */
-}
+  .search-form {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 
-.actualité-title-motion:before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -5px;
-  width: 0;
-  height: 2px;
-  background: #00ccff;
-  transition: width 0.3s ease;
-  transform: translateX(-50%);
-}
+  .searches-fieldses {
+    gap: 10px;
+  }
 
-.actualité-title-motion:hover:before {
-  width: 100%;
+  .searches-fieldses input,
+  .searches-fieldses button {
+    width: 100%; /* Occuper toute la largeur */
+  }
+
+  .searches-fieldses button {
+    padding: 10px;
+  }
 }

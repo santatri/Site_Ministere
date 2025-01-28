@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
         <div className="footer-section">
           <h3>Contact</h3>
-          <p>67Ha, Rue Département</p>
+          <p>67Ha, Bâtiment D1</p>
           <p>Antananarivo, Madagascar</p>
           <p>dgofp@.gov.mg</p>
         </div>

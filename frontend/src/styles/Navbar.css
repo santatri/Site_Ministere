@@ -169,18 +169,19 @@
 
 .show{
   position: absolute;
-  top: 40px;
+  top: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: blueviolet;
+  background-color: rgba(6, 18, 65, 0.892);
 }
 
 .burger {
   width: 50%;
-  color: white;
-  /* background: red; */
+  color: rgb(255, 255, 255);
+
+   
   display: flex;
   justify-content: right;
   padding-right: 20px;
@@ -245,7 +246,7 @@
 }
 
 .submenu-item {
-  padding: 15px 0px;
+  padding: 12px 0px;
   text-decoration: none;
   display: flex;
 border-radius: 2%;

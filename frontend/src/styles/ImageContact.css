@@ -3,8 +3,8 @@
     position: relative;
     opacity: 0.99;
     width: 100%; /* Occuper toute la largeur */
-    height: 250px; /* Hauteur définie */
-    background: linear-gradient(100deg, rgba(5, 40, 236, 0.76), rgba(1, 238, 255, 0.903)), url('../assets/black9.jpg') no-repeat center center; 
+    height: 200px; /* Hauteur définie */
+    background: linear-gradient(0deg ,rgb(0, 234, 255), rgba(0, 183, 255, 0.875) ,rgba(0, 153, 255, 0.97) ,rgb(11, 20, 122)),url('../assets/25.jpg') ;
     background-size: cover; /* Adapter l'image pour couvrir tout l'écran */
     background-position: center; /* Centrer l'image */
     display: flex;

@@ -20,7 +20,7 @@ const Contact = () => {
       <div className="contact-item">
         <span className="material-icons contact-icon">email</span>
         <h3>Envoyez-nous un mail</h3>
-        <p>contact@mtefp.gov.mg</p>
+        <p>contact@DGFOP.gov.mg</p>
       </div>
     </div>
   );

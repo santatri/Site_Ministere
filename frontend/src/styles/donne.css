@@ -10,19 +10,23 @@ background-color: rgba(225, 225, 225, 0.722);
 }
 .services-titlees {
   font-size: 1.6rem;
-  margin-top: 2%;
+  margin-top: 1.5%;
   justify-content: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin-left: 7%;
-  color: #0a0276;
+  color: #13aab8;
 }
 .servi{
-  font-size: 16.5px;
+  font-size: 16px;
 
- color: #303030;
+ color: #060839;
   justify-content: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin-left: 7%;
+}
+.searches-bar:focus{
+  border-color: rebeccapurple;
+  color: red
 }
 
 /* Barre de recherche */
@@ -36,9 +40,17 @@ background-color: rgba(225, 225, 225, 0.722);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+
 /* Champs individuels */
+
+.searches-input {
+  height: 55px;
+
+  font-size: 14px;
+  text-align: center;
+  border: 10px;
+}
 .searches-category,
-.searches-input,
 .searches-button {
   height: 50px;
   font-size: 14px;
@@ -48,10 +60,11 @@ background-color: rgba(225, 225, 225, 0.722);
 
 /* Menu déroulant */
 .searches-category {
-  flex: 1;
+  flex: 1;padding: 20px 10px;
   background-color: #2391f2;
   color: whitesmoke;
-  border-radius: 5px;
+  margin-left: 1%;
+  border-radius:  0 10px 0px 0px;
   border: 0%;
 
 }
@@ -62,19 +75,20 @@ background-color: rgba(225, 225, 225, 0.722);
   padding: 0px;
 }
 
+
 /* Bouton */
 .searches-button {
   flex: 1;
   color: white;
   background-color: #3f09e1;
   cursor: pointer;
-  border: 0px;
+  border: 0px;margin-left: -0.05%;
   margin-top: 0%;
-  border-radius: 5px;
+  border-radius:2px ;
 }
 
 .searches-button:hover {
-  background-color: #0056b3;
+  background-color: #12518f;
 }
 
 /* Conteneur des services */
@@ -218,13 +232,12 @@ margin-top: 20%;
 }
 
 .service-title-box h3 {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
+  margin-left: 7%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #374151;
  
-  font-weight: bold;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  
-  text-align: center;
-  margin: 0;
+
   color: #0a0276;
 }
 
@@ -420,4 +433,59 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 /* Appliquer l'animation à la box info */
 .service-info-box {
   animation: slideInLeft 1s ease-out forwards;
+}
+
+/* Media Queries pour la réactivité */
+@media (max-width: 768px) {
+  .searches-bar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .searches-input {
+    height: 45px;
+    padding: 20px;
+    font-size: 12px;
+  }
+  
+  .searches-category,
+  .searches-button {
+    width: 90%;
+    margin-left: 4.5%;
+    padding: 15px;
+  
+    height: 40px;
+    font-size: 12px;
+  }
+  
+
+}
+
+@media (max-width: 480px) {
+.services-titlees {
+  font-size: 1.4rem;
+  margin-left: 4%;
+    margin-top: 10% ;
+}
+
+.servi {
+  font-size: 14px;
+  margin-left: 5%;
+}
+
+.searches-input {
+  height: 45px;
+  padding: 20px;
+  font-size: 12px;
+}
+
+.searches-category,
+.searches-button {
+  width: 90%;
+  margin-left: 4.5%;
+  padding: 15px;
+
+  height: 40px;
+  font-size: 12px;
+}
 }
