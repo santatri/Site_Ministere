@@ -1,423 +1,491 @@
 /* Conteneur principal */
 .donne-container{
-background-color: rgba(225, 225, 225, 0.722);
-}
-.searches-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f8f9fa;
-}
-.services-titlees {
-  font-size: 1.6rem;
-  margin-top: 2%;
-  justify-content: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin-left: 7%;
-  color: #0a0276;
-}
-.servi{
-  font-size: 16.5px;
-
- color: #303030;
-  justify-content: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin-left: 7%;
-}
-
-/* Barre de recherche */
-.searches-bar {
-  display: flex;
-  width: 50%;
-  max-width: 1400px;
- 
-
-  overflow: hidden;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Champs individuels */
-.searches-category,
-.searches-input,
-.searches-button {
-  height: 50px;
-  font-size: 14px;
-  text-align: center;
-  border: 0px;
-}
-
-/* Menu déroulant */
-.searches-category {
-  flex: 1;
-  background-color: #2391f2;
-  color: whitesmoke;
-  border-radius: 5px;
-  border: 0%;
-
-}
-
-/* Champ de recherche */
-.searches-input {
-  flex: 3;
-  padding: 0px;
-}
-
-/* Bouton */
-.searches-button {
-  flex: 1;
-  color: white;
-  background-color: #3f09e1;
-  cursor: pointer;
-  border: 0px;
-  margin-top: 0%;
-  border-radius: 5px;
-}
-
-.searches-button:hover {
-  background-color: #0056b3;
-}
-
-/* Conteneur des services */
-.services-list {
-  display: flex;
-
-  border: 0%;
-  color: rgb(255, 255, 255);
-  flex-wrap: wrap;
-  gap: 50px;
-  justify-content: center;
-  margin-top: 0px;
-}
-
-/* Conteneur des services */
-.services-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Espacement entre les cadres */
-  justify-content: center;
-  margin-top: 20px;
-}
-
-/* Carte de service */
-.service-card {
-  position: relative;
-  background: linear-gradient(to bottom, #ffffff, #fbfeff);
-  border-radius: 10px;
-  padding: 20px;
- 
-  width: 240px; /* Largeur fixe */
-  height: 150px; /* Hauteur fixe */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Évite le débordement du texte */
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(83, 192, 225, 0.711);
-}
-
-/* Badge texte */
-.service-badge {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background: #0fa6ecea;
-  color: #fff;
-  padding: 8px 25px;
-  border-radius: 0px;
-  font-size: 14px;
-}
-
-/* Icône du service */
-.service-icon {
-  font-size: 25px; /* Taille de l'icône */
-  color: #236c91;
-  position: absolute; /* Position absolue par rapport au conteneur parent */
-  top: 10px; /* Ajustez la position verticale */
-  left: 2-px; /* Ajustez la position horizontale */
-  font-size: 25px;
-  color: #236c91;
-  margin-bottom: 0px;
-}
-
-/* Texte à l'intérieur du cadre */
-/* Texte à l'intérieur du cadre */
-.service-text {
-  font-size: 12px;
-  font-weight: 500;
-  color: #333;
-margin-top: 20%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  text-align: center;
+  background-color: rgba(225, 225, 225, 0.722);
+  }
+  .searches-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+  .services-titlees {
+    font-size: 1.6rem;
+    margin-top: 1.5%;
+    justify-content: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 7%;
+    color: #13aab8;
+  }
+  .servi{
+    font-size: 16px;
   
-}      
-.service-text:hover{
-  color: rgb(8, 48, 105);
-  text-decoration: underline;
-}
-
-
-
-.service-description {
-  font-size: 12.5px;
-  color: #666;
-  margin-top: 15px;
-  word-wrap: break-word;
-  max-width: 10%;
-  line-height: 1.5;
-}
-/* Conteneur principal */
-.service-details {
-  max-width: 97%;
-  margin: 0px auto;
-  padding: 0px;
-  background: linear-gradient(100deg ,rgb(247, 245, 255), rgba(226, 247, 255, 0.982) ,rgba(255, 255, 255, 0.988) ,rgb(228, 246, 255)),url('../assets/b.jpg') ; /* Centrer l'image */
-  border-radius: 0px;
-  box-shadow: 0 4px 10px rgba(255, 246, 246, 0.864);
-  font-family: 'Arial', sans-serif;
-  color: #333;
-}
-
-/* Titre principal centré */
-.details-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  color: #871cd3;
-  margin-bottom: 20px;
-}
-
-/* Conteneur des colonnes */
-.service-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-/* Colonne gauche */
-.service-left {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Conteneur pour le titre du service */
-.service-title-box {
-  border: 1px solid #ffffff57;
-  padding: 15px;
-  border-radius: 0px 5px 5px 0px;
-
-  background-color: #ddf8ff;
-}
-
-.service-title-box h3 {
-  font-size: 1.8rem;
- 
-  font-weight: bold;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   color: #060839;
+    justify-content: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 7%;
+  }
+  .searches-bar:focus{
+    border-color: rebeccapurple;
+    color: red
+  }
   
-  text-align: center;
-  margin: 0;
-  color: #0a0276;
-}
-
-/* Conteneur pour la description */
-
-
-.service-description-box p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* Conteneur pour le dossier préparé */
-.service-dossier-box {
-
-  padding: 25px;
-  line-height: 1.8;  border-radius: 8px;  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #eefaff;
-}
-
-.service-dossier-box h4 {
-  margin: 0 0 15px;
-  margin-left: 5.5%;
-  margin-top: -2%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 1.2rem;
-  text-decoration: underline;
-  color: #0c079c;
-}
-
-.service-dossier-box ul {
-  margin: 0;line-height: 1.9;
-  margin-left: 5%;
-  padding-left: 20px;
-  list-style:disc;
-}
-
-.service-dossier-box p {
-  margin-left: 5%;
-  font-size: 14px;
-  color: #888;
-  font-style: italic;
-}
-
-/* Colonne droite */
-.service-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
- 
-}
-
-/* Conteneurs pour les informations (hiérarchie, porte, délai) */
-.service-info-box {
-  border: 1px solid #f6fdff;
-  padding: 16px;
-  color: white;
-
-
-  border-radius: 12px;
-  background-color: #55677d;
-}
-
-.service-info-box h4 {
-  margin: 0 0 5px;
-  font-size: 17px;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.service-info-box p {
-  font-size: 16px;
-  margin: 0;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-/* Conteneur de l'entête */
-
-
-/* Bouton Retour */
-.back-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
-  background-color: #024a76;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: #04c0d4;
-}
-
-.back-button:active {
-  background-color: #744dff;
-}
-
-/* Titre Détails */
-.details-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #c31e1e;
-  margin: 5%;
-  flex: 1; /* Permet au titre de prendre de l'espace si nécessaire */
-}
-.language-selector {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.language-selector button {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.language-selector button:hover {
-  background-color: #e0e0e0;
-}
-/* Définition de l'animation */
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%); /* Commence à gauche en dehors de l'écran */
-    opacity: 0;
+  /* Barre de recherche */
+  .searches-bar {
+    display: flex;
+    width: 50%;
+    max-width: 1400px;
+   
+  
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   }
-  to {
-    transform: translateX(0); /* Se déplace vers la position d'origine */
-    opacity: 1;
+  
+  
+  /* Champs individuels */
+  
+  .searches-input {
+    height: 55px;
+  
+    font-size: 14px;
+    text-align: center;
+    border: 10px;
   }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%); /* Commence à droite en dehors de l'écran */
-    opacity: 0;
+  .searches-category,
+  .searches-button {
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    border: 0px;
   }
-  to {
-    transform: translateX(0); /* Se déplace vers la position d'origine */
-    opacity: 1;
+  
+  /* Menu déroulant */
+  .searches-category {
+    flex: 1;padding: 20px 10px;
+    background-color: #2391f2;
+    color: whitesmoke;
+    margin-left: 1%;
+    border-radius:  0 10px 0px 0px;
+    border: 0%;
+  
   }
-}
-
-/* Application de l'animation à chaque boîte de service (dossier) */
-.service-dossier-box {
-  animation: slideInLeft 1s ease-out forwards; /* Animation venant de la gauche */
-  /* Si vous voulez l'animation venant de la droite, utilisez slideInRight */
-}
-
-/* Si vous avez plusieurs éléments, vous pouvez appliquer cette animation à des moments différents en utilisant 'animation-delay' */
-.service-dossier-box:nth-child(odd) {
-  animation: slideInLeft 2s ease-out forwards;
-}
-
-.service-dossier-box:nth-child(even) {
-  animation: slideInRight 1s ease-out forwards;
-}
-/* Animation pour faire apparaître la box dossier depuis la droite */
-@keyframes slideInRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
+  
+  /* Champ de recherche */
+  .searches-input {
+    flex: 3;
+    padding: 0px;
   }
-  100% {
-    transform: translateX(0);
-    opacity: 2;
+  
+  
+  /* Bouton */
+  .searches-button {
+    flex: 1;
+    color: white;
+    background-color: #3f09e1;
+    cursor: pointer;
+    border: 0px;margin-left: -0.05%;
+    margin-top: 0%;
+    border-radius:2px ;
   }
-}
-
-/* Animation pour faire apparaître la box info depuis la gauche */
-@keyframes slideInLeft {
-  0% {
-    transform: translateX(-80%);
-    opacity: 0;
+  
+  .searches-button:hover {
+    background-color: #12518f;
   }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
+  
+  /* Conteneur des services */
+  .services-list {
+    display: flex;
+  
+    border: 0%;
+    color: rgb(255, 255, 255);
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 0px;
   }
-}
-
-/* Appliquer l'animation à la box dossier */
-.service-dossier-box {
-  animation: slideInLeft 4s ease-out forwards;
-}
-
-/* Appliquer l'animation à la box info */
-.service-info-box {
-  animation: slideInLeft 1s ease-out forwards;
-}
+  
+  /* Conteneur des services */
+  .services-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacement entre les cadres */
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Carte de service */
+  .service-card {
+    position: relative;
+    background: linear-gradient(to bottom, #ffffff, #fbfeff);
+    border-radius: 10px;
+    padding: 20px;
+   
+    width: 240px; /* Largeur fixe */
+    height: 150px; /* Hauteur fixe */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Évite le débordement du texte */
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(83, 192, 225, 0.711);
+  }
+  
+  /* Badge texte */
+  .service-badge {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #0fa6ecea;
+    color: #fff;
+    padding: 8px 25px;
+    border-radius: 0px;
+    font-size: 14px;
+  }
+  
+  /* Icône du service */
+  .service-icon {
+    font-size: 25px; /* Taille de l'icône */
+    color: #236c91;
+    position: absolute; /* Position absolue par rapport au conteneur parent */
+    top: 10px; /* Ajustez la position verticale */
+    left: 2-px; /* Ajustez la position horizontale */
+    font-size: 25px;
+    color: #236c91;
+    margin-bottom: 0px;
+  }
+  
+  /* Texte à l'intérieur du cadre */
+  /* Texte à l'intérieur du cadre */
+  .service-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+  margin-top: 20%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    
+  }      
+  .service-text:hover{
+    color: rgb(8, 48, 105);
+    text-decoration: underline;
+  }
+  
+  
+  
+  .service-description {
+    font-size: 12.5px;
+    color: #666;
+    margin-top: 15px;
+    word-wrap: break-word;
+    max-width: 10%;
+    line-height: 1.5;
+  }
+  /* Conteneur principal */
+  .service-details {
+    max-width: 97%;
+    margin: 0px auto;
+    padding: 0px;
+    background: linear-gradient(100deg ,rgb(247, 245, 255), rgba(226, 247, 255, 0.982) ,rgba(255, 255, 255, 0.988) ,rgb(228, 246, 255)),url('../assets/b.jpg') ; /* Centrer l'image */
+    border-radius: 0px;
+    box-shadow: 0 4px 10px rgba(255, 246, 246, 0.864);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Titre principal centré */
+  .details-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #871cd3;
+    margin-bottom: 20px;
+  }
+  
+  /* Conteneur des colonnes */
+  .service-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  /* Colonne gauche */
+  .service-left {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Conteneur pour le titre du service */
+  .service-title-box {
+    border: 1px solid #ffffff57;
+    padding: 15px;
+    border-radius: 0px 5px 5px 0px;
+  
+    background-color: #ddf8ff;
+  }
+  
+  .service-title-box h3 {
+    font-size: 1.3rem;
+    margin-left: 7%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #374151;
+   
+  
+    color: #0a0276;
+  }
+  
+  /* Conteneur pour la description */
+  
+  
+  .service-description-box p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  /* Conteneur pour le dossier préparé */
+  .service-dossier-box {
+  
+    padding: 25px;
+    line-height: 1.8;  border-radius: 8px;  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #eefaff;
+  }
+  
+  .service-dossier-box h4 {
+    margin: 0 0 15px;
+    margin-left: 5.5%;
+    margin-top: -2%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    color: #0c079c;
+  }
+  
+  .service-dossier-box ul {
+    margin: 0;line-height: 1.9;
+    margin-left: 5%;
+    padding-left: 20px;
+    list-style:disc;
+  }
+  
+  .service-dossier-box p {
+    margin-left: 5%;
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+  }
+  
+  /* Colonne droite */
+  .service-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+   
+  }
+  
+  /* Conteneurs pour les informations (hiérarchie, porte, délai) */
+  .service-info-box {
+    border: 1px solid #f6fdff;
+    padding: 16px;
+    color: white;
+  
+  
+    border-radius: 12px;
+    background-color: #55677d;
+  }
+  
+  .service-info-box h4 {
+    margin: 0 0 5px;
+    font-size: 17px;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .service-info-box p {
+    font-size: 16px;
+    margin: 0;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  /* Conteneur de l'entête */
+  
+  
+  /* Bouton Retour */
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #024a76;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #04c0d4;
+  }
+  
+  .back-button:active {
+    background-color: #744dff;
+  }
+  
+  /* Titre Détails */
+  .details-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #c31e1e;
+    margin: 5%;
+    flex: 1; /* Permet au titre de prendre de l'espace si nécessaire */
+  }
+  .language-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .language-selector button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .language-selector button:hover {
+    background-color: #e0e0e0;
+  }
+  /* Définition de l'animation */
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%); /* Commence à gauche en dehors de l'écran */
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0); /* Se déplace vers la position d'origine */
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%); /* Commence à droite en dehors de l'écran */
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0); /* Se déplace vers la position d'origine */
+      opacity: 1;
+    }
+  }
+  
+  /* Application de l'animation à chaque boîte de service (dossier) */
+  .service-dossier-box {
+    animation: slideInLeft 1s ease-out forwards; /* Animation venant de la gauche */
+    /* Si vous voulez l'animation venant de la droite, utilisez slideInRight */
+  }
+  
+  /* Si vous avez plusieurs éléments, vous pouvez appliquer cette animation à des moments différents en utilisant 'animation-delay' */
+  .service-dossier-box:nth-child(odd) {
+    animation: slideInLeft 2s ease-out forwards;
+  }
+  
+  .service-dossier-box:nth-child(even) {
+    animation: slideInRight 1s ease-out forwards;
+  }
+  /* Animation pour faire apparaître la box dossier depuis la droite */
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 2;
+    }
+  }
+  
+  /* Animation pour faire apparaître la box info depuis la gauche */
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-80%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Appliquer l'animation à la box dossier */
+  .service-dossier-box {
+    animation: slideInLeft 4s ease-out forwards;
+  }
+  
+  /* Appliquer l'animation à la box info */
+  .service-info-box {
+    animation: slideInLeft 1s ease-out forwards;
+  }
+  
+  /* Media Queries pour la réactivité */
+  @media (max-width: 768px) {
+    .searches-bar {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .searches-input {
+      height: 45px;
+      padding: 20px;
+      font-size: 12px;
+    }
+    
+    .searches-category,
+    .searches-button {
+      width: 90%;
+      margin-left: 4.5%;
+      padding: 15px;
+    
+      height: 40px;
+      font-size: 12px;
+    }
+    
+  
+  }
+  
+  @media (max-width: 480px) {
+  .services-titlees {
+    font-size: 1.4rem;
+    margin-left: 4%;
+      margin-top: 10% ;
+  }
+  
+  .servi {
+    font-size: 14px;
+    margin-left: 5%;
+  }
+  
+  .searches-input {
+    height: 45px;
+    padding: 20px;
+    font-size: 12px;
+  }
+  
+  .searches-category,
+  .searches-button {
+    width: 90%;
+    margin-left: 4.5%;
+    padding: 15px;
+  
+    height: 40px;
+    font-size: 12px;
+  }
+  }
