@@ -2,10 +2,10 @@
   
   /* Conteneur principal */
   .dgform-container {
-    max-width: 800px;
-     margin-top: 3%;
-     margin-left: .0%;
-    padding: 1.5rem;
+    max-width: 1200px;
+     margin-top: 1%;
+     margin-left: 0%;
+    padding: 1.2rem;
     background: #fff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -14,17 +14,19 @@
   /* Titres */
   .dgform-title {
     text-align: left;
-    margin-left: -2.2%;
-    font-size: 2rem;
+    margin-left: 0.5%;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #06127b;
   }
   
   .dgform-subtitle{
+    margin-left: 2.2%;
     text-align: left;
+    margin-top: -0.1%;
     font-size: 1rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 1rem 0;
+   
     color: #333;
   }
   .dgform-section-title {
@@ -36,12 +38,10 @@
   
   /* Formulaire */
   .dgform-form {
-   
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: space-between;
-    margin-top: 2rem;
+  
+    display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
+  gap: 1rem; /* Espacement entre les colonnes */
   }
   
 
@@ -54,19 +54,31 @@
         font-size: 0.8rem;
         resize: none; /* Empêche le redimensionnement */
       
-  }  .dgform-input{
+  } 
+  .dgform-form .left-column{ display: flex;
+    background: rgb(247, 252, 253);
+    border-radius: 10px;
+   
+    flex-direction: column;
+    gap: 1rem; /* Espacement entre les champs */}
+.dgform-form .right-column {
+  display: flex;
+  background: white;
+  flex-direction: column;
+  gap: 0.5rem; /* Espacement entre les champs */
+} .dgform-input{
   width: calc(100.3% - 1rem);
   padding: 0.8rem;
   border: 1px solid #e7e7e7;
   border-radius: 7px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   }
   .dgform-container input[type="file"] {
     width: 98.3%;
     padding: 12px;
     border: 1px solid #e1e1e1;
     border-radius: 8px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     background: #f9f9f9;
   }
   
@@ -84,9 +96,9 @@
   
   /* Boutons */
   .dgform-button {
-    background: linear-gradient(to right, #3203cb, #805ad5);
+    background: linear-gradient(to right, #134aed, #0162ff);
     color: #fff;
-    width: calc(99% - 1rem);
+    width: calc(39% - 1rem);
     border: none;
     border-radius: 5px;
     font-size: 0.70rem;

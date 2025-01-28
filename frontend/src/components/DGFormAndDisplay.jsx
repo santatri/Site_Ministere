@@ -116,100 +116,103 @@ const DGFormAndDisplay = () => {
         {isEditMode ? "Modifier le DG" : "Formulaire d'insertion A propos de DGFOP"}
       </h2>
       <form onSubmit={handleSubmit} className="dgform-form">
-        <input
-          className="dgform-input"
-          type="text"
-          name="firstName"
-          placeholder="Prénom"
-          value={formData.firstName}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="dgform-input"
-          type="text"
-          name="lastName"
-          placeholder="Nom"
-          value={formData.lastName}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="dgform-input"
-          type="text"
-          name="dgName"
-          placeholder="Nom de la DG"
-          value={formData.dgName}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="dgform-input"
-          type="text"
-          name="post"
-          placeholder="Poste"
-          value={formData.post}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          className="dgform-textarea"
-          name="description_1"
-          placeholder="Description 1"
-          value={formData.description_1}
-          onChange={handleChange}
-          required
-        ></textarea>
-        <input
-          className="dgform-input"
-          type="text"
-          name="list_1"
-          placeholder="Liste 1 (séparée par des virgules)"
-          value={formData.list_1}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          className="dgform-textarea"
-          name="description_2"
-          placeholder="Description 2 (optionnel)"
-          value={formData.description_2}
-          onChange={handleChange}
-        ></textarea>
-        <input
-          className="dgform-input"
-          type="text"
-          name="list_2"
-          placeholder="Liste 2 (optionnel)"
-          value={formData.list_2}
-          onChange={handleChange}
-        />
-        <textarea
-          className="dgform-textarea"
-          name="description_3"
-          placeholder="Description 3 (optionnel)"
-          value={formData.description_3}
-          onChange={handleChange}
-        ></textarea>
-        <input
-          className="dgform-input"
-          type="text"
-          name="list_3"
-          placeholder="Liste 3 (optionnel)"
-          value={formData.list_3}
-          onChange={handleChange}
-        />
-        <input
-         
-          type="file"
-          name="image"
-          onChange={handleFileChange}
-        />
-        <button className="dgform-button" type="submit">
-          {isEditMode ? "Mettre à jour" : "Enregistrer"}
-        </button>
-      </form>
+  <div className="left-column">
+    <input
+      className="dgform-input"
+      type="text"
+      name="firstName"
+      placeholder="Prénom"
+      value={formData.firstName}
+      onChange={handleChange}
+      required
+    />
+    <input
+      className="dgform-input"
+      type="text"
+      name="lastName"
+      placeholder="Nom"
+      value={formData.lastName}
+      onChange={handleChange}
+      required
+    />
+    <input
+      className="dgform-input"
+      type="text"
+      name="dgName"
+      placeholder="Nom de la DG"
+      value={formData.dgName}
+      onChange={handleChange}
+      required
+    />
+    <input
+      className="dgform-input"
+      type="text"
+      name="post"
+      placeholder="Poste"
+      value={formData.post}
+      onChange={handleChange}
+      required
+    />
+    <textarea
+      className="dgform-textarea"
+      name="description_1"
+      placeholder="Description 1"
+      value={formData.description_1}
+      onChange={handleChange}
+      required
+    ></textarea>
+    <input
+      className="dgform-input"
+      type="text"
+      name="list_1"
+      placeholder="Liste 1 (séparée par des virgules)"
+      value={formData.list_1}
+      onChange={handleChange}
+      required
+    />
+  </div>
 
+  <div className="right-column">
+    <textarea
+      className="dgform-textarea"
+      name="description_2"
+      placeholder="Description 2 (optionnel)"
+      value={formData.description_2}
+      onChange={handleChange}
+    ></textarea>
+    <input
+      className="dgform-input"
+      type="text"
+      name="list_2"
+      placeholder="Liste 2 (optionnel)"
+      value={formData.list_2}
+      onChange={handleChange}
+    />
+    <textarea
+      className="dgform-textarea"
+      name="description_3"
+      placeholder="Description 3 (optionnel)"
+      value={formData.description_3}
+      onChange={handleChange}
+    ></textarea>
+    <input
+      className="dgform-input"
+      type="text"
+      name="list_3"
+      placeholder="Liste 3 (optionnel)"
+      value={formData.list_3}
+      onChange={handleChange}
+    />
+    <input
+      type="file"
+      name="image"
+      onChange={handleFileChange}
+    />
+    <button className="dgform-button" type="submit">
+      {isEditMode ? "Mettre à jour" : "Enregistrer"}
+    </button>
+  </div>
+</form>
       <h2 className="dgform-section-title">Liste des DG</h2>
       {loading ? (
         <p className="dgform-loading">Chargement des données...</p>

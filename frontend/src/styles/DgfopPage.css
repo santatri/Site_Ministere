@@ -1,25 +1,28 @@
 /* Container principal */
 .containeres {
   display: flex;
-  flex-direction: row; /* Aligne l'image et la description horizontalement */
+  flex-direction: row; /* Aligne horizontalement */
   align-items: flex-start; /* Aligne les éléments en haut */
-  justify-content: center; /* Centre le contenu horizontalement */
+  justify-content: center; /* Centre horizontalement */
   gap: 30px; /* Espace entre l'image et la section texte */
   margin: 40px auto;
   max-width: 1200px; /* Limite la largeur totale */
+  padding: 0 20px; /* Ajoute un padding pour éviter les débordements */
 }
 
+/* Images */
 .images-containeres {
   display: flex;
   flex-direction: column; /* Aligne l'image et la carte verticalement */
   align-items: center;
   text-align: center;
   max-width: 100%;
-  position: relative; /* Définit un contexte pour la position absolue */
+  position: relative; /* Contexte pour la carte */
 }
 
 .images-containeres img {
-  width: 450px; /* Ajustez selon vos besoins */
+  width: 100%; /* Rend l'image responsive */
+  max-width: 450px; /* Limite la taille */
   height: auto;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(151, 219, 255, 0.732); /* Ajoute une ombre subtile */
@@ -27,20 +30,19 @@
   margin-bottom: 16px; /* Espace entre l'image et la carte */
 }
 
+/* Carte */
 .cardes {
   background: #ffffff;
-  padding: 6px; /* Ajoutez du padding pour un espacement interne */
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 85%;
-  position: absolute; /* Place la carte à l'intérieur de l'image */
-  bottom: -100px; /* Ajuste la position verticale de la carte */
-
-
+  position: absolute;
+  bottom: -100px; /* Position verticale */
 }
 
-
+/* Styles de texte dans la carte */
 .cardes h2 {
   font-size: 1rem;
   color: #000;
@@ -49,65 +51,57 @@
 
 .cardes h3 {
   font-size: 1.2rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #122ab3;
   margin-bottom: 8px;
 }
 
 .cardes p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #6b7280;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Section contenant le texte */
+/* Section texte */
 .text-section {
   background: #ffffff;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 10 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 150%; /* Limite la largeur à 60% */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 60%; /* Limite la largeur */
   text-align: left;
   margin-top: -4%;
 }
 
 .text-section h1 {
   font-size: 1.5rem;
-  margin-left: -3.5%;
   color: #009dff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .underline {
-  width:90px;
+  width: 90px;
   height: 5px;
-  background: linear-gradient( #00bfff, #00b7ff);
-  margin: 25px 50;
+  background: linear-gradient(#00bfff, #00b7ff);
+  margin: 25px 0;
 }
 
 .text-section p {
-  font-size: 0.9rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
   color: #374151;
   line-height: 1.6;
   margin-bottom: 16px;
 }
 
 .text-section ul {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   list-style: none;
   padding: 0;
-  font-size: 1rem;
   margin-top: 16px;
 }
 
 .text-section li {
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 0.9rem;
   color: #1f2937;
   margin-bottom: 10px;
 }
@@ -119,9 +113,11 @@
 }
 
 /* Responsive Design */
+
+/* Petits écrans (smartphones) */
 @media (max-width: 768px) {
   .containeres {
-    flex-direction: column; /* Empile l'image et le texte verticalement */
+    flex-direction: column; /* Empile verticalement */
     align-items: center;
     gap: 20px;
   }
@@ -132,5 +128,39 @@
 
   .text-section {
     max-width: 100%; /* Largeur complète */
+    padding: 20px;
+    margin-top: 25%;
+  }
+
+  .cardes {
+    bottom: -90px; /* Ajuste la position de la carte */
+    padding: 8px;
+  }
+
+  .text-section h1 {
+    font-size: 1.2rem; /* Réduit la taille des titres */
+  }
+
+  .text-section p,
+  .text-section li {
+    font-size: 0.8rem; /* Réduit la taille du texte */
+  }
+}
+
+/* Moyens écrans (tablettes) */
+@media (max-width: 1024px) {
+  .containeres {
+    gap: 20px; /* Réduit l'espace entre les sections */
+  }
+
+  .text-section {
+    max-width: 80%; /* Augmente la largeur sur tablette */
+  }
+}
+
+/* Grands écrans (desktop) */
+@media (min-width: 1200px) {
+  .text-section {
+    max-width: 60%; /* Largeur maximale sur grand écran */
   }
 }

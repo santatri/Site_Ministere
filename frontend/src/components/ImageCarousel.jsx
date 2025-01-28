@@ -73,7 +73,7 @@ const ImageCarousel = () => {
         <div
           className="carousel-image"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(5, 30, 60, 0.889), rgba(90, 10, 10, 0.2), rgba(5, 40, 80, 0.89)), url(${image})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(5, 20, 70, 0.89), rgba(90, 10, 10, 0.2), rgba(5, 40, 80, 0.89)), url(${image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
