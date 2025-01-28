@@ -1,7 +1,6 @@
-// DForm.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "../styles/DgformStyle.css"; // Importer le fichier CSS
+import "../styles/DgformStyle.css"; // Assurez-vous que le fichier CSS est correctement importé
 
 const DForm = () => {
   const [formData, setFormData] = useState({
@@ -16,11 +15,15 @@ const DForm = () => {
     description_3: "",
     list_3: "",
     image: null,
+    logo: null, // Nouveau champ pour le logo
   });
 
   const [dData, setdData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+
+  // Référence pour le formulaire
+  const formRef = useRef(null);
 
   // Fonction pour récupérer les données
   const fetchdData = async () => {
@@ -45,7 +48,8 @@ const DForm = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    const { name, files } = e.target;
+    setFormData({ ...formData, [name]: files[0] });
   };
 
   const handleEdit = (d) => {
@@ -62,15 +66,21 @@ const DForm = () => {
       description_3: d.description_3 || "",
       list_3: d.list_3.join(","),
       image: null,
+      logo: null, // Réinitialiser le logo lors de l'édition
     });
     setIsEditMode(true);
+
+    // Faire défiler la page jusqu'au formulaire
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
-      if (key === "image" && formData[key] instanceof File) {
+      if ((key === "image" || key === "logo") && formData[key] instanceof File) {
         data.append(key, formData[key]);
       } else {
         data.append(key, formData[key]);
@@ -101,6 +111,7 @@ const DForm = () => {
         description_3: "",
         list_3: "",
         image: null,
+        logo: null, // Réinitialiser le logo après soumission
       });
       fetchdData();
       setIsEditMode(false);
@@ -128,7 +139,7 @@ const DForm = () => {
           ? "Modifier la Direction"
           : "Formulaire d'insertion à propos de la Direction"}
       </h2>
-      <form onSubmit={handleSubmit} className="dform-form">
+      <form onSubmit={handleSubmit} className="dform-form" ref={formRef}>
         <input
           type="text"
           name="firstName"
@@ -202,7 +213,10 @@ const DForm = () => {
           value={formData.list_3}
           onChange={handleChange}
         />
-        <input type="file" name="image" onChange={handleFileChange} />
+        <p>image</p>
+        <input placeholder="image" type="file" name="image" onChange={handleFileChange} />
+        <p>logo</p>
+        <input placeholder="logo" type="file" name="logo" onChange={handleFileChange} /> {/* Nouveau champ pour le logo */}
         <button type="submit" className="dform-submit">
           Enregistrer
         </button>
@@ -220,6 +234,13 @@ const DForm = () => {
                   src={`http://localhost:5001${d.image_url}`}
                   alt="Image de la Direction"
                   className="dform-item-image"
+                />
+              )}
+              {d.logo_url && ( // Afficher le logo si disponible
+                <img
+                  src={`http://localhost:5001${d.logo_url}`}
+                  alt="Logo de la Direction"
+                  className="dform-item-logo"
                 />
               )}
               <div className="dform-item-content">
