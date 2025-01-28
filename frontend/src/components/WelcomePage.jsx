@@ -20,7 +20,7 @@ const WelcomePage = () => {
           }
         });
       },
-      { threshold:0 } // Détecte lorsque 50% de l'élément est visible
+      { threshold: 0 } // Détecte dès que l'élément est visible
     );
 
     observer.observe(imageBox);
@@ -34,7 +34,7 @@ const WelcomePage = () => {
     <div className="welcome-page">
       <div className="pages">
         <div className="image-box" ref={imageBoxRef}>
-          <div className="badge"> Directeur Général</div>
+          <div className="badge">Directeur Générale</div>
           <img
             src={LogoMadagascar}
             alt="Logo Madagascar"
@@ -44,19 +44,17 @@ const WelcomePage = () => {
 
         <div className="text-pages">
           <h1>
-            Bienvenue sur le plateforme innovante Direction Génerale de la Fonction Publique
+            Bienvenue sur la plateforme innovante de la Direction Générale de la Fonction Publique
           </h1>
           <p>
-            La Présidence s’est engagée à créer une administration de proximité,
-            à l’écoute de la population et de ses besoins, et à améliorer la
-            qualité de vie des citoyens et de faciliter le travail des
-            entreprises.
+            Cette plateforme a été conçue pour moderniser les services publics et simplifier les
+            interactions entre l’administration et les citoyens. Elle vise à améliorer la qualité
+            des services offerts et à renforcer la transparence au sein de la fonction publique.
           </p>
           <h2>Monsieur RAMAROSON Heridja Patrick</h2>
           <p>
             <i>
-            Directeur Génerale de la Fonction Pulique, Administrateur civil
-              
+              Directeur Général de la Fonction Publique, Administrateur Civil
             </i>
           </p>
         </div>

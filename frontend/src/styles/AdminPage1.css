@@ -330,46 +330,13 @@ button {
 
 @media (max-width: 768px) {
   .sidebar {
+    width: 100%;
+    height: auto;
     padding: 10px;
-  }
-
-  .menu-item {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
-  .search-input {
-    width: 70%;
-  }
-
-  .search-button {
-    padding: 10px 12px;
-  }
-
-  table th, table td {
-    padding: 8px;
-  }
-
-  .logout-button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  /* Forcing a column layout for very small screens */
-  .dashboard {
-    flex-direction: column;
   }
 
   .content {
-    padding: 15px;
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar {
-    width: 100%;
-    padding: 8px;
+    padding: 10px;
   }
 
   .menu-item {
@@ -377,15 +344,40 @@ button {
     padding: 8px;
   }
 
+  .search-input {
+    width: 70%;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .menu-item {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
   .content {
     padding: 8px;
   }
 
   table {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
-  table th, table td {
+  table th,
+  table td {
     padding: 6px;
   }
 
@@ -395,15 +387,5 @@ button {
 
   .search-button {
     padding: 8px 10px;
-  }
-
-  .logout-button {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  /* Full screen layout for very small devices */
-  .dashboard {
-    flex-direction: column;
   }
 }
