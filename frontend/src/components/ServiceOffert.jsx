@@ -94,7 +94,8 @@ const ServiceOffert = () => {
             };
 
             if (editId) {
-                await axios.put('http://localhost:5001/api/serviceOffert/${editId}', data);
+                await axios.put(`http://localhost:5001/api/serviceOffert/${editId}`, data);
+
             } else {
                 await axios.post('http://localhost:5001/api/serviceOffert', data);
             }
@@ -140,7 +141,7 @@ const ServiceOffert = () => {
 
     const deleteService = async (id) => {
         try {
-            await axios.delete('http://localhost:5001/api/serviceOffert/${id}');
+            await axios.delete(`http://localhost:5001/api/serviceOffert/${id}`);
             fetchServices();
         } catch (error) {
             console.error("Erreur lors de la suppression du service:", error);

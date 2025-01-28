@@ -16,7 +16,7 @@
  
   font-size: 2rem;
   text-align: left;  /* Aligné à gauche */
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #022e61;
   font-weight: bold;
 
@@ -40,14 +40,14 @@ color: #0f74e8;
 /* Formulaire */
 .dform-container form {
 
-  margin-top: 2%;
+  margin-top: 1%;
   display: flex;
   max-width: 830px;
   flex-direction: column;
-  gap: 25px;
+  gap: 15px;
   background: #fefefe;
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0 6px 12px rgba(8, 30, 33, 0.1);
   margin-bottom: 40px;
 }

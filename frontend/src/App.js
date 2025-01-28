@@ -15,7 +15,9 @@ import DepedPage from './pages/DepedPage';
 import DfpaePage from './pages/DfpaePage';
 import DrhePage from './pages/DrhePage';
 import DgfopPage from './pages/DgfopPage';
+import ImageCarousel from './components/ImageCarousel';
 import CommunicationPage from './pages/CommunicationPage';
+import Donne from './components/donne';
 import DrfpPage from './pages/DrfpPage';
 
 import '../src/i18n';
@@ -59,7 +61,7 @@ const AppWithNavbar = () => {
   const location = useLocation();
 
   // Liste des pages où afficher la Navbar et le Footer
-  const showNavbarPages = ['/', '/home', '/service', '/archives', '/about','/about/dgfop','/about/deped','/about/drhe','/about/dfpae','/about/drfp', '/contact'];
+  const showNavbarPages = ['/', '/home', '/service', '/archives','/donne', '/about','/about/dgfop','/about/deped','/about/drhe','/about/dfpae','/about/drfp', '/contact'];
   
   useEffect(() => {
     window.scrollTo(0, 0); // Défile vers le haut à chaque changement de route
@@ -76,7 +78,10 @@ const AppWithNavbar = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/service" element={<Service />} />
    
-
+  
+        <Route path="/" element={<ImageCarousel />} />
+        <Route path="/donne" element={<Donne />} />
+  
         <Route path="/archives" element={<Archives />} />
         <Route path="/details/:id" component={DetailsActu} />
     

@@ -41,7 +41,9 @@ const WelcomePage = () => {
           }
         });
       },
+
       { threshold: 0 } // Détecte lorsque 50% de l'élément est visible
+
     );
 
     observer.observe(imageBox);
@@ -61,6 +63,7 @@ const WelcomePage = () => {
 
   return (
     <div className="welcome-page">
+
       {dgData.map((dg) => (
         <div className="pages" key={dg.id}>
           <div className="image-box" ref={imageBoxRef}>
@@ -89,6 +92,7 @@ const WelcomePage = () => {
               </i>
             </p>
           </div>
+
         </div>
       ))}
     </div>

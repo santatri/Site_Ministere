@@ -130,7 +130,7 @@ const Home = () => {
           <h1 className="annonces-title">Annonces</h1>
           {/* Contenu des annonces */}
           <div className="annonce-card">
-            <h2 className="annonce-title">Titre de l'annonce</h2>
+           
            
             <div>
        

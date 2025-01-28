@@ -139,7 +139,9 @@ const DForm = () => {
           ? "Modifier la Direction"
           : "Formulaire d'insertion à propos de la Direction"}
       </h2>
+
       <form onSubmit={handleSubmit} className="dform-form" ref={formRef}>
+
         <input
           type="text"
           name="firstName"
