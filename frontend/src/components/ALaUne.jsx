@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // Ajoutez useRef
 import axios from 'axios';
 import '../styles/ÀLaUne.css';
 
@@ -14,6 +14,9 @@ const ALaUne = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Créez une référence pour le formulaire
+  const formRef = useRef(null);
 
   const fetchElements = async () => {
     try {
@@ -71,6 +74,11 @@ const ALaUne = () => {
     });
     setIsEditing(true);
     setCurrentId(id);
+
+    // Faire défiler la page jusqu'au formulaire
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   const handleDelete = async (id) => {
@@ -99,7 +107,8 @@ const ALaUne = () => {
       <h2 className="titre">Insertion à la Une</h2>
       {message && <p className="message">{message}</p>}
 
-      <form onSubmit={handleSubmit} className="form">
+      {/* Ajoutez la référence au formulaire */}
+      <form onSubmit={handleSubmit} className="form" ref={formRef}>
         <input
           type="text"
           name="titre"
@@ -130,30 +139,29 @@ const ALaUne = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-<div className="elements-container">
-  {filteredElements.length > 0 ? (
-    filteredElements.map((element) => (
-      <div key={element.id} className="element-card">
-        <h3 className="element-title">{element.titre}</h3>
-        <p className="element-description">{element.description}</p>
-        {element.image && (
-          <img
-            src={`http://localhost:5001/uploads/${element.image}`}
-            alt={element.titre}
-            className="element-image"
-          />
+      <div className="elements-container">
+        {filteredElements.length > 0 ? (
+          filteredElements.map((element) => (
+            <div key={element.id} className="element-card">
+              <h3 className="element-title">{element.titre}</h3>
+              <p className="element-description">{element.description}</p>
+              {element.image && (
+                <img
+                  src={`http://localhost:5001/uploads/${element.image}`}
+                  alt={element.titre}
+                  className="element-image"
+                />
+              )}
+              <div className="button-group">
+                <button onClick={() => handleEdit(element.id)}>Modifier</button>
+                <button onClick={() => handleDelete(element.id)}>Supprimer</button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="no-elements">Aucune à la une</p>
         )}
-        <div className="button-group">
-          <button onClick={() => handleEdit(element.id)}>Modifier</button>
-          <button onClick={() => handleDelete(element.id)}>Supprimer</button>
-        </div>
       </div>
-    ))
-  ) : (
-    <p className="no-elements">Aucune à la une</p>
-  )}
-</div>
-
     </div>
   );
 };

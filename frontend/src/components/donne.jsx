@@ -230,10 +230,14 @@ const Donne = () => {
             </div>
             {/* Colonne droite */}
             <div className="service-right">
-              <div className="service-info-box">
-                <h4>Hiérarchie</h4>
-                <p>{serviceDetails.hierarchy || "Non définie"}</p>
-              </div>
+            <div className="service-info-box">
+              <h4>Hiérarchie</h4>
+              <p>
+                {serviceDetails.hierarchy 
+                  ? serviceDetails.hierarchy.split('/').reverse().join('/') 
+                  : "Non définie"}
+              </p>
+            </div>
               <div className="service-info-box">
                 <h4>Porte</h4>
                 <p>
