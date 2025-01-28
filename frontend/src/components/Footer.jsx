@@ -24,6 +24,7 @@ const Footer = () => {
           <h3>Liens utiles</h3>
           <ul>
             <li><a href="https://www.presidence.gov.mg">Présidence de la République de Madagascar</a></li>
+            <li><a href="http://mtefpls.gov.mg/author/mtefpls/">Ministére du Travail de l'Emploi et de la Fonction Publique</a></li>
             <li><a href="https://www.primature.gov.mg">Primature de Madagascar</a></li>
           </ul>
         </div>

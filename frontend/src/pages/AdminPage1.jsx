@@ -3,7 +3,7 @@ import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import '../styles/AdminPage1.css';
 import Actualité from '../components/Actualité';
-import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell, FaPowerOff, FaSlidersH, FaFolderOpen, FaFolder, FaSlideshare, FaAngleDown, FaLongArrowAltDown } from 'react-icons/fa';
+import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell, FaChartBar ,FaEnvelope  , FaArrowDown , FaSlideshare, FaAngleDown, FaLongArrowAltDown } from 'react-icons/fa';
 import AdminNavbar from '../components/AdminNavbar';
 import ALaUne from '../components/ALaUne';
 import logo from '../assets/dgfop.png'; // Remplacez par le chemin réel de votre logo
@@ -165,7 +165,7 @@ const AdminPage1 = () => {
             className={`menu-item ${activeSection === 'indicateurs' ? 'active' : ''}`}
             onClick={() => setActiveSection('indicateurs')}
           >
-            <FaPowerOff /> Indicateurs
+            <FaChartBar /> Indicateurs
           </button>
           <button
             className={`menu-item ${activeSection === 'slide' ? 'active' : ''}`}
@@ -177,13 +177,13 @@ const AdminPage1 = () => {
             className={`menu-item ${activeSection === 'Message' ? 'active' : ''}`}
             onClick={() => setActiveSection('Message')}
           >
-            <FaSlideshare /> Message
+            <FaEnvelope /> Message
           </button>
           <button
             className={`menu-item ${activeSection === 'footer' ? 'active' : ''}`}
             onClick={() => setActiveSection('footer')}
           >
-            <FaLongArrowAltDown /> Footer
+            <FaArrowDown /> Footer
           </button>
         </div>
         <LogoutButton />

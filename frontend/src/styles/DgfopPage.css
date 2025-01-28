@@ -22,8 +22,8 @@
 
 .images-containeres img {
   width: 100%; /* Rend l'image responsive */
-  max-width: 450px; /* Limite la taille */
-  height: auto;
+  max-width: 550px; /* Limite la taille */
+  height: 340px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(151, 219, 255, 0.732); /* Ajoute une ombre subtile */
   border: 1px solid #f7fdff;
@@ -73,6 +73,7 @@
 
 .text-section h1 {
   font-size: 1.5rem;
+  margin-left: -3%;
   color: #009dff;
   font-weight: bold;
   margin-bottom: 10px;

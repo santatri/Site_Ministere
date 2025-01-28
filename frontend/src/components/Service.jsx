@@ -73,12 +73,26 @@ const Service = () => {
     // Supprimer un service
     const deleteService = async (id) => {
         try {
-            await axios.delete(`http://localhost:5001/api/service/${id}`);
-            fetchServices();
+            const response = await axios.delete(`http://localhost:5001/api/service/${id}`);
+            if (response.status === 200) {
+                fetchServices(); // Recharge les services après suppression
+            } else {
+                console.error("Erreur lors de la suppression du service:", response.data.message);
+            }
         } catch (error) {
-            console.error("Erreur lors de la suppression du service:", error);
+            if (error.response) {
+                // La requête a été faite et le serveur a répondu avec un code d'état hors de la plage 2xx
+                console.error("Erreur lors de la suppression du service:", error.response.data.message);
+            } else if (error.request) {
+                // La requête a été faite mais aucune réponse n'a été reçue
+                console.error("Aucune réponse reçue du serveur:", error.request);
+            } else {
+                // Une erreur s'est produite lors de la configuration de la requête
+                console.error("Erreur lors de la configuration de la requête:", error.message);
+            }
         }
     };
+    
 
     // Préparer le formulaire pour l'édition
     const editService = (service) => {
