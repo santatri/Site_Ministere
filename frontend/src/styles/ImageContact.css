@@ -4,7 +4,7 @@
   opacity: 0.99;
   width: 100%; /* Occuper toute la largeur */
   height: 200px; /* Hauteur définie */
-  background: linear-gradient(0deg ,rgb(0, 234, 255), rgba(0, 183, 255, 0.875) ,rgba(0, 153, 255, 0.97) ,rgb(11, 20, 122)),url('../assets/25.jpg') ;
+  background: linear-gradient(0deg ,rgb(0, 234, 255), rgba(0, 183, 255, 0.799) ,rgba(0, 153, 255, 0.832) ,rgb(11, 20, 122)),url('../assets/25.jpg') ;
   background-size: cover; /* Adapter l'image pour couvrir tout l'écran */
   background-position: center; /* Centrer l'image */
   display: flex;

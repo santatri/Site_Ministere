@@ -77,18 +77,16 @@ const WelcomePage = () => {
 
           <div className="text-pages">
             <h1>
-              Bienvenue sur la plateforme innovante <samp>{dg.dg_name}</samp>
+              Bienvenue sur la plateforme innovante de la {dg.dg_name}
             </h1>
             <p>
-              La Présidence s’est engagée à créer une administration de proximité,
-              à l’écoute de la population et de ses besoins, et à améliorer la
-              qualité de vie des citoyens et de faciliter le travail des
-              entreprises.
+            Cette plateforme a été conçue pour faciliter l’accès aux services de la {dg.dg_name}.
+             Elle permet aux agents de l’État et aux citoyens d’obtenir des informations essentielles sur la gestion de la fonction publique, les procédures administratives, ainsi que les réformes en cours.
             </p>
             <h2 className='nom'>Monsieur <samp>{dg.first_name}</samp> <samp>{dg.last_name}</samp></h2>
             <p>
               <i>
-                <samp>{dg.post}</samp>, Administrateur civil
+                {dg.post}, Administrateur civil
               </i>
             </p>
           </div>
