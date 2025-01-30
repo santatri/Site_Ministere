@@ -156,16 +156,21 @@
  #navbar-center{
      display: none;
    }
+   .navigation-bar {
+    height: 50px;
+   }
 .navbar-container {
   width: 100%;
   display: flex;
-  height: 100%;
+  height: 40%;
   position: static;
   flex-direction: row;
-  top: 400px;
+  top: 700px;
   z-index: 10000000000000000000000000000000000;
 }
-
+.navbar-logo {
+  width: 50%;
+}
 
 .show{
   position: absolute;
@@ -190,7 +195,7 @@
 .navigation-bar{
   position: sticky;
   z-index: 10000000000000000000000000000000000;
-  top: 115px;
+  top: 85px;
 
 }
 
@@ -250,7 +255,7 @@
   text-decoration: none;
   display: flex;
 border-radius: 2%;
-  color: rgb(32, 5, 208);
+
   transition: color 0.3s ease;
 }
 .submenu-item:hover {
