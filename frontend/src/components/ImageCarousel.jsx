@@ -17,7 +17,7 @@ const slides = [
   },
   {
     image: image3,
-    title: 'Guide pour toutes les directions et services offerts',
+    title: 'Guide pour toutes les Directions et services offerts',
     subtitle: 'Directives pour les démarches et procédures',
     buttonText: 'Voir le service',
     link: '/donne', // Navigation vers la page Donne
