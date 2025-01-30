@@ -7,11 +7,15 @@ const Service = () => {
     const [SGList, setSGList] = useState([]);  // Liste des SG
     const [DGList, setDGList] = useState([]);  // Liste des DG
     const [directions, setDList] = useState([]); // Liste des directions pour la combobox
+    
     const [nom_s, setNomS] = useState('');
     const [porte_s, setPorteS] = useState('');
     const [id_d, setIdD] = useState('');
+    const [id_dg, setIdDG] = useState('');
+    
     const [editId, setEditId] = useState(null);
     const [showForm, setShowForm] = useState(true); // Nouvel état pour afficher le formulaire ou la liste
+    const [selectedType, setSelectedType] = useState(''); // "direction" ou "directionGenerale"
 
     // Référence pour faire défiler vers le formulaire
     const formRef = useRef(null);
@@ -57,11 +61,19 @@ const Service = () => {
         try {
             // Formater la porte avec des zéros devant si nécessaire
             const formattedPorte = porte_s.padStart(3, '0'); // Ajoute des zéros jusqu'à ce que la longueur soit 3
-
+    
+            // Préparer les données à envoyer
+            const data = {
+                nom_s,
+                porte_s: formattedPorte,
+                id_d: selectedType === "direction" ? id_d : null, // Si c'est une direction, on envoie id_d
+                id_dg: selectedType === "directionGenerale" ? id_dg : null // Si c'est une direction générale, on envoie id_dg
+            };
+    
             if (editId) {
-                await axios.put(`http://localhost:5001/api/service/${editId}`, { nom_s, porte_s: formattedPorte, id_d });
+                await axios.put(`http://localhost:5001/api/service/${editId}`, data);
             } else {
-                await axios.post('http://localhost:5001/api/service', { nom_s, porte_s: formattedPorte, id_d });
+                await axios.post('http://localhost:5001/api/service', data);
             }
             fetchServices();
             clearForm();
@@ -100,6 +112,8 @@ const Service = () => {
         setNomS(service.nom_s);
         setPorteS(service.porte_s);
         setIdD(service.id_d);
+        setIdDG(service.id_dg);
+
 
         // Faire défiler vers le formulaire si formRef existe
         setShowForm(true);  // Afficher le formulaire d'édition
@@ -113,6 +127,8 @@ const Service = () => {
         setNomS('');
         setPorteS('');
         setIdD('');
+        setIdDG('');
+
         setEditId(null);
     };
 
@@ -147,14 +163,31 @@ const Service = () => {
                         onChange={(e) => setPorteS(e.target.value)}
                         placeholder="Porte du service"
                     />
-                    <select value={id_d} onChange={(e) => setIdD(e.target.value)}>
-                        <option value="">Sélectionner une direction</option>
-                        {directions.map((direction) => (
-                            <option key={direction.id_d} value={direction.id_d}>
-                                {getDirectionHierarchy(direction)}
-                            </option>
-                        ))}
+                    {/* Sélection du type de direction */}
+                    <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)}>
+                        <option value="">Sélectionner un type</option>
+                        <option value="direction">Direction</option>
+                        <option value="directionGenerale">Direction Générale</option>
                     </select>
+
+                    {/* Sélection de la direction correspondante */}
+                    {selectedType === "direction" && (
+                        <select value={id_d} onChange={(e) => setIdD(e.target.value)}>
+                            <option value="">Sélectionner une Direction</option>
+                            {directions.map((direction) => (
+                                <option key={direction.id_d} value={direction.id_d}>{direction.nom_d}</option>
+                            ))}
+                        </select>
+                    )}
+
+                    {selectedType === "directionGenerale" && (
+                        <select value={id_dg} onChange={(e) => setIdDG(e.target.value)}>
+                            <option value="">Sélectionner une Direction Générale</option>
+                            {DGList.map((dg) => (
+                                <option key={dg.id_dg} value={dg.id_dg}>{dg.nom_dg}</option>
+                            ))}
+                        </select>
+                    )}
                     <button type="button" onClick={handleSubmit}>
                         {editId ? 'Mettre à jour' : 'Ajouter'}
                     </button>
