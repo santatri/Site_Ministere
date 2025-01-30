@@ -175,7 +175,7 @@ exports.getServiceDetails = (req, res) => {
 
       -- Joindre DirectionGenerale indépendamment
       LEFT JOIN DirectionGenerale dg 
-          ON so.id_dg = dg.id_dg OR d.id_dg = dg.id_dg
+          ON so.id_dg = dg.id_dg OR d.id_dg = dg.id_dg OR s.id_dg = dg.id_dg
 
       -- Joindre SecretaireGeneral indépendamment
       LEFT JOIN SecretaireGeneral sg 
