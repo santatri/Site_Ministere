@@ -63,71 +63,9 @@ const CadreContact = () => {
 
   return (
     <div className="forme-containere">
-      <h1 className='formes'>Laissez-nous un message et vos coordonnées pour échanger ensemble</h1>
+      <h1 className='formes'>Faites-nous part de votre doléance.</h1>
       <form onSubmit={handleSubmit}>
         
-        {/* Champ Nom Complet (Prénom et Nom) */}
-        <div className="forme-groupe">
-          <div className="halfe-widthe">
-            <label className="labele" htmlFor="firstName">Prénom</label>
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              placeholder="Prénom"
-              className="input-field"
-             
-            />
-          </div>
-          
-          <div className="halfe-widthe">
-            <label className="labele" htmlFor="lastName">Nom</label>
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              placeholder="Nom"
-              className="input-field"
-              
-            />
-          </div>
-        </div>
-
-        {/* Champ Email et Confirmer Email */}
-        <div className="forme-groupe">
-          <div className="halfe-widthe">
-            <label className="labele" htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className="input-field"
-             
-            />
-          </div>
-          
-          <div className="halfe-widthe">
-            <label className="labele" htmlFor="confirmEmail">Confirmer Email</label>
-            <input
-              type="email"
-              name="confirmEmail"
-              id="confirmEmail"
-              value={formData.confirmEmail}
-              onChange={handleChange}
-              placeholder="Confirmer Email"
-              className="input-field"
-              
-            />
-          </div>
-        </div>
-        <p  className='formes'>Juste pour les Anonymes <hr /></p>
         {/* Champ Objet */}
         <div className="forme-groupe">
           <label className="labele" htmlFor="subject">Objet</label>

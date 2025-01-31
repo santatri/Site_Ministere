@@ -12,6 +12,8 @@ const Service = () => {
     const [porte_s, setPorteS] = useState('');
     const [id_d, setIdD] = useState('');
     const [id_dg, setIdDG] = useState('');
+    const [id_sg, setIdSG] = useState('');
+
     
     const [editId, setEditId] = useState(null);
     const [showForm, setShowForm] = useState(true); // Nouvel état pour afficher le formulaire ou la liste
@@ -67,7 +69,8 @@ const Service = () => {
                 nom_s,
                 porte_s: formattedPorte,
                 id_d: selectedType === "direction" ? id_d : null, // Si c'est une direction, on envoie id_d
-                id_dg: selectedType === "directionGenerale" ? id_dg : null // Si c'est une direction générale, on envoie id_dg
+                id_dg: selectedType === "directionGenerale" ? id_dg : null ,// Si c'est une direction générale, on envoie id_dg
+                id_sg: selectedType === "secretaireGenerale" ? id_sg : null
             };
     
             if (editId) {
@@ -113,6 +116,8 @@ const Service = () => {
         setPorteS(service.porte_s);
         setIdD(service.id_d);
         setIdDG(service.id_dg);
+        setIdSG(service.id_sg);
+        
 
 
         // Faire défiler vers le formulaire si formRef existe
@@ -128,6 +133,7 @@ const Service = () => {
         setPorteS('');
         setIdD('');
         setIdDG('');
+        setIdSG('');
 
         setEditId(null);
     };
@@ -168,6 +174,8 @@ const Service = () => {
                         <option value="">Sélectionner un type</option>
                         <option value="direction">Direction</option>
                         <option value="directionGenerale">Direction Générale</option>
+                        <option value="secretaireGenerale">Secretaire Générale</option>
+
                     </select>
 
                     {/* Sélection de la direction correspondante */}
@@ -188,6 +196,15 @@ const Service = () => {
                             ))}
                         </select>
                     )}
+                    {selectedType === "secretaireGenerale" && (
+                        <select value={id_sg} onChange={(e) => setIdSG(e.target.value)}>
+                            <option value="">Sélectionner une Secretaire Générale</option>
+                            {SGList.map((sg) => (
+                                <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
+                            ))}
+                        </select>
+                    )}
+
                     <button type="button" onClick={handleSubmit}>
                         {editId ? 'Mettre à jour' : 'Ajouter'}
                     </button>

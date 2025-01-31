@@ -70,7 +70,7 @@ exports.getAllServices = (req, res) => {
             ServiceOffert so
 
         -- Joindre Service indépendamment
-        LEFT JOIN Service s ON so.id_s = s.id_s
+        LEFT JOIN Service s ON so.id_s = s.id_s 
 
         -- Joindre Direction indépendamment
         LEFT JOIN Direction d ON so.id_d = d.id_d OR s.id_d = d.id_d
@@ -83,7 +83,8 @@ exports.getAllServices = (req, res) => {
         LEFT JOIN SecretaireGeneral sg 
             ON so.id_sg = sg.id_sg 
             OR d.id_sg = sg.id_sg 
-            OR dg.id_sg = sg.id_sg;
+            OR dg.id_sg = sg.id_sg
+            OR s.id_sg = sg.id_sg;
     `;
 
     db.query(query, (err, results) => {

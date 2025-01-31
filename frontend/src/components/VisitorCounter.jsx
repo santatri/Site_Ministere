@@ -29,6 +29,9 @@ const VisitorCharts = () => {
     const [chartDataMonth, setChartDataMonth] = useState(null);
     const [chartDataYear, setChartDataYear] = useState(null);
     const [totalVisitors, setTotalVisitors] = useState(0);
+    const [uniqueVisitorsToday, setUniqueVisitorsToday] = useState(0); // Nouvel état pour les visiteurs uniques
+    const [Visitors, setVisitors] = useState(0); // Nouvel état pour les visiteurs uniques
+    
 
     const fetchTotalVisitors = async () => {
         try {
@@ -36,6 +39,28 @@ const VisitorCharts = () => {
             setTotalVisitors(response.data.total);
         } catch (err) {
             console.error('Erreur lors de la récupération du total des visiteurs :', err);
+        }
+    };
+
+    const fetchUniqueVisitorsToday = async () => {
+        try {
+            console.log("Récupération des visiteurs uniques...");
+            const response = await axios.get('http://localhost:5001/api/unique-visitors');
+            console.log('Réponse de l\'API (visiteurs uniques) :', response.data);
+            setUniqueVisitorsToday(response.data.unique_visitors);
+        } catch (err) {
+            console.error('Erreur lors de la récupération des visiteurs uniques :', err);
+        }
+    };
+
+    const fetchUniqueVisitors = async () => {
+        try {
+            console.log("Récupération des visiteurs ...");
+            const response = await axios.get('http://localhost:5001/api/total-daily-visitors');
+            console.log('Réponse de l\'API (visiteurs ) :', response.data);
+            setVisitors(response.data.total_unique_visitors);
+        } catch (err) {
+            console.error('Erreur lors de la récupération des visiteurs uniques :', err);
         }
     };
 
@@ -49,7 +74,7 @@ const VisitorCharts = () => {
                 labels: weeks,
                 datasets: [
                     {
-                        label: 'Visiteurs uniques',
+                        label: 'Visites',
                         data: visitors,
                         backgroundColor: 'rgba(75, 190, 992, 0.7)',
                         borderColor: 'rgba(05, 192, 942, 1)',
@@ -72,7 +97,7 @@ const VisitorCharts = () => {
                 labels: months,
                 datasets: [
                     {
-                        label: 'Visiteurs uniques',
+                        label: 'Visites',
                         data: visitors,
                         backgroundColor: 'rgba(153, 12, 255, 0.7)',
                         borderColor: 'rgba(153, 102, 255, 1)',
@@ -95,7 +120,7 @@ const VisitorCharts = () => {
                 labels: years,
                 datasets: [
                     {
-                        label: 'Visiteurs uniques',
+                        label: 'Visites',
                         data: visitors,
                         backgroundColor: 'rgba(25,10, 914, 0.7)',
                         borderColor: 'rgba(25, 19, 640, 1)',
@@ -111,6 +136,9 @@ const VisitorCharts = () => {
     useEffect(() => {
         recordVisit();
         fetchTotalVisitors();
+        fetchUniqueVisitorsToday(); // Appel de la nouvelle fonction
+        fetchUniqueVisitors(); // Appel de la nouvelle fonction
+
         fetchVisitorsByWeek();
         fetchVisitorsByMonth();
         fetchVisitorsByYear();
@@ -122,19 +150,22 @@ const VisitorCharts = () => {
 
     return (
         <div>
-            <h2 className="chart-title">Total des visiteurs uniques : {totalVisitors}</h2>
+            <h2 className="chart-title">Total des visites : {totalVisitors}</h2>
+            <h2 className="chart-title">Visiteurs uniques aujourd'hui : {uniqueVisitorsToday}</h2>
+            <h2 className="chart-title">Total des Visiteurs : {Visitors}</h2>
+
 
             <div className="chart-row">
                 {/* Premier graphique : Visiteurs par semaine */}
                 <div className="chart-container">
-                    <h3 className="chart-title1">Visiteurs uniques par semaine (ce mois)</h3>
+                    <h3 className="chart-title1">Visites par semaine (ce mois)</h3>
                     <Bar
                         data={chartDataWeek}
                         options={{
                             responsive: true,
                             plugins: {
                                 legend: { position: 'top' },
-                                title: { display: true, text: 'Visiteurs par semaine' },
+                                title: { display: true, text: 'Visites par semaine' },
                                 datalabels: {
                                     anchor: 'end',
                                     align: 'top',
@@ -149,19 +180,19 @@ const VisitorCharts = () => {
 
                 {/* Deuxième graphique : Visiteurs par mois */}
                 <div className="chart-container">
-                    <h2 className="chart-title2">Visiteurs uniques par mois (cette année)</h2>
+                    <h2 className="chart-title2">Visites par mois (cette année)</h2>
                     <Bar
                         data={chartDataMonth}
                         options={{
                             responsive: true,
                             plugins: {
                                 legend: { position: 'top' },
-                                title: { display: true, text: 'Visiteurs par mois' },
+                                title: { display: true, text: 'Visites par mois' },
                                 datalabels: {
                                     anchor: 'end',
-                                    align: 'top : 4%',  
+                                    align: 'top',
                                     color: 'black',
-                                    font: { weight: 'bold', size: 12,  },
+                                    font: { weight: 'bold', size: 12 },
                                     formatter: (value) => `${value}`,
                                 },
                             },
@@ -172,14 +203,14 @@ const VisitorCharts = () => {
 
             {/* Dernier graphique : Visiteurs par année */}
             <div className="chart-container">
-                <h3 className="chart-title3">Visiteurs uniques par année</h3>
+                <h3 className="chart-title3">Visites par année</h3>
                 <Bar
                     data={chartDataYear}
                     options={{
                         responsive: true,
                         plugins: {
-                            legend: { position: 'top ' },
-                            title: { display: true, text: 'Visiteurs par année' },
+                            legend: { position: 'top' },
+                            title: { display: true, text: 'Visites par année' },
                             datalabels: {
                                 anchor: 'end',
                                 align: 'top',

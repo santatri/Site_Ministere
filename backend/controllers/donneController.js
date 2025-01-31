@@ -182,6 +182,7 @@ exports.getServiceDetails = (req, res) => {
           ON so.id_sg = sg.id_sg 
           OR d.id_sg = sg.id_sg 
           OR dg.id_sg = sg.id_sg
+          OR s.id_sg = sg.id_sg
 
       WHERE so.id_service = ?;
   `;

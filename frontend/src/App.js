@@ -19,7 +19,7 @@ import ImageCarousel from './components/ImageCarousel';
 import CommunicationPage from './pages/CommunicationPage';
 import Donne from './components/donne';
 import DrfpPage from './pages/DrfpPage';
-
+import Visites from './pages/visites';
 import '../src/i18n';
 
 import StanPage from './pages/StanPage';
@@ -72,6 +72,9 @@ const AppWithNavbar = () => {
       {/* Afficher la Navbar seulement si la route correspond */}
       {showNavbarPages.includes(location.pathname) && <Header />}
       {showNavbarPages.includes(location.pathname) && <Navbar />}
+      {showNavbarPages.includes(location.pathname) && <Visites />}
+
+
      
       <Routes>
         <Route path="/" element={<Home />} />

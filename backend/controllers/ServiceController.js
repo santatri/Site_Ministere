@@ -76,7 +76,8 @@ exports.getAllServices = (req, res) => {
         LEFT JOIN 
             SecretaireGeneral sg ON 
                 d.id_sg = sg.id_sg OR 
-                dg.id_sg = sg.id_sg;
+                dg.id_sg = sg.id_sg OR
+                s.id_sg = sg.id_sg;
     `;
 
     db.query(query, (err, results) => {
@@ -97,6 +98,9 @@ exports.getAllServices = (req, res) => {
             else if (service.nom_d && service.nom_secretaire_generale) {
                 hierarchy += `/ ${service.nom_d} / ${service.nom_secretaire_generale}`;
             }
+            else if (service.nom_secretaire_generale) {
+                hierarchy += `/ ${service.nom_secretaire_generale}`;
+            }
 
             return { ...service, hierarchy };
         });
@@ -106,15 +110,15 @@ exports.getAllServices = (req, res) => {
 
 // Créer un service
 exports.createService = (req, res) => {
-    const { nom_s, porte_s, id_d, id_dg } = req.body;
+    const { nom_s, porte_s, id_d, id_dg ,id_sg} = req.body;
 
     // Vérifier si c'est une direction ou une direction générale
-    if (id_d && id_dg) {
+    if (id_d && id_dg && id_sg) {
         return res.status(400).json({ message: 'Vous ne pouvez pas sélectionner à la fois une direction et une direction générale.' });
     }
 
-    const query = 'INSERT INTO Service (nom_s, porte_s, id_d, id_dg) VALUES (?, ?, ?, ?)';
-    db.query(query, [nom_s, porte_s, id_d || null, id_dg || null], (err, result) => {
+    const query = 'INSERT INTO Service (nom_s, porte_s, id_d, id_dg ,id_sg) VALUES (?, ?, ?, ? , ?)';
+    db.query(query, [nom_s, porte_s, id_d || null, id_dg || null, id_sg || null], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur lors de l\'ajout du service.', error: err });
         }
@@ -124,16 +128,16 @@ exports.createService = (req, res) => {
 
 // Mettre à jour un service
 exports.updateService = (req, res) => {
-    const { nom_s, porte_s, id_d, id_dg } = req.body;
+    const { nom_s, porte_s, id_d, id_dg ,id_sg} = req.body;
     const { id } = req.params;
 
     // Vérifier si c'est une direction ou une direction générale
-    if (id_d && id_dg) {
+    if (id_d && id_dg &&  id_sg) {
         return res.status(400).json({ message: 'Vous ne pouvez pas sélectionner à la fois une direction et une direction générale.' });
     }
 
-    const query = 'UPDATE Service SET nom_s = ?, porte_s = ?, id_d = ?, id_dg = ? WHERE id_s = ?';
-    db.query(query, [nom_s, porte_s, id_d || null, id_dg || null, id], (err, result) => {
+    const query = 'UPDATE Service SET nom_s = ?, porte_s = ?, id_d = ?, id_dg = ?, id_sg = ? WHERE id_s = ?';
+    db.query(query, [nom_s, porte_s, id_d || null, id_dg || null,id_sg || null, id], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur lors de la mise à jour du service.', error: err });
         }
