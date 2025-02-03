@@ -5,6 +5,8 @@ const directionController = require('../controllers/directionController');
 // Routes pour obtenir les SG et DG
 router.get('/sg', directionController.getAllSG);
 router.get('/dg', directionController.getAllDG);
+router.get('/ms', directionController.getAllMinistres);
+
 
 // Routes pour les Directions
 router.get('/all', directionController.getAllDirections);  // Récupérer toutes les directions

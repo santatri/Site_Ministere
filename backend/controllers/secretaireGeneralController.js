@@ -19,17 +19,18 @@ exports.register = [
     const { nom_sg, porte_sg } = req.body;
     const image = req.file ? req.file.filename : null;
 
-    const query = `INSERT INTO SecretaireGeneral (nom_sg, porte_sg)
-                   VALUES (?, ?)`;
+    const query = `INSERT INTO SecretaireGeneral (nom_sg, porte_sg, id_ms)
+                   VALUES (?, ?, ?)`;
 
-    db.query(query, [nom_sg, porte_sg], (err) => {
+    db.query(query, [nom_sg, porte_sg, 1], (err) => {
       if (err) {
-        return res.status(500).send({ message: 'Erreur lors de l\'insertion', error: err });
+        return res.status(500).send({ message: "Erreur lors de l'insertion", error: err });
       }
-      res.status(201).send({ message: 'Ajout réussi.' });
+      res.status(201).send({ message: "Ajout réussi." });
     });
   },
 ];
+
 
 // Récupérer tous les secrétaires généraux
 exports.getAll = (req, res) => {

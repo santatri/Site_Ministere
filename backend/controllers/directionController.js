@@ -12,6 +12,17 @@ exports.getAllSG = (req, res) => {
     });
 };
 
+exports.getAllMinistres = (req, res) => {
+    const query = 'SELECT * FROM Ministre';  // Adapter selon votre table Ministre
+
+    db.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: "Erreur lors de la récupération des ministres.", error: err });
+        }
+        res.status(200).json({ data: results });
+    });
+};
+
 // Récupérer toutes les Directions Générales
 exports.getAllDG = (req, res) => {
     const query = 'SELECT * FROM DirectionGenerale';  // Adapter selon votre table DG
@@ -36,7 +47,8 @@ exports.getAllDirections = (req, res) => {
             d.nom_d AS nom_d, 
             d.porte_d, 
             dg.nom_dg AS nom_direction_generale, 
-            sg.nom_sg AS nom_secretaire_generale
+            sg.nom_sg AS nom_secretaire_generale,
+            ms.nom_ms AS nom_ministre
         FROM 
             Direction d
         LEFT JOIN 
@@ -44,7 +56,10 @@ exports.getAllDirections = (req, res) => {
         LEFT JOIN 
             SecretaireGeneral sg ON 
                 d.id_sg = sg.id_sg OR 
-                dg.id_sg = sg.id_sg;
+                dg.id_sg = sg.id_sg
+        LEFT JOIN 
+            Ministre ms ON d.id_ms = ms.id_ms        
+        ;
     
     `;
 
@@ -62,6 +77,9 @@ exports.getAllDirections = (req, res) => {
             } else if (direction.nom_secretaire_generale) {
                 hierarchy += ` / ${direction.nom_secretaire_generale}`;
             }
+            else if (direction.nom_ministre) {
+                hierarchy += ` / ${direction.nom_ministre}`;
+            }
 
             return { ...direction, hierarchy };
         });
@@ -77,10 +95,10 @@ exports.getAllDirections = (req, res) => {
 
 // Créer une Direction
 exports.createDirection = (req, res) => {
-    const { nom_d, porte_d, id_sg, id_dg } = req.body;
+    const { nom_d, porte_d, id_sg, id_dg,id_ms } = req.body;
 
-    const query = 'INSERT INTO Direction (nom_d, porte_d, id_sg, id_dg) VALUES (?, ?, ?, ?)';
-    db.query(query, [nom_d, porte_d, id_sg, id_dg], (err, result) => {
+    const query = 'INSERT INTO Direction (nom_d, porte_d, id_sg, id_dg,id_ms) VALUES (?, ?, ?, ? ,?)';
+    db.query(query, [nom_d, porte_d, id_sg, id_dg,id_ms], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur lors de l\'ajout de la direction.', error: err });
         }
@@ -90,11 +108,11 @@ exports.createDirection = (req, res) => {
 
 // Mettre à jour une Direction
 exports.updateDirection = (req, res) => {
-    const { nom_d, porte_d, id_sg, id_dg } = req.body;
+    const { nom_d, porte_d, id_sg, id_dg ,id_ms} = req.body;
     const { id } = req.params;
 
-    const query = 'UPDATE Direction SET nom_d = ?, porte_d = ?, id_sg = ?, id_dg = ? WHERE id_d = ?';
-    db.query(query, [nom_d, porte_d, id_sg, id_dg, id], (err, result) => {
+    const query = 'UPDATE Direction SET nom_d = ?, porte_d = ?, id_sg = ?, id_dg = ?,id_ms = ? WHERE id_d = ?';
+    db.query(query, [nom_d, porte_d, id_sg, id_dg,id_ms, id], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur lors de la mise à jour de la direction.', error: err });
         }

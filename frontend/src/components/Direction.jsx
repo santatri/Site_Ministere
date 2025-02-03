@@ -6,10 +6,14 @@ const Direction = () => {
   const [directions, setDirections] = useState([]);
   const [sgList, setSGList] = useState([]);
   const [dgList, setDGList] = useState([]);
+  const [msList, setMSList] = useState([]);
+
   const [nom_d, setNomD] = useState("");
   const [porte_d, setPorteD] = useState("");
   const [id_sg, setIdSG] = useState("");
   const [id_dg, setIdDG] = useState("");
+  const [id_ms, setIdMS] = useState("");
+
   const [type, setType] = useState("");
   const [editId, setEditId] = useState(null);
 
@@ -30,12 +34,16 @@ const Direction = () => {
 
   const fetchSGAndDG = async () => {
     try {
-      const [sgResponse, dgResponse] = await Promise.all([
+      const [sgResponse, dgResponse,msReponse] = await Promise.all([
         axios.get("http://localhost:5001/api/direction/sg"),
         axios.get("http://localhost:5001/api/direction/dg"),
+        axios.get("http://localhost:5001/api/direction/ms"),
+
       ]);
       setSGList(sgResponse.data.data);
       setDGList(dgResponse.data.data);
+      setMSList(msReponse.data.data);
+      
     } catch (error) {
       console.error("Erreur lors de la récupération des SG et DG:", error);
     }
@@ -55,6 +63,7 @@ const Direction = () => {
           porte_d: formatPorte(porte_d),
           id_sg,
           id_dg: null,
+          id_ms:null,
         });
       } else if (type === "dg") {
         await axios.post("http://localhost:5001/api/direction", {
@@ -62,6 +71,16 @@ const Direction = () => {
           porte_d: formatPorte(porte_d),
           id_sg: null,
           id_dg,
+          id_ms:null,
+        });
+      }
+      else if (type === "ms") {
+        await axios.post("http://localhost:5001/api/direction", {
+          nom_d,
+          porte_d: formatPorte(porte_d),
+          id_sg: null,
+          id_dg:null,
+          id_ms,
         });
       }
       fetchDirections();
@@ -79,6 +98,8 @@ const Direction = () => {
         porte_d: formatPorte(porte_d),
         id_sg,
         id_dg,
+        id_ms,
+
       });
       fetchDirections();
       clearForm();
@@ -104,7 +125,9 @@ const Direction = () => {
     setPorteD(direction.porte_d);
     setIdSG(direction.id_sg);
     setIdDG(direction.id_dg);
-    setType(direction.id_sg ? "sg" : "dg");
+    setIdMS(direction.id_ms);
+
+    setType(direction.id_sg ? "sg" : "dg" || "ms");
 
     // Passer à la vue "add" pour afficher le formulaire d'ajout
     setView("add");
@@ -121,6 +144,8 @@ const Direction = () => {
     setPorteD("");
     setIdSG("");
     setIdDG("");
+    setIdMS("");
+
     setType("");
     setEditId(null);
   };
@@ -184,6 +209,15 @@ const Direction = () => {
               />
               Direction Générale
             </label>
+            <label>
+              <input
+                type="radio"
+                value="ms"
+                checked={type === "ms"}
+                onChange={() => setType("ms")}
+              />
+              Ministre
+            </label>
           </div>
 
           {type === "sg" && (
@@ -211,6 +245,21 @@ const Direction = () => {
               {dgList.map((dg) => (
                 <option key={dg.id_dg} value={dg.id_dg}>
                   {dg.nom_dg}
+                </option>
+              ))}
+            </select>
+          )}
+
+          {type === "ms" && (
+            <select
+              value={id_ms}
+              onChange={(e) => setIdMS(e.target.value)}
+              className="direction-select-new"
+            >
+              <option value="">Sélectionner une ms</option>
+              {msList.map((ms) => (
+                <option key={ms.id_ms} value={ms.id_ms}>
+                  {ms.nom_ms}
                 </option>
               ))}
             </select>

@@ -6,6 +6,8 @@ const ServiceOffert = () => {
     const [services, setServices] = useState([]);
     const [filteredServices, setFilteredServices] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [msList, setMSList] = useState([]);
+
     const [sgList, setSGList] = useState([]);
     const [dgList, setDGList] = useState([]);
     const [dList, setDList] = useState([]);
@@ -40,22 +42,30 @@ const ServiceOffert = () => {
     
     const fetchSGDGDS = async () => {
         try {
-            const [sgResponse, dgResponse, dResponse, sResponse] = await Promise.all([
+            const [sgResponse, dgResponse, dResponse, sResponse,msResponse] = await Promise.all([
+
                 axios.get('http://localhost:5001/api/direction/sg'),
                 axios.get('http://localhost:5001/api/direction/dg'),
                 axios.get('http://localhost:5001/api/direction/all'),
                 axios.get('http://localhost:5001/api/service/all'),
+                axios.get('http://localhost:5001/api/direction/ms'),
+
+                
             ]);
     
             console.log("SG Data:", sgResponse.data.data);
             console.log("DG Data:", dgResponse.data.data);
             console.log("D Data:", dResponse.data.data);
             console.log("S Data:", sResponse.data.data);
+            console.log("MS Data:", msResponse.data.data);
+
     
             setSGList(sgResponse.data.data || []);
             setDGList(dgResponse.data.data || []);
             setDList(dResponse.data.data || []);
             setSList(sResponse.data.data || []);
+            setMSList(msResponse.data.data || []);
+
         } catch (error) {
             console.error("Erreur lors de la récupération des données:", error);
         }
@@ -91,6 +101,8 @@ const ServiceOffert = () => {
                 id_dg: associationType === 'DG' ? associationId : null,
                 id_d: associationType === 'D' ? associationId : null,
                 id_s: associationType === 'S' ? associationId : null,
+                id_ms: associationType === 'MS' ? associationId : null,
+
             };
 
             if (editId) {
@@ -126,7 +138,9 @@ const ServiceOffert = () => {
         else if (service.nom_dg) setAssociationType('DG');
         else if (service.nom_d) setAssociationType('D');
         else if (service.nom_s) setAssociationType('S');
-        setAssociationId(service.id_sg || service.id_dg || service.id_d || service.id_s);
+        else if (service.nom_ms) setAssociationType('MS');
+
+        setAssociationId(service.id_sg || service.id_dg || service.id_d || service.id_s || service.id_ms);
         
         // Mettre à jour l'état de activeFrame pour afficher le formulaire d'ajout
         setActiveFrame('ajout');
@@ -153,6 +167,8 @@ const ServiceOffert = () => {
         if (service.nom_dg) return service.nom_dg;
         if (service.nom_d) return service.nom_d;
         if (service.nom_s) return service.nom_s;
+        if (service.nom_ms) return service.nom_ms;
+
         return 'Aucune association';
     };
 
@@ -210,6 +226,8 @@ const ServiceOffert = () => {
                         <option value="DG">Direction Générale</option>
                         <option value="D">Direction</option>
                         <option value="S">Service</option>
+                        <option value="MS">Ministre</option>
+
                     </select>
                     {associationType === 'SG' && (
                         <select
@@ -256,6 +274,19 @@ const ServiceOffert = () => {
                             <option value="">Sélectionner un Service</option>
                             {sList.map((s) => (
                                 <option key={s.id_s} value={s.id_s}>{s.nom_s}</option>
+                            ))}
+                        </select>
+                    )}
+
+                    {associationType === 'MS' && (
+                        <select
+                            className="ServiceOffert__select"
+                            value={associationId}
+                            onChange={(e) => setAssociationId(e.target.value)}
+                        >
+                            <option value="">Sélectionner un Service</option>
+                            {msList.map((ms) => (
+                                <option key={ms.id_ms} value={ms.id_ms}>{ms.nom_ms}</option>
                             ))}
                         </select>
                     )}

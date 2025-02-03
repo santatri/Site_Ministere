@@ -6,6 +6,8 @@ const Service = () => {
     const [services, setServices] = useState([]);
     const [SGList, setSGList] = useState([]);  // Liste des SG
     const [DGList, setDGList] = useState([]);  // Liste des DG
+    const [MSList, setMSList] = useState([]);  // Liste des MS
+
     const [directions, setDList] = useState([]); // Liste des directions pour la combobox
     
     const [nom_s, setNomS] = useState('');
@@ -13,6 +15,8 @@ const Service = () => {
     const [id_d, setIdD] = useState('');
     const [id_dg, setIdDG] = useState('');
     const [id_sg, setIdSG] = useState('');
+    const [id_ms, setIdMS] = useState('');
+
 
     
     const [editId, setEditId] = useState(null);
@@ -40,16 +44,20 @@ const Service = () => {
 
     const fetchSGAndDGAndD = async () => {
         try {
-            const [DResponse, sgResponse, dgResponse] = await Promise.all([
+            const [DResponse, sgResponse, dgResponse ,msResponse] = await Promise.all([
                 axios.get('http://localhost:5001/api/direction/all'),
                 axios.get('http://localhost:5001/api/direction/sg'),
-                axios.get('http://localhost:5001/api/direction/dg')
+                axios.get('http://localhost:5001/api/direction/dg'),
+                axios.get('http://localhost:5001/api/direction/ms')
+
             ]);
             setDList(DResponse.data.data);
             setSGList(sgResponse.data.data);
             setDGList(dgResponse.data.data);
+            setMSList(msResponse.data.data);
+
         } catch (error) {
-            console.error("Erreur lors de la récupération des D, SG et DG:", error);
+            console.error("Erreur lors de la récupération des D, SG et DG et MS:", error);
         }
     };
 
@@ -70,7 +78,9 @@ const Service = () => {
                 porte_s: formattedPorte,
                 id_d: selectedType === "direction" ? id_d : null, // Si c'est une direction, on envoie id_d
                 id_dg: selectedType === "directionGenerale" ? id_dg : null ,// Si c'est une direction générale, on envoie id_dg
-                id_sg: selectedType === "secretaireGenerale" ? id_sg : null
+                id_sg: selectedType === "secretaireGenerale" ? id_sg : null,
+                id_ms: selectedType === "ministre" ? id_ms : null
+
             };
     
             if (editId) {
@@ -117,6 +127,8 @@ const Service = () => {
         setIdD(service.id_d);
         setIdDG(service.id_dg);
         setIdSG(service.id_sg);
+        setIdMS(service.id_ms);
+
         
 
 
@@ -134,6 +146,8 @@ const Service = () => {
         setIdD('');
         setIdDG('');
         setIdSG('');
+        setIdMS('');
+
 
         setEditId(null);
     };
@@ -175,6 +189,8 @@ const Service = () => {
                         <option value="direction">Direction</option>
                         <option value="directionGenerale">Direction Générale</option>
                         <option value="secretaireGenerale">Secretaire Générale</option>
+                        <option value="ministre">Ministre</option>
+
 
                     </select>
 
@@ -201,6 +217,15 @@ const Service = () => {
                             <option value="">Sélectionner une Secretaire Générale</option>
                             {SGList.map((sg) => (
                                 <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
+                            ))}
+                        </select>
+                    )}
+
+                    {selectedType === "ministre" && (
+                        <select value={id_ms} onChange={(e) => setIdMS(e.target.value)}>
+                            <option value="">Sélectionner une Ministre</option>
+                            {MSList.map((ms) => (
+                                <option key={ms.id_ms} value={ms.id_ms}>{ms.nom_ms}</option>
                             ))}
                         </select>
                     )}

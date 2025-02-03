@@ -9,7 +9,16 @@ exports.getAllSG = (req, res) => {
         res.status(200).json({ data: results });
     });
 };
+exports.getAllMinistres = (req, res) => {
+    const query = 'SELECT * FROM Ministre';  // Adapter selon votre table Ministre
 
+    db.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: "Erreur lors de la récupération des ministres.", error: err });
+        }
+        res.status(200).json({ data: results });
+    });
+};
 // Récupérer toutes les Directions Générales
 exports.getAllDG = (req, res) => {
     const query = 'SELECT * FROM DirectionGenerale';  // Adapter selon votre table DG
@@ -64,8 +73,10 @@ exports.getAllServices = (req, res) => {
             dg.nom_dg AS nom_direction_generale, 
 
             -- Champs pour SecretaireGeneral
-            sg.nom_sg AS nom_secretaire_general
+            sg.nom_sg AS nom_secretaire_general,
 
+            -- Champs pour Ministre
+            ms.nom_ms AS nom_ministre
         FROM 
             ServiceOffert so
 
@@ -84,7 +95,13 @@ exports.getAllServices = (req, res) => {
             ON so.id_sg = sg.id_sg 
             OR d.id_sg = sg.id_sg 
             OR dg.id_sg = sg.id_sg
-            OR s.id_sg = sg.id_sg;
+            OR s.id_sg = sg.id_sg
+
+        -- Joindre Ministre indépendamment
+        LEFT JOIN Ministre ms 
+            ON so.id_ms = ms.id_ms 
+            OR s.id_ms = ms.id_ms 
+            OR d.id_ms = ms.id_ms;
     `;
 
     db.query(query, (err, results) => {
@@ -104,9 +121,12 @@ exports.getAllServices = (req, res) => {
             if (serviceOffert.nom_direction_lie) hierarchyParts.push(serviceOffert.nom_direction_lie);
             if (serviceOffert.nom_direction_generale) hierarchyParts.push(serviceOffert.nom_direction_generale);
             if (serviceOffert.nom_secretaire_general) hierarchyParts.push(serviceOffert.nom_secretaire_general);
+            if (serviceOffert.nom_ministre) hierarchyParts.push(serviceOffert.nom_ministre);
 
             // Construction de la chaîne hiérarchique
-            const hierarchy = "/ " + hierarchyParts.join(" / ");
+            const hierarchy = hierarchyParts.length > 0 
+                ? "/ " + hierarchyParts.join(" / ") 
+                : "Aucune hiérarchie disponible";
 
             // Retourner l'objet avec la hiérarchie ajoutée
             return { ...serviceOffert, hierarchy };
@@ -121,12 +141,12 @@ exports.getAllServices = (req, res) => {
 // Créer un Service Offert
 // Créer un Service Offert
 exports.createService = (req, res) => {
-    const { nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s } = req.body;
+    const { nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s,id_ms } = req.body;
 
     // Validation pour n'avoir qu'un seul ID à la fois
-    const associatedIds = [id_sg, id_dg, id_d, id_s].filter((id) => id);
+    const associatedIds = [id_sg, id_dg, id_d, id_s,id_ms].filter((id) => id);
     if (associatedIds.length > 1) {
-        return res.status(400).json({ message: "Un service ne peut être associé qu'à un seul SG, DG, Direction ou Service." });
+        return res.status(400).json({ message: "Un service ne peut être associé qu'à un seul MS, SG, DG, Direction ou Service." });
     }
 
     // Vérifier si le service existe déjà
@@ -141,8 +161,8 @@ exports.createService = (req, res) => {
         }
 
         // Insérer le nouveau service
-        const insertQuery = 'INSERT INTO ServiceOffert (nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        db.query(insertQuery, [nom_service, dossier_prepare, delai, id_sg || null, id_dg || null, id_d || null, id_s || null], (err, result) => {
+        const insertQuery = 'INSERT INTO ServiceOffert (nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s,id_ms) VALUES (?, ?, ?, ?, ?, ?, ? ,?)';
+        db.query(insertQuery, [nom_service, dossier_prepare, delai, id_sg || null, id_dg || null, id_d || null, id_s || null, id_ms || null], (err, result) => {
             if (err) {
                 return res.status(500).json({ message: 'Erreur lors de l\'ajout du service.', error: err });
             }
@@ -154,17 +174,17 @@ exports.createService = (req, res) => {
 
 // Mettre à jour un Service Offert
 exports.updateService = (req, res) => {
-    const { nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s } = req.body;
+    const { nom_service, dossier_prepare, delai, id_sg, id_dg, id_d, id_s ,id_ms} = req.body;
     const { id } = req.params;
 
     // Validation pour n'avoir qu'un seul ID à la fois
-    const associatedIds = [id_sg, id_dg, id_d, id_s].filter((id) => id);
+    const associatedIds = [id_sg, id_dg, id_d, id_s,id_ms].filter((id) => id);
     if (associatedIds.length > 1) {
         return res.status(400).json({ message: "Un service ne peut être associé qu'à un seul SG, DG, Direction ou Service." });
     }
 
     const query = 'UPDATE ServiceOffert SET nom_service = ?, dossier_prepare = ?, delai = ?, id_sg = ?, id_dg = ?, id_d = ?, id_s = ? WHERE id_service = ?';
-    db.query(query, [nom_service, dossier_prepare, delai, id_sg || null, id_dg || null, id_d || null, id_s || null, id], (err, result) => {
+    db.query(query, [nom_service, dossier_prepare, delai, id_sg || null, id_dg || null, id_d || null, id_s || null, id_ms || null, id], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur lors de la mise à jour du service.', error: err });
         }
