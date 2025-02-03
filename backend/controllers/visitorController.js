@@ -37,7 +37,7 @@ exports.recordVisit = (req, res) => {
             // Calculer la différence en minutes
             const diffMinutes = (now - lastVisit) / (1000 * 60);
 
-            if (diffMinutes < 5) { // Moins de 5 minutes = rafraîchissement
+            if (diffMinutes < 10) { // Moins de 10 minutes = rafraîchissement
                 console.log("Rafraîchissement détecté, visite non enregistrée");
                 return res.status(200).json({ message: 'Visite ignorée (rafraîchissement)' });
             }
