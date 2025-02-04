@@ -183,7 +183,7 @@ exports.updateService = (req, res) => {
         return res.status(400).json({ message: "Un service ne peut être associé qu'à un seul SG, DG, Direction ou Service." });
     }
 
-    const query = 'UPDATE ServiceOffert SET nom_service = ?, dossier_prepare = ?, delai = ?, id_sg = ?, id_dg = ?, id_d = ?, id_s = ? WHERE id_service = ?';
+    const query = 'UPDATE ServiceOffert SET nom_service = ?, dossier_prepare = ?, delai = ?, id_sg = ?, id_dg = ?, id_d = ?, id_s = ?,id_ms = ? WHERE id_service = ?';
     db.query(query, [nom_service, dossier_prepare, delai, id_sg || null, id_dg || null, id_d || null, id_s || null, id_ms || null, id], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur lors de la mise à jour du service.', error: err });

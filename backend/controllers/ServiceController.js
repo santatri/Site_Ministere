@@ -167,7 +167,7 @@ exports.updateService = (req, res) => {
     }
 
     const query = 'UPDATE Service SET nom_s = ?, porte_s = ?, id_d = ?, id_dg = ?, id_sg = ? , id_ms = ? WHERE id_s = ?';
-    db.query(query, [nom_s, porte_s, id_d || null, id_dg || null,id_sg || null, id], (err, result) => {
+    db.query(query, [nom_s, porte_s, id_d || null, id_dg || null,id_sg || null,id_ms || null, id], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Erreur lors de la mise à jour du service.', error: err });
         }

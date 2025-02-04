@@ -7,21 +7,18 @@ const Service = () => {
     const [SGList, setSGList] = useState([]);  // Liste des SG
     const [DGList, setDGList] = useState([]);  // Liste des DG
     const [MSList, setMSList] = useState([]);  // Liste des MS
-
     const [directions, setDList] = useState([]); // Liste des directions pour la combobox
-    
     const [nom_s, setNomS] = useState('');
     const [porte_s, setPorteS] = useState('');
     const [id_d, setIdD] = useState('');
     const [id_dg, setIdDG] = useState('');
     const [id_sg, setIdSG] = useState('');
     const [id_ms, setIdMS] = useState('');
-
     const [message, setMessage] = useState("");
-    
     const [editId, setEditId] = useState(null);
     const [showForm, setShowForm] = useState(true); // Nouvel état pour afficher le formulaire ou la liste
     const [selectedType, setSelectedType] = useState(''); // "direction" ou "directionGenerale"
+    const [searchTerm, setSearchTerm] = useState(''); // État pour la recherche
 
     // Référence pour faire défiler vers le formulaire
     const formRef = useRef(null);
@@ -49,13 +46,11 @@ const Service = () => {
                 axios.get('http://localhost:5001/api/direction/sg'),
                 axios.get('http://localhost:5001/api/direction/dg'),
                 axios.get('http://localhost:5001/api/direction/ms')
-
             ]);
             setDList(DResponse.data.data);
             setSGList(sgResponse.data.data);
             setDGList(dgResponse.data.data);
             setMSList(msResponse.data.data);
-
         } catch (error) {
             console.error("Erreur lors de la récupération des D, SG et DG et MS:", error);
         }
@@ -68,8 +63,8 @@ const Service = () => {
 
     // Ajouter ou mettre à jour un service
     const handleSubmit = async () => {
-        
         setMessage("");
+
         try {
             // Formater la porte avec des zéros devant si nécessaire
             const formattedPorte = porte_s.padStart(3, '0'); // Ajoute des zéros jusqu'à ce que la longueur soit 3
@@ -82,11 +77,11 @@ const Service = () => {
                 id_dg: selectedType === "directionGenerale" ? id_dg : null ,// Si c'est une direction générale, on envoie id_dg
                 id_sg: selectedType === "secretaireGenerale" ? id_sg : null,
                 id_ms: selectedType === "ministre" ? id_ms : null
-
             };
     
             if (editId) {
                 await axios.put(`http://localhost:5001/api/service/${editId}`, data);
+                setMessage("Service mettre a jour avec succès !")
             } else {
                 await axios.post('http://localhost:5001/api/service', data);
                 setMessage("Service ajouté avec succès !")
@@ -94,7 +89,7 @@ const Service = () => {
             fetchServices();
             clearForm();
         } catch (error) {
-            setMessage("Ce service existe déjà ou erreur !")
+            setMessage("Ce Service existe déjà ou erreur le insertion")
             console.error("Erreur lors de la gestion du service:", error);
         }
     };
@@ -122,7 +117,6 @@ const Service = () => {
         }
     };
     
-
     // Préparer le formulaire pour l'édition
     const editService = (service) => {
         setEditId(service.id_s);
@@ -132,9 +126,6 @@ const Service = () => {
         setIdDG(service.id_dg);
         setIdSG(service.id_sg);
         setIdMS(service.id_ms);
-
-        
-
 
         // Faire défiler vers le formulaire si formRef existe
         setShowForm(true);  // Afficher le formulaire d'édition
@@ -151,8 +142,6 @@ const Service = () => {
         setIdDG('');
         setIdSG('');
         setIdMS('');
-
-
         setEditId(null);
     };
 
@@ -161,6 +150,12 @@ const Service = () => {
         const indentation = ' '.repeat(level * 2);  // Espace pour l'indentation
         return `${indentation}${direction.nom_d}`;
     };
+
+    // Filtrer les services en fonction de la recherche
+    const filteredServices = services.filter(service =>
+        service.nom_s.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        service.porte_s.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="servi-container">
@@ -194,8 +189,6 @@ const Service = () => {
                         <option value="directionGenerale">Direction Générale</option>
                         <option value="secretaireGenerale">Secretaire Générale</option>
                         <option value="ministre">Ministre</option>
-
-
                     </select>
 
                     {/* Sélection de la direction correspondante */}
@@ -233,15 +226,12 @@ const Service = () => {
                             ))}
                         </select>
                     )}
-
-
-                    {message && (
+                     {message && (
                     <div style={{ 
                     padding: "10px", 
                     marginBottom: "10px", 
                     color : "blue",
-                   
-                     }}>
+                    }}>
                     {message}
                  </div>
                     )}
@@ -253,6 +243,13 @@ const Service = () => {
             ) : (
                 <div className="service-list">
                     <h2>Liste des Services</h2>
+                    <input
+                        type="text"
+                        placeholder="Rechercher un service..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="search-input"
+                    />
                     <table className="table">
                         <thead>
                             <tr>
@@ -263,7 +260,7 @@ const Service = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {services.map((service) => (
+                            {filteredServices.map((service) => (
                                 <tr key={service.id_s}>
                                     <td>{service.nom_s}</td>
                                     <td>{service.porte_s}</td>

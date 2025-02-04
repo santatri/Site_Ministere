@@ -108,6 +108,8 @@ const Direction = () => {
         id_ms,
 
       });
+      setMessage("Direction mettre a jour avec succe !")
+
       fetchDirections();
       clearForm();
     } catch (error) {
@@ -119,6 +121,8 @@ const Direction = () => {
   const deleteDirection = async (id) => {
     try {
       await axios.delete(`http://localhost:5001/api/direction/${id}`);
+      setMessage("Direction suprimé avec succe !")
+
       fetchDirections();
     } catch (error) {
       console.error("Erreur lors de la suppression de la direction:", error);
