@@ -16,7 +16,8 @@ const Direction = () => {
 
   const [type, setType] = useState("");
   const [editId, setEditId] = useState(null);
-
+  const [message, setMessage] = useState("");
+  
   const [view, setView] = useState("list"); // "list" pour afficher la liste, "add" pour afficher le formulaire
 
   const formRef = useRef(null);
@@ -56,6 +57,7 @@ const Direction = () => {
 
   // Fonction pour créer une direction
   const createDirection = async () => {
+    setMessage("");
     try {
       if (type === "sg") {
         await axios.post("http://localhost:5001/api/direction", {
@@ -83,9 +85,14 @@ const Direction = () => {
           id_ms,
         });
       }
+      setMessage("Direction ajouté avec succès !")
+
       fetchDirections();
+
       clearForm();
     } catch (error) {
+      setMessage("Ce Direction existe déjà ou erreur le insertion !")
+
       console.error("Erreur lors de l'ajout de la direction:", error);
     }
   };
@@ -264,7 +271,16 @@ const Direction = () => {
               ))}
             </select>
           )}
-
+          {message && (
+                    <div style={{ 
+                    padding: "10px", 
+                    marginBottom: "10px", 
+                    color : "blue",
+                   
+                     }}>
+                    {message}
+                 </div>
+                    )}
           <button
             type="button"
             onClick={editId ? updateDirection : createDirection}

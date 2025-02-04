@@ -126,19 +126,33 @@ exports.getAllServices = (req, res) => {
 
 // Créer un service
 exports.createService = (req, res) => {
-    const { nom_s, porte_s, id_d, id_dg ,id_sg, id_ms} = req.body;
+    const { nom_s, porte_s, id_d, id_dg, id_sg, id_ms } = req.body;
 
     // Vérifier si c'est une direction ou une direction générale
     if (id_d && id_dg && id_sg && id_ms) {
         return res.status(400).json({ message: 'Vous ne pouvez pas sélectionner à la fois une direction et une direction générale.' });
     }
 
-    const query = 'INSERT INTO Service (nom_s, porte_s, id_d, id_dg ,id_sg,id_ms) VALUES (?, ?, ?, ? , ?,?)';
-    db.query(query, [nom_s, porte_s, id_d || null, id_dg || null, id_sg || null, id_ms || null], (err, result) => {
+    // Vérifier si le service existe déjà
+    const checkQuery = 'SELECT * FROM Service WHERE nom_s = ? ';
+    db.query(checkQuery, [nom_s], (err, results) => {
         if (err) {
-            return res.status(500).json({ message: 'Erreur lors de l\'ajout du service.', error: err });
+            return res.status(500).json({ message: 'Erreur lors de la vérification du service.', error: err });
         }
-        res.status(201).json({ message: 'Service ajouté avec succès', data: result });
+        
+        // Si le service existe déjà
+        if (results.length > 0) {
+            return res.status(400).json({ message: 'Ce service existe déjà.' });
+        }
+
+        // Insérer le service s'il n'existe pas
+        const insertQuery = 'INSERT INTO Service (nom_s, porte_s, id_d, id_dg, id_sg, id_ms) VALUES (?, ?, ?, ?, ?, ?)';
+        db.query(insertQuery, [nom_s, porte_s, id_d || null, id_dg || null, id_sg || null, id_ms || null], (err, result) => {
+            if (err) {
+                return res.status(500).json({ message: 'Erreur lors de l\'ajout du service.', error: err });
+            }
+            res.status(201).json({ message: 'Service ajouté avec succès', data: result });
+        });
     });
 };
 

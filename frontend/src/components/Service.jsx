@@ -17,7 +17,7 @@ const Service = () => {
     const [id_sg, setIdSG] = useState('');
     const [id_ms, setIdMS] = useState('');
 
-
+    const [message, setMessage] = useState("");
     
     const [editId, setEditId] = useState(null);
     const [showForm, setShowForm] = useState(true); // Nouvel état pour afficher le formulaire ou la liste
@@ -68,6 +68,8 @@ const Service = () => {
 
     // Ajouter ou mettre à jour un service
     const handleSubmit = async () => {
+        
+        setMessage("");
         try {
             // Formater la porte avec des zéros devant si nécessaire
             const formattedPorte = porte_s.padStart(3, '0'); // Ajoute des zéros jusqu'à ce que la longueur soit 3
@@ -87,10 +89,12 @@ const Service = () => {
                 await axios.put(`http://localhost:5001/api/service/${editId}`, data);
             } else {
                 await axios.post('http://localhost:5001/api/service', data);
+                setMessage("Service ajouté avec succès !")
             }
             fetchServices();
             clearForm();
         } catch (error) {
+            setMessage("Ce service existe déjà ou erreur !")
             console.error("Erreur lors de la gestion du service:", error);
         }
     };
@@ -230,6 +234,17 @@ const Service = () => {
                         </select>
                     )}
 
+
+                    {message && (
+                    <div style={{ 
+                    padding: "10px", 
+                    marginBottom: "10px", 
+                    color : "blue",
+                   
+                     }}>
+                    {message}
+                 </div>
+                    )}
                     <button type="button" onClick={handleSubmit}>
                         {editId ? 'Mettre à jour' : 'Ajouter'}
                     </button>

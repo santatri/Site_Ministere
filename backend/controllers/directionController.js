@@ -95,14 +95,28 @@ exports.getAllDirections = (req, res) => {
 
 // Créer une Direction
 exports.createDirection = (req, res) => {
-    const { nom_d, porte_d, id_sg, id_dg,id_ms } = req.body;
+    const { nom_d, porte_d, id_sg, id_dg, id_ms } = req.body;
 
-    const query = 'INSERT INTO Direction (nom_d, porte_d, id_sg, id_dg,id_ms) VALUES (?, ?, ?, ? ,?)';
-    db.query(query, [nom_d, porte_d, id_sg, id_dg,id_ms], (err, result) => {
+    // Vérifier si la direction existe déjà
+    const checkQuery = 'SELECT * FROM Direction WHERE nom_d = ?';
+    db.query(checkQuery, [nom_d], (err, results) => {
         if (err) {
-            return res.status(500).json({ message: 'Erreur lors de l\'ajout de la direction.', error: err });
+            return res.status(500).json({ message: 'Erreur lors de la vérification de la direction.', error: err });
         }
-        res.status(201).json({ message: 'Direction ajoutée avec succès', data: result });
+        
+        // Si la direction existe déjà
+        if (results.length > 0) {
+            return res.status(400).json({ message: 'Cette direction existe déjà.' });
+        }
+
+        // Insérer la direction si elle n'existe pas encore
+        const insertQuery = 'INSERT INTO Direction (nom_d, porte_d, id_sg, id_dg, id_ms) VALUES (?, ?, ?, ?, ?)';
+        db.query(insertQuery, [nom_d, porte_d, id_sg || null, id_dg || null, id_ms || null], (err, result) => {
+            if (err) {
+                return res.status(500).json({ message: 'Erreur lors de l\'ajout de la direction.', error: err });
+            }
+            res.status(201).json({ message: 'Direction ajoutée avec succès', data: result });
+        });
     });
 };
 
