@@ -162,7 +162,10 @@ exports.getServiceDetails = (req, res) => {
 
           -- Champs pour SecretaireGeneral
           sg.nom_sg AS nom_secretaire_general,
-          sg.porte_sg AS porte_secretaire_general
+          sg.porte_sg AS porte_secretaire_general,
+          
+           ms.nom_ms AS nom_ministre,
+           ms.porte_ms AS porte_ministre
 
       FROM 
           ServiceOffert so
@@ -183,6 +186,13 @@ exports.getServiceDetails = (req, res) => {
           OR d.id_sg = sg.id_sg 
           OR dg.id_sg = sg.id_sg
           OR s.id_sg = sg.id_sg
+     
+      LEFT JOIN Ministre ms 
+          ON s.id_ms = ms.id_ms 
+          OR d.id_ms = ms.id_ms 
+          OR sg.id_ms = ms.id_ms
+          OR so.id_ms = ms.id_ms 
+         
 
       WHERE so.id_service = ?;
   `;
@@ -221,6 +231,10 @@ exports.getServiceDetails = (req, res) => {
       if (service.nom_secretaire_general) {
         hierarchyParts.push(service.nom_secretaire_general);
         porte = porte || service.porte_secretaire_general; // Porte du secrétaire général (si non déjà définie)
+      }
+      if (service.nom_ministre) {
+        hierarchyParts.push(service.nom_ministre);
+        porte = porte || service.porte_ministre; // Porte du secrétaire général (si non déjà définie)
       }
 
       const hierarchy = "/ " + hierarchyParts.join(" / ");

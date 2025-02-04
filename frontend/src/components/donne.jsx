@@ -81,18 +81,18 @@ const Donne = () => {
   const getEtage = (porteNumber) => {
     const porte = parseInt(porteNumber, 10); // Assurez-vous que le numéro de porte est un nombre entier
 
-    if (porte >= 1 && porte <= 17) {
+    if (porte >= 1 && porte <= 99) {
       return "rdc";
     } 
-    else if (porte >= 101 && porte <= 123) {
+    else if (porte >= 100 && porte <= 199) {
     return "1er étage";
-    }else if (porte >= 201 && porte <= 222) {
+    }else if (porte >= 200 && porte <= 299) {
       return "2ème étage";
-    } else if (porte >= 301 && porte <= 321) {
+    } else if (porte >= 300 && porte <= 399) {
       return "3ème étage";
-    } else if (porte >= 401 && porte <= 421) {
+    } else if (porte >= 400 && porte <= 499) {
       return "4ème étage";
-    } else if (porte >= 422) {
+    } else if (porte >= 500 && porte <= 600) {
       return "5ème étage";
     } else {
       return "Numéro de porte invalide";
