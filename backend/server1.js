@@ -110,9 +110,7 @@ app.use("/api", dgRoutes);
 
 const dRoutes = require("./routes/dRoutes");
 app.use("/api", dRoutes);
-// Connexion aux routes
-const assistantRoutes = require('./routes/assistantRoutes');
-app.use('/api/assistant', assistantRoutes);
+
 
 
 // Lancement du serveur

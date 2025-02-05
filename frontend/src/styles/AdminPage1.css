@@ -1,50 +1,40 @@
-
 .dashboard {
-  margin:  0px;
-   
+  margin: 0px;
   display: flex;
   height: 100vh;
   width: 100%;
-
   border-radius: 25px;
-  
 }
-  .logo-containeres {
-    padding: 0px;
-    margin: 0px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 30px;
-    width: 90%;
+
+.logo-containeres {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 30px;
+  width: 90%;
 }
 
 .log {
   position: relative;
-    width: 90px; /* Ajustez la taille de l'image ici */
-    height: 85px; /* et les dimensions ici */
-
+  width: 90px; /* Ajustez la taille de l'image ici */
+  height: 85px; /* et les dimensions ici */
 }
 
-
-
-  
- 
 .sidebar {
- /* background-image: url('../assets/black21.jpg');*/
   width: 200px;
-  background: linear-gradient(0deg ,rgb(248, 253, 255), rgb(243, 252, 254) ,rgb(242, 251, 255) ,rgb(231, 246, 252) ,#00b7ff); /* Centrer l'image */
-  box-shadow: 0 4px 12px rgb(201, 241, 255); /* Ajoute une ombre subtile */
-  font-family:'Times New Roman', Times, serif;
+  background: linear-gradient(0deg ,rgb(248, 253, 255), rgb(243, 252, 254) ,rgb(242, 251, 255) ,rgb(231, 246, 252) ,#00b7ff);
+  box-shadow: 0 4px 12px rgb(201, 241, 255);
+  font-family: 'Times New Roman', Times, serif;
   display: flex;
   flex-direction: column;
   border-radius: 0 15px 0px 0px;
-   
   align-items: center;
-  padding:0px;
+  padding: 0px;
   height: 100vh;
   position: relative;
-  transition: width 0.3s ease; /* Transition pour la largeur de la sidebar */
+  transition: width 0.3s ease;
 }
 
 .sidebar h2 {
@@ -59,23 +49,19 @@
 .menu-item {
   width: 90%;
   padding: 7px;
- 
   margin-bottom: 12px;
   background: none;
-  
   color: rgb(19, 26, 101);
   cursor: pointer;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: left;
   border-radius: 6px;
- 
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 0.75rem;
   font-weight: 550;
   transition: all 0.3s ease;
-  
 }
 
 .menu-item.active {
@@ -88,20 +74,21 @@
   transform: scale(1.1);
   color: white;
 }
-.section-header h2{
+
+.section-header h2 {
   margin-top: 3%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1.2rem;
   color: #410413;
 }
-.users-section h3{
+
+.users-section h3 {
   color: #150747;
   font-size: 13px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .content {
-  
   flex: 1;
   margin: 0px;
   padding: 29px;
@@ -121,46 +108,40 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 0px 0;
-
-
-
 }
-.messages{
+
+.messages {
   color: orangered;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
   font-size: 13px;
 }
-table th{
-  padding: 5px 0px
-  ;
 
-} table td {
-  
+table th {
+  padding: 5px 0px;
+}
+
+table td {
   font-size: 11.5px;
-text-align: left;padding: 0px;
-   
+  text-align: left;
+  padding: 0px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
- 
-  box-shadow:  0 15px 70px rgb(249, 254, 255); /* Ajoute une ombre subtile */
- 
-  border: 2px  solid #fcfeff;
-  
+  box-shadow: 0 15px 70px rgb(249, 254, 255);
+  border: 2px solid #fcfeff;
 }
 
 table th {
-  background-color:#fcfeff;
+  background-color: #fcfeff;
   color: rgb(25, 0, 255);
-  border: 2px  solid #f8fdff;
+  border: 2px solid #f8fdff;
   text-align: left;
   font-size: 13px;
-  font-weight: bold; 
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 table tr:nth-child(even) {
   background-color: #ffffff;
-
 }
 
 table tr:hover {
@@ -171,68 +152,64 @@ button {
   padding: 8px 15px;
   margin: 7px;
   border: none;
- 
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 12px; /* Pour assurer que la taille est cohérente sur tous les écrans */
+  font-size: 12px;
 }
 
 .btn-validate {
-  background-color: #ffffff; /* Vert */
-  
+  background-color: #ffffff;
   color: rgb(63, 255, 92);
   font-size: 17px;
 }
 
 .btn-validate:hover {
   font-size: 11px;
-  background-color: #ffffff; /* Couleur plus foncée au survol */
+  background-color: #ffffff;
 }
 
 .btn-delete {
   border-radius: 0%;
-  border-radius: 10%;
-  background-color: #ffffff; /* Rouge */
+  background-color: #ffffff;
   color: rgb(254, 6, 6);
   font-size: 17px;
 }
 
 .btn-delete:hover {
   background-color: #ffffff;
-  font-size: 12px; /* Couleur plus foncée au survol */
+  font-size: 12px;
 }
 
 .btn-edit {
-  background-color: #ffffff ; /* Bleu */
+  background-color: #ffffff;
   color: rgb(0, 47, 255);
   font-size: 17px;
 }
 
 .btn-edit:hover {
-  background-color:#ffffff; /* Couleur plus foncée au survol */
+  background-color: #ffffff;
 }
 
 .btn-save {
-  background-color: #dba80e; /* Jaune */
+  background-color: #dba80e;
   color: rgb(255, 255, 255);
   font-size: 13px;
   border-radius: 7px;
- 
 }
 
 .btn-save:hover {
-  background-color: #e0a800; /* Couleur plus foncée au survol */
+  background-color: #e0a800;
 }
 
 .btn-cancel {
-  background-color: #6c757dd1; /* Gris */
+  background-color: #6c757dd1;
   color: white;
   font-size: 13px;
   border-radius: 7px;
 }
 
 .btn-cancel:hover {
-  background-color: #5a6268; /* Couleur plus foncée au survol */
+  background-color: #5a6268;
 }
 
 .btn:hover {
@@ -243,7 +220,6 @@ button {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
- 
 }
 
 .search-input {
@@ -252,10 +228,9 @@ button {
   margin-top: 1%;
   border-color: #0c1414;
   margin-right: 5px;
-   
   border-radius: 10px;
-  width: 100%; /* Permet à l'input de s'étendre sur l'écran */
-  max-width:10000px; /* Limite la largeur pour ne pas rendre l'input trop large */
+  width: 100%;
+  max-width: 10000px;
 }
 
 .search-button {
@@ -277,7 +252,7 @@ button {
 .logout-button {
   display: flex;
   align-items: center;
-  background-color:#510bf5;
+  background-color: #510bf5;
   font-family: 'Times New Roman', Times, serif;
   color: white;
   border: none;
@@ -306,7 +281,7 @@ button {
   .sidebar {
     width: 100%;
     padding: 15px;
-    height: auto; /* Permet à la sidebar de se redimensionner selon son contenu */
+    height: auto;
   }
 
   .content {
@@ -323,8 +298,20 @@ button {
   }
 
   .btn {
-    font-size: 12px; /* Ajustement de la taille des boutons pour tablettes */
+    font-size: 12px;
     padding: 12px 16px;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .sidebar.active .menu {
+    display: block;
   }
 }
 
@@ -353,6 +340,7 @@ button {
     padding: 8px;
   }
 }
+
 @media (max-width: 480px) {
   .dashboard {
     flex-direction: column;
@@ -388,4 +376,15 @@ button {
   .search-button {
     padding: 8px 10px;
   }
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.hamburger-menu.open {
+  display: block;
 }

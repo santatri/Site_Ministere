@@ -157,7 +157,7 @@
      display: none;
    }
    .navigation-bar {
-    height: 50px;
+    height: 55px;
    }
 .navbar-container {
   width: 100%;
@@ -169,7 +169,7 @@
   z-index: 10000000000000000000000000000000000;
 }
 .navbar-logo {
-  width: 50%;
+  width: 40%;
 }
 
 .show{

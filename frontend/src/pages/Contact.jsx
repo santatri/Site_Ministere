@@ -16,7 +16,7 @@ const Service = () => {
         <div>
             <div className='containere'>
          <ImageContact/>
-     <Chatbot/>
+  
 
          <Contact/>
          <CadreContact/>

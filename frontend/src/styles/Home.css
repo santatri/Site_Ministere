@@ -1,6 +1,6 @@
 /* Layout principal */
 .layout-container {
-  background: linear-gradient(20deg, #032b4f, #032c4f), url('../assets/2.gif');
+  background: linear-gradient(20deg, #ffffff, #ffffff), url('../assets/2.gif');
 }
 
 /* Section des actualités */
@@ -51,10 +51,10 @@
 
 .article-card {
   background-color: #fff;
-  border: 1px solid #e3e1e1;
+  border: 1px solid #f1f1f1;
   border-radius: 1px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.829);
+  box-shadow: 0 4px 6px rgba(202, 242, 250, 0.829);
   transition: transform 0.2s ease;
 }
 
