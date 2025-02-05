@@ -17,6 +17,7 @@ const Direction = () => {
   const [type, setType] = useState("");
   const [editId, setEditId] = useState(null);
   const [message, setMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // État pour stocker la valeur de la recherche
   
   const [view, setView] = useState("list"); // "list" pour afficher la liste, "add" pour afficher le formulaire
 
@@ -35,16 +36,14 @@ const Direction = () => {
 
   const fetchSGAndDG = async () => {
     try {
-      const [sgResponse, dgResponse,msReponse] = await Promise.all([
+      const [sgResponse, dgResponse, msReponse] = await Promise.all([
         axios.get("http://localhost:5001/api/direction/sg"),
         axios.get("http://localhost:5001/api/direction/dg"),
         axios.get("http://localhost:5001/api/direction/ms"),
-
       ]);
       setSGList(sgResponse.data.data);
       setDGList(dgResponse.data.data);
       setMSList(msReponse.data.data);
-      
     } catch (error) {
       console.error("Erreur lors de la récupération des SG et DG:", error);
     }
@@ -65,7 +64,7 @@ const Direction = () => {
           porte_d: formatPorte(porte_d),
           id_sg,
           id_dg: null,
-          id_ms:null,
+          id_ms: null,
         });
       } else if (type === "dg") {
         await axios.post("http://localhost:5001/api/direction", {
@@ -73,26 +72,23 @@ const Direction = () => {
           porte_d: formatPorte(porte_d),
           id_sg: null,
           id_dg,
-          id_ms:null,
+          id_ms: null,
         });
-      }
-      else if (type === "ms") {
+      } else if (type === "ms") {
         await axios.post("http://localhost:5001/api/direction", {
           nom_d,
           porte_d: formatPorte(porte_d),
           id_sg: null,
-          id_dg:null,
+          id_dg: null,
           id_ms,
         });
       }
-      setMessage("Direction ajouté avec succès !")
+      setMessage("Direction ajouté avec succès !");
 
       fetchDirections();
-
       clearForm();
     } catch (error) {
-      setMessage("Ce Direction existe déjà ou erreur le insertion !")
-
+      setMessage("Ce Direction existe déjà ou erreur lors de l'insertion !");
       console.error("Erreur lors de l'ajout de la direction:", error);
     }
   };
@@ -106,9 +102,8 @@ const Direction = () => {
         id_sg,
         id_dg,
         id_ms,
-
       });
-      setMessage("Direction mettre a jour avec succe !")
+      setMessage("Direction mise à jour avec succès !");
 
       fetchDirections();
       clearForm();
@@ -121,7 +116,7 @@ const Direction = () => {
   const deleteDirection = async (id) => {
     try {
       await axios.delete(`http://localhost:5001/api/direction/${id}`);
-      setMessage("Direction suprimé avec succe !")
+      setMessage("Direction supprimée avec succès !");
 
       fetchDirections();
     } catch (error) {
@@ -138,7 +133,7 @@ const Direction = () => {
     setIdDG(direction.id_dg);
     setIdMS(direction.id_ms);
 
-    setType(direction.id_sg ? "sg" : "dg" || "ms");
+    setType(direction.id_sg ? "sg" : direction.id_dg ? "dg" : "ms");
 
     // Passer à la vue "add" pour afficher le formulaire d'ajout
     setView("add");
@@ -168,6 +163,11 @@ const Direction = () => {
   const toggleView = (viewType) => {
     setView(viewType);
   };
+
+  // Fonction pour filtrer les directions en fonction du terme de recherche
+  const filteredDirections = directions.filter((direction) =>
+    direction.nom_d.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="direction-container-new">
@@ -276,15 +276,10 @@ const Direction = () => {
             </select>
           )}
           {message && (
-                    <div style={{ 
-                    padding: "10px", 
-                    marginBottom: "10px", 
-                    color : "blue",
-                   
-                     }}>
-                    {message}
-                 </div>
-                    )}
+            <div style={{ padding: "10px", marginBottom: "10px", color: "blue" }}>
+              {message}
+            </div>
+          )}
           <button
             type="button"
             onClick={editId ? updateDirection : createDirection}
@@ -303,6 +298,15 @@ const Direction = () => {
         <div>
           <h2 className="direction-subtitle-new">Liste des Directions</h2>
 
+          {/* Champ de recherche */}
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Rechercher une direction..."
+            className="direction-search-input"
+          />
+
           <table className="direction-table-new">
             <thead>
               <tr>
@@ -313,7 +317,7 @@ const Direction = () => {
               </tr>
             </thead>
             <tbody>
-              {directions.map((direction) => (
+              {filteredDirections.map((direction) => (
                 <tr key={direction.id_d}>
                   <td>{direction.nom_d}</td>
                   <td>{direction.porte_d}</td>

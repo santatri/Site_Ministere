@@ -72,6 +72,23 @@ exports.validateUser = (req, res) => {
       res.status(200).send({ message: 'Utilisateur validé avec succès' });
     });
   };
+
+  exports.invalidateUser = (req, res) => {
+    const { id } = req.params;
+  
+    const updateQuery = 'UPDATE users1 SET validated = FALSE WHERE id = ?';
+    db.query(updateQuery, [id], (err, result) => {
+      if (err) {
+        console.error('Erreur lors de l’invalidation:', err);
+        return res.status(500).send('Erreur interne du serveur');
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).send('Utilisateur non trouvé');
+      }
+      res.status(200).send({ message: 'Validation de l’utilisateur annulée avec succès' });
+    });
+};
+
   // Récupérer les utilisateurs non validés
 exports.getUnvalidatedUsers = (req, res) => {
     const query = 'SELECT id, nom, prenom, matricule, role, image,created_at FROM users1 WHERE validated = FALSE';
