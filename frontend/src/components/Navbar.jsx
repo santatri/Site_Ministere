@@ -94,7 +94,7 @@ const Navbar = () => {
           {show ? (
             <FaTimes size={30} color={'red'} cursor={'pointer'} onClick={toggle} />
           ) : (
-            <FaBars size={30} color={'blue'} cursor={'pointer'} onClick={toggle} />
+            <FaBars size={30} color={'white'} cursor={'pointer'} onClick={toggle} />
           )}
         </div>
       </div>
