@@ -114,6 +114,7 @@ const Actualité = () => {
       <div className="forms-sectiones">
         <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
         <form onSubmit={handleSubmit}>
+         
           <input className='tri'
             ref={input}
             type="text"

@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
-
 import '../styles/AdminPage1.css';
 import Actualité from '../components/Actualité';
-import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell, FaChartBar ,FaEnvelope  , FaArrowDown , FaSlideshare, FaAngleDown, FaLongArrowAltDown } from 'react-icons/fa';
+import { FaUsers, FaNewspaper, FaStar, FaEdit, FaTrash, FaCheck, FaInfoCircle, FaConciergeBell, FaChartBar, FaEnvelope, FaArrowDown, FaSlideshare, FaAngleDown, FaLongArrowAltDown } from 'react-icons/fa';
 import AdminNavbar from '../components/AdminNavbar';
 import ALaUne from '../components/ALaUne';
 import logo from '../assets/dgfop.png'; // Remplacez par le chemin réel de votre logo
 import DGFormAndDisplay from '../components/DGFormAndDisplay';
 import VisitorCounter from '../components/VisitorCounter';
-
-import  SecretaireGeneral from'../components/SecretaireGeneral';
-import  DirectionGenerale from'../components/DirectionGenerale';
-import  Direction from'../components/Direction';
-import  Service from'../components/Service';
-import  ServiceOffert from'../components/ServiceOffert';
-
+import SecretaireGeneral from '../components/SecretaireGeneral';
+import DirectionGenerale from '../components/DirectionGenerale';
+import Direction from '../components/Direction';
+import Service from '../components/Service';
+import ServiceOffert from '../components/ServiceOffert';
 import DForm from '../components/DForm';
 import Message from './Contact/Message';
 
-
-// import { useAuth } from '../context/authContext';
-;
-
 const AdminPage1 = () => {
-  
-  
   const [users, setUsers] = useState([]);
   const [activeSection, setActiveSection] = useState('utilisateurs');
   const [message, setMessage] = useState('');
@@ -38,6 +29,7 @@ const AdminPage1 = () => {
     role: '',
   });
   const [searchTerm, setSearchTerm] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -57,8 +49,7 @@ const AdminPage1 = () => {
     user.matricule.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
-// validation un utilisateur
+
   const handleValidate = async (id) => {
     try {
       await axios.put(`http://localhost:5001/api/users1/validate/${id}`);
@@ -69,7 +60,7 @@ const AdminPage1 = () => {
       setMessage('Erreur lors de la validation');
     }
   };
-// Supprimer les utilisateurs
+
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5001/api/users1/${id}`);
@@ -80,7 +71,7 @@ const AdminPage1 = () => {
       setMessage('Erreur lors de la suppression');
     }
   };
- // Active la mode edition
+
   const handleEdit = (user) => {
     setEditingUser(user.id);
     setEditForm({
@@ -90,7 +81,7 @@ const AdminPage1 = () => {
       role: user.role,
     });
   };
-// Gestion des champs formulaire
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditForm((prevForm) => ({
@@ -98,7 +89,7 @@ const AdminPage1 = () => {
       [name]: value,
     }));
   };
-// Enrregistrer les modifications
+
   const handleSaveEdit = async (id) => {
     try {
       await axios.put(`http://localhost:5001/api/users1/update/${id}`, editForm);
@@ -113,21 +104,22 @@ const AdminPage1 = () => {
     }
   };
 
-  //Annuler la modification
-
   const handleCancelEdit = () => {
     setEditingUser(null);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    
     <div className="dashboard">
-      
+ 
       {/* Colonne gauche */}
-      <div className="sidebar">
-      <div className="logo-containeres">
-        <img src={logo} alt="DGFOP Logo" className="log" />
-    </div>
+      <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
+        <div className="logo-containeres">
+          <img src={logo} alt="DGFOP Logo" className="log" />
+        </div>
         <div className="menu">
           <button
             className={`menu-item ${activeSection === 'utilisateurs' ? 'active' : ''}`}
@@ -145,17 +137,14 @@ const AdminPage1 = () => {
             className={`menu-item ${activeSection === 'a-la-une' ? 'active' : ''}`}
             onClick={() => setActiveSection('a-la-une')}
           >
-            < FaStar /> À la une
+            <FaStar /> À la une
           </button>
-        
-          {/* Nouveau bouton "À propos" */}
           <button
             className={`menu-item ${activeSection === 'a-propos' ? 'active' : ''}`}
             onClick={() => setActiveSection('a-propos')}
           >
             <FaInfoCircle /> À propos
           </button>
-          {/* Nouveau bouton "Services" */}
           <button
             className={`menu-item ${activeSection === 'services' ? 'active' : ''}`}
             onClick={() => setActiveSection('services')}
@@ -193,8 +182,8 @@ const AdminPage1 = () => {
       {/* Colonne droite */}
       <div className="content">
         {/* En-tête */}
-        <AdminNavbar/>
-
+ 
+        <AdminNavbar onToggleMenu={toggleMenu} />
         {/* Sections conditionnelles */}
         {activeSection === 'utilisateurs' && (
           <div className="users-section">
