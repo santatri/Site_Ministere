@@ -7,5 +7,6 @@ router.get('/all', serviceOffertController.getAllServices);  // Récupérer tous
 router.post('/', serviceOffertController.createService);  // Ajouter un service
 router.put('/:id', serviceOffertController.updateService);  // Mettre à jour un service
 router.delete('/:id', serviceOffertController.deleteService);  // Supprimer un service
+router.get('/count', serviceOffertController.getServiceCount);  // Récupérer le nombre total de services
 
 module.exports = router;

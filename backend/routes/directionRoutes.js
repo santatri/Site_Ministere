@@ -14,4 +14,7 @@ router.post('/', directionController.createDirection);  // Ajouter une direction
 router.put('/:id', directionController.updateDirection);  // Mettre à jour une direction
 router.delete('/:id', directionController.deleteDirection);  // Supprimer une direction
 
+router.get('/count', directionController.getDirectionCount);  // Récupérer le nombre total de services
+
+
 module.exports = router;

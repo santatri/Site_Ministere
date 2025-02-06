@@ -205,3 +205,23 @@ exports.deleteService = (req, res) => {
         res.status(200).json({ message: 'Service supprimé avec succès' });
     });
 };
+
+
+// Récupérer le nombre total de services offerts
+exports.getServiceCount = (req, res) => {
+    const query = "SELECT COUNT(*) AS total FROM ServiceOffert";
+    
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error("Erreur SQL:", err);
+            return res.status(500).json({ message: "Erreur lors de la récupération du nombre de services.", error: err });
+        }
+
+        console.log("Résultat SQL brut:", result);
+        if (result.length > 0) {
+            return res.status(200).json({ total: result[0].total });
+        } else {
+            return res.status(200).json({ total: 0 });
+        }
+    });
+};
