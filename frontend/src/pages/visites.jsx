@@ -16,10 +16,20 @@ const Visites = () => {
                 console.error('Erreur lors de la récupération du total des visiteurs :', err);
             }
     };
-
+    const recordVisit = async () => {
+        try {
+            await axios.post('http://localhost:5001/api/visit');
+        } catch (err) {
+            console.error('Erreur lors de l’enregistrement de la visite :', err);
+        }
+    };
     useEffect(() => {
-        fetchTotalVisitors();
+        
+    
+        recordVisit();
+        fetchTotalVisitors()
     }, []);
+    
 
     return (
         <div>
