@@ -155,7 +155,7 @@ exports.getDirectionCount = (req, res) => {
             return res.status(500).json({ message: "Erreur lors de la récupération du nombre de Directions.", error: err });
         }
 
-        console.log("Résultat SQL brut:", result);
+        // console.log("Résultat SQL brut:", result);
         if (result.length > 0) {
             return res.status(200).json({ total: result[0].total });
         } else {

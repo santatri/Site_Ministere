@@ -19,21 +19,30 @@ exports.gets= (req, res) => {
   });
 };
 
+
 exports.updateSettings = [
-  upload.single('logo'),
+  upload.fields([
+    { name: "logo", maxCount: 1 }, // Champ pour le logo
+    { name: "logoDG", maxCount: 1 }, // Champ pour logoDG
+  ]),
   (req, res) => {
-    console.log('Requête reçue:', req.body);  // Vérifie les données reçues
-    console.log('Fichier reçu:', req.file);   // Vérifie le fichier téléchargé
+    console.log('Requête reçue:', req.body);
+    console.log('Fichiers reçus:', req.files); // Vérifiez ici les fichiers reçus
 
-    const { email, address } = req.body;
-    const logo = req.file ? req.file.filename : null;
+    const { email, address, numero } = req.body;
+    const logo = req.files["logo"] ? req.files["logo"][0].filename : null;
+    const logoDG = req.files["logoDG"] ? req.files["logoDG"][0].filename : null;
 
-    let query = 'UPDATE settings SET email = ?, address = ?';
-    let params = [email, address];
+    let query = 'UPDATE settings SET email = ?, address = ?, numero = ?';
+    let params = [email, address, numero];
 
     if (logo) {
       query += ', logo = ?';
       params.push(logo);
+    }
+    if (logoDG) {
+      query += ', logoDG = ?';
+      params.push(logoDG);
     }
 
     query += ' WHERE id = 1';
@@ -47,4 +56,3 @@ exports.updateSettings = [
     });
   },
 ];
-

@@ -3,7 +3,7 @@ const router = express.Router();
 const settings = require('../controllers/setController'); // Vérifie ce chemin
 
 // Vérifie si le contrôleur est bien importé
-if (!settings.getSettings) {
+if (!settings.gets) {
   console.error("Erreur : settingsController.getSettings est indéfini !");
 }
 if (!settings ) {

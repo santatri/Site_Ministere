@@ -8,7 +8,6 @@ import Contact from '../pages/Contact/Contact';
 import '../styles/ImageContact.css';
 import '../styles/ImageContact.css';
 import '../styles/CadreContact.css';
-import  SettingsForm from'../components/SettingsForm';
 
 
 const Service = () => {
@@ -17,7 +16,7 @@ const Service = () => {
             <div className='containere'>
          <ImageContact/>
    
-         <SettingsForm/>
+         
          <Contact/>
          <CadreContact/>
             

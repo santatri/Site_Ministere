@@ -187,7 +187,7 @@ const Service = () => {
                         <option value="">Sélectionner un type</option>
                         <option value="direction">Direction</option>
                         <option value="directionGenerale">Direction Générale</option>
-                        <option value="secretaireGenerale">Secretaire Générale</option>
+                        <option value="secretaireGenerale">Premiere Hierarchie</option>
                         <option value="ministre">Ministre</option>
                     </select>
 
@@ -211,7 +211,7 @@ const Service = () => {
                     )}
                     {selectedType === "secretaireGenerale" && (
                         <select value={id_sg} onChange={(e) => setIdSG(e.target.value)}>
-                            <option value="">Sélectionner une Secretaire Générale</option>
+                            <option value="">Sélectionner une Premiere Hierarchie</option>
                             {SGList.map((sg) => (
                                 <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
                             ))}
@@ -255,7 +255,7 @@ const Service = () => {
                             <tr>
                                 <th>Nom</th>
                                 <th>Porte</th>
-                                <th>Direction</th>
+                                <th>Hierarchie</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

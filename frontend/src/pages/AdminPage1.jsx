@@ -15,7 +15,7 @@ import  DirectionGenerale from'../components/DirectionGenerale';
 import  Direction from'../components/Direction';
 import  Service from'../components/Service';
 import  ServiceOffert from'../components/ServiceOffert';
-
+import SettingsForm from '../components/SettingsForm';
 import DForm from '../components/DForm';
 import Message from './Contact/Message';
 
@@ -194,7 +194,7 @@ const AdminPage1 = () => {
             className={`menu-item ${activeSection === 'footer' ? 'active' : ''}`}
             onClick={() => setActiveSection('footer')}
           >
-            <FaArrowDown /> Footer
+            <FaArrowDown /> Footer et Header
           </button>
         </div>
         <LogoutButton />
@@ -368,6 +368,8 @@ const AdminPage1 = () => {
         {activeSection === 'a-propos' &&  [<DGFormAndDisplay />, <DForm/>]}
         {activeSection === 'indicateurs' &&<VisitorCounter/>}
         {activeSection === 'Message' &&<Message/>}
+        {activeSection === 'footer' &&<SettingsForm/>}
+
 
 
       </div>

@@ -209,7 +209,7 @@ const Direction = () => {
                 checked={type === "sg"}
                 onChange={() => setType("sg")}
               />
-              SG ou Ministre
+              Premiere Hierarchie
             </label>
             <label>
               <input
@@ -237,7 +237,7 @@ const Direction = () => {
               onChange={(e) => setIdSG(e.target.value)}
               className="direction-select-new"
             >
-              <option value="">Sélectionner SG ou Ministre</option>
+              <option value="">Sélectionner une</option>
               {sgList.map((sg) => (
                 <option key={sg.id_sg} value={sg.id_sg}>
                   {sg.nom_sg}
@@ -267,7 +267,7 @@ const Direction = () => {
               onChange={(e) => setIdMS(e.target.value)}
               className="direction-select-new"
             >
-              <option value="">Sélectionner une ms</option>
+              <option value="">Sélectionner Ministre</option>
               {msList.map((ms) => (
                 <option key={ms.id_ms} value={ms.id_ms}>
                   {ms.nom_ms}
