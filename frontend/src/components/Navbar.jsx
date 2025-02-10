@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes, FaPhone } from 'react-icons/fa';
-import logo from '../assets/dgfop.png'; // Importez votre logo ici
+// import logo from '../assets/dgfop.png'; // Importez votre logo ici
 import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const [showSubmenu, setShowSubmenu] = useState(false);
   const [showDgfopSubmenu, setShowDgfopSubmenu] = useState(false); // État pour le sous-menu DGFOP
-
+  const [logos, setLogos] = useState({ logoDG: "",numero: ""});
+  
+  useEffect(() => {
+      const fetchLogos = async () => {
+        try {
+          const response = await axios.get("http://localhost:5001/api/set");
+          setLogos({
+            numero: response.data.numero,
+            logoDG: response.data.logoDG,
+          });
+        } catch (error) {
+          console.error("Erreur lors du chargement des logos :", error);
+        }
+      };
+  
+      fetchLogos();
+    }, []);
   const toggle = () => {
     setShow(!show);
   };
@@ -18,7 +35,14 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Logo à gauche */}
         <div className="navbar-left">
-          <img src={logo} alt="Logo" className="navbar-logo" />
+        {logos.logoDG && (
+            <img
+              src={`http://localhost:5001/uploads/${logos.logoDG}`}
+              alt="Logo 2"
+              className="navbar-logo"
+            />
+          )}
+          {/* <img src={logo} alt="Logo" className="navbar-logo" /> */}
         </div>
 
         {/* Navigation au centre */}
@@ -84,7 +108,9 @@ const Navbar = () => {
             <FaPhone className="phone-icon" />
             <div className="contact-text">
               <span className="quick-contact">Contact rapide</span>
-              <span className="phone-number">+034 55 997 17</span>
+              <span className="phone-number">
+                +261 {logos.numero}
+              </span>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ import  DirectionGenerale from'../components/DirectionGenerale';
 import  Direction from'../components/Direction';
 import  Service from'../components/Service';
 import  ServiceOffert from'../components/ServiceOffert';
-
+import SettingsForm from '../components/SettingsForm';
 import DForm from '../components/DForm';
 import Message from './Contact/Message';
 
@@ -67,6 +67,17 @@ const AdminPage1 = () => {
     } catch (error) {
       console.error('Erreur lors de la validation:', error);
       setMessage('Erreur lors de la validation');
+    }
+  };
+
+  const handleinValidate = async (id) => {
+    try {
+      await axios.put(`http://localhost:5001/api/users1/invalidate/${id}`);
+      setMessage('Utilisateur invalidé avec succès');
+      setUsers(users.map((user) => (user.id === id ? { ...user, validated: true } : user)));
+    } catch (error) {
+      console.error('Erreur lors de la invalidation:', error);
+      setMessage('Erreur lors de la invalidation');
     }
   };
 // Supprimer les utilisateurs
@@ -184,7 +195,7 @@ const AdminPage1 = () => {
             className={`menu-item ${activeSection === 'footer' ? 'active' : ''}`}
             onClick={() => setActiveSection('footer')}
           >
-            <FaArrowDown /> Footer
+            <FaArrowDown /> Footer et Header
           </button>
         </div>
         <LogoutButton />
@@ -258,86 +269,97 @@ const AdminPage1 = () => {
 
             <h3>Tous les utilisateurs</h3>
             <table>
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Prénom</th>
-                  <th>Matricule</th>
-                  <th>Rôle</th>
-                  <th>Validation</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredUsers.map((user) => (
-                  <tr key={user.id}>
-                    {editingUser === user.id ? (
-                      <>
-                        <td>
-                          <input
-                            type="text"
-                            name="nom"
-                            value={editForm.nom}
-                            onChange={handleInputChange}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            name="prenom"
-                            value={editForm.prenom}
-                            onChange={handleInputChange}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            name="matricule"
-                            value={editForm.matricule}
-                            onChange={handleInputChange}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            name="role"
-                            value={editForm.role}
-                            onChange={handleInputChange}
-                          />
-                        </td>
-                        <td colSpan="2">
-                          <button onClick={() => handleSaveEdit(user.id)} className="btn btn-save">
-                            Enregistrer
-                          </button>
-                          <button onClick={handleCancelEdit} className="btn btn-cancel">
-                            Annuler
-                          </button>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>{user.nom}</td>
-                        <td>{user.prenom}</td>
-                        <td>{user.matricule}</td>
-                        <td>{user.role}</td>
-                        <td>{user.validated ? 'Validé' : 'Non validé'}</td>
-                        <td>
-                          <button onClick={() => handleEdit(user)} className="btn btn-edit">
-                            <FaEdit />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(user.id)}
-                            className="btn btn-delete"
-                          >
-                            <FaTrash /> 
-                          </button>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Matricule</th>
+      <th>Rôle</th>
+      <th>Validation</th>
+      <th>bloqué</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredUsers.map((user) => (
+      <tr key={user.id}>
+        {editingUser === user.id ? (
+          <>
+            <td>
+              <input
+                type="text"
+                name="nom"
+                value={editForm.nom}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="prenom"
+                value={editForm.prenom}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="matricule"
+                value={editForm.matricule}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="role"
+                value={editForm.role}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td colSpan="2">
+              <button onClick={() => handleSaveEdit(user.id)} className="btn btn-save">
+                Enregistrer
+              </button>
+              <button onClick={handleCancelEdit} className="btn btn-cancel">
+                Annuler
+              </button>
+            </td>
+          </>
+        ) : (
+          <>
+            <td>{user.nom}</td>
+            <td>{user.prenom}</td>
+            <td>{user.matricule}</td>
+            <td>{user.role}</td>
+            <td>{user.validated ? 'Validé' : 'Non validé'}</td>
+            <td>
+              {user.validated ? (
+                <button
+                  onClick={() => handleinValidate(user.id)}
+                  className="btn btn-validate"
+                >
+                  bloqué
+                </button>
+              ) : null}
+            </td>
+            <td>
+              <button onClick={() => handleEdit(user)} className="btn btn-edit">
+                <FaEdit />
+              </button>
+              <button
+                onClick={() => handleDelete(user.id)}
+                className="btn btn-delete"
+              >
+                <FaTrash />
+              </button>
+            </td>
+          </>
+        )}
+      </tr>
+    ))}
+  </tbody>
+</table>
           </div>
         )}
         {activeSection === 'actualites' && <Actualité />}
@@ -347,6 +369,8 @@ const AdminPage1 = () => {
         {activeSection === 'a-propos' &&  [<DGFormAndDisplay />, <DForm/>]}
         {activeSection === 'indicateurs' &&<VisitorCounter/>}
         {activeSection === 'Message' &&<Message/>}
+        {activeSection === 'footer' &&<SettingsForm/>}
+
 
 
       </div>

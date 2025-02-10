@@ -113,6 +113,11 @@ app.use("/api", dRoutes);
 
 
 
+const settings = require('./routes/settingsRoutes'); // Vérifie ce chemin
+
+app.use('/api', settings);
+
+
 // Lancement du serveur
 app.listen(port, () => {
     console.log(`Serveur backend démarré sur http://localhost:${port}`);

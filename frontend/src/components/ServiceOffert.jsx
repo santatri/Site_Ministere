@@ -222,11 +222,12 @@ const ServiceOffert = () => {
                         onChange={(e) => setAssociationType(e.target.value)}
                     >
                         <option value="">Associer à</option>
-                        <option value="SG">SG ou Ministre</option>
+                        <option value="MS">Ministre</option>
+                        <option value="SG">Premiere Hierarchie </option>
                         <option value="DG">Direction Générale</option>
                         <option value="D">Direction</option>
                         <option value="S">Service</option>
-                        <option value="MS">Ministre</option>
+                        
 
                     </select>
                     {associationType === 'SG' && (
@@ -235,7 +236,7 @@ const ServiceOffert = () => {
                             value={associationId}
                             onChange={(e) => setAssociationId(e.target.value)}
                         >
-                            <option value="">Sélectionner SG ou Ministre</option>
+                            <option value="">Sélectionner une Premiere Hierarchie </option>
                             {sgList.map((sg) => (
                                 <option key={sg.id_sg} value={sg.id_sg}>{sg.nom_sg}</option>
                             ))}

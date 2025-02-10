@@ -122,7 +122,7 @@ const DirectionGenerale = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Sélectionnez un Secrétaire Général</option>
+              <option value="">Sélectionnez une de premiere Hierarchie</option>
               {secretaireGeneraux.map((sg) => (
                 <option key={sg.id_sg} value={sg.id_sg}>
                   {sg.nom_sg}
@@ -160,7 +160,7 @@ const DirectionGenerale = () => {
               <tr>
                 <th>Nom</th>
                 <th>Porte</th>
-                <th>Secrétaire Général</th>
+                <th>Premiere Hierarchie</th>
                 <th>Actions</th>
               </tr>
             </thead>
