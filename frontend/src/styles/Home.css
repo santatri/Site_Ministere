@@ -14,7 +14,7 @@
 .actualites-title {
   font-size: 2.5rem;
   margin-bottom: 50px;
-  color: rgb(255, 255, 255);
+  color: rgb(5, 145, 232);
 }
 
 .actualites-filters {
@@ -112,7 +112,7 @@
 .annonces-title {
   font-size: 2.2rem;
   margin-bottom: 50px;
-  color: #f6fcff;
+  color: #270069;
 }
 
 .annonce-card {

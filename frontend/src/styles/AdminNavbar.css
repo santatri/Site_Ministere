@@ -1,10 +1,10 @@
 /* AdminNavbar.css */
 .admin-navbar {
-    background-color: #ffffff; /* Couleur de fond de la navbar */
-    padding: 5px 20px;
+ 
+    padding: 4px 25px;
     margin-top: -2.5%;
-    margin-left: -3.5%;
-    box-shadow: 0 4px 12px rgb(201, 241, 255); /* Ajoute une ombre subtile */
+    margin-left: -4%;
+    box-shadow: 0 4px 12px rgb(194, 239, 253); /* Ajoute une ombre subtile */
   
     width: 100%;
 
@@ -18,9 +18,10 @@
   }
   
   .navbar-left {
-    font-size: 32px;
-    color: #0c0521; /* Bordure cyan */
-    padding-left: 30px;
+    font-size: 2.5rem;
+    margin-left: -3.2%;
+    color: #ffffff; /* Bordure cyan */
+    padding-left: 25px;
   }
   
   .navbar-title {
@@ -33,7 +34,7 @@
     display: flex;
     font-weight: bold;
     font-size: 13px;
-    color: #021a1a;
+    color: #ad1111;
     align-items: center;
     gap: 20px; /* Espacement entre l'image et le texte */
   }
@@ -57,8 +58,63 @@
   }
   
   .user-name {
-    color: #101111; /* Bordure cyan */
+    color: #ffffff; /* Bordure cyan */
     font-weight: bold;
     font-size: 13px;
   }
-  
+
+.admin-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #112eea;
+  color: white;
+  width: 100%;
+  padding: 0px 25px;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title {
+  margin-left: 10px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.avatar-container {
+  margin-right: 10px;
+}
+
+.avatar-frame {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.menu-toggle {
+  background: none;
+  margin-left: 3.5%;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

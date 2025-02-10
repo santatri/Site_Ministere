@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaSun, FaMoon, FaUserEdit } from 'react-icons/fa';
+import { FaSun, FaMoon, FaUserEdit, FaBars } from 'react-icons/fa';
 import { useAuth } from '../context/authContext';
 import '../styles/AdminNavbar.css'; // Fichier CSS associé
 
@@ -11,7 +11,7 @@ const Avatar = ({ src }) => {
   ) : null;
 };
 
-const AdminNavbar = ({ toggleTheme, isDarkMode }) => {
+const AdminNavbar = ({ toggleTheme, isDarkMode, onToggleMenu }) => {
   const { user, updateUserProfile } = useAuth(); // Assuming this function exists in your auth context
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,6 +34,9 @@ const AdminNavbar = ({ toggleTheme, isDarkMode }) => {
       <div className="navbar-content">
         {/* Partie gauche */}
         <div className="navbar-left">
+          <button className="menu-toggle" onClick={onToggleMenu}>
+            <FaBars />
+          </button>
           <p className="navbar-title">Direction Génerale de la Fonction Publique</p>
         </div>
 

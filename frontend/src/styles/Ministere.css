@@ -1,17 +1,17 @@
 /* Conteneur principal */
 .ministere-container {
-  width: 81%;
-  background: linear-gradient(0deg ,rgb(255, 255, 255), rgba(0, 183, 255, 0.797) ,rgba(0, 153, 255, 0.97) ,rgb(14, 8, 91)),url('../assets/black16.jpg') ;
+  width: 85%;
+  background: linear-gradient(0deg ,rgb(255, 255, 255), rgba(0, 251, 255, 0.825) ,rgba(0, 153, 255, 0.97) ,rgb(14, 8, 91)),url('../assets/black16.jpg') ;
   text-align: center;
-  margin-top: 20%;
-  border-radius: 25px;
+  margin-top: 40%;
+  border-radius: 5px;
   margin: auto; /* Centré horizontalement */
   transition: all .1s ease;
 }
 
 /* Titre principal */
 .ministere-title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 45px;
   font-family: 'Arial', sans-serif;
@@ -32,8 +32,8 @@
 /* Carrousel - Animation de chute */
 .carousel-item {
   position: relative;
-  width: 20%;
-  height: 320px;
+  width: 40%;
+  height: 520px;
   border-radius: 2%;
   margin: 20px;
   overflow: hidden;
