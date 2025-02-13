@@ -1,134 +1,254 @@
 /* Grand titre */
 .main-title {
-    font-size: 1.5rem;
-    text-align: left;
-    margin-top: 2%;
+  font-size: 1.3rem;
+  text-align: left;
+  margin: 2%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #000000;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   
-    color: #110f87;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+/* Titre Messages reçus */
+.messages-title {
+  margin-top: -2%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-left: 2%;
+  text-align: left;
+  color: #0ec4e0;
+  margin-bottom: 15px;
+}
+
+/* Barre de recherche */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+ 
+  gap: 10px;
+  margin: 10px 2%;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  font-size: 0.7rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  min-width: 180px;
+}
+
+.search-bar button {
+  padding: 10px 15px;
+  background-color: #6600ff;
+  color: #fff;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+/* Messages */
+.message-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-bottom: 40px;
+  justify-content: left;
+}
+
+.message-bubble {
+  background-color: #ffffff;
+  border: 1px solid #ebf9fd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 550px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-email {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #291818;
+}
+
+.message-subject {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #060404d4;
+}
+
+.message-timestamp {
+  font-size: 0.8rem;
+  color: #8d8d8d;
+  margin-top: 10px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  border: 1px solid #0d0d0d;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination button.active {
+  background-color: #009dff;
+  color: #fff;
+}
+
+.pagination button:disabled {
+  background-color: #333;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsivité */
+@media (max-width: 1024px) {
+  .main-title {
+      font-size: 1.5rem;
   }
-  
-  /* Titre Messages reçus */
   .messages-title {
-    margin-top: -1.8%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-left: 2%;
-    text-align: left;
-    color: #0f274b;
-    margin-bottom: 20px;
+      font-size: 1rem;
   }
-  
-  /* Barre de recherche */
   .search-bar {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px; margin-left: 2%;
+      flex-direction: column;
+      gap: 5px;
   }
-  
-  .search-bar input,
-  .search-bar button {
-    padding: 10px 55px;text-align: left;
-    font-size: 0.8rem;
-    border: 1px solid #e1e1e1;
-    border-radius: 5px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  .search-bar input {
+      width: 100%;
   }
-  
-  .search-bar button {
-    background-color: #6600ff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .search-bar button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Messages */
-  .message-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-left: 2%;
-    justify-content: left;
-  }
-  .message-content{
-    color: rgb(9, 6, 11);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 0.8rem;
-  }
-  
   .message-bubble {
-    background-color: #f5fbff;
-    border: 1px solid #f8f8f8;
-    border-radius: 8px;
-    padding: 15px;
-    width: calc(100% - 20px);
-    max-width: 520px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 100%;
   }
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 1.1rem;
+    margin-left: 5%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 12%;
+ 
+}
+.messages-title {
+    font-size: 0.85rem;
+    margin-top: -4%;
+    margin-left: 5%;
+}
+.search-bar {
+    flex-direction: column;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    width: 83%;
+    align-items: stretch;
+}
+.search-bar input {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+.search-bar button {
+    font-size: 0.8rem;
+    padding: 12px 22px;
+    width: 100%;
+    color: #ffffff;
+    background-color: #04bebe;
   
+    margin-bottom: 10px;
+}
+.message-bubble {
+    padding: 10px;
+}
+.pagination {
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.pagination button {
+    padding: 7px 10px;
+    font-size: 0.75rem;
+}
+.message-email {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #3b11f4;
+}
+}
+
+@media (max-width: 480px) {
+  .main-title {
+      font-size: 1.1rem;
+      margin-left: 5%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin-top: 18%;
+   
+  }
+  .messages-title {
+      font-size: 0.85rem;
+      margin-top: -8%;
+      margin-left: 5%;
+  }
+  .search-bar {
+      flex-direction: column;
+      margin-left: 5%;
+      margin-bottom: 30px;
+      width: 83%;
+      align-items: stretch;
+  }
+  .search-bar input {
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+  }
+  .search-bar button {
+      font-size: 0.8rem;
+      padding: 12px 22px;
+      width: 100%;
+      color: #ffffff;
+      background-color: #04bebe;
+    
+      margin-bottom: 10px;
+  }
+  .message-bubble {
+      padding: 10px;
+  }
+  .pagination {
+      flex-wrap: wrap;
+      gap: 5px;
+  }
+  .pagination button {
+      padding: 7px 10px;
+      font-size: 0.75rem;
+  }
   .message-email {
     font-weight: bold;
     font-size: 1rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #291818;
+    color: #3b11f4;
   }
-  
-  .message-subject {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #060404d4;
-  }
-  
-  .message-timestamp {
-    font-size: 0.8rem;
-    color: #8d8d8d;
-    margin-top: 10px;
-  }
-  
-  /* Pagination */
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .pagination button {
-    padding: 10px 15px;
-    font-size: 0.8rem;
-    border: 1px solid #0d0d0d;
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .pagination button:hover {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .pagination button.active {
-    background-color: #009dff;
-    color: #fff;
-  }
-  
-  .pagination button:disabled {
-    background-color: #000000;
-    color: #ffffff;
-    cursor: not-allowed;
-  }
-  
+}

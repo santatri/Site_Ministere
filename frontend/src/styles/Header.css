@@ -128,20 +128,21 @@
 
 @media (max-width: 480px) {
   .header-bar {
-    font-size: 1px;
+    font-size: 0px;
+ 
    
   }
 
   .header-left,
   .header-right {
-    padding: 8px;
+    padding: 0px;
   }
 
   .header-logo img {
-    max-width: 100px;
+    max-width: 35%;
   }
 
   .header-item p {
-    font-size: 11px;
+    font-size: 0px;
   }
 }

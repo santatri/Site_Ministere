@@ -1,12 +1,12 @@
 /* AdminNavbar.css */
 .admin-navbar {
  
-    padding: 4px 25px;
+    padding: 4px 0px;
     margin-top: -2.5%;
-    margin-left: -4%;
+
     box-shadow: 0 4px 12px rgb(194, 239, 253); /* Ajoute une ombre subtile */
-  
-    width: 100%;
+    height: 7%;
+    width: 75%;
 
     
   }
@@ -40,13 +40,13 @@
   }
   
   .user-info {
-    display: flex;
+    display: flex; margin-left: -575%;
     align-items: center;
 
     padding: 0px;
     border-radius: 50%; /* Rendre l'avatar circulaire */
   }
-  
+
   .avatar-container {
     margin-right: 20px;
   }
@@ -61,16 +61,19 @@
     color: #ffffff; /* Bordure cyan */
     font-weight: bold;
     font-size: 13px;
+    margin-left: -25%;
   }
 
 .admin-navbar {
-  display: flex;
+
   justify-content: space-between;
   align-items: center;
-  background-color: #112eea;
+  background: #004cff;
   color: white;
-  width: 100%;
-  padding: 0px 25px;
+  width:87%;
+  margin-left: -1.9%;
+  position: fixed;
+
 }
 
 .navbar-content {
@@ -91,20 +94,22 @@
 
 .navbar-right {
   display: flex;
-  align-items: center;
+
 }
 
 .user-info {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-left: 5%;
 }
 
 .avatar-container {
-  margin-right: 10px;
+  margin-left: -5%;
 }
 
 .avatar-frame {
+  margin-left: -95%;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -117,4 +122,210 @@
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    margin-top: -2%;
+    display: block;
+    margin-left: -0%; /* Affiché sur les petits écrans */
+  }
+
+  .sidebar {
+    left: -100%;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+  .admin-navbar {
+   position:fixed;
+    padding: 20px 20px;
+ 
+    margin-left: -4%;
+    box-shadow: 0 4px 12px rgb(194, 239, 253); /* Ajoute une ombre subtile */
+  
+    width: 100%;
+    height: 3%;
+
+    
+  }
+  .navbar-title {
+    margin-top: 2%;
+    
+    display: flex;
+    font-size: 15px;
+
+    margin-left: 5%;
+    color: whitesmoke;
+    width: 100%;
+   
+  }
+  .avatar-frame {
+    width: 40px;
+    margin-left: -10%;
+    margin-top: -30%;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 45, 248);
+  }
+  .user-name {
+    color: #ffffff; /* Bordure cyan */
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: 3%;
+    margin-top: -2%;
+  }
+
+}
+@media screen and (max-width: 368px) {
+  .menu-toggle {
+    display: block;
+    margin-left: -40%; /* Affiché sur les petits écrans */
+  }
+
+  .sidebar {
+    left: -100%;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+  .admin-navbar {
+   position: fixed;
+    padding: 10px 20px;
+ 
+    margin-left: -5%;
+    box-shadow: 0 4px 12px rgb(194, 239, 253); /* Ajoute une ombre subtile */
+  
+    width: 100%;
+    height: 5%;
+
+    
+  }
+  .navbar-title {
+
+    
+    display: flex;
+    font-size: 15px;
+
+    margin-left: -10%;
+    color: whitesmoke;
+    width: 100%;
+   
+  }
+  .avatar-frame {
+    width: 40px;
+    margin-left: -90%;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 45, 248);
+  }
+  .user-name {
+    color: #ffffff; /* Bordure cyan */
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: -30%;
+  }
+
+}
+@media screen and (max-width: 486px) {
+  .menu-toggle {
+    display: block;
+    margin-left: -20%; /* Affiché sur les petits écrans */
+  }
+
+  .sidebar {
+    left: -100%;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+  .admin-navbar {
+ 
+    padding: 10px 20px;
+ 
+    margin-left: -5%;
+    box-shadow: 0 4px 12px rgb(194, 239, 253); /* Ajoute une ombre subtile */
+  
+    width: 100%;
+    height: 4%;
+
+    
+  }
+  .navbar-title {
+
+    
+    display: flex;
+    font-size: 15px;
+
+    margin-left: -3%;
+    color: whitesmoke;
+    width: 100%;
+   
+  }
+  .avatar-frame {
+    width: 40px;
+    margin-left: -100%;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 45, 248);
+  }
+  .user-name {
+    color: #ffffff; /* Bordure cyan */
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: -35%;
+  }
+
+}@media screen and (max-width: 368px) {
+  .menu-toggle {
+    display: block;
+    margin-left: -30%; /* Affiché sur les petits écrans */
+  }
+
+  .sidebar {
+    left: -100%;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+  .admin-navbar {
+ 
+    padding: 10px 20px;
+ 
+    margin-left: -5%;
+    box-shadow: 0 4px 12px rgb(194, 239, 253); /* Ajoute une ombre subtile */
+  
+    width: 100%;
+    height: 4%;
+
+    
+  }
+  .navbar-title {
+
+    
+    display: flex;
+    font-size: 15px;
+
+    margin-left: -10%;
+    color: whitesmoke;
+    width: 100%;
+   
+  }
+  .avatar-frame {
+    width: 40px;
+    margin-left: -150%;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 45, 248);
+  }
+  .user-name {
+    color: #ffffff; /* Bordure cyan */
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: -55%;
+  }
+
 }

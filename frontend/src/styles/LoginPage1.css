@@ -253,9 +253,18 @@
 }
 
 @media (max-width: 480px) {
+  .login-container {
+    display: flex;
+    margin-top: -41%;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Assure que le conteneur prend toute la hauteur de l'écran */
+    padding: 0px; /* Retire les marges ou espaces inutiles */
+  }
   .login-form h1 {
     font-size: 1.2rem; /* Réduit la taille du titre */
     padding: 25px 40px;
+  
     
   }
 

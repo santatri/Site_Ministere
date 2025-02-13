@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+.logout-button{
+margin-top: 15%;
+}
+}
+@media (max-width: 486px) {
+    .logout-button{
+margin-top: 18%;
+}
+}

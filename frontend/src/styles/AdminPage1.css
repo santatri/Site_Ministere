@@ -90,7 +90,7 @@
   color: white;
 }
 .section-header h2{
-  margin-top: 1.6%;
+  margin-top: 3.6%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1.2rem;
   color: #000000;
@@ -183,17 +183,20 @@ button {
 
 .btn-validate {
   background-color: #ffffff; /* Vert */
-  
-  color: rgb(63, 255, 92);
-  font-size: 17px;
+  margin-left: -8%;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  border-radius: 5px;
+  background-color: #06ccd3;
 }
 
 .btn-validate:hover {
   font-size: 11px;
-  background-color: #ffffff; /* Couleur plus foncée au survol */
+  background-color: #140303; /* Couleur plus foncée au survol */
 }
 
 .btn-delete {
+  margin-left: -8%;
   border-radius: 0%;
   border-radius: 10%;
   background-color: #ffffff; /* Rouge */
@@ -208,8 +211,9 @@ button {
 
 .btn-edit {
   background-color: #ffffff ; /* Bleu */
-  color: rgb(0, 47, 255);
+  color: rgb(0, 187, 255);
   font-size: 17px;
+  margin-left: -6%;
 }
 
 .btn-edit:hover {
@@ -339,7 +343,20 @@ button {
     height: auto;
     padding: 10px;
   }
-
+  .section-header h2{
+    margin-top: 10%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
+    color: #000000;
+    padding: 5px;
+  }
+  .users-section h3{
+    margin-top: 3%;
+    padding: 5px;
+    color: #091e21;
+    font-size: 13px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
   .content {
     padding: 10px;
   }
@@ -362,7 +379,20 @@ button {
   .dashboard {
     flex-direction: column;
   }
-
+  .section-header h2{
+    margin-top: 22%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
+    color: #000000;
+    padding: 5px;
+  }
+  .users-section h3{
+    margin-top: 8.5%;
+    padding: 5px;
+    color: #091e21;
+    font-size: 13px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
   .sidebar {
     width: 100%;
     padding: 8px;
@@ -375,15 +405,32 @@ button {
 
   .content {
     padding: 8px;
+    
+  }
+  .search-button {
+    padding: 23px 8px;
+    
+    background-color: rgb(101, 12, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
   }
 
   table {
     font-size: 0.8rem;
+   
   }
 
-  table th,
+  table th{
+    padding: 6px 15px;
+  }
   table td {
-    padding: 6px;
+    padding: 1px 15px;
+    height: 5%;
   }
 
   .search-input {
@@ -391,6 +438,15 @@ button {
   }
 
   .search-button {
-    padding: 8px 10px;
+    padding: 12.5px 8px;
+    margin-top: 2%;
+    font-size: 12px;
+  }
+  .messages{
+    color: orangered;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 5px;
   }
 }

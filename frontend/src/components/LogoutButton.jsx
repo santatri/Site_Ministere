@@ -2,7 +2,9 @@ import React from 'react';
 import { useAuth } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { FaSignOutAlt } from 'react-icons/fa'; // Ajout d'une icône pour améliorer l'interface
-import '../styles/AdminPage1.css'; // Ajouter des styles dédiés pour une apparence uniforme
+import '../styles/AdminPage1.css';
+import '../styles/LogoutButton.css';
+ // Ajouter des styles dédiés pour une apparence uniforme
 
 const LogoutButton = () => {
   const { logout } = useAuth(); // Récupérer la fonction logout du contexte d'authentification

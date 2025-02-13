@@ -236,23 +236,26 @@
   .actualites-title {
     flex-direction: column;
     justify-content: center;
+    margin-left: 15%;
     font-size: 1.8rem;
   }
  .article-card {
-  margin-left: -26.1%;
-width: 130%;
-margin-top: -7%;
+margin-left: -25%;
+width: 120%;
+margin-top: -10%;
 gap: 75px;
   }
 
   .annonces-title {
     font-size: 1.7rem;
+    margin-left: -10%;
+    
   }
 
   .annonce-card {
     padding: 8px;
     width:300%;
-    margin-left: -120.1%;
+    margin-left: -110.1%;
 margin-top: -27%;
 gap: 75px;
   }
@@ -260,6 +263,7 @@ gap: 75px;
   .annonce-title {
     font-size: 1.1rem;
     margin-left: 1.1%;
+   
   }
 
   .annonce-description {
@@ -272,7 +276,16 @@ gap: 75px;
   }
 
   .read-more {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 8px 1px;
+    width: 40%;
+    background-color: #0098ea;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: -0.1%;
+   
   }
 }

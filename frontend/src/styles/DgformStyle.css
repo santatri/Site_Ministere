@@ -14,9 +14,10 @@
 /* Titre principal */
 .dform-container h1 {
  
-  font-size: 2rem;
+  font-size: 1.7rem;
   text-align: left;  /* Aligné à gauche */
   margin-bottom: 10px;
+  margin-left: 1.5%;
   color: #022e61;
   font-weight: bold;
 
@@ -147,7 +148,7 @@ color: #0f74e8;
 
 /* Contenu texte */
 .dform-item-content h3 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #013877;
   font-weight: bold;
   margin-bottom: 10px;
@@ -205,4 +206,47 @@ color: #0f74e8;
 
 .dform-delete:hover {
   background-color: #d44a4a;
+}
+@media (max-width: 480px) {
+  .dform-container h1 {
+    margin-top: 12%;
+    font-size: 1rem;
+    margin-left: 2%;
+    text-align: left;  /* Aligné à gauche */
+    margin-bottom: 10px;
+    color: #022e61;
+    font-weight: bold;
+  
+  }
+  .dform-container h2{
+    font-weight: bold;
+  
+    margin-top: -1%;
+   margin-left: 1.5%;
+    font-size: 1.2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   text-align: center;
+    color: #0e28bd;}
+}
+
+@media (max-width: 768px) {
+  .dform-container h1 {
+    margin-top: 12%;
+    font-size: 1.1rem;
+    margin-left: 2%;
+    text-align: left;  /* Aligné à gauche */
+    margin-bottom: 10px;
+    color: #022e61;
+    font-weight: bold;
+  
+  }
+  .dform-container h2{
+    font-weight: bold;
+  
+    margin-top: -1%;
+   margin-left: 1.5%;
+    font-size: 1.2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   text-align: center;
+    color: #0e28bd;}
 }

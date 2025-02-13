@@ -1,0 +1,35 @@
+.admin-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .main-content {
+    flex: 1;
+    margin-left: 250px; /* Ajustez en fonction de la largeur de votre sidebar */
+    transition: margin-left 0.3s ease;
+  }
+  
+  .main-content.menu-open {
+    margin-left: 0; /* Lorsque le menu est ouvert, le contenu principal prend toute la largeur */
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      margin-left: 0;
+    transition: margin-left 0.3s ease;
+    }
+  
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Cache le sidebar par défaut */
+      width: 250px;
+      height: 100vh;
+      transition: left 0.3s ease;
+    }
+  
+    .sidebar.open {
+      left: 0; /* Affiche le sidebar lorsqu'il est ouvert */
+    }
+  }

@@ -202,6 +202,28 @@ form button:hover {
 }
 
 @media (max-width: 480px) {
+  .form-container {
+    margin-top: -40%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        920deg,
+        rgb(255, 255, 255),
+        rgba(0, 183, 255, 0.87),
+        rgba(0, 153, 255, 0.87),
+        rgb(9, 13, 57)
+      ),
+      url('../assets/5.svg');
+    background-size: cover;
+    opacity: 0.99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Ajout d'un scroll vertical */
+  }
   .form-layout {
     max-width: 95%;
   }

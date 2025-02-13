@@ -11,7 +11,7 @@ const Avatar = ({ src }) => {
   ) : null;
 };
 
-const AdminNavbar = ({ toggleTheme, isDarkMode, onToggleMenu }) => {
+const AdminNavbar = ({ onToggleMenu }) => {
   const { user, updateUserProfile } = useAuth(); // Assuming this function exists in your auth context
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,7 +37,7 @@ const AdminNavbar = ({ toggleTheme, isDarkMode, onToggleMenu }) => {
           <button className="menu-toggle" onClick={onToggleMenu}>
             <FaBars />
           </button>
-          <p className="navbar-title">Direction Génerale de la Fonction Publique</p>
+          <p className="navbar-title">DGFOP</p>
         </div>
 
         {/* Partie droite */}
