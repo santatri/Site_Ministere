@@ -1,52 +1,99 @@
-/* Alignement du titre principal */
-.darkblue-title {
-  
-    color: darkblue;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 1%;
-    margin-top: 10px;
-    text-align: left; /* Alignement à gauche */
-}
+/* VisitorCharts.css */
 
-/* Conteneur global des graphiques */
+/* Style de base pour le conteneur principal */
 .chart-container {
-    width: 45%; /* Ajuste la largeur des graphiques */
-    margin-bottom: 40px;
-    background-color: rgb(255, 255, 255);
+    margin-top: -23%;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 75%; /* Assurez-vous que le conteneur prend toute la largeur */
 }
 
-/* Conteneur des graphiques en colonne */
-.chart-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-/* Alignement du titre de chaque graphique */
-.chart-title,
-.chart-title1,
-.chart-title2,
-.chart-title3 {
-    text-align: left;
-    color: rgb(98, 21, 176);
-    margin-top: 2%;
-    font-size: 1.5rem;
+/* Style pour les titres des graphiques */
+.chart-title {
+    text-align: center;
+   
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #6664e0;
 }
 
 .chart-title1 {
-    color: rgb(15, 12, 51);
-    font-size: 1.1rem;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #9d3e15;
 }
 
 .chart-title2 {
-    margin-top: 3%;
-    color: rgb(213, 28, 28);
-    font-size: 1.1rem;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #0417e2;
 }
 
 .chart-title3 {
-    color: rgb(16, 111, 149);
-    font-size: 1.1rem;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #99aa03;
+}
+
+/* Style pour la rangée de graphiques */
+.chart-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Style pour les graphiques individuels */
+.chart-container canvas {
+    width: 80% !important; /* Assurez-vous que le canvas prend toute la largeur */
+    height: auto !important; /* Hauteur automatique pour éviter les déformations */
+}
+
+/* Style pour le conteneur des informations */
+.info-container {
+    display: flex; /* Aligner les éléments horizontalement */
     margin-top: 3%;
+    justify-content: space-around; /* Espacement égal entre les éléments */
+    align-items: center; /* Centrer verticalement les éléments */
+    flex-wrap: wrap; /* Permettre le retour à la ligne sur les petits écrans */
+    margin-bottom: 20px;
+}
+
+/* Style pour les titres des informations */
+.info-title {
+  
+    font-size: 20px;
+    margin: 10px; /* Espacement entre les titres */
+    color: #333;
+    text-align: center;
+    flex: 1; /* Permettre aux titres de prendre un espace égal */
+}
+
+/* Media queries pour les écrans plus petits */
+@media (max-width: 768px) {
+    .info-container {
+        flex-direction: row; /* Garder l'alignement horizontal même sur les petits écrans */
+    }
+
+    .info-title {
+        font-size: 18px;
+        flex: 1 1 100%; /* Permettre aux titres de prendre toute la largeur sur les petits écrans */
+    }
+}
+
+@media (max-width: 480px) {
+    .info-container {
+        margin-top: 20%;
+        flex-direction: row; /* Garder l'alignement horizontal même sur les petits écrans */
+    }
+    .info-title {
+        font-size: 16px;
+        color: #06139a;
+    }
 }
