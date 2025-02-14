@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaUsers, FaNewspaper, FaStar, FaInfoCircle, FaConciergeBell, FaChartBar, FaEnvelope, FaArrowDown, FaSlideshare, FaEdit, FaTrash, FaCheck } from 'react-icons/fa';
-import Sidebar from '../pages/Sidebar'; // Importez le composant Sidebar
+import { FaEdit, FaTrash, FaCheck } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from '../pages/Sidebar';
 import '../styles/AdminPage1.css';
 import Actualité from '../components/Actualité';
 import AdminNavbar from '../components/AdminNavbar';
@@ -19,7 +21,9 @@ import Message from './Contact/Message';
 
 const AdminPage1 = () => {
   const [users, setUsers] = useState([]);
-  const [activeSection, setActiveSection] = useState('utilisateurs');
+  const [activeSection, setActiveSection] = useState(() => {
+    return localStorage.getItem('activeSection') || 'utilisateurs';
+  });
   const [message, setMessage] = useState('');
   const [editingUser, setEditingUser] = useState(null);
   const [editForm, setEditForm] = useState({
@@ -30,12 +34,13 @@ const AdminPage1 = () => {
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  
-    const matchUrlActive = (url) => {
-      setActiveSection(url)
-      setIsMenuOpen(false)
-    }
+
+  const matchUrlActive = (url) => {
+    setActiveSection(url);
+    setIsMenuOpen(false);
+    localStorage.setItem('activeSection', url);
+  };
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -60,9 +65,29 @@ const AdminPage1 = () => {
       await axios.put(`http://localhost:5001/api/users1/validate/${id}`);
       setMessage('Utilisateur validé avec succès');
       setUsers(users.map((user) => (user.id === id ? { ...user, validated: true } : user)));
+
+      // Notification de succès
+      toast.success('Utilisateur validé avec succès', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } catch (error) {
       console.error('Erreur lors de la validation:', error);
       setMessage('Erreur lors de la validation');
+
+      // Notification d'erreur
+      toast.error('Erreur lors de la validation', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -70,10 +95,31 @@ const AdminPage1 = () => {
     try {
       await axios.put(`http://localhost:5001/api/users1/invalidate/${id}`);
       setMessage('Utilisateur invalidé avec succès');
-      setUsers(users.map((user) => (user.id === id ? { ...user, validated: true } : user)));
+      setUsers(users.map((user) => (user.id === id ? { ...user, validated: false } : user)));
+
+      // Notification de succès
+      toast.success('Utilisateur bloqué avec succès', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        
+        draggable: true,
+      });
     } catch (error) {
       console.error('Erreur lors de la invalidation:', error);
       setMessage('Erreur lors de la invalidation');
+
+      // Notification d'erreur
+      toast.error('Erreur lors du blocage de l\'utilisateur', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -82,9 +128,29 @@ const AdminPage1 = () => {
       await axios.delete(`http://localhost:5001/api/users1/${id}`);
       setMessage('Utilisateur supprimé avec succès');
       setUsers(users.filter((user) => user.id !== id));
+
+      // Notification de succès
+      toast.success('Utilisateur supprimé avec succès', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } catch (error) {
       console.error('Erreur lors de la suppression:', error);
       setMessage('Erreur lors de la suppression');
+
+      // Notification d'erreur
+      toast.error('Erreur lors de la suppression', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -114,9 +180,29 @@ const AdminPage1 = () => {
         user.id === id ? { ...user, ...editForm } : user
       ));
       setEditingUser(null);
+
+      // Notification de succès
+      toast.success('Utilisateur modifié avec succès', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } catch (error) {
       console.error('Erreur lors de la modification:', error);
       setMessage('Erreur lors de la modification');
+
+      // Notification d'erreur
+      toast.error('Erreur lors de la modification', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -130,6 +216,19 @@ const AdminPage1 = () => {
 
   return (
     <div className="dashboard">
+      {/* ToastContainer pour afficher les notifications */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       {/* Colonne gauche */}
       <Sidebar setIsMenuOpen={setIsMenuOpen} activeSection={activeSection} setActiveSection={matchUrlActive} isMenuOpen={isMenuOpen} />
 
@@ -179,15 +278,15 @@ const AdminPage1 = () => {
                           <td>
                             <button
                               onClick={() => handleValidate(user.id)}
-                              className="btn btn-validate"
-                            >
-                              <FaCheck /> 
+                              className="btn btne-validat"
+                            > Valider
+                         
                             </button>
                             <button
                               onClick={() => handleDelete(user.id)}
-                              className="btn btn-delete"
-                            >
-                              <FaTrash /> 
+                              className="btn btne-delete"
+                            > Supprimer
+                            
                             </button>
                           </td>
                         </tr>

@@ -180,12 +180,23 @@ button {
   transition: background-color 0.3s ease;
   font-size: 12px; /* Pour assurer que la taille est cohérente sur tous les écrans */
 }
+.btne-validat{
+  width: 22%;
+  gap: 15px;
+  background-color: #ffffff; /* Vert */
+  margin-left: -2%;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  border-radius: 5px;
+  background-color: #14d306;
+}
 
 .btn-validate {
+
   background-color: #ffffff; /* Vert */
   margin-left: -8%;
   color: rgb(255, 255, 255);
-  font-size: 15px;
+  font-size: 12px;
   border-radius: 5px;
   background-color: #06ccd3;
 }
@@ -201,7 +212,15 @@ button {
   border-radius: 10%;
   background-color: #ffffff; /* Rouge */
   color: rgb(254, 6, 6);
-  font-size: 17px;
+  font-size: 16px;
+}
+.btne-delete{
+  background-color: #ffffff; /* Vert */
+  margin-left: 1%;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  border-radius: 5px;
+  background-color: #d32106;
 }
 
 .btn-delete:hover {

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Actualité.css';
 
 const Actualité = () => {
@@ -15,7 +17,7 @@ const Actualité = () => {
   const [search, setSearch] = useState({ mots: '', dateStart: '', dateEnd: '' });
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
-  const [expandedDescriptionId, setExpandedDescriptionId] = useState(null); // New state for controlling full description visibility
+  const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
 
   const fetchActualités = async (filters = {}) => {
     try {
@@ -56,8 +58,18 @@ const Actualité = () => {
       const response = await axios[method](url, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      setMessage(response.data.message);
-      fetchActualités();
+
+      // Notification de succès
+      toast.success(response.data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      // Réinitialiser le formulaire et recharger les actualités
       setFormData({
         titre: '',
         description: '',
@@ -66,8 +78,17 @@ const Actualité = () => {
       });
       setIsEditing(false);
       setCurrentId(null);
+      fetchActualités();
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Erreur lors de l’insertion ou de la mise à jour.');
+      // Notification d'erreur
+      toast.error(error.response?.data?.message || 'Erreur lors de l’insertion ou de la mise à jour.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -79,10 +100,29 @@ const Actualité = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(`http://localhost:5001/api/actu/${id}`);
-      setMessage(response.data.message);
+
+      // Notification de succès
+      toast.success(response.data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      // Recharger les actualités
       fetchActualités();
     } catch (error) {
-      setMessage('Erreur lors de la suppression.');
+      // Notification d'erreur
+      toast.error('Erreur lors de la suppression.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -107,15 +147,26 @@ const Actualité = () => {
 
   return (
     <div className="actualites-containeres">
-      <h2>Gestion des Actualités</h2>
+      {/* ToastContainer pour afficher les notifications */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
-   
+      <h2>Gestion des Actualités</h2>
 
       <div className="forms-sectiones">
         <h2>{isEditing ? 'Modifier l\'actualité' : 'Insertion d\'actualité'}</h2>
         <form onSubmit={handleSubmit}>
-         
-          <input className='tri'
+          <input
+            className='tri'
             ref={input}
             type="text"
             name="titre"
@@ -124,7 +175,8 @@ const Actualité = () => {
             value={formData.titre}
             required
           />
-          <textarea className='tra'
+          <textarea
+            className='tra'
             name="description"
             placeholder="Description"
             onChange={handleChange}
@@ -132,7 +184,7 @@ const Actualité = () => {
             required
           />
           <label className='texte-image'>Image :</label>
-          <input  type="file" name="media_image" accept="image/*" onChange={handleFileChange} />
+          <input type="file" name="media_image" accept="image/*" onChange={handleFileChange} />
           <label className='texte-video'>Vidéo :</label>
           <input className='textevideo' type="file" name="media_video" accept="video/*" onChange={handleFileChange} />
           <button className='butto' type="submit">{isEditing ? 'Mettre à jour' : 'Soumettre'}</button>
@@ -142,26 +194,25 @@ const Actualité = () => {
       {/* Section des actualités */}
       <div className="news-sectiones">
         <h1>Toutes les actualités</h1>
-           {/* Barre de recherche */}
-      <form onSubmit={handleSearch} className="filters-bar">
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          value={search.mots}
-          onChange={(e) => setSearch({ ...search, mots: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateStart}
-          onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
-        />
-        <input
-          type="date"
-          value={search.dateEnd}
-          onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
-        />
-      
-      </form>
+        {/* Barre de recherche */}
+        <form onSubmit={handleSearch} className="filters-bar">
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            value={search.mots}
+            onChange={(e) => setSearch({ ...search, mots: e.target.value })}
+          />
+          <input
+            type="date"
+            value={search.dateStart}
+            onChange={(e) => setSearch({ ...search, dateStart: e.target.value })}
+          />
+          <input
+            type="date"
+            value={search.dateEnd}
+            onChange={(e) => setSearch({ ...search, dateEnd: e.target.value })}
+          />
+        </form>
         {actualités.length === 0 ? (
           <p>Aucune actualité disponible.</p>
         ) : (
@@ -184,8 +235,8 @@ const Actualité = () => {
                   {expandedDescriptionId === actu.id ? 'Voir moins' : 'Voir plus'}
                 </button>
                 <div>
-                  <button  onClick={() => handleUpdate(actu.id)}>Modifier</button>
-                  <button  onClick={() => handleDelete(actu.id)}>Supprimer</button>
+                  <button onClick={() => handleUpdate(actu.id)}>Modifier</button>
+                  <button onClick={() => handleDelete(actu.id)}>Supprimer</button>
                 </div>
               </div>
             ))}

@@ -1,40 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import '../styles/UserProfileModal.css';
 
-const UserProfileModal = ({ user, closeModal }) => {
+const UserProfileModal = ({ user, closeModal, onUpdateUser }) => {
   const [formData, setFormData] = useState({
     nom: user.nom || '',
     prenom: user.prenom || '',
-    image: user.image || '' // Assume it's a URL or file path
+    image: user.image || '',
   });
+  const [previewImage, setPreviewImage] = useState(user.image ? `http://localhost:5001/uploads/${user.image}` : '');
+
+  useEffect(() => {
+    setFormData({
+      nom: user.nom || '',
+      prenom: user.prenom || '',
+      image: user.image || '',
+    });
+  }, [user]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Assuming a function uploadImage exists to handle image uploading
-      uploadImage(file).then(imageUrl => {
-        setFormData({
-          ...formData,
-          image: imageUrl
-        });
-      });
+      setPreviewImage(URL.createObjectURL(file));
+      setFormData({ ...formData, image: file });
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the updated user data to your API or context
-    console.log('Updated user data:', formData);
-    closeModal();
+    const data = new FormData();
+    data.append('nom', formData.nom);
+    data.append('prenom', formData.prenom);
+    if (formData.image instanceof File) data.append('image', formData.image);
+
+    try {
+      const response = await axios.put(`http://localhost:5001/api/users1/update/${user.id}`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      onUpdateUser(response.data.updatedUser);
+      closeModal();
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour :", error.response?.data || error.message);
+    }
   };
 
   return (
@@ -45,7 +58,7 @@ const UserProfileModal = ({ user, closeModal }) => {
           <div className="form-group">
             <label htmlFor="image">Changer d'image</label>
             <input type="file" id="image" name="image" onChange={handleImageChange} />
-            {formData.image && <img src={`http://localhost:5001/uploads/${formData.image}`} alt="Avatar Preview" className="avatar-frame" />}
+            {previewImage && <img src={previewImage} alt="Avatar Preview" className="avatar-frame" />}
           </div>
           <div className="form-group">
             <label htmlFor="nom">Nom</label>
@@ -63,16 +76,10 @@ const UserProfileModal = ({ user, closeModal }) => {
   );
 };
 
-const uploadImage = async (file) => {
-  // Logic to handle image upload and return the image URL
-  // For example, you might use FormData to send the file to a backend endpoint
-  // For now, just a placeholder
-  return `path-to-uploaded-image/${file.name}`; // Adjust according to your API's response
-};
-
 UserProfileModal.propTypes = {
   user: PropTypes.object.isRequired,
-  closeModal: PropTypes.func.isRequired
+  closeModal: PropTypes.func.isRequired,
+  onUpdateUser: PropTypes.func.isRequired,
 };
 
 export default UserProfileModal;

@@ -129,6 +129,7 @@
 @media (max-width: 480px) {
   .header-bar {
     font-size: 0px;
+   
  
    
   }
@@ -139,7 +140,7 @@
   }
 
   .header-logo img {
-    max-width: 35%;
+    max-width: 30%;
   }
 
   .header-item p {

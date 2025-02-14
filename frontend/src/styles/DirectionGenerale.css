@@ -1,105 +1,170 @@
 .direction-generale {
-    padding: 0px;
-    margin-top: 2.5%;
+  padding: 10px;
 
-    background-color: #f5fdff;
-  }
-  
+  margin-top: 2.5%;
+  background-color: #f5fdff;
+}
+
+.direction-generale h1 {
+  text-align: left;
+  margin-left: 1%;
+  font-size: 1.4rem;
+  color: #170536;
+  margin-bottom: 5px;
+/* Ajustement pour les petits écrans */
+}
+
+/* Formulaire */
+.direction-generale-form {
+  width: 40%; /* Pleine largeur par défaut */
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.direction-generale-form input,
+.direction-generale-form select,
+.direction-generale-form button {
+  width: 100%;
+  padding: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border: 1px solid #e9e9e9;
+  border-radius: 5px;
+  font-size: 12px; /* Taille de police réduite pour les petits écrans */
+  margin-bottom: 10px; /* Espacement entre les éléments */
+}
+
+.direction-generale-form button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+  width: 100%; /* Pleine largeur sur petits écrans */
+}
+
+.direction-generale-form button:hover {
+  background-color: #080629;
+}
+
+/* Liste et tableau */
+.direction-generale-list {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 50px;
+  overflow-x: auto; /* Permet le défilement horizontal sur petits écrans */
+}
+
+.direction-generale-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+}
+
+.direction-generale-list table th {
+  padding: 10px 15px; /* Padding réduit pour petits écrans */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: left;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background-color: #007bff;
+}
+
+.direction-generale-list table td {
+  padding: 8px 15px; /* Padding réduit pour petits écrans */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: left;
+  border: 1px solid #f0f0f0;
+}
+
+/* Boutons dans la liste */
+.direction-generale-list button {
+  background-color: #0e1d2d;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px; /* Taille de police réduite pour petits écrans */
+}
+
+.direction-generale-list button:hover {
+  background-color: #d32f2f;
+}
+
+.direction-generale-list button + button {
+  margin-left: 5px; /* Espacement réduit entre les boutons */
+}
+
+/* Media Queries pour les petits écrans */
+@media (max-width: 768px) {
   .direction-generale h1 {
-    text-align: left;
-    margin-left: -1.8%;
-    font-size: 1.4rem;
-    color: #170536;
-    margin-bottom: 5px;
+    font-size: 1.2rem; /* Taille de police réduite */
+    margin-left: 0;
   }
-  
+
   .direction-generale-form {
-    width: 60%;
-    margin-top: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Pleine largeur */
+    padding: 10px;
   }
-  
-  .direction-generale-form input{
-    width: 100%;
-    padding: 12px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
-    border: 1px solid #e9e9e9;
-    border-radius: 5px;
-  }
+
+  .direction-generale-form input,
   .direction-generale-form select,
   .direction-generale-form button {
-    width: 100%;
-    font-size: 11px;
-    padding: 10px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
-    border: 1px solid #e9e9e9;
-    border-radius: 5px;
+    font-size: 11px; /* Taille de police réduite */
+    padding: 8px;
   }
-  
-  .direction-generale-form button {
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    font-size: 0.8rem;
-    width: 30%;
-  }
-  
-  .direction-generale-form button:hover {
-    background-color: #080629;
-  }
-  
-  .direction-generale-list {
-    font-size: 12px;
-  
-  
-    color: #333;
-    margin-bottom: 50px;
-  }
-  
-  .direction-generale-list table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 0px;
-  }
-  
-  .direction-generale-list table th{
-    padding: 10px 20px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    text-align: left;
-    border: 1px solid #ffffff;
-    color: #ffffff;
- 
-    background-color: #007bff;
-  }
+
+  .direction-generale-list table th,
   .direction-generale-list table td {
-    padding: 3px;
-  
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    text-align: left;
-    border: 1px solid #f0f0f0;
+    padding: 6px 10px; /* Padding réduit */
+    font-size: 11px; /* Taille de police réduite */
   }
-  
- 
-  
+
   .direction-generale-list button {
-    background-color: #0e1d2d;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 10px;
   }
-  
-  .direction-generale-list button:hover {
-    background-color: #d32f2f;
+}
+
+@media (max-width: 480px) {
+  .direction-generale h1 {
+    font-size: 1rem; /* Taille de police encore plus réduite */
   }
-  
-  .direction-generale-list button + button {
-    margin-left: 10px;
+
+  .direction-generale-form {
+    padding: 8px;
+    margin-left: -4%;
   }
-  
+
+  .direction-generale-form input,
+  .direction-generale-form select,
+  .direction-generale-form button {
+    font-size: 10px; /* Taille de police très réduite */
+    padding: 6px;
+  }
+
+  .direction-generale-list table th,
+  .direction-generale-list table td {
+    padding: 4px 8px; /* Padding très réduit */
+    font-size: 10px; /* Taille de police très réduite */
+  }
+
+  .direction-generale-list button {
+    padding: 4px 18px;
+    font-size: 9px;
+  }
+  .direction-generale-list button {
+  padding: 4px 12px;
+}
+
+.direction-generale-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  width: 100%; /* Pleine largeur sur petits écrans */
+}
+}
