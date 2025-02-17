@@ -1,0 +1,301 @@
+/* CommunicationPage.css */
+.communication-page {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+
+  /* Styles pour la modale */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 90%;
+  }
+  
+  .modal h2 {
+    margin-bottom: 20px;
+  }
+  
+  .modal form div {
+    margin-bottom: 15px;
+  }
+  
+  .modal form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .modal form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .modal form button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .modal form button[type="button"] {
+    background-color: #6c757d;
+  }
+  
+  .navbar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  .navbar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    position: relative; /* Permet le positionnement absolu du bouton */
+    height: 93.5vh; /* Prend toute la hauteur de l'écran */
+    
+  }
+  
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .navbar-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .navbar-profile span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navbar-menu li {
+    margin: 15px 0;
+  }
+  
+  .navbar-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .navbar-menu li a:hover {
+    background-color: #34495e;
+  }
+  
+  .logout-button {
+    position: absolute; /* Position absolue pour le placer en bas */
+    bottom: 20px; /* Distance depuis le bas */
+    left: 50%; /* Centrer horizontalement */
+    transform: translateX(-50%); /* Ajuster pour un centrage parfait */
+    text-align: center;
+    width: 90%; /* Prendre toute la largeur disponible */
+  }
+  
+  .logout-button button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-button button:hover {
+    background-color: #c0392b;
+  }
+  /* Navbar toujours visible sur les grands écrans (PC) */
+  @media (min-width: 769px) {
+    .navbar {
+      transform: translateX(0); /* Toujours visible */
+    }
+  }
+  
+  /* Navbar masquée par défaut sur les petits écrans */
+  @media (max-width: 768px) {
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 999;
+      transform: translateX(-100%); /* Masquée par défaut */
+    }
+  
+    .navbar.open {
+      transform: translateX(0); /* Visible lorsque ouverte */
+    }
+  }
+  
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .navbar-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .navbar-profile span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* Style pour la croix de fermeture de la navbar */
+  .close-navbar {
+    margin-left: auto; /* Pousse la croix à droite */
+    font-size: 24px; /* Taille de la croix */
+    cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
+    padding: 0 10px; /* Espacement autour de la croix */
+    color: white; /* Couleur de la croix */
+  }
+  
+  /* Masquer la croix sur les grands écrans */
+  @media (min-width: 769px) {
+    .close-navbar {
+      display: none; /* La croix n'est pas nécessaire sur les grands écrans */
+    }
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navbar-menu li {
+    margin: 15px 0;
+  }
+  
+  .navbar-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .navbar-menu li a:hover {
+    background-color: #34495e;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .logout-button {
+    margin-top: auto;
+    text-align: center;
+    
+  }
+  
+  .logout-button button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-button button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Menu Burger */
+  .menu-burger {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .menu-burger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #2c3e50;
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  /* Transformation en croix lorsque la navbar est ouverte */
+  .menu-burger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-burger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  /* Masquer le menu burger lorsque la navbar est ouverte */
+  .menu-burger.open {
+    display: none;
+  }
+  
+  /* Afficher le menu burger uniquement sur les petits écrans */
+  @media (max-width: 768px) {
+    .menu-burger {
+      display: block;
+    }
+  
+    .content {
+      margin-left: 0;
+      padding-top: 70px; /* Pour éviter que le contenu soit caché sous le menu burger */
+    }
+  }
