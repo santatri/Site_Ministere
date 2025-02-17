@@ -1,5 +1,6 @@
 .table-containere {
   text-align: center;
+  width: 85%;
   background-color: #ffffff;
   margin: 5% auto; /* Centrer horizontalement et ajuster la marge */
   padding: 20px; /* Ajouter un peu de padding pour les petits écrans */
@@ -28,6 +29,8 @@
 
 .table-content {
   display: flex;
+
+
   color: rgb(255, 255, 255);
   justify-content: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -37,6 +40,7 @@
 }
 
 .left-column {
+  width: 50%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -49,7 +53,8 @@
 }
 
 .table-containere h2 {
-  font-size: 36px;
+  font-size:16px;
+
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
   color: rgb(255, 255, 255);
@@ -76,9 +81,11 @@ p {
 /* Media Queries pour les écrans plus petits */
 @media (max-width: 768px) {
   .table-containere {
-    max-width: 100%;
+    max-width: 93%;
+    border-radius: 2%;
     margin: 10px; /* Réduire la marge pour les petits écrans */
-    padding: 15px; /* Réduire le padding */
+    padding: 15px;
+    margin-top: 15%; /* Réduire le padding */
   }
 
   .table-title {
@@ -90,13 +97,15 @@ p {
   }
 
   .table-content {
+    width: 81%;
     flex-direction: column; /* Empiler les éléments verticalement */
     gap: 15px; /* Réduire l'espace entre les éléments */
   }
 
   .left-column, .rights-columns {
     min-width: 100%; /* Prendre toute la largeur */
-    text-align: center; /* Centrer le texte */
+    text-align: left;
+    margin-left: 5%; /* Centrer le texte */
   }
 
   .table-containere h2 {
