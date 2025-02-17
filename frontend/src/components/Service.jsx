@@ -163,8 +163,8 @@ const Service = () => {
 
             {/* Boutons pour afficher le formulaire ou la liste */}
             <div className="toggle-buttons">
-                <button className="toggle-button" onClick={() => { setShowForm(true); clearForm(); }} >Ajout Gestion des Services et des secrétaires</button>
-                <button className="toggle-button" onClick={() => { setShowForm(false); }} >Liste Gestion des Services et des secrétaires</button>
+                <button className="togglee-button" onClick={() => { setShowForm(true); clearForm(); }} >Ajout Gestion des Services et des secrétaires</button>
+                <button className="togglee-button" onClick={() => { setShowForm(false); }} >Liste Gestion des Services et des secrétaires</button>
             </div>
 
             {/* Affichage conditionnel basé sur l'état showForm */}

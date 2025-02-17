@@ -1,15 +1,15 @@
-/* Container général */
+/* Styles de base */
 .servi-container {
-
-    margin-top: 3%;
+    margin-top: 2%;
+    padding: 0 0%;
 }
 
 .servi-container h1 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.4em;
-    margin-left: -1.8%;
     text-align: left;
     margin-bottom: 5px;
+    margin-left: 1%;
     color: black;
 }
 
@@ -17,23 +17,23 @@
 .service-form {
     background-color: #ffffff;
     padding: 15px;
-    width: 60%;
+    width: 50%;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
 }
 
 .service-form input{
-    width: 90%;
+    width: 96.5%;
     font-size: 11px;
     padding: 10px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-bottom: 12px;
     border: 1px solid #e9e9e9;
-    border-radius: 5px
+    border-radius: 5px;
 }
 .service-form select {
-    width: 93%;
+    width: 100%;
     font-size: 11px;
     padding: 10px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -43,19 +43,16 @@
 }
 
 .service-form button {
-    width: 30%;
-    padding: 12px;
+    width: 50%;
+    padding:  10px 12px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     border: 1px solid #e9e9e9;
     border-radius: 5px;
-}
-
-.service-form button {
-    background-color: #2f00ff;
+    background-color: #6200ff;
     color: white;
     cursor: pointer;
     font-size: 0.8rem;
-    width: 20%;
+    margin-bottom: 10px;
 }
 
 .service-form button:hover {
@@ -68,49 +65,145 @@
     color: #333;
     margin-bottom: 50px;
     width: 100%;
-    
+    overflow-x: auto; /* Permet de faire défiler la table horizontalement sur les petits écrans */
 }
 
 .service-list th {
-    padding: 10px 10px;
+    padding: 10px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: left;
     border: 1px solid #ffffff;
     color: #ffffff;
-    background-color: #007bff;
+    background-color: #09111a;
 }
 
-/* Container pour les boutons dans les cellules */
 .service-list td {
-    padding: 0px 10px; /* Réduit encore la taille des cellules */
+    padding: 7px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: left;
     border: 1px solid #f0f0f0;
-    height: 0cm;
-    position: relative; /* Nécessaire pour positionner les boutons à l'intérieur */
-   /* Utilisation du flexbox pour positionner les éléments horizontalement justify-content: space-between; /* Espacement entre les boutons */
-    align-items: center; /* Centrer verticalement les boutons */
 }
 
-/* Style pour le bouton "Éditer" */
-.direction-btn-edit-new {
-    background-color: #007bff;
-    justify-content: space-between;
-    font-size: 12px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: white;
-    padding: 5px 22px; /* Pour donner un peu d'espace autour du texte */
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Style pour le bouton "Supprimer" */
+.direction-btn-edit-new,
 .direction-btn-delete-new {
     font-size: 12px;
-    background-color: #dc3545;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: white;
-    padding: 5px 10px; /* Pour donner un peu d'espace autour du texte */
+    padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 5px;
+}
+
+.direction-btn-edit-new {
+    background-color: #007bff;
+    width: 60%;
+    color: white;
+}
+
+.direction-btn-delete-new {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Media Queries pour les écrans de petite taille */
+@media (max-width: 768px) {
+    .servi-container h1 {
+        font-size: 1.2rem;
+    }
+    .togglee-button {
+        background-color: #000000;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: white;
+        padding: 10px 4px;
+        border: none;
+        cursor: pointer;
+         margin-bottom: 5px;
+        font-size: 10.5px;
+        border-radius: 5px;
+     
+      }
+
+    .service-form {
+        width: 90%;
+    }
+
+    .service-form input{
+        width: 92%;
+    }
+    .service-form select {
+        font-size: 10px;
+    }
+
+    .service-form button {
+        font-size: 0.7rem;
+    }
+
+    .service-list {
+        font-size: 10px;
+    }
+
+    .service-list th,
+    .service-list td {
+        padding: 8px;
+    }
+
+    .direction-btn-edit-new,
+    .direction-btn-delete-new {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .servi-container h1 {
+        font-size: 1rem;
+    }
+
+    .service-form input,
+    .service-form select {
+        font-size: 9px;
+    }
+
+    .service-form button {
+        font-size: 0.7rem;
+    }
+
+    .service-list {
+        font-size: 9px;
+    }
+
+    .service-list th,
+    .service-list td {
+        padding: 6px;
+    }
+
+    .direction-btn-edit-new{
+        font-size: 9px;
+        padding: 5px 6px;
+        width: 80%;
+    }
+    .direction-btn-delete-new {
+        font-size: 9px;
+        padding: 5px 6px;
+    }
+}
+.search-input {
+    width: 98%;
+    padding: 10px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #e9e9e9;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .search-input {
+        font-size: 10px;
+        width: 88%;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-input {
+        font-size: 9px;
+    }
 }
