@@ -5,7 +5,7 @@ import Header from '../components/header';
 import Navbar from '../components/Navbar';
 import '../styles/DgfopPage.css';
 import Footer from '../components/Footer';
-
+import { API_URL } from "../config";
 
 const  DrhePage = () => {
     const [dData, setdData] = useState([]); // Stockage des données récupérées
@@ -15,7 +15,7 @@ const  DrhePage = () => {
     const fetchdData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5001/api/d/DRHE");
+        const response = await axios.get(`${API_URL}/api/d/DRHE`);
         setdData(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
@@ -40,7 +40,7 @@ const  DrhePage = () => {
               <div className="images-containeres">
                 {d.image_url && (
                   <img
-                    src={`http://localhost:5001${d.image_url}`}
+                    src={`${API_URL}${d.image_url}`}
                     alt="dFOP" className="image-framees"
                   />
                 )}

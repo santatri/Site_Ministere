@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Footer.css";
-
+import { API_URL } from "../config";
 const Footer = () => {
   const [logos, setLogos] = useState({ logo: "", logoDG: "" });
   const currentYear = new Date().getFullYear();
@@ -9,7 +9,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchLogos = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/set");
+        const response = await axios.get(`${API_URL}/api/set`);
         setLogos({
           logo: response.data.logo,
           logoDG: response.data.logoDG,
@@ -28,14 +28,14 @@ const Footer = () => {
         <div className="footer-section logos">
         {logos.logoDG && (
             <img
-              src={`http://localhost:5001/uploads/${logos.logoDG}`}
+              src={`${API_URL}/uploads/${logos.logoDG}`}
               alt="Logo 2"
               className="footer-logo"
             />
           )}
           {logos.logo && (
             <img
-              src={`http://localhost:5001/uploads/${logos.logo}`}
+              src={`${API_URL}/uploads/${logos.logo}`}
               alt="Logo 1"
               className="footer-logo"
             />

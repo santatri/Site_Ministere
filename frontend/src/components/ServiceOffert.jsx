@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../styles/ServiceOffert.css';
-
+import { API_URL } from '../config';
 const ServiceOffert = () => {
     const [services, setServices] = useState([]);
     const [filteredServices, setFilteredServices] = useState([]);
@@ -25,7 +25,7 @@ const ServiceOffert = () => {
 
     const fetchServices = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/serviceOffert/all');
+            const response = await axios.get(`${API_URL}/api/serviceOffert/all`);
             const sortedServices = response.data.data.sort((a, b) =>
                 a.nom_service.localeCompare(b.nom_service, 'fr', { sensitivity: 'base' })
             );
@@ -44,11 +44,11 @@ const ServiceOffert = () => {
         try {
             const [sgResponse, dgResponse, dResponse, sResponse,msResponse] = await Promise.all([
 
-                axios.get('http://localhost:5001/api/direction/sg'),
-                axios.get('http://localhost:5001/api/direction/dg'),
-                axios.get('http://localhost:5001/api/direction/all'),
-                axios.get('http://localhost:5001/api/service/all'),
-                axios.get('http://localhost:5001/api/direction/ms'),
+                axios.get(`${API_URL}/api/direction/sg`),
+                axios.get(`${API_URL}/api/direction/dg`),
+                axios.get(`${API_URL}/api/direction/all`),
+                axios.get(`${API_URL}/api/service/all`),
+                axios.get(`${API_URL}/api/direction/ms`),
 
                 
             ]);
@@ -106,10 +106,10 @@ const ServiceOffert = () => {
             };
 
             if (editId) {
-                await axios.put(`http://localhost:5001/api/serviceOffert/${editId}`, data);
+                await axios.put(`${API_URL}/api/serviceOffert/${editId}`, data);
 
             } else {
-                await axios.post('http://localhost:5001/api/serviceOffert', data);
+                await axios.post(`${API_URL}/api/serviceOffert`, data);
             }
 
             fetchServices();
@@ -155,7 +155,7 @@ const ServiceOffert = () => {
 
     const deleteService = async (id) => {
         try {
-            await axios.delete(`http://localhost:5001/api/serviceOffert/${id}`);
+            await axios.delete(`${API_URL}/api/serviceOffert/${id}`);
             fetchServices();
         } catch (error) {
             console.error("Erreur lors de la suppression du service:", error);

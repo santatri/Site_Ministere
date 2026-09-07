@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Visites.css";
-
+import { API_URL } from "../config";
 const Visites = () => {
     const [totalVisitors, setTotalVisitors] = useState(0);
       
@@ -10,7 +10,7 @@ const Visites = () => {
 
     const fetchTotalVisitors = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/visitors');
+                const response = await axios.get(`${API_URL}/api/visitors`);
                 setTotalVisitors(response.data.total);
             } catch (err) {
                 console.error('Erreur lors de la récupération du total des visiteurs :', err);
@@ -18,7 +18,7 @@ const Visites = () => {
     };
     const recordVisit = async () => {
         try {
-            await axios.post('http://localhost:5001/api/visit');
+            await axios.post(`${API_URL}/api/visit`);
         } catch (err) {
             console.error('Erreur lors de l’enregistrement de la visite :', err);
         }

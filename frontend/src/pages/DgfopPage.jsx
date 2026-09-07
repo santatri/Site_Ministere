@@ -5,7 +5,7 @@ import Header from '../components/header';
 import Navbar from '../components/Navbar';
 import '../styles/DgfopPage.css';
 import Footer from '../components/Footer';
-
+import { API_URL } from "../config";
 
 const DgfopPage = () => {
   
@@ -16,7 +16,7 @@ const DgfopPage = () => {
     const fetchDGData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5001/api/dg");
+        const response = await axios.get(`${API_URL}/api/dg`);
         setDgData(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
@@ -41,7 +41,7 @@ const DgfopPage = () => {
               <div className="images-containeres">
                 {dg.image_url && (
                   <img
-                    src={`http://localhost:5001${dg.image_url}`}
+                    src={`${API_URL}${dg.image_url}`}
                     alt="DGFOP" className="image-framees"
                   />
                 )}

@@ -1,0 +1,128 @@
+/* Styles de la section Contact */
+.contact-section {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+    justify-content: center; /* Centrer les items sur les écrans plus petits */
+    align-items: flex-start;
+    padding: 20px 10px; /* Réduction des marges pour les petits écrans */
+    background-color: #f2feffc5; /* Couleur de fond */
+    gap: 20px; /* Espacement entre les items */
+}
+
+.contact-item {
+    flex: 1 1 300px; /* Largeur minimale de 300px, largeur flexible */
+    max-width: 270px; /* Largeur maximale */
+    margin: 10px;
+    height: 150px;
+
+    padding: 30px;
+    border: 5px solid white; /* Bordure autour de chaque élément */
+    border-radius: 10px; /* Arrondi des angles */
+    background-color: white; /* Couleur de fond pour chaque section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet élégant */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Assure un alignement centré */
+}
+
+.contact-item:hover {
+    transform: translateY(-5px); /* Légère élévation au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Accentuer l'ombre au survol */
+}
+
+.contact-icon {
+    font-size: 2em; /* Taille des icônes en unités relatives */
+    color: darkblue; /* Couleur des icônes */
+    margin-bottom: 0.5em;
+}
+
+.contact-item h3 {
+    font-size: 1.2em; /* Taille relative pour s'adapter */
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0.8em 0;
+    color: #333;
+}
+
+.contact-item p {
+    font-size: 1em; /* Taille relative, ajustée à l'appareil */
+    color: #555;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0.4em 0;
+}
+
+/* Responsive Design */
+/* Responsive Design */
+
+/* Tablettes (écran max de 768px) */
+@media (max-width: 768px) {
+    .contact-section {
+        width: 100%;
+        gap: 15px; /* Réduction de l'espacement entre les items */
+    }
+
+    .contact-item {
+        flex: 1 1 45%; /* Deux colonnes flexibles */
+        margin: 10px;
+    }
+
+    .contact-icon {
+        font-size: 1.8em;
+    }
+
+    .contact-item h3 {
+        font-size: 1.1em;
+    }
+
+    .contact-item p {
+        font-size: 0.9em;
+    }
+}
+
+/* Smartphones (écran max de 480px) */
+@media (max-width: 480px) {
+    .contact-section {
+        justify-content: center;
+        align-items: center;
+     
+        flex-direction: column; /* Aligne les items en colonne */
+        padding: 0px; /* Réduction du padding */
+    }
+
+    .contact-item {
+        flex: 1 1 100%; /* Les items prennent toute la largeur */
+        margin: 10px;
+      
+    }
+
+    .contact-icon {
+        font-size: 1.6em; /* Ajustement des icônes */
+        margin-bottom: 0.4em;
+    }
+
+    .contact-item h3 {
+        font-size: 1em;
+    }
+
+    .contact-item p {
+        font-size: 0.8em;
+    }
+}
+
+/* Très petits écrans (moins de 360px) */
+@media (max-width: 360px) {
+    .contact-item {
+        padding: 10px;
+    }
+
+    .contact-icon {
+        font-size: 1.4em; /* Réduction pour s'adapter */
+    }
+
+    .contact-item h3 {
+        font-size: 0.9em;
+    }
+
+    .contact-item p {
+        font-size: 0.7em;
+    }
+}

@@ -12,6 +12,7 @@ import Ministere from "../components/Ministere"
 import "../styles/Ministere.css";
 import ServicesSection from "../components/ServicesSection";
 import "../styles/ServiceSection.css";
+import { API_URL } from "../config";
 const Home = () => {
   const [elements, setElements] = useState([]);
 
@@ -36,7 +37,7 @@ const Home = () => {
 
   const fetchActualites = async (searchTerm = "") => {
     try {
-      const response = await axios.get("http://localhost:5001/api/actu/all", {
+      const response = await axios.get(`${API_URL}/api/actu/all`, {
         params: { mots: searchTerm, limit: 6},
       });
       setActualites(response.data.data);
@@ -46,7 +47,7 @@ const Home = () => {
   };
   const fetchElements = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/a_la_une/all');
+      const response = await axios.get(`${API_URL}/api/a_la_une/all`);
       setElements(response.data.data);
     } catch (error) {
       setMessage('Erreur lors du chargement des éléments.');
@@ -96,7 +97,7 @@ const Home = () => {
                   <div className="article-media">
                     {article.media_image && (
                       <img
-                        src={`http://localhost:5001/uploads/${article.media_image}`}
+                        src={`${API_URL}/uploads/${article.media_image}`}
                         alt="Actualité"
                         className="article-image"
                       />
@@ -104,7 +105,7 @@ const Home = () => {
                     {article.media_video && (
                       <video controls className="article-video">
                         <source
-                          src={`http://localhost:5001/uploads/${article.media_video}`}
+                          src={`${API_URL}/uploads/${article.media_video}`}
                           type="video/mp4"
                         />
                         Votre navigateur ne supporte pas les vidéos HTML5.
@@ -139,7 +140,7 @@ const Home = () => {
             <li key={element.id}>
               <h3 className="titre-annonce">{element.titre}</h3>
               <p className="descri-annonce"> {element.description}</p>
-              {element.image && <img className="annonce-image" src={`http://localhost:5001/uploads/${element.image}`} alt={element.titre} />}
+              {element.image && <img className="annonce-image" src={`${API_URL}/uploads/${element.image}`} alt={element.titre} />}
              
             </li>
           ))}

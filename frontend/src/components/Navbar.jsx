@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes, FaPhone } from 'react-icons/fa';
 // import logo from '../assets/dgfop.png'; // Importez votre logo ici
 import '../styles/Navbar.css';
-
+import { API_URL } from "../config";
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const [showSubmenu, setShowSubmenu] = useState(false);
@@ -14,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
       const fetchLogos = async () => {
         try {
-          const response = await axios.get("http://localhost:5001/api/set");
+          const response = await axios.get(`${API_URL}/api/set`);
           setLogos({
             numero: response.data.numero,
             logoDG: response.data.logoDG,
@@ -30,6 +30,15 @@ const Navbar = () => {
     setShow(!show);
   };
 
+  // Ferme le menu mobile et tous les sous-menus (utilisé après un clic sur un lien)
+  const closeMenu = () => {
+    setShow(false);
+    setShowSubmenu(false);
+    setShowDgfopSubmenu(false);
+  };
+
+  
+
   return (
     <nav className="navigation-bar">
       <div className="navbar-container">
@@ -37,7 +46,7 @@ const Navbar = () => {
         <div className="navbar-left">
         {logos.logoDG && (
             <img
-              src={`http://localhost:5001/uploads/${logos.logoDG}`}
+              src={`${API_URL}/uploads/${logos.logoDG}`}
               alt="Logo 2"
               className="navbar-logo"
             />
@@ -47,16 +56,16 @@ const Navbar = () => {
 
         {/* Navigation au centre */}
         <div id={`${show ? '' : 'navbar-center'}`} className={`${show ? 'show' : 'navbar-center'}`}>
-          <NavLink to="/home" className="nav-link" activeClassName="active-link">
-            Accueil
+          <NavLink to="/home" className="nav-link" activeClassName="active-link" onClick={closeMenu}>
+            Accueil 
           </NavLink>
-          <NavLink to="/bibliotheque" className="nav-link" activeClassName="active-link">
+          <NavLink to="/bibliotheque" className="nav-link" activeClassName="active-link" onClick={closeMenu}>
             Bibliothèque numérique
           </NavLink>
-          <NavLink to="/service" className="nav-link" activeClassName="active-link">
+          <NavLink to="/service" className="nav-link" activeClassName="active-link" onClick={closeMenu}>
             Standard de Service
           </NavLink>
-          <NavLink to="/archives" className="nav-link" activeClassName="active-link">
+          <NavLink to="/archives" className="nav-link" activeClassName="active-link" onClick={closeMenu}>
             Actualités
           </NavLink>
 {/* Sous-liste pour À propos */}
@@ -75,20 +84,20 @@ const Navbar = () => {
       onMouseEnter={() => setShowDgfopSubmenu(true)}
       onMouseLeave={() => setShowDgfopSubmenu(false)}
     >
-      <NavLink to="/about/dgfop" className="submenu-item" activeClassName="active-link">
+      <NavLink to="/about/dgfop" className="submenu-item" activeClassName="active-link" onClick={closeMenu}>
         DGFOP
       </NavLink>
       <div className={`submenu ${showDgfopSubmenu ? 'show' : ''}`}>
-        <NavLink to="/about/deped" className="submenu-item" activeClassName="active-link">
+        <NavLink to="/about/deped" className="submenu-item" activeClassName="active-link" onClick={closeMenu}>
           DEPED
         </NavLink>
-        <NavLink to="/about/drhe" className="submenu-item" activeClassName="active-link">
+        <NavLink to="/about/drhe" className="submenu-item" activeClassName="active-link" onClick={closeMenu}>
           DRHE
         </NavLink>
-        <NavLink to="/about/dfpae" className="submenu-item" activeClassName="active-link">
+        <NavLink to="/about/dfpae" className="submenu-item" activeClassName="active-link" onClick={closeMenu}>
           DFPAE
         </NavLink>
-        <NavLink to="/about/drfp" className="submenu-item" activeClassName="active-link">
+        <NavLink to="/about/drfp" className="submenu-item" activeClassName="active-link" onClick={closeMenu}>
           DRFP
         </NavLink>
       </div>
@@ -97,7 +106,7 @@ const Navbar = () => {
 </div>
 
 
-          <NavLink to="/contact" className="nav-link" activeClassName="active-link">
+          <NavLink to="/contact" className="nav-link" activeClassName="active-link" onClick={closeMenu}>
             Contact
           </NavLink>
         </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../styles/archives.css';
 import '../styles/ImageActu.css';
 import { FaCalendarAlt } from 'react-icons/fa';
-
+import { API_URL } from '../config';
 const Archives = () => {
   const [actualités, setActualités] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -12,7 +12,7 @@ const Archives = () => {
 
   const fetchActualités = async (filters = {}) => {
     try {
-      const response = await axios.get('http://localhost:5001/api/actu/all', {
+      const response = await axios.get(`${API_URL}/api/actu/all`, {
         params: filters,
       });
       setActualités(response.data.data);
@@ -105,7 +105,7 @@ const Archives = () => {
               <h3 className="archive-title">{actu.titre}</h3>
               {actu.media_image && (
                 <img
-                  src={`http://localhost:5001/uploads/${actu.media_image}`}
+                  src={`${API_URL}/uploads/${actu.media_image}`}
                   alt="Actualité"
                   className="highlighted-image"
                 />
@@ -126,7 +126,7 @@ const Archives = () => {
               <h3 className="archive-title">{actu.titre}</h3>
               {actu.media_image && (
                 <img
-                  src={`http://localhost:5001/uploads/${actu.media_image}`}
+                  src={`${API_URL}/uploads/${actu.media_image}`}
                   alt="Actualité"
                   className="small-image"
                 />

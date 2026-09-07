@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/WelcomePage.css';
 import axios from 'axios';
-
+import { API_URL } from '../config';
 const WelcomePage = () => {
   const [dgData, setDgData] = useState([]); // Stockage des données récupérées
   const [loading, setLoading] = useState(true); // Gestion du chargement
@@ -10,7 +10,7 @@ const WelcomePage = () => {
   const fetchDGData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5001/api/dg");
+      const response = await axios.get(`${API_URL}/api/dg`);
       setDgData(response.data);
     } catch (error) {
       console.error("Erreur lors de la récupération des données :", error);
@@ -69,7 +69,7 @@ const WelcomePage = () => {
           <div className="image-box" ref={imageBoxRef}>
             <h1 className="badge">Directeur Général</h1>
             <img
-              src={`http://localhost:5001${dg.image_url}`} // Utilisation de l'URL de l'image depuis l'API
+              src={`${API_URL}${dg.image_url}`} // Utilisation de l'URL de l'image depuis l'API
               alt="Logo Madagascar"
               className="logo" // Utilisez la même classe que dans la deuxième version
             />

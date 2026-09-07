@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../styles/Dform.css';
-
+import { API_URL } from "../config";
 const DGFormAndDisplay = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -24,7 +24,7 @@ const DGFormAndDisplay = () => {
   const fetchDGData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5001/api/dg");
+      const response = await axios.get(`${API_URL}/api/dg`);
       setDgData(response.data);
     } catch (error) {
       console.error("Erreur lors de la récupération des données :", error);
@@ -73,8 +73,8 @@ const DGFormAndDisplay = () => {
 
     try {
       const url = isEditMode
-        ? `http://localhost:5001/api/dg/${formData.id}`
-        : "http://localhost:5001/api/dg";
+        ? `${API_URL}/api/dg/${formData.id}`
+        : `${API_URL}/api/dg`;
       const method = isEditMode ? "put" : "post";
 
       await axios[method](url, data);
@@ -101,7 +101,7 @@ const DGFormAndDisplay = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Voulez-vous vraiment supprimer ce DG ?")) {
       try {
-        await axios.delete(`http://localhost:5001/api/dg/${id}`);
+        await axios.delete(`${API_URL}/api/dg/${id}`);
         fetchDGData();
       } catch (error) {
         console.error("Erreur lors de la suppression :", error);
@@ -223,7 +223,7 @@ const DGFormAndDisplay = () => {
               <div className="dgform-item-content">
                 {dg.image_url && (
                   <img
-                    src={`http://localhost:5001${dg.image_url}`}
+                    src={`${API_URL}${dg.image_url}`}
                     alt="Image du DG"
                     className="dgform-item-image"
                   />

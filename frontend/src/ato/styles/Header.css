@@ -1,0 +1,147 @@
+/* Conteneur principal */
+.header-bar {
+  position: sticky; /* Rend l'élément "sticky" */
+  top: 0; /* Position en haut de la page */
+  z-index: 1000; /* Priorité d'affichage sur les autres éléments */
+  display: flex;
+  
+ 
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.579);
+  padding: 1px 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
+.email-link {
+  color: inherit; /* Garde la couleur actuelle du texte */
+  text-decoration: none; /* Enlève le soulignement par défaut */
+}
+
+.email-link:hover {
+  text-decoration: underline; /* Ajoute un soulignement au survol */
+  color: #007bff; /* Change la couleur au survol */
+}
+.location-link {
+  color: inherit; /* Conserve la couleur du texte parent */
+  text-decoration: none; /* Enlève le soulignement par défaut */
+}
+
+.location-link:hover {
+  text-decoration: underline; /* Ajoute un soulignement au survol */
+  color: #007bff; /* Change la couleur au survol */
+}
+
+
+@media  screen and (max-width:767px) {
+ .header-bar .header-left{
+    display: none;
+  }
+ .header-bar .header-right{
+    display: none;
+  }
+}
+
+/* Bordures colorées */
+.header-left,
+.header-right {
+  border: 0px solid rgba(8, 78, 207, 0.181);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Section gauche */
+.header-left {
+  display: flex;
+  gap: 10px;
+}
+
+/* Section centrale */
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-logo img {
+  max-width: 170px;
+  width: 100%;
+  height: auto;
+}
+
+/* Section droite */
+.header-right {
+  display: flex;
+  gap: 20px;
+}
+
+/* Élément individuel */
+.header-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Icônes */
+.header-item i {
+  color: #0da7f4;
+  font-size: 20px;
+  display: inline-block;
+}
+
+/* Texte */
+.header-item p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-bar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-left,
+  .header-right {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-bar {
+    padding: 15px;
+  }
+
+  .header-logo img {
+    max-width: 200px;
+  }
+
+  .header-item p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-bar {
+    font-size: 1px;
+   
+  }
+
+  .header-left,
+  .header-right {
+    padding: 8px;
+  }
+
+  .header-logo img {
+    max-width: 100px;
+  }
+
+  .header-item p {
+    font-size: 11px;
+  }
+}

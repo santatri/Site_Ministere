@@ -1,0 +1,126 @@
+/* Container principal */
+.container-drpae {
+    display: flex;
+    flex-direction: row; /* Aligne l'image et la description horizontalement */
+    align-items: flex-start; /* Aligne les éléments en haut */
+    justify-content: center; /* Centre le contenu horizontalement */
+    gap: 30px; /* Espace entre l'image et la section texte */
+    margin: 40px auto;
+    max-width: 1200px; /* Limite la largeur totale */
+  }
+  
+  .images-container-drpae {
+    display: flex;
+    flex-direction: column; /* Aligne l'image et la carte verticalement */
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    position: relative; /* Définit un contexte pour la position absolue */
+  }
+  
+  .images-container-drpae img {
+    width: 450px; /* Ajustez selon vos besoins */
+    height: 350px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(9, 5, 34, 0.732); /* Ajoute une ombre subtile */
+    margin-bottom: 16px; /* Espace entre l'image et la carte */
+    border: 3px solid #007bff;
+  }
+  
+  .card-drpae {
+    background: #ffffff;
+    padding: 5px; /* Ajoutez du padding pour un espacement interne */
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 85%;
+    position: absolute; /* Place la carte à l'intérieur de l'image */
+    bottom: -100px; /* Ajuste la position verticale de la carte */
+  }
+  
+  .card-drpae h2 {
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 8px;
+  }
+  
+  .card-drpae h3 {
+    font-size: 1.2rem;
+    color: #5a1ae3;
+    margin-bottom: 8px;
+  }
+  
+  .card-drpae p {
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+  
+  /* Section contenant le texte */
+  .text-section-drpae {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 10 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 150%; /* Limite la largeur à 60% */
+    text-align: left;
+    margin-top: -4%;
+  }
+  
+  .text-section-drpae h1 {
+    font-size: 1.5rem;
+    margin-left: -3.5%;
+    color: #d05808;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .underline-drpae {
+    width: 90px;
+    height: 5px;
+    background: linear-gradient(#00aeff, rgb(255, 255, 255));
+    margin: 25px 50;
+  }
+  
+  .text-section-drpae p {
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  
+  .text-section-drpae ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+  }
+  
+  .text-section-drpae li {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #1f2937;
+    margin-bottom: 10px;
+  }
+  
+  .text-section-drpae li i {
+    color: #0cec17;
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container-drpae {
+      flex-direction: column; /* Empile l'image et le texte verticalement */
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .images-container-drpae {
+      max-width: 100%; /* Largeur complète */
+    }
+  
+    .text-section-drpae {
+      max-width: 100%; /* Largeur complète */
+    }
+  }

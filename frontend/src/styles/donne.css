@@ -494,3 +494,16 @@
 
   }
 
+.pdf-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.pdf-button:hover {
+  background-color: #0056b3;
+}

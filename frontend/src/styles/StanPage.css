@@ -1,0 +1,169 @@
+/* StanPage styles inspired by AdminPage1 */
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --accent:#131a65;
+  --muted:#6b7280;
+  --primary-gradient: linear-gradient(45deg, #3503ff, #25a2fc);
+}
+
+.layout-left, .dashboard{
+  display:flex;
+  height:100vh;
+  width:100%;
+  background:var(--bg);
+}
+
+.sidebar{
+  width:13%;
+  background: linear-gradient(0deg, #ffffff, #ffffff);
+  box-shadow: 0 4px 12px rgba(210,236,245,0.8);
+  font-family:'Times New Roman', Times, serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:0;
+  height:100vh;
+  position:sticky;
+  top:0;
+  border-radius:0 15px 0 0;
+  transition: transform .22s ease, width .22s ease, opacity .22s ease;
+}
+
+.close-sidebar{display:none}
+
+.logo-containeres{
+  padding:8px 12px;
+  margin:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+  margin-bottom:18px;
+  width:90%;
+}
+.log{width:90px;height:85px}
+
+/* logo-user (avatar + name) shown next to the title */
+.logo-user{display:flex;align-items:center;gap:10px}
+.logo-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.logo-meta .name{font-weight:700;color:var(--accent);font-size:0.95rem}
+.logo-meta .matricule{font-size:0.75rem;color:var(--muted)}
+
+.menu{
+  width:80%;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  margin-top:0.8rem;
+  /* make menu scrollable when it exceeds available height */
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  /* leave space for logo and footer: adjust if needed */
+  max-height: calc(100vh - 220px);
+  padding-right:6px; /* prevent content hiding behind scrollbar */
+}
+
+.menu-item{
+  width:90%;
+  padding:7px;
+  margin-bottom:12px;
+  background:none;
+  color:var(--accent);
+  cursor:pointer;
+  text-align:left;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:0.9rem;
+  font-weight:550;
+  transition:all .18s ease;
+}
+
+.menu-item.active{
+  background: var(--primary-gradient);
+  color:#fff;
+}
+
+.menu-item:hover{
+  background: linear-gradient(45deg, #7009ff, #2575fc);
+  transform:scale(1.03);
+  color:#fff;
+}
+
+.sidebar-footer{width:90%;display:flex;flex-direction:column;gap:0.6rem;margin-top:auto;padding-bottom:18px;align-items:center}
+
+.user-small{display:flex;align-items:center;gap:0.6rem;padding:12px;width:100%}
+.user-small .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.user-meta .name{font-weight:700;color:var(--accent)}
+.user-meta .matricule{font-size:0.85rem;color:var(--muted)}
+
+.logout-container{width:100%;display:flex;justify-content:center}
+.logout-container > button,
+.logout-container > .logout-button {display:flex;align-items:center;justify-content:center;background-color:#510bf5;font-family:'Times New Roman', Times, serif;color:white;border:none;border-radius:10px;font-size:15px;cursor:pointer;margin-top:8px;width:80%;padding:10px 12px}
+.logout-container > button:hover,
+.logout-container > .logout-button:hover{background-color:#d70906}
+
+.main-area{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  background-color:#ffffff;
+}
+
+.main-header{
+  padding:18px 22px;
+  border-bottom:1px solid #eef2f7;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.main-header h1{margin:0;font-size:1.125rem;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color:#000}
+.main-header .toggle-btn{background:transparent;border:0;font-size:1.1rem;padding:6px 10px;border-radius:6px;cursor:pointer}
+
+.main-content{flex:1;padding:30px;overflow:auto}
+
+/* table styles (in case components use tables) */
+table{width:100%;border-collapse:collapse}
+table th{background-color:#f5feff;text-align:left;padding:8px 15px;color:rgb(34,16,238);font-weight:700}
+table td{padding:8px 15px;font-size:11.5px}
+
+.messagess{color:rgb(0,170,255);font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight:bold;font-size:13px}
+
+/* Responsive rules */
+@media (max-width: 1024px) {
+  .layout-left, .dashboard {flex-direction:column}
+  /* on smaller screens the sidebar becomes an overlay drawer */
+  .sidebar{width:260px;padding:15px;height:100vh;position:fixed;left:0;top:0;bottom:0;transform:translateX(-110%);transition:transform .22s ease;z-index:1000;border-radius:0}
+  .sidebar.open{transform:translateX(0)}
+  .close-sidebar{display:block;position:absolute;right:12px;top:12px;background:transparent;border:0;font-size:20px;cursor:pointer;color:var(--accent)}
+  .menu-item{font-size:0.95rem;padding:10px}
+  .main-content{padding:10px}
+}
+
+@media (max-width: 768px) {
+  .sidebar{width:260px;height:100vh;padding:10px}
+  .main-content{padding:10px}
+  .menu-item{font-size:0.85rem;padding:8px}
+}
+
+@media (max-width: 480px) {
+  .sidebar{width:240px;padding:8px}
+  .menu-item{font-size:0.8rem;padding:6px}
+  .main-content{padding:8px}
+}
+
+/* Desktop collapsed state: hide sidebar visually and allow main to take full width */
+@media (min-width: 1025px) {
+  .sidebar.collapsed{
+    transform: translateX(-120%);
+    width:0 !important;
+    padding:0 !important;
+    opacity:0;
+    pointer-events:none;
+  }
+}
+
+/* backdrop shown when mobile menu is open */
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.36);z-index:900}

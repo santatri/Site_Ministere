@@ -1,0 +1,64 @@
+/* Settings.css */
+
+/* Style de base du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  /* Rendre le tableau responsive */
+  @media screen and (max-width: 768px) {
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  
+    thead {
+      display: none;
+    }
+  
+    tbody, tr, td {
+      display: block;
+      width: 100%;
+    }
+  
+    td {
+      text-align: right;
+      padding-left: 20%;
+      position: relative;
+    }
+  
+    td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: 45%;
+      text-align: left;
+      font-weight: bold;
+    }
+  
+    td img {
+      display: block;
+      margin: auto;
+    }
+  
+    button {
+      display: block;
+      width: 100%;
+      margin-top: 5px;
+    }
+  }
+  

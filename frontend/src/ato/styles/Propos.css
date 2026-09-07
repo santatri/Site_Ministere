@@ -1,0 +1,85 @@
+.propos-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px ;
+    background-color: #f4f4f4;
+    
+  }
+  
+  .propos-container {
+    display: flex;
+    max-width: 1250px;
+    width: 100%;
+    gap: 70px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permet de passer en colonne sur petits écrans */
+  }
+  
+  .propos-image {
+    flex: 1;
+    min-width: 200px; /* Assurez-vous que l'image ne devienne pas trop petite */
+  }
+  
+  .propos-image img {
+    width: 80%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 0px rgb(6, 206, 246);
+  }
+  
+  .propos-text {
+    flex: 2;
+    max-width: 1500px;
+    text-align: left;
+    min-width: 300px; /* Texte reste lisible sur petits écrans */
+  }
+  
+  .propos-text h2 {
+    font-size: 1.5rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .propos-text p {
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    color: #666;
+  }
+  
+  /* Media Queries */
+  
+  /* Petits écrans (tablettes et mobiles) */
+  @media (max-width: 768px) {
+    .propos-container {
+      flex-direction: column; /* Colonne pour petits écrans */
+      gap: 40px; /* Réduit l'espace entre l'image et le texte */
+    }
+  
+    .propos-text h2 {
+      font-size: 1.8rem; /* Taille réduite du titre */
+    }
+  
+    .propos-text p {
+      font-size: 1rem; /* Taille réduite du texte */
+    }
+  }
+  
+  /* Très petits écrans (mobiles) */
+  @media (max-width: 480px) {
+    .propos-container {
+      gap: 20px;
+    }
+  
+    .propos-text h2 {
+      font-size: 1.5rem; /* Taille encore plus petite */
+    }
+  
+    .propos-text p {
+      font-size: 0.9rem; /* Texte plus petit pour convenir aux petits écrans */
+    }
+  }
+  

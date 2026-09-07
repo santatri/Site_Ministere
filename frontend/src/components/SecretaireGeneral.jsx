@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../styles/SecretaireGenerale.css';
-
+import { API_URL } from '../config';
 const SecretaireGeneral = () => {
   const [formData, setFormData] = useState({
     nom_sg: '',
@@ -19,7 +19,7 @@ const SecretaireGeneral = () => {
   // Récupération des données depuis l'API.
   const fetchElements = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/secretaire_general/all');
+      const response = await axios.get(`${API_URL}/api/secretaire_general/all`);
       setElements(response.data.data);
     } catch (error) {
       setMessage('Erreur lors du chargement des secrétaires généraux.');
@@ -43,8 +43,8 @@ const SecretaireGeneral = () => {
 
     try {
       const url = isEditing
-        ? `http://localhost:5001/api/secretaire_general/${currentId}`
-        : 'http://localhost:5001/api/secretaire_general/insertion';
+        ? `${API_URL}/api/secretaire_general/${currentId}`
+        : '${API_URL}/api/secretaire_general/insertion';
       const method = isEditing ? 'put' : 'post';
       const response = await axios[method](url, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -75,7 +75,7 @@ const SecretaireGeneral = () => {
 
   const handleDelete = async (id_sg) => {
     try {
-      const response = await axios.delete(`http://localhost:5001/api/secretaire_general/${id_sg}`);
+      const response = await axios.delete(`${API_URL}/api/secretaire_general/${id_sg}`);
       setMessage(response.data.message);
       fetchElements();
     } catch (error) {

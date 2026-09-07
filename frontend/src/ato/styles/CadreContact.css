@@ -1,0 +1,136 @@
+.forme-containere {
+  background: linear-gradient(to bottom, rgb(251, 254, 255), white); /* Dégradé doré */
+  width: 69%; /* Formulaire occupe 80% de la largeur de l'écran */
+  height: 100%;
+  padding: 30px; /* Réduction du padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow-y: auto;
+  border-radius: 20px; /* Border-radius pour arrondir les coins */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre douce autour du cadre */
+  margin: 0 auto; /* Centrer horizontalement */
+}
+
+.formes {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.4rem; /* Utilisation de vw pour une taille de texte réactive */
+  color: #0f66a8; /* Changer la couleur du texte en blanc pour contraster avec le fond */
+}
+
+.forme-groupe {
+  margin-bottom: 10px;
+
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.halfe-widthe {
+  width: 48%;
+  margin-right: 4%;
+}
+
+.halfe-widthe:last-child {
+  margin-right: 0;
+}
+
+.labele {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: black; /* Couleur des labels en blanc */
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #c3c3c3; /* Bordure dorée lors de la sélection */
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.submite-buttone {
+  background-color: rgb(22, 3, 70); /* Couleur dorée pour le bouton */
+  color: white;
+  padding: 17px 0px;
+  width: 20%;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.submite-buttone:hover {
+  background-color: rgba(175, 166, 9, 0.666);
+}
+
+/* Responsivité */
+@media screen and (max-width: 1024px) {
+  .forme-containere {
+    width: 85%;
+    padding: 20px;
+  }
+
+  .input-field {
+    width: 100%;
+  }
+
+  .submite-buttone {
+    width: 100%;
+  }
+
+  .halfe-widthe {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .formes {
+    font-size: 3vw; /* Taille de texte encore plus petite sur tablette */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .forme-containere {
+    padding: 15px;
+  }
+
+  .formes {
+    font-size: 4vw; /* Réduction de la taille du texte sur mobile */
+  }
+
+  .submite-buttone {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 4vw; /* Plus petit sur les écrans très petits (téléphones) */
+  }
+
+  .submite-buttone {
+    font-size: 0.8rem;
+  }
+}

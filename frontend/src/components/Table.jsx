@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaBuilding, FaServicestack } from "react-icons/fa";
 import axios from "axios";
 import "../styles/Table.css";
-
+import { API_URL } from "../config";
 const Table = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [counter, setCounter] = useState(0);
@@ -14,7 +14,7 @@ const Table = () => {
   // Récupérer le nombre de services depuis l'API
   const fetchServiceCount = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/serviceOffert/count");
+      const response = await axios.get(`${API_URL}/api/serviceOffert/count`);
       console.log("Service count from API:", response.data.total); // Vérifiez la valeur reçue
       setServiceCount(response.data.total);
     } catch (error) {
@@ -23,7 +23,7 @@ const Table = () => {
   };
   const fetchDirectionCount = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/direction/count");
+      const response = await axios.get(`${API_URL}/api/direction/count`);
       console.log("Direction count from API:", response.data.total); // Vérifiez la valeur reçue
       setDirectionCount(response.data.total);
     } catch (error) {

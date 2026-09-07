@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { API_URL } from '../../config';
 const CadreContact = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -36,7 +36,7 @@ const CadreContact = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5001/api/contacts', formData);
+      const response = await axios.post(`${API_URL}/api/contacts`, formData);
 
       if (response.status === 201) {
         setError(false);

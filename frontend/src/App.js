@@ -1,12 +1,14 @@
-import React, { useContext, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
-import { AuthContext, AuthProvider} from './context/authContext';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/authContext';
+import RoleBasedRoute from './components/RoleBasedRoute';
+import AccessDenied from './pages/AccessDenied';
 
 import Header from './components/header';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Service from './pages/Service';
-import About from './pages/About';
+// About page import removed (not used in routes)
 import Contact from './pages/Contact';
 import LoginPage1 from './pages/LoginPage1';
 import CreateAccount1 from './pages/CreateAccount1';
@@ -27,25 +29,7 @@ import Archives from './pages/Archives';
 import DetailsActu from './pages/DetailsActu'; // Cette composante affiche le contenu détaillé de l'actualité
 import Footer from './components/Footer'; // Importation du Footer
 
-// Composant ProtectedRoute pour protéger les pages sensibles
-const ProtectedRoute = ({ element }) => {
-  const { user, setUser } = useContext(AuthContext) // Vérifie si l'utilisateur est connecté
- const navigate = useNavigate()
-  useEffect(() =>{
-    console.log('appell');
-    
-      setUser(JSON.parse(localStorage.getItem('user')))
-    }, [])
-    
-
-    if (user?.role==null) {
-      return navigate('/')
-    }
-    
-  
-
-  return element;
-};
+// NOTE: Role-based protection is provided by `RoleBasedRoute` (./components/RoleBasedRoute.jsx)
 
 const App = () => {
   return (
@@ -86,7 +70,7 @@ const AppWithNavbar = () => {
         <Route path="/donne" element={<Donne />} />
   
         <Route path="/archives" element={<Archives />} />
-        <Route path="/details/:id" component={DetailsActu} />
+  <Route path="/details/:id" element={<DetailsActu />} />
     
   
 
@@ -101,10 +85,13 @@ const AppWithNavbar = () => {
         <Route path="/login" element={<LoginPage1 />} />
         <Route path="/register" element={<CreateAccount1 />} />
 
-        {/* Routes protégées */}
-        <Route path="/admin" element={<ProtectedRoute element={<AdminPage1 />} />} />
-        <Route path="/communication" element={<ProtectedRoute element={<CommunicationPage />} />} />
-        <Route path="/stan" element={<ProtectedRoute element={<StanPage />} />} />
+  {/* Routes protégées par rôle */}
+  <Route path="/admin" element={<RoleBasedRoute element={<AdminPage1 />} allowedRoles="admin" />} />
+  <Route path="/communication" element={<RoleBasedRoute element={<CommunicationPage />} allowedRoles="communication" />} />
+  <Route path="/stan" element={<RoleBasedRoute element={<StanPage />} allowedRoles="stan" />} />
+
+  {/* Page d'accès refusé */}
+  <Route path="/access-denied" element={<AccessDenied />} />
 
         {/* Redirection pour tout lien non défini */}
         <Route path="*" element={<Navigate to="/" replace />} />

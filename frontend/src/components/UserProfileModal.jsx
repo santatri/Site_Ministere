@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/UserProfileModal.css';
-
+import { API_URL } from '../config';
 const UserProfileModal = ({ user, closeModal }) => {
   const [formData, setFormData] = useState({
     nom: user.nom || '',
@@ -45,7 +45,7 @@ const UserProfileModal = ({ user, closeModal }) => {
           <div className="form-group">
             <label htmlFor="image">Changer d'image</label>
             <input type="file" id="image" name="image" onChange={handleImageChange} />
-            {formData.image && <img src={`http://localhost:5001/uploads/${formData.image}`} alt="Avatar Preview" className="avatar-frame" />}
+            {formData.image && <img src={`${API_URL}/uploads/${formData.image}`} alt="Avatar Preview" className="avatar-frame" />}
           </div>
           <div className="form-group">
             <label htmlFor="nom">Nom</label>

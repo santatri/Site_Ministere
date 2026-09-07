@@ -1,0 +1,241 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height:320px;
+  overflow: hidden;
+  margin-left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(4, 5, 71, 0.855);
+}
+
+/* Slide principale */
+.carousel-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image de fond */
+.carousel-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  z-index: 1;
+  opacity: 0.99;
+
+  object-fit: cover;
+}
+
+/* Conteneur du texte */
+.text-container {
+  position: relative;
+  z-index: 2;
+  color: white;
+  margin-top: 1.2%;
+
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Alignement à gauche */
+  height: 100%;
+
+}
+
+/* Titre principal */
+.slide-title {
+   
+  font-size: 1.6rem; /* Augmenté la taille pour plus de visibilité */
+  color: white;
+  font-weight:bold;
+  margin-bottom: -10px;
+
+  margin-left: -0.6%;
+
+
+
+
+  transition: font-size 1s ease; /* Transition pour la responsivité */
+}
+
+/* Sous-titre */
+.slide-subtitle {
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2rem;
+ 
+  margin-left: -0.7%;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  transition: font-size 0.5s ease; /* Transition pour la responsivité */
+}
+
+/* Bouton */
+.slide-button {
+  padding: 10px 40px;
+  margin-left: -0.7%;
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  background: rgb(212, 3, 3);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 20px; /* Espace au-dessus du bouton */
+}
+
+/* Effet hover sur le bouton */
+.slide-button:hover {
+  transform: scale(1.1);
+}
+
+/* Boutons de navigation modernes */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: #00bfff47;
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.carousel-button:hover {
+  background: #00bfff;
+  color: white;
+
+}
+
+.carousel-button.prev {
+  left: 0px;
+}
+
+.carousel-button.next {
+  right: 0px;
+}
+
+/* Adaptation mobile */
+@media (max-width: 1024px) {
+  .carousel-container {
+    height: 280px;
+  }
+
+  .slide-title {
+    margin-left: 9%;
+    font-size: 1.8rem;
+    line-height: 1.5;
+  }
+
+  .slide-subtitle {
+    font-size: 1rem;
+    margin-left: 9%;
+    margin-bottom: 5px;
+  }
+
+  .slide-button {
+    margin-bottom: -5px;
+    font-size: 0.9rem;
+    margin-left: 9%;
+    padding: 6px 30px;
+  }
+
+  .carousel-button {
+    padding: 10px;
+  }
+}
+
+/* Adaptation très petit écran */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 250px;
+  }
+
+  .slide-title {
+    margin-left: 9%;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .slide-subtitle {
+    margin-left: 9%;
+    font-size: 0.9rem;
+  }
+
+  .slide-button {
+    margin-left: 9%;
+    font-size: 0.8rem;
+    padding: 8px 25px;
+  }
+
+  .carousel-button {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 200px;
+  }
+
+  .slide-title {
+    margin-left: 12%;
+    margin-top: 2%;
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  .slide-subtitle {
+    margin-top: 1%;
+    font-size: 0.75rem;
+    margin-left: 12%;
+    margin-bottom: 5px;
+  }
+
+  .slide-button {
+    margin-bottom: -5px;
+    font-size: 0.72rem;
+    margin-left: 12%;
+    padding: 6px 20px;
+  }
+
+  .text-container {
+    padding: 0 15px;
+  }
+}
+
+/* Adaptation ultra-petits écrans */
+@media (max-width: 360px) {
+  .carousel-container {
+    height: 200px;
+  }
+
+  .slide-title {
+    font-size: 1.3rem;
+  }
+
+  .slide-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .slide-button {
+    font-size: 0.7rem;
+    padding: 5px 15px;
+  }
+
+  .carousel-button {
+    padding: 5px;
+  }
+}

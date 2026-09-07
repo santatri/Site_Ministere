@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import { API_URL } from '../config';
 const DetailsActu = () => {
   const { id } = useParams();  // Récupère l'ID de l'actualité depuis l'URL
   const [actualité, setActualité] = useState(null);  // État pour stocker les détails de l'actualité
@@ -18,7 +18,7 @@ const DetailsActu = () => {
   useEffect(() => {
     const fetchActualitéDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/actu/${id}`);
+        const response = await axios.get(`${API_URL}/api/actu/${id}`);
         setActualité(response.data.data);  // Stocke les données dans l'état
       } catch (error) {
         setError('Erreur lors du chargement des détails de l\'actualité.');
@@ -42,13 +42,13 @@ const DetailsActu = () => {
       <p><strong>Date : </strong>{formatDate(actualité.date_insertion)}</p>  {/* Affiche la date au format lisible */}
       {actualité.media_image && (
         <div>
-          <img src={`http://localhost:5001/uploads/${actualité.media_image}`} alt="Actualité" />
+          <img src={`${API_URL}/uploads/${actualité.media_image}`} alt="Actualité" />
         </div>
       )}
       {actualité.media_video && (
         <div>
           <video controls>
-            <source src={`http://localhost:5001/uploads/${actualité.media_video}`} type="video/mp4" />
+            <source src={`${API_URL}/uploads/${actualité.media_video}`} type="video/mp4" />
             Votre navigateur ne supporte pas les vidéos HTML5.
           </video>
         </div>

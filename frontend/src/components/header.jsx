@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Header.css';
-
+import { API_URL } from '../config';
 const Header = () => {
     const [settings, setSettings] = useState({ email: '', address: '', logo: '' });
 
     useEffect(() => {
         const fetchSettings = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/set');
+                const response = await axios.get(`${API_URL}/api/set`);
                 setSettings(response.data);
             } catch (err) {
                 console.error('Erreur lors de la récupération des paramètres :', err);
@@ -35,7 +35,7 @@ const Header = () => {
 
             {/* Section centrale pour le logo */}
             <div className="header-logo">
-                <img src={`http://localhost:5001/uploads/${settings.logo}`} alt="logo" />
+                <img src={`${API_URL}/uploads/${settings.logo}`} alt="logo" />
             </div>
 
             {/* Section droite */}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import '../styles/Actualité.css';
-
+import { API_URL } from '../config';
 const Actualité = () => {
   const input = useRef(null);
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const Actualité = () => {
 
   const fetchActualités = async (filters = {}) => {
     try {
-      const response = await axios.get('http://localhost:5001/api/actu/all', { params: filters });
+      const response = await axios.get(`${API_URL}/api/actu/all`, { params: filters });
       setActualités(response.data.data);
     } catch (error) {
       setMessage('Erreur lors du chargement des actualités.');
@@ -50,8 +50,8 @@ const Actualité = () => {
 
     try {
       const url = isEditing
-        ? `http://localhost:5001/api/actu/${currentId}`
-        : 'http://localhost:5001/api/actu/insertion';
+        ? `${API_URL}/api/actu/${currentId}`
+        : `${API_URL}/api/actu/insertion`;
       const method = isEditing ? 'put' : 'post';
       const response = await axios[method](url, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -78,7 +78,7 @@ const Actualité = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5001/api/actu/${id}`);
+      const response = await axios.delete(`${API_URL}/api/actu/${id}`);
       setMessage(response.data.message);
       fetchActualités();
     } catch (error) {
@@ -170,10 +170,10 @@ const Actualité = () => {
               <div key={actu.id} className="news-cardes">
                 <h3>{actu.titre}</h3>
                 <p>{formatDate(actu.date_insertion)}</p>
-                {actu.media_image && <img src={`http://localhost:5001/uploads/${actu.media_image}`} alt="Actualité" />}
+                {actu.media_image && <img src={`${API_URL}/uploads/${actu.media_image}`} alt="Actualité" />}
                 {actu.media_video && (
                   <video controls>
-                    <source src={`http://localhost:5001/uploads/${actu.media_video}`} type="video/mp4" />
+                    <source src={`${API_URL}/uploads/${actu.media_video}`} type="video/mp4" />
                     Votre navigateur ne supporte pas les vidéos HTML5.
                   </video>
                 )}

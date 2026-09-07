@@ -12,12 +12,12 @@ import {
     Legend,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-
+import { API_URL } from '../config';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
 const recordVisit = async () => {
     try {
-        const response = await axios.post('http://localhost:5001/api/visit');
+        const response = await axios.post(`${API_URL}/api/visit`);
         console.log('Réponse de l\'API:', response.data);
     } catch (error) {
         console.error('Erreur lors de l\'enregistrement de la visite :', error);
@@ -35,7 +35,7 @@ const VisitorCharts = () => {
 
     const fetchTotalVisitors = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/visitors');
+            const response = await axios.get(`${API_URL}/api/visitors`);
             setTotalVisitors(response.data.total);
         } catch (err) {
             console.error('Erreur lors de la récupération du total des visiteurs :', err);
@@ -45,7 +45,7 @@ const VisitorCharts = () => {
     const fetchUniqueVisitorsToday = async () => {
         try {
             console.log("Récupération des visiteurs uniques...");
-            const response = await axios.get('http://localhost:5001/api/unique-visitors');
+            const response = await axios.get(`${API_URL}/api/unique-visitors`);
             console.log('Réponse de l\'API (visiteurs uniques) :', response.data);
             setUniqueVisitorsToday(response.data.unique_visitors);
         } catch (err) {
@@ -56,7 +56,7 @@ const VisitorCharts = () => {
     const fetchUniqueVisitors = async () => {
         try {
             console.log("Récupération des visiteurs ...");
-            const response = await axios.get('http://localhost:5001/api/total-daily-visitors');
+            const response = await axios.get(`${API_URL}/api/total-daily-visitors`);
             console.log('Réponse de l\'API (visiteurs ) :', response.data);
             setVisitors(response.data.total_unique_visitors);
         } catch (err) {
@@ -66,7 +66,7 @@ const VisitorCharts = () => {
 
     const fetchVisitorsByWeek = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/visitors-by-week');
+            const response = await axios.get(`${API_URL}/api/visitors-by-week`);
             const data = response.data;
             const weeks = data.map(item => `Semaine ${item.week_number}`);
             const visitors = data.map(item => item.total);
@@ -76,8 +76,8 @@ const VisitorCharts = () => {
                     {
                         label: 'Visites',
                         data: visitors,
-                        backgroundColor: 'rgba(75, 190, 992, 0.7)',
-                        borderColor: 'rgba(05, 192, 942, 1)',
+                        backgroundColor: 'rgba(75, 190, 92, 0.7)',
+                        borderColor: 'rgba(5, 192, 94, 1)',
                         borderWidth: 1,
                     },
                 ],
@@ -89,7 +89,7 @@ const VisitorCharts = () => {
 
     const fetchVisitorsByMonth = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/visitors-by-month');
+            const response = await axios.get(`${API_URL}/api/visitors-by-month`);
             const data = response.data;
             const months = data.map(item => `Mois ${item.month_number}`);
             const visitors = data.map(item => item.total);
@@ -112,7 +112,7 @@ const VisitorCharts = () => {
 
     const fetchVisitorsByYear = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/visitors-by-year');
+            const response = await axios.get(`${API_URL}/api/visitors-by-year`);
             const data = response.data;
             const years = data.map(item => `Année ${item.year_number}`);
             const visitors = data.map(item => item.total);
@@ -122,8 +122,8 @@ const VisitorCharts = () => {
                     {
                         label: 'Visites',
                         data: visitors,
-                        backgroundColor: 'rgba(25,10, 914, 0.7)',
-                        borderColor: 'rgba(25, 19, 640, 1)',
+                        backgroundColor: 'rgba(25, 10, 94, 0.7)',
+                        borderColor: 'rgba(25, 19, 64, 1)',
                         borderWidth: 1,
                     },
                 ],
@@ -136,9 +136,8 @@ const VisitorCharts = () => {
     useEffect(() => {
         recordVisit();
         fetchTotalVisitors();
-        fetchUniqueVisitorsToday(); // Appel de la nouvelle fonction
-        fetchUniqueVisitors(); // Appel de la nouvelle fonction
-
+        fetchUniqueVisitorsToday(); 
+        fetchUniqueVisitors();
         fetchVisitorsByWeek();
         fetchVisitorsByMonth();
         fetchVisitorsByYear();
@@ -159,68 +158,77 @@ const VisitorCharts = () => {
                 {/* Premier graphique : Visiteurs par semaine */}
                 <div className="chart-container">
                     <h3 className="chart-title1">Visites par semaine (ce mois)</h3>
-                    <Bar
-                        data={chartDataWeek}
-                        options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { position: 'top' },
-                                title: { display: true, text: 'Visites par semaine' },
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                    color: 'black',
-                                    font: { weight: 'bold', size: 12 },
-                                    formatter: (value) => `${value}`,
+                    <div className="chart-wrapper">
+                        <Bar
+                            data={chartDataWeek}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { position: 'top' },
+                                    title: { display: true, text: 'Visites par semaine' },
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                        color: 'black',
+                                        font: { weight: 'bold', size: 12 },
+                                        formatter: (value) => `${value}`,
+                                    },
                                 },
-                            },
-                        }}
-                    />
+                            }}
+                        />
+                    </div>
                 </div>
 
                 {/* Deuxième graphique : Visiteurs par mois */}
                 <div className="chart-container">
                     <h2 className="chart-title2">Visites par mois (cette année)</h2>
-                    <Bar
-                        data={chartDataMonth}
-                        options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { position: 'top' },
-                                title: { display: true, text: 'Visites par mois' },
-                                datalabels: {
-                                    anchor: 'end',
-                                    align: 'top',
-                                    color: 'black',
-                                    font: { weight: 'bold', size: 12 },
-                                    formatter: (value) => `${value}`,
+                    <div className="chart-wrapper">
+                        <Bar
+                            data={chartDataMonth}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { position: 'top' },
+                                    title: { display: true, text: 'Visites par mois' },
+                                    datalabels: {
+                                        anchor: 'end',
+                                        align: 'top',
+                                        color: 'black',
+                                        font: { weight: 'bold', size: 12 },
+                                        formatter: (value) => `${value}`,
+                                    },
                                 },
-                            },
-                        }}
-                    />
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
 
             {/* Dernier graphique : Visiteurs par année */}
             <div className="chart-container">
                 <h3 className="chart-title3">Visites par année</h3>
-                <Bar
-                    data={chartDataYear}
-                    options={{
-                        responsive: true,
-                        plugins: {
-                            legend: { position: 'top' },
-                            title: { display: true, text: 'Visites par année' },
-                            datalabels: {
-                                anchor: 'end',
-                                align: 'top',
-                                color: 'black',
-                                font: { weight: 'bold', size: 12 },
-                                formatter: (value) => `${value}`,
+                <div className="chart-wrapper">
+                    <Bar
+                        data={chartDataYear}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { position: 'top' },
+                                title: { display: true, text: 'Visites par année' },
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'top',
+                                    color: 'black',
+                                    font: { weight: 'bold', size: 12 },
+                                    formatter: (value) => `${value}`,
+                                },
                             },
-                        },
-                    }}
-                />
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );

@@ -1,208 +1,320 @@
-/* Styles pour le conteneur principal */
-.dform-container {
- 
- 
-
-  margin-top: 2%;
-  width: 100%;
-
-
- 
-  font-family: 'Arial', sans-serif;
+/* Conteneur principal */
+.dgform-container {
+  max-width: 1200px;
+  margin: 1% auto;
+  padding: 1.2rem;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-/* Titre principal */
-.dform-container h1 {
- 
-  font-size: 2rem;
-  text-align: left;  /* Aligné à gauche */
-  margin-bottom: 10px;
-  color: #022e61;
+/* Titres */
+.dgform-title {
+  text-align: left;
+  margin-left: 0.5%;
+  font-size: 1.5rem;
   font-weight: bold;
-
+  color: #06127b;
 }
 
-/* Sous-titre */
-
-.dform-title h2{
-color: #0f74e8;
-}
-.dform-container h2{
-  font-weight: bold;
-
-  margin-top: -1%;
- margin-left: 1.5%;
-  font-size: 1.2rem;
+.dgform-subtitle {
+  margin-left: 2.2%;
+  text-align: left;
+  margin-top: -0.1%;
+  font-size: 1rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #333;
+}
 
-  color: #0e28bd;}
+.dgform-section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #00158a;
+}
 
 /* Formulaire */
-.dform-container form {
-
-  margin-top: 1%;
-  display: flex;
-  max-width: 830px;
-  flex-direction: column;
-  gap: 15px;
-  background: #fefefe;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(8, 30, 33, 0.1);
-  margin-bottom: 40px;
+.dgform-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
-/* Champs de texte et textarea */
-.dform-container input[type="text"]{
-  width: calc(100% - 0rem);
-    padding: 0.8rem;
-    border: 1px solid #ececec;
-    border-radius: 10px;
-    font-size: 0.7rem;
-}
-.dform-container textarea{
-   width: calc(98.5% - 1rem); /* Même largeur que les autres champs */
-        padding: 0.8rem;
-        border: 1px solid #ececec;
-        border-radius: 10px;
-        font-size: 0.8rem;
-        resize: none;
-}
-.dform-container input[type="file"] {
-  width: 99.5%;
-  padding: 12px;
-  border: 1px solid #ececec;
+.dgform-textarea {
+  width: calc(97% - 1rem);
+  padding: 0.8rem;
+  border: 1px solid #eaeaea;
   border-radius: 8px;
   font-size: 0.8rem;
+  resize: none;
+}
+
+.dgform-form .left-column {
+  display: flex;
+  background: rgb(247, 252, 253);
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dgform-form .right-column {
+  display: flex;
+  background: white;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dgform-input {
+  width: calc(100.3% - 1rem);
+  padding: 0.8rem;
+  border: 1px solid #e7e7e7;
+  border-radius: 7px;
+  font-size: 0.75rem;
+}
+
+.dgform-container input[type="file"] {
+  width: 98.3%;
+  padding: 12px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 0.75rem;
   background: #f9f9f9;
 }
 
-/* Alignement du texte dans les champs de texte */
-.dform-container input[type="text"]:focus,
-.dform-container textarea:focus {
-  border-color: #4a90e2;
+.dgform-input:focus,
+.dgform-textarea:focus {
   outline: none;
-  background: #fff;
-  text-align: left; /* Aligné à gauche */
+  border-color: #5a67d8;
+}
+
+.dgform-textarea {
+  height: 100px;
+  flex-direction: column;
+  resize: none;
 }
 
 /* Boutons */
-.dform-container button {
-  background: linear-gradient(to right, #3203cb, #805ad5);
+.dgform-button {
+  background: linear-gradient(to right, #134aed, #0162ff);
   color: #fff;
-  width: calc(100% - 1rem);
+  width: calc(39% - 1rem);
   border: none;
   border-radius: 5px;
   font-size: 0.70rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-align: center; /* Assurez-vous que le texte dans le bouton est centré */
 }
 
-.dform-container button:hover {
-  background: linear-gradient(to right, #357ab8, #1b0173);
+.dgform-container h2 {
+  font-size: 1rem;
+  text-align: left;
+  margin-bottom: 0px;
+  margin-left: 6.2%;
+  color: #333;
+  font-weight: normal;
 }
 
-/* Liste des éléments */
-.dform-list {
-  margin-top: 20px;
-  display: flex;  
+.dgform-button:hover {
+  background: linear-gradient(to right, #805ad5, #5a67d8);
+  transform: scale(1.05);
+}
+
+.dgform-button-edit {
+  background: #0099ff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 10px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.dgform-button-edit:hover {
+  background: #14ccd2;
+  transform: scale(1.05);
+}
+
+.dgform-button-delete {
+  background: #ff1100;
+  padding: 0.5rem 1.5rem;
+  border-radius: 10px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.dgform-button-delete:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* Liste des DG */
+.dgform-list {
+  margin-top: 2rem;
+  display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-}
-.dform-list-title{
-  color: #f11616;
+  gap: 2rem;
 }
 
-/* Élément individuel */
-.dform-item {
+.dgform-item {
+  flex: 1 1 calc(33% - 1rem);
+  background: #ffffff71;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(195, 250, 255, 0.71);
+  transition: all 0.3s ease;
+}
+
+.dgform-item:hover {
+  transform: translateY(-5px);
+}
+
+.dgform-item-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aligner à gauche */
-  background: #fff;
-  border: 1px solid #f1f1f1;
-  border-radius: 15px;
-  padding: 22px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 230px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left; /* Aligné à gauche */
+  align-items: center;
+  gap: 1rem;
 }
 
-.dform-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Image */
-.dform-item img {
-  width: 150px;
-  height: 150px;
+.dgform-item-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 10%;
   object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #f5f5f5;
-  margin-bottom: 15px;
+  border: 1px solid #b3eefb;
 }
 
-/* Contenu texte */
-.dform-item-content h3 {
-  font-size: 1.2rem;
-  color: #013877;
+.dgform-item-title {
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
-  text-align: left; /* Aligné à gauche */
+  color: #6a00ff;
 }
 
-.dform-item-content p {
-  font-size: 0.8rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #555;
-  margin-bottom: 10px;
-  text-align: left; /* Aligné à gauche */
+.dgform-item-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-.dform-item-content ul {
-  list-style-type: disc;
-  margin: 10px 0;
-  padding-left: 20px;
-  text-align: left; /* Aligné à gauche */
-}
-
-.dform-item-content ul li {
-  font-size: 0.8rem;
-  line-height: 1.7;
-  color: #555;
-}
-
-/* Boutons dans les cadres */
-.dform-item button {
-  margin-top: auto;
-  width: 100%;
-  padding: 10px 15px;
-  border-radius: 8px;
+/* Description et listes */
+.dgform-item p {
+  margin: 0.5rem 0;
   font-size: 0.7rem;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.dform-edit {
-  background-color: #4caf50;
-  color: white;
-  margin-top: 10px;
+.dgform-item ul {
+  list-style-type: square;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
 }
 
-.dform-edit:hover {
-  background-color: #3d8c41;
+.dgform-item ul li {
+  font-size: 0.7rem;
+  margin-bottom: 0.3rem;
+  color: #555;
 }
 
-.dform-delete {
-  background-color: #f15b5b;
-  color: white;
-  margin-top: 10px;
+/* Chargement */
+.dgform-loading {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #888;
 }
 
-.dform-delete:hover {
-  background-color: #d44a4a;
+/* Responsive */
+@media (max-width: 1024px) {
+  .dgform-item {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .dgform-container {
+    margin: 2%;
+    padding: 1rem;
+  }
+
+  .dgform-form {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .dgform-input,
+  .dgform-textarea,
+  .dgform-container input[type="file"] {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .dgform-button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .dgform-item {
+    flex: 1 1 100%;
+    margin-bottom: 1rem;
+  }
+
+  .dgform-item-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .dgform-title {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .dgform-subtitle {
+    text-align: center;
+    margin-left: 0;
+    font-size: 0.9rem;
+  }
+
+  .dgform-item-content {
+    text-align: center;
+  }
+
+  .dgform-item-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .dgform-button-edit,
+  .dgform-button-delete {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .dgform-container {
+    margin: 1%;
+    padding: 0.8rem;
+  }
+
+  .dgform-title {
+    font-size: 1.2rem;
+  }
+
+  .dgform-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .dgform-item-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .dgform-input,
+  .dgform-textarea {
+    padding: 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .dgform-button {
+    padding: 0.8rem;
+    font-size: 0.65rem;
+  }
 }

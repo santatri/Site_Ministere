@@ -1,0 +1,119 @@
+.overla {
+  background: linear-gradient(0deg, rgb(187, 144, 251), rgba(0, 183, 255, 0.962), rgba(0, 153, 255, 0.94), rgb(11, 20, 122)),
+              url('../assets/giphy.gif');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 2%;
+  width: 100%;
+  position: relative;
+  border-radius: 4px;
+}
+
+h1 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: white;
+  padding: 20px 0;
+}
+
+.chap {
+  margin-left: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.searches-fieldses {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.searches-fieldses input {
+  padding: 10px;
+  border: 1px solid #4eb5ff;
+  border-radius: 5px;
+  width: 300px; /* Largeur par défaut */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.searches-fieldses button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 150px; /* Largeur par défaut */
+}
+
+.searches-fieldses button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 1rem;
+  }
+
+  .chap {
+    margin-left: 10px;
+    font-size: 0.9rem;
+  }
+
+  .searches-fieldses {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .searches-fieldses input,
+  .searches-fieldses button {
+    width: 80%; /* Occuper 80% de la largeur */
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .overla {
+    padding: 15px 5px;
+  }
+
+  h1 {
+    font-size: 0.9rem;
+  }
+
+  .search-form {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .searches-fieldses {
+    gap: 10px;
+  }
+
+  .searches-fieldses input,
+  .searches-fieldses button {
+    width: 100%; /* Occuper toute la largeur */
+  }
+
+  .searches-fieldses button {
+    padding: 10px;
+  }
+}

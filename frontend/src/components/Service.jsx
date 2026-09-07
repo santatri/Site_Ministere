@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../styles/Service.css';
-
+import { API_URL } from '../config';
 const Service = () => {
     const [services, setServices] = useState([]);
     const [SGList, setSGList] = useState([]);  // Liste des SG
@@ -26,7 +26,7 @@ const Service = () => {
     // Récupérer toutes les services
     const fetchServices = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/api/service/all');
+            const response = await axios.get(`${API_URL}/api/service/all`);
             // Trier les services par porte_s de manière croissante
             const sortedServices = response.data.data.sort((a, b) => {
                 if (a.porte_s < b.porte_s) return -1;
@@ -42,10 +42,10 @@ const Service = () => {
     const fetchSGAndDGAndD = async () => {
         try {
             const [DResponse, sgResponse, dgResponse ,msResponse] = await Promise.all([
-                axios.get('http://localhost:5001/api/direction/all'),
-                axios.get('http://localhost:5001/api/direction/sg'),
-                axios.get('http://localhost:5001/api/direction/dg'),
-                axios.get('http://localhost:5001/api/direction/ms')
+                axios.get(`${API_URL}/api/direction/all`),
+                axios.get(`${API_URL}/api/direction/sg`),
+                axios.get(`${API_URL}/api/direction/dg`),
+                axios.get(`${API_URL}/api/direction/ms`)
             ]);
             setDList(DResponse.data.data);
             setSGList(sgResponse.data.data);
@@ -80,10 +80,10 @@ const Service = () => {
             };
     
             if (editId) {
-                await axios.put(`http://localhost:5001/api/service/${editId}`, data);
+                await axios.put(`${API_URL}/api/service/${editId}`, data);
                 setMessage("Service mettre a jour avec succès !")
             } else {
-                await axios.post('http://localhost:5001/api/service', data);
+                await axios.post('${API_URL}/api/service', data);
                 setMessage("Service ajouté avec succès !")
             }
             fetchServices();
@@ -97,7 +97,7 @@ const Service = () => {
     // Supprimer un service
     const deleteService = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:5001/api/service/${id}`);
+            const response = await axios.delete(`${API_URL}/api/service/${id}`);
             if (response.status === 200) {
                 fetchServices(); // Recharge les services après suppression
             } else {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'; // Ajoutez useRef
 import axios from 'axios';
 import '../styles/ÀLaUne.css';
-
+import { API_URL } from '../config';
 const ALaUne = () => {
   const [formData, setFormData] = useState({
     titre: '',
@@ -20,7 +20,7 @@ const ALaUne = () => {
 
   const fetchElements = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/a_la_une/all');
+      const response = await axios.get(`${API_URL}/api/a_la_une/all`);
       setElements(response.data.data);
     } catch (error) {
       setMessage('Erreur lors du chargement des éléments.');
@@ -49,8 +49,8 @@ const ALaUne = () => {
 
     try {
       const url = isEditing
-        ? `http://localhost:5001/api/a_la_une/${currentId}`
-        : 'http://localhost:5001/api/a_la_une/insertion';
+        ? `${API_URL}/api/a_la_une/${currentId}`
+        : `${API_URL}/api/a_la_une/insertion`;
       const method = isEditing ? 'put' : 'post';
       const response = await axios[method](url, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -83,7 +83,7 @@ const ALaUne = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5001/api/a_la_une/${id}`);
+      const response = await axios.delete(`${API_URL}/api/a_la_une/${id}`);
       setMessage(response.data.message);
       fetchElements();
     } catch (error) {
@@ -147,7 +147,7 @@ const ALaUne = () => {
               <p className="element-description">{element.description}</p>
               {element.image && (
                 <img
-                  src={`http://localhost:5001/uploads/${element.image}`}
+                  src={`${API_URL}/uploads/${element.image}`}
                   alt={element.titre}
                   className="element-image"
                 />

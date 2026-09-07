@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../styles/DirectionGenerale.css';
-
+import { API_URL } from '../config';
 const DirectionGenerale = () => {
   const [formData, setFormData] = useState({
     id_sg: '', // L'ID du Secrétaire Général sélectionné
@@ -21,7 +21,7 @@ const DirectionGenerale = () => {
   // Fonction pour récupérer la liste des secrétaires généraux
   const fetchSecretaireGeneraux = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/secretaire_general/all');
+      const response = await axios.get(`${API_URL}/api/secretaire_general/all`);
       setSecretaireGeneraux(response.data.data);
     } catch (error) {
       setMessage('Erreur lors du chargement des secrétaires généraux.');
@@ -37,7 +37,7 @@ const DirectionGenerale = () => {
   // Fonction pour récupérer la liste des directions générales
   const fetchElements = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/direction_generale/all');
+      const response = await axios.get(`${API_URL}/api/direction_generale/all`);
       setElements(response.data.data);
     } catch (error) {
       setMessage('Erreur lors du chargement des éléments.');
@@ -56,8 +56,8 @@ const DirectionGenerale = () => {
     const data = { ...formData };
     try {
       const url = isEditing
-        ? `http://localhost:5001/api/direction_generale/${currentId}`
-        : 'http://localhost:5001/api/direction_generale/insertion';
+        ? `${API_URL}/api/direction_generale/${currentId}`
+        : `${API_URL}/api/direction_generale/insertion`;
       const method = isEditing ? 'put' : 'post';
       const response = await axios[method](url, data);
       setMessage(response.data.message);
@@ -93,7 +93,7 @@ const DirectionGenerale = () => {
   // Fonction pour supprimer un élément
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5001/api/direction_generale/${id}`);
+      const response = await axios.delete(`${API_URL}/api/direction_generale/${id}`);
       setMessage(response.data.message);
       fetchElements();
     } catch (error) {

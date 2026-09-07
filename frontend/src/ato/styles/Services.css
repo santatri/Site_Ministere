@@ -1,0 +1,62 @@
+/* Conteneur principal */
+.services-container {
+    
+  position: relative;
+  opacity: 0.99;
+  width: 100%; /* Occuper toute la largeur */
+  height: 170px; /* Hauteur définie */
+  background: linear-gradient(0deg ,rgba(0, 251, 255, 0.955), rgba(0, 183, 255, 0.875) ,rgba(0, 153, 255, 0.97) ,rgb(11, 20, 122)),url('../assets/black16.jpg') ;
+  background-size: cover; /* Adapter l'image pour couvrir tout l'écran */
+  background-position: center; /* Centrer l'image */
+  display: flex;
+  justify-content: center;
+  border-bottom: #2090eb;
+  align-items: center;
+  margin-top: 0;
+
+  }
+  
+  /* En-tête des services */
+  .services-header h1 {
+    color: white; /* Couleur du texte */
+    font-size: 1.5rem; /* Taille du texte */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre portée pour le texte */
+    display: inline-block;
+    
+    padding: 1rem 2rem;
+    border-radius: 5px;
+  }
+  
+  .services-header p {
+    font-size: 1rem;
+
+  }
+  
+  .breadcrumb {
+    color: #00a6b9;
+    font-weight: bold;
+  }
+  
+  .current-page {
+    color: #ffffff;
+    font-weight: normal;
+  }
+  
+  /* Design supplémentaire */
+  .services-header {
+    position: relative;
+    justify-content: center;
+    display: inline-block;
+   
+    background: #1bbae6;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .services-content {
+    margin-top: 2rem;
+  }
+  

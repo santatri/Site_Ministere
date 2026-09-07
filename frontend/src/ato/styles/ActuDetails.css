@@ -1,0 +1,22 @@
+.actu-details-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.actu-details-container img,
+.actu-details-container video {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.actu-details-container h1 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.actu-details-container p {
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+}

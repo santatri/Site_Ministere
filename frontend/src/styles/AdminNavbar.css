@@ -1,76 +1,14 @@
 /* AdminNavbar.css */
 .admin-navbar {
- 
-    padding: 4px 25px;
-    margin-top: -2.5%;
-    margin-left: -4%;
-    box-shadow: 0 4px 12px rgb(194, 239, 253); /* Ajoute une ombre subtile */
-  
-    width: 100%;
-
-    
-  }
-  
-  .navbar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-left {
-    font-size: 2.5rem;
-    margin-left: -3.2%;
-    color: #ffffff; /* Bordure cyan */
-    padding-left: 25px;
-  }
-  
-  .navbar-title {
-    font-weight: bold;
-    font-size: 14px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-  
-  .navbar-right {
-    display: flex;
-    font-weight: bold;
-    font-size: 13px;
-    color: #ad1111;
-    align-items: center;
-    gap: 20px; /* Espacement entre l'image et le texte */
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-
-    padding: 0px;
-    border-radius: 50%; /* Rendre l'avatar circulaire */
-  }
-  
-  .avatar-container {
-    margin-right: 20px;
-  }
-  
-  .avatar-frame {
-    border-radius: 50%; /* Pour rendre l'image en avatar circulaire */
-    width: 45px; /* Ajustez la taille selon votre besoin */
-    height: 45px;
-  }
-  
-  .user-name {
-    color: #ffffff; /* Bordure cyan */
-    font-weight: bold;
-    font-size: 13px;
-  }
-
-.admin-navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: #112eea;
   color: white;
   width: 100%;
-  padding: 0px 25px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  /* Rendre la barre collante en haut pour qu'elle reste visible */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-content {
@@ -78,30 +16,85 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .navbar-left {
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 0; /* Permet le truncate du texte */
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sur écrans moyens et petits, fixer le bouton hamburger pour qu'il reste
+   accessible même si la sidebar se superpose */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    /* Placer le bouton à l'intérieur de la barre (relatif à .admin-navbar)
+       pour éviter qu'il se superpose et cache le contenu de la navbar. */
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1101; /* reste au-dessus de la sidebar mais à l'intérieur de la navbar */
+    background: rgba(17,46,234,0.85);
+    border-radius: 6px;
+    padding: 8px;
+  }
+
+  /* Laisser un espace à gauche de la navbar pour éviter chevauchement visuel
+     avec le bouton placé en absolu */
+  .admin-navbar {
+    padding-left: 56px;
+    /* s'assurer que la barre a un contexte positionné (sticky déjà) */
+  }
 }
 
 .navbar-title {
-  margin-left: 10px;
+  font-weight: bold;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 
 .user-info {
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 24px;
+  transition: background-color 0.2s ease;
+}
+
+.user-info:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .avatar-container {
-  margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .avatar-frame {
@@ -109,12 +102,196 @@
   height: 40px;
   border-radius: 50%;
   border: 2px solid white;
+  object-fit: cover;
 }
-.menu-toggle {
-  background: none;
-  margin-left: 3.5%;
-  border: none;
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 12px;
+  line-height: 1.2;
+}
+
+.user-name {
+  font-weight: 700;
   color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.user-matricule {
+  font-size: 12px;
+  color: #dbeafe;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes et petits écrans d'ordinateur */
+@media (max-width: 1024px) {
+  .navbar-title {
+    font-size: 15px;
+  }
+}
+
+/* Tablettes */
+@media (max-width: 768px) {
+  .admin-navbar {
+    padding: 6px 12px;
+  }
+  
+  .navbar-title {
+    font-size: 14px;
+  }
+  
+  .avatar-frame {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .user-name {
+    font-size: 13px;
+  }
+  
+  .user-matricule {
+    font-size: 11px;
+  }
+}
+
+/* Grands téléphones */
+@media (max-width: 600px) {
+  .admin-navbar {
+    padding: 4px 10px;
+  }
+  
+  .menu-toggle {
+    font-size: 1.1rem;
+    margin-right: 8px;
+    padding: 6px;
+  }
+  
+  .navbar-title {
+    font-size: 13px;
+    max-width: 200px;
+  }
+  
+  .user-details {
+    margin-left: 8px;
+  }
+  
+  .avatar-frame {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* Téléphones moyens */
+@media (max-width: 480px) {
+  .admin-navbar {
+    padding: 4px 8px;
+  }
+  
+  .navbar-title {
+    font-size: 12px;
+    max-width: 160px;
+  }
+  
+  .menu-toggle {
+    font-size: 1rem;
+    margin-right: 6px;
+  }
+  
+  .avatar-frame {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .user-name {
+    font-size: 12px;
+  }
+  
+  .user-matricule {
+    font-size: 10px;
+  }
+}
+
+/* Petits téléphones */
+@media (max-width: 400px) {
+  .navbar-title {
+    font-size: 11px;
+    max-width: 140px;
+  }
+  
+  .user-details {
+    display: none; /* Cache les détails utilisateur sur très petits écrans */
+  }
+  
+  .avatar-container {
+    margin-right: 0;
+  }
+  
+  .avatar-frame {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Très petits téléphones */
+@media (max-width: 360px) {
+  .admin-navbar {
+    padding: 3px 6px;
+  }
+  
+  .navbar-title {
+    font-size: 10px;
+    max-width: 120px;
+  }
+  
+  .menu-toggle {
+    font-size: 0.9rem;
+    margin-right: 4px;
+    padding: 4px;
+  }
+  
+  .avatar-frame {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Écrans très larges */
+@media (min-width: 1440px) {
+  .navbar-content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* Mode paysage sur mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .admin-navbar {
+    padding: 4px 12px;
+  }
+  
+  .avatar-frame {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Support du mode sombre */
+@media (prefers-color-scheme: dark) {
+  .admin-navbar {
+    border-bottom: 1px solid #333;
+  }
+}
+
+/* Accessibilité : préférence de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  .user-info {
+    transition: none;
+  }
 }

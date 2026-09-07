@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../styles/Direction.css";
-
+import { API_URL } from "../config";
 const Direction = () => {
   const [directions, setDirections] = useState([]);
   const [sgList, setSGList] = useState([]);
@@ -26,7 +26,7 @@ const Direction = () => {
   // Fonction pour récupérer les directions et SG/DG
   const fetchDirections = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/direction/all");
+      const response = await axios.get(`${API_URL}/api/direction/all`);
       const sortedDirections = response.data.data.sort((a, b) => a.porte_d - b.porte_d);
       setDirections(sortedDirections);
     } catch (error) {
@@ -37,9 +37,9 @@ const Direction = () => {
   const fetchSGAndDG = async () => {
     try {
       const [sgResponse, dgResponse, msReponse] = await Promise.all([
-        axios.get("http://localhost:5001/api/direction/sg"),
-        axios.get("http://localhost:5001/api/direction/dg"),
-        axios.get("http://localhost:5001/api/direction/ms"),
+        axios.get(`${API_URL}/api/direction/sg`),
+        axios.get(`${API_URL}/api/direction/dg`),
+        axios.get(`${API_URL}/api/direction/ms`),
       ]);
       setSGList(sgResponse.data.data);
       setDGList(dgResponse.data.data);
@@ -59,7 +59,7 @@ const Direction = () => {
     setMessage("");
     try {
       if (type === "sg") {
-        await axios.post("http://localhost:5001/api/direction", {
+        await axios.post(`${API_URL}/api/direction`, {
           nom_d,
           porte_d: formatPorte(porte_d),
           id_sg,
@@ -67,7 +67,7 @@ const Direction = () => {
           id_ms: null,
         });
       } else if (type === "dg") {
-        await axios.post("http://localhost:5001/api/direction", {
+        await axios.post(`${API_URL}/api/direction`, {
           nom_d,
           porte_d: formatPorte(porte_d),
           id_sg: null,
@@ -75,7 +75,7 @@ const Direction = () => {
           id_ms: null,
         });
       } else if (type === "ms") {
-        await axios.post("http://localhost:5001/api/direction", {
+        await axios.post(`${API_URL}/api/direction`, {
           nom_d,
           porte_d: formatPorte(porte_d),
           id_sg: null,
@@ -96,7 +96,7 @@ const Direction = () => {
   // Fonction pour mettre à jour une direction
   const updateDirection = async () => {
     try {
-      await axios.put(`http://localhost:5001/api/direction/${editId}`, {
+      await axios.put(`${API_URL}/api/direction/${editId}`, {
         nom_d,
         porte_d: formatPorte(porte_d),
         id_sg,
@@ -115,7 +115,7 @@ const Direction = () => {
   // Fonction pour supprimer une direction
   const deleteDirection = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/direction/${id}`);
+      await axios.delete(`${API_URL}/api/direction/${id}`);
       setMessage("Direction supprimée avec succès !");
 
       fetchDirections();

@@ -1,0 +1,167 @@
+/* Container principal */
+.containeres {
+  display: flex;
+  flex-direction: row; /* Aligne horizontalement */
+  align-items: flex-start; /* Aligne les éléments en haut */
+  justify-content: center; /* Centre horizontalement */
+  gap: 30px; /* Espace entre l'image et la section texte */
+  margin: 40px auto;
+  max-width: 1200px; /* Limite la largeur totale */
+  padding: 0 20px; /* Ajoute un padding pour éviter les débordements */
+}
+
+/* Images */
+.images-containeres {
+  display: flex;
+  flex-direction: column; /* Aligne l'image et la carte verticalement */
+  align-items: center;
+  text-align: center;
+  max-width: 100%;
+  position: relative; /* Contexte pour la carte */
+}
+
+.images-containeres img {
+  width: 100%; /* Rend l'image responsive */
+  max-width: 550px; /* Limite la taille */
+  height: 340px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(151, 219, 255, 0.732); /* Ajoute une ombre subtile */
+  border: 1px solid #f7fdff;
+  margin-bottom: 16px; /* Espace entre l'image et la carte */
+}
+
+/* Carte */
+.cardes {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 85%;
+  position: absolute;
+  bottom: -100px; /* Position verticale */
+}
+
+/* Styles de texte dans la carte */
+.cardes h2 {
+  font-size: 1rem;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.cardes h3 {
+  font-size: 1.2rem;
+  color: #122ab3;
+  margin-bottom: 8px;
+}
+
+.cardes p {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Section texte */
+.text-section {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 60%; /* Limite la largeur */
+  text-align: left;
+  margin-top: -4%;
+}
+
+.text-section h1 {
+  font-size: 1.5rem;
+  margin-left: -0.5%;
+  color: #009dff;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.underline {
+  width: 90px;
+  height: 5px;
+  background: linear-gradient(#00bfff, #00b7ff);
+  margin: 25px 0;
+}
+
+.text-section p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.text-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.text-section li {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.text-section li i {
+  color: #11237d;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+
+/* Petits écrans (smartphones) */
+@media (max-width: 768px) {
+  .containeres {
+    flex-direction: column; /* Empile verticalement */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .images-containeres {
+    max-width: 100%; /* Largeur complète */
+  }
+
+  .text-section {
+    max-width: 100%; /* Largeur complète */
+    padding: 20px;
+    margin-top: 25%;
+  }
+
+  .cardes {
+    bottom: -90px; /* Ajuste la position de la carte */
+    padding: 8px;
+  }
+
+  .text-section h1 {
+    font-size: 1.2rem; /* Réduit la taille des titres */
+  }
+
+  .text-section p,
+  .text-section li {
+    font-size: 0.8rem; /* Réduit la taille du texte */
+  }
+}
+
+/* Moyens écrans (tablettes) */
+@media (max-width: 1024px) {
+  .containeres {
+    gap: 20px; /* Réduit l'espace entre les sections */
+  }
+
+  .text-section {
+    max-width: 80%; /* Augmente la largeur sur tablette */
+  }
+}
+
+/* Grands écrans (desktop) */
+@media (min-width: 1200px) {
+  .text-section {
+    max-width: 60%; /* Largeur maximale sur grand écran */
+  }
+}

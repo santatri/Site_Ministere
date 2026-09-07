@@ -1,0 +1,116 @@
+/* Container général */
+.servi-container {
+
+    margin-top: 3%;
+}
+
+.servi-container h1 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.4em;
+    margin-left: -1.8%;
+    text-align: left;
+    margin-bottom: 5px;
+    color: black;
+}
+
+/* Formulaire Service */
+.service-form {
+    background-color: #ffffff;
+    padding: 15px;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.service-form input{
+    width: 90%;
+    font-size: 11px;
+    padding: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: 12px;
+    border: 1px solid #e9e9e9;
+    border-radius: 5px
+}
+.service-form select {
+    width: 93%;
+    font-size: 11px;
+    padding: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: 12px;
+    border: 1px solid #e9e9e9;
+    border-radius: 5px;
+}
+
+.service-form button {
+    width: 30%;
+    padding: 12px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: 1px solid #e9e9e9;
+    border-radius: 5px;
+}
+
+.service-form button {
+    background-color: #2f00ff;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 20%;
+}
+
+.service-form button:hover {
+    background-color: #080629;
+}
+
+/* Table de liste Service */
+.service-list {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 50px;
+    width: 100%;
+    
+}
+
+.service-list th {
+    padding: 10px 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: left;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: #007bff;
+}
+
+/* Container pour les boutons dans les cellules */
+.service-list td {
+    padding: 0px 10px; /* Réduit encore la taille des cellules */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: left;
+    border: 1px solid #f0f0f0;
+    height: 0cm;
+    position: relative; /* Nécessaire pour positionner les boutons à l'intérieur */
+   /* Utilisation du flexbox pour positionner les éléments horizontalement justify-content: space-between; /* Espacement entre les boutons */
+    align-items: center; /* Centrer verticalement les boutons */
+}
+
+/* Style pour le bouton "Éditer" */
+.direction-btn-edit-new {
+    background-color: #007bff;
+    justify-content: space-between;
+    font-size: 12px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    padding: 5px 22px; /* Pour donner un peu d'espace autour du texte */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style pour le bouton "Supprimer" */
+.direction-btn-delete-new {
+    font-size: 12px;
+    background-color: #dc3545;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    padding: 5px 10px; /* Pour donner un peu d'espace autour du texte */
+    border-radius: 5px;
+    cursor: pointer;
+}

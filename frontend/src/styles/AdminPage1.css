@@ -308,10 +308,24 @@ button {
     flex-direction: column;
   }
 
+  /* Sur tablettes et plus petits écrans, rendre la sidebar positionnée en fixed
+     et masquée par défaut (translateX) ; elle peut être ouverte via la classe
+     `.open` (gérée par React) — le bouton hamburger restera au-dessus. */
   .sidebar {
-    width: 100%;
+    width: 80%;
+    max-width: 340px;
     padding: 15px;
-    height: auto; /* Permet à la sidebar de se redimensionner selon son contenu */
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-110%);
+    transition: transform 0.28s ease, visibility 0.28s ease;
+    z-index: 1000; /* Sous le menu-toggle (qui a 1101) */
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
   }
 
   .content {
@@ -334,10 +348,18 @@ button {
 }
 
 @media (max-width: 768px) {
+  /* Conserver la sidebar fixe et masquée par défaut sur petits écrans */
   .sidebar {
-    width: 100%;
-    height: auto;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
     padding: 10px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-110%);
+    transition: transform 0.28s ease;
+    z-index: 1000;
   }
 
   .content {
@@ -362,10 +384,18 @@ button {
   .dashboard {
     flex-direction: column;
   }
-
+  /* Très petits écrans : garder le comportement de sidebar masquée */
   .sidebar {
-    width: 100%;
+    width: 90%;
+    max-width: 300px;
     padding: 8px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-110%);
+    transition: transform 0.28s ease;
+    z-index: 1000;
   }
 
   .menu-item {

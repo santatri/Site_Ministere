@@ -1,26 +1,42 @@
 /* Alignement du titre principal */
 .darkblue-title {
-  
     color: darkblue;
     font-size: 20px;
     font-weight: bold;
-    margin-top: 1%;
     margin-top: 10px;
     text-align: left; /* Alignement à gauche */
 }
 
 /* Conteneur global des graphiques */
-.chart-container {
-    width: 45%; /* Ajuste la largeur des graphiques */
-    margin-bottom: 40px;
-    background-color: rgb(255, 255, 255);
-}
-
-/* Conteneur des graphiques en colonne */
 .chart-row {
     display: flex;
+    flex-wrap: wrap; /* Permet d'empiler sur petits écrans */
+    gap: 20px;
     justify-content: space-between;
-    gap: 40px;
+}
+
+.chart-container {
+    flex: 1 1 320px; /* grow | shrink | basis */
+    min-width: 280px;
+    max-width: 100%;
+    margin-bottom: 24px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+/* Wrapper qui contrôle la hauteur du canvas : Chart.js remplira ce conteneur si maintainAspectRatio = false */
+.chart-wrapper {
+    width: 100%;
+    height: 340px; /* hauteur par défaut pour écran moyen/grand */
+}
+
+/* Forcer le canvas à remplir le wrapper (Chart.js respecte ceci si maintainAspectRatio = false) */
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 /* Alignement du titre de chaque graphique */
@@ -30,23 +46,22 @@
 .chart-title3 {
     text-align: left;
     color: rgb(98, 21, 176);
-    margin-top: 2%;
-    font-size: 1.5rem;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
 }
 
-.chart-title1 {
-    color: rgb(15, 12, 51);
-    font-size: 1.1rem;
+.chart-title1 { color: rgb(15, 12, 51); font-size: 1.05rem; }
+.chart-title2 { color: rgb(213, 28, 28); font-size: 1.05rem; }
+.chart-title3 { color: rgb(16, 111, 149); font-size: 1.05rem; }
+
+/* Media queries pour petits écrans */
+@media (max-width: 900px) {
+    .chart-wrapper { height: 300px; }
 }
 
-.chart-title2 {
-    margin-top: 3%;
-    color: rgb(213, 28, 28);
-    font-size: 1.1rem;
-}
-
-.chart-title3 {
-    color: rgb(16, 111, 149);
-    font-size: 1.1rem;
-    margin-top: 3%;
+@media (max-width: 600px) {
+    .chart-container { padding: 10px; }
+    .chart-wrapper { height: 260px; }
+    .chart-title, .chart-title1, .chart-title2, .chart-title3 { font-size: 1rem; }
 }

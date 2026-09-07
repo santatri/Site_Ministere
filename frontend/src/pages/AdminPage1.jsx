@@ -21,6 +21,7 @@ import SettingsForm from '../components/SettingsForm';
 import DForm from '../components/DForm';
 import Message from './Contact/Message';
 
+import { API_URL } from '../config';
 const AdminPage1 = () => {
   const [users, setUsers] = useState([]);
   const [activeSection, setActiveSection] = useState('utilisateurs');
@@ -38,7 +39,7 @@ const AdminPage1 = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/users1/list');
+        const response = await axios.get(`${API_URL}/api/users1/list`);
         setUsers(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des utilisateurs:', error);
@@ -56,7 +57,7 @@ const AdminPage1 = () => {
 
   const handleValidate = async (id) => {
     try {
-      await axios.put(`http://localhost:5001/api/users1/validate/${id}`);
+      await axios.put(`${API_URL}/api/users1/validate/${id}`);
       setMessage('Utilisateur validé avec succès');
       setUsers(users.map((user) => (user.id === id ? { ...user, validated: true } : user)));
     } catch (error) {
@@ -68,7 +69,7 @@ const AdminPage1 = () => {
 
   const handleinValidate = async (id) => {
     try {
-      await axios.put(`http://localhost:5001/api/users1/invalidate/${id}`);
+      await axios.put(`${API_URL}/api/users1/invalidate/${id}`);
       setMessage('Utilisateur invalidé avec succès');
       setUsers(users.map((user) => (user.id === id ? { ...user, validated: true } : user)));
     } catch (error) {
@@ -80,7 +81,7 @@ const AdminPage1 = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/users1/${id}`);
+      await axios.delete(`${API_URL}/api/users1/${id}`);
       setMessage('Utilisateur supprimé avec succès');
       setUsers(users.filter((user) => user.id !== id));
     } catch (error) {
@@ -109,7 +110,7 @@ const AdminPage1 = () => {
 
   const handleSaveEdit = async (id) => {
     try {
-      await axios.put(`http://localhost:5001/api/users1/update/${id}`, editForm);
+      await axios.put(`${API_URL}/api/users1/update/${id}`, editForm);
       setMessage('Utilisateur modifié avec succès');
       setUsers(users.map((user) =>
         user.id === id ? { ...user, ...editForm } : user
@@ -140,55 +141,55 @@ const AdminPage1 = () => {
         <div className="menu">
           <button
             className={`menu-item ${activeSection === 'utilisateurs' ? 'active' : ''}`}
-            onClick={() => setActiveSection('utilisateurs')}
+            onClick={() => { setActiveSection('utilisateurs'); setIsMenuOpen(false); }}
           >
             <FaUsers /> Utilisateurs
           </button>
           <button
             className={`menu-item ${activeSection === 'actualites' ? 'active' : ''}`}
-            onClick={() => setActiveSection('actualites')}
+            onClick={() => { setActiveSection('actualites'); setIsMenuOpen(false); }}
           >
             <FaNewspaper /> Actualités
           </button>
           <button
             className={`menu-item ${activeSection === 'a-la-une' ? 'active' : ''}`}
-            onClick={() => setActiveSection('a-la-une')}
+            onClick={() => { setActiveSection('a-la-une'); setIsMenuOpen(false); }}
           >
-            <FaStar /> À la une
+            <FaStar />Annonces
           </button>
           <button
             className={`menu-item ${activeSection === 'a-propos' ? 'active' : ''}`}
-            onClick={() => setActiveSection('a-propos')}
+            onClick={() => { setActiveSection('a-propos'); setIsMenuOpen(false); }}
           >
             <FaInfoCircle /> À propos
           </button>
           <button
             className={`menu-item ${activeSection === 'services' ? 'active' : ''}`}
-            onClick={() => setActiveSection('services')}
+            onClick={() => { setActiveSection('services'); setIsMenuOpen(false); }}
           >
             <FaConciergeBell /> Services
           </button>
           <button
             className={`menu-item ${activeSection === 'indicateurs' ? 'active' : ''}`}
-            onClick={() => setActiveSection('indicateurs')}
+            onClick={() => { setActiveSection('indicateurs'); setIsMenuOpen(false); }}
           >
             <FaChartBar /> Indicateurs
           </button>
           <button
             className={`menu-item ${activeSection === 'slide' ? 'active' : ''}`}
-            onClick={() => setActiveSection('slides')}
+            onClick={() => { setActiveSection('slides'); setIsMenuOpen(false); }}
           >
             <FaSlideshare /> Slides
           </button>
           <button
             className={`menu-item ${activeSection === 'Message' ? 'active' : ''}`}
-            onClick={() => setActiveSection('Message')}
+            onClick={() => { setActiveSection('Message'); setIsMenuOpen(false); }}
           >
             <FaEnvelope /> Message
           </button>
           <button
             className={`menu-item ${activeSection === 'footer' ? 'active' : ''}`}
-            onClick={() => setActiveSection('footer')}
+            onClick={() => { setActiveSection('footer'); setIsMenuOpen(false); }}
           >
             <FaArrowDown /> Footer et Header
           </button>

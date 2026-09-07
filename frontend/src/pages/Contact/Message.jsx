@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../styles/Message.css';
-
+import { API_URL } from '../../config';
 const Message = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ const Message = () => {
   // Fonction pour récupérer les messages
   const fetchMessages = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/messages');
+      const response = await axios.get(`${API_URL}/api/messages`);
       setMessages(response.data);
       setLoading(false);
     } catch (err) {
@@ -62,25 +62,29 @@ const Message = () => {
   return (
     <div className="w3-container w3-padding-64">
       {/* Grand titre */}
-      <h1 className="main-title">Gestion de tous les messages</h1>
+      <h1 className="main-title">Centre de Gestion des Messages</h1>
 
       {/* Texte Messages reçus */}
-      <h2 className="messages-title">Messages reçus</h2>
+      <h2 className="messages-title">Doléances et Messages des Citoyens</h2>
 
       {/* Barre de recherche */}
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Rechercher par texte"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <input
-          type="date"
-          value={searchDate}
-          onChange={(e) => setSearchDate(e.target.value)}
-        />
-        <button onClick={fetchMessages}>Rechercher</button>
+      <div className="search-container">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Rechercher par sujet ou contenu"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <input
+            type="date"
+            value={searchDate}
+            onChange={(e) => setSearchDate(e.target.value)}
+          />
+          <button onClick={fetchMessages}>
+            <i className="fas fa-search"></i> Rechercher
+          </button>
+        </div>
       </div>
 
       {/* Affichage des messages */}
@@ -88,19 +92,28 @@ const Message = () => {
         <div className="message-container">
           {currentMessages.map((msg) => (
             <div key={msg.id} className="message-bubble">
-              <p className="message-email">{msg.email || 'Anonyme'}</p>
+              <div className="message-header">
+                <p className="message-email">
+                  <i className="fas fa-user"></i> {msg.email || 'Message Anonyme'}
+                </p>
+              </div>
               <div className="message-content">
-                <p className="message-subject">{msg.subject}</p>
+                <h3 className="message-subject">
+                  <i className="fas fa-envelope"></i> {msg.subject}
+                </h3>
                 <p>{msg.message}</p>
               </div>
               <p className="message-timestamp">
-                {new Date(msg.created_at).toLocaleString()}
+                <i className="fas fa-clock"></i> {new Date(msg.created_at).toLocaleString()}
               </p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="w3-text-grey w3-center">Aucun message ne correspond à votre recherche.</p>
+        <div className="empty-message">
+          <i className="fas fa-inbox"></i>
+          <p>Aucun message ne correspond à votre recherche.</p>
+        </div>
       )}
 
       {/* Pagination */}

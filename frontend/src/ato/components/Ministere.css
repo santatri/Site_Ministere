@@ -1,0 +1,84 @@
+/* Conteneur principal */
+.ministere-container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Titre principal */
+.ministere-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Grille pour aligner les éléments par 4 */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
+  gap: 50px; /* Espace entre les éléments */
+}
+
+/* Style pour chaque élément de la grille */
+.grid-item {
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style de l'image */
+.dform-item-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Style du titre */
+.grid-item h2 {
+  font-size: 0.9rem;
+  color: rgb(7, 7, 108);
+  margin: 0;
+}
+/* Style de l'image */
+.dform-item-image {
+  width: 100%; /* Largeur fixe */
+  height: 200px; /* Hauteur fixe */
+  object-fit: cover; /* Conserver les proportions */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Style pour chaque élément de la grille */
+.grid-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 2px;
+  text-align: center;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Largeur fixe pour le conteneur */
+}
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes pour les écrans moyens */
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes pour les tablettes */
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* 1 colonne pour les mobiles */
+  }
+}

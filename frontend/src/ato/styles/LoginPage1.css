@@ -1,0 +1,271 @@
+/* Conteneur principal */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Assure que le conteneur prend toute la hauteur de l'écran */
+  padding: 0px; /* Retire les marges ou espaces inutiles */
+}
+
+/* Ajouter les vagues en haut et en bas */
+.wave-header {
+  position: fixed; /* Pour rester fixé même lors du défilement */
+  top: 0;
+  left: 0;
+  width: 100vw; /* 100% de la largeur de la fenêtre */
+  height: 100vh; /* 100% de la hauteur de la fenêtre */
+  background: linear-gradient(0deg ,rgb(255, 255, 255), rgba(0, 183, 255, 0.875) ,rgba(0, 153, 255, 0.87) ,rgb(9, 13, 57)),url('../assets/5.svg'); /* Centrer l'image */
+  background-size: cover; /* S'assure que l'image couvre tout l'écran */
+  opacity: 0.99;
+  z-index: -1; /* Place l'élément derrière tout le contenu */
+}
+
+/* Contenu principal */
+.login-content {
+  display: flex;
+  flex-direction: row;
+  width: 50%; /* Réduit la largeur pour les écrans plus larges */
+  max-width: 1000px;
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 25px 25px;
+  overflow: hidden;
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  margin-top: 0.5rem;
+  color: #3603a4;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Formulaire */
+.login-form {
+  flex: 1;
+  padding: 50px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-logo {
+  width: 200px; /* Réduit la taille du logo */
+  margin-bottom: 0px;
+}
+
+.login-form h1 {
+  font-size: 1.2rem;
+  color: midnightblue;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #040a7c;
+  margin-top: 0px;
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.left-contente {
+  display: flex;
+  padding: 0px;
+  flex-direction: column;
+  align-items: center; /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement */
+  height: 100%; /* Occupe toute la hauteur */
+}
+
+.left-contente h1 {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0; /* Supprime la marge par défaut */
+  font-weight: bold;
+  color: white;
+  line-height: 1.4;
+  text-align: center; /* Centre le texte */
+}
+
+.left-contente h2 {
+  font-size: 1rem;
+  margin: 0.9rem 0 0; /* Ajoute une marge seulement en haut */
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center; /* Centre le texte */
+}
+
+.input-with-icon input {
+  width: 100%;
+  margin-top: 4%;
+  padding: 12px 55px;
+  font-size: 0.87em;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 10px;
+}
+
+.input-icon {
+  position: absolute;
+  top: 55%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #00c6ee;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 60%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0px;
+}
+
+.login-button {
+  width: 100%;
+  max-width: 180px;
+  padding: 12px 20px;
+  margin-top: -8%;
+  background-color: #025ce2;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #5000ac;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.register-link {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.register-link a {
+  color: #6200ea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Image */
+/* Image avec texte */
+.login-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px 0px;
+}
+
+.login-image img {
+  width: 100%;
+  background: linear-gradient(170deg, rgb(41, 4, 207, 0.18), rgba(255, 217, 0, 0.992));
+  height: 100%;
+  object-fit: cover; /* S'assure que l'image couvre bien */
+  filter: brightness(0.29);
+}
+
+.text-overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(170deg, rgb(41, 4, 207, 0.88), rgba(255, 217, 0, 0.92));
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.6rem;
+  z-index: 2;
+}
+
+/* Responsivité */
+@media (max-width: 1024px) {
+  .login-content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-content {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 15px;
+  }
+
+  .login-image {
+    height: 120px; /* Réduit la taille de l'image */
+  }
+
+  .login-image img {
+    height: 50%;
+    object-fit: cover;
+  }
+
+  .login-form {
+    padding: 0px 10px; /* Réduit le padding du formulaire */
+  }
+
+  .login-button {
+    max-width: 160px; /* Réduit la largeur du bouton */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form h1 {
+    font-size: 1.2rem; /* Réduit la taille du titre */
+    padding: 25px 40px;
+    
+  }
+
+  .input-with-icon input {
+    padding: 12px 40px;
+    font-size: 0.8rem;
+  }
+
+  .login-button {
+    padding: 12px 25px; /* Réduit le padding du bouton */
+    font-size: 0.8rem;
+  }
+}

@@ -5,6 +5,10 @@ import { AuthContext, useAuth } from '../context/authContext';
 import '../styles/LoginPage1.css';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
+import dgfopImg from '../assets/dgfop.png';
+import rppImg from '../assets/Rpp.png';
+import { API_URL } from '../config';
+
 const LoginPage1 = () => {
   const [matricule, setMatricule] = useState('');
   const { user, setUser } = useContext(AuthContext);
@@ -19,15 +23,18 @@ const LoginPage1 = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/users1/login', { matricule, mdp });
+      const response = await axios.post(`${API_URL}/api/users1/login`, { matricule, mdp });
       const { role, matricule: userMatricule, nom, prenom, image } = response.data.user;
 
-      login({ matricule: userMatricule, role, nom, prenom, image });
+  // Normaliser le rôle côté client pour éviter les problèmes de casse
+  const roleNormalized = role ? String(role).toLowerCase() : null;
 
-      if (role === 'Admin') navigate('/admin');
-      else if (role === 'Communication') navigate('/communication');
-      else if (role === 'Stan') navigate('/stan');
-      else navigate('/');
+  login({ matricule: userMatricule, role: roleNormalized, nom, prenom, image });
+
+  if (roleNormalized === 'admin') navigate('/admin');
+  else if (roleNormalized === 'communication') navigate('/communication');
+  else if (roleNormalized === 'stan') navigate('/stan');
+  else navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Erreur lors de la connexion.');
     }
@@ -35,20 +42,18 @@ const LoginPage1 = () => {
 
   return (
     <div className="login-container">
-      
       {/* Vague en haut */}
       <div className="wave-header"></div>
 
       <div className="login-content">
         <div className="left-column">
           <div className="left-contente">
-            <img src={require('../assets/dgfop.png')} alt="Connexion illustration" />
-           
+            <img src={dgfopImg} alt="Connexion illustration" />
           </div>
         </div>
         {/* Colonne droite : Formulaire */}
         <div className="login-form">
-          <img src={require('../assets/Rpp.png')} alt="Logo" className="login-form-logo" />
+          <img src={rppImg} alt="Logo" className="login-form-logo" />
           <h1>Bienvenue</h1>
           <form onSubmit={handleLogin}>
             <div className="input-group">
@@ -65,7 +70,7 @@ const LoginPage1 = () => {
               </div>
             </div>
             <div className="input-group">
-  <label htmlFor="mdp">Mot de passe</label>
+              <label htmlFor="mdp">Mot de passe</label>
               <div className="input-with-icon">
                 <FaLock className="input-icon" />
                 <input
@@ -79,26 +84,26 @@ const LoginPage1 = () => {
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </div>
               </div>
-            
             </div>
+            <p className="register-link">
+            Mot de passe oublié
+          </p>
             <div className="additional-links">
-          </div>
+              
+            </div>
             <div className="button-container">
               <button type="submit" className="login-button">Se connecter</button>
             </div>
           </form>
-          
+           
           {error && <p className="error-message">{error}</p>}
           <p className="register-link">
-            
             Pas encore de compte ? <Link to="/register">Créer un compte</Link>
           </p>
-
           
         </div>
 
         {/* Colonne droite : Image avec texte */}
-       
       </div>
 
       {/* Vague en bas */}

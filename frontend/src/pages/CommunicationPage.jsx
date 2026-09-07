@@ -1,27 +1,61 @@
-// pages/CommunicationPage.js
-import React from 'react';
+// pages/CommunicationPage.jsx
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/authContext';
 import LogoutButton from '../components/LogoutButton';
-import { useAuth } from '../context/authContext';  // Importer le contexte
 import Actualité from '../components/Actualité';
+import { API_URL } from '../config';
 
-import '../styles/CommunicationPage.css';
+// Reuse StanPage styles for consistent layout
+import '../styles/StanPage.css';
 
 const CommunicationPage = () => {
-  const { user } = useAuth();  // Accéder à l'utilisateur connecté
+  const { user } = useAuth();
+  const [image, setImage] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (user && user.image) setImage(user.image);
+  }, [user]);
 
   return (
-    <div>
-      <h1>Page de Communication</h1>
-      {user ? (
-        <div>
-          <h2>Bienvenue, {user.nom} {user.prenom}!</h2>
-          {user.image && <img src={user.image} alt="User Profile" className="user-image" />}  {/* Afficher l'image */}
+    <div className="layout-left">
+      <aside className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
+        <div className="logo-containeres">
+          <h2 style={{ fontSize: 20, marginTop: 12 }}>Communication</h2>
+          <div className="logo-user">
+            {image && <img className="avatar logo-avatar" src={`${API_URL}/uploads/${image}`} alt="User" />}
+            <div className="user-meta logo-meta">
+              <div className="name">{user?.prenom} {user?.nom}</div>
+              <div className="matricule">{user?.matricule}</div>
+            </div>
+          </div>
         </div>
-      ) : (
-        <p>Veuillez vous connecter pour voir vos informations.</p>
-      )}
-      <Actualité/>
-      <LogoutButton />
+
+        <nav className="menu">
+          <button className={`menu-item active`} onClick={() => setIsMenuOpen(false)}>Actualité</button>
+        </nav>
+
+        <div className="sidebar-footer">
+          <div className="logout-container">
+            <LogoutButton />
+          </div>
+        </div>
+      </aside>
+
+      {isMenuOpen && <div className="backdrop" onClick={() => setIsMenuOpen(false)} />}
+
+      <main className="main-area">
+        <header className="main-header">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button className="toggle-btn" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">☰</button>
+            <h1>Communication</h1>
+          </div>
+        </header>
+
+        <section className="main-content">
+          <Actualité />
+        </section>
+      </main>
     </div>
   );
 };

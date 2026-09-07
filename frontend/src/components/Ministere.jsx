@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import "./Ministere.css";
-
+import { API_URL } from '../config';
 const Ministere = () => {
   const [dData, setdData] = useState([]); // Stocker les données récupérées
   const [loading, setLoading] = useState(false); // Indicateur de chargement
@@ -10,7 +10,7 @@ const Ministere = () => {
   const fetchdData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5001/api/d"); // URL de l'API
+      const response = await axios.get(`${API_URL}/api/d`); // URL de l'API
       setdData(response.data); // Stocker les données dans dData
     } catch (error) {
       console.error("Erreur lors de la récupération des données :", error);
@@ -36,7 +36,7 @@ const Ministere = () => {
             <div className="grid-item" key={d.id || index}>
               {d.logo_url && (
                 <img
-                  src={`http://localhost:5001${d.logo_url }`}
+                  src={`${API_URL}${d.logo_url }`}
                   alt="Image de la Direction"
                   className="dform-item-image"
                 />

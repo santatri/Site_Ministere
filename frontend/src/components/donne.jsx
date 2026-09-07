@@ -4,6 +4,8 @@ import '../styles/donne.css';
 import Services from '../pages/Services/Services';
 import {  FaBook} from 'react-icons/fa';
 import { motion } from "framer-motion";
+import { API_URL } from '../config';
+import { generatePDF } from "./DonnePDF";
 
 const Donne = () => {
   const [services, setServices] = useState([]);
@@ -16,7 +18,7 @@ const Donne = () => {
 
   useEffect(() => {
     // Récupérer la liste des services
-    axios.get('http://localhost:5001/api/services')
+    axios.get(`${API_URL}/api/services`)
       .then((response) => {
         const sortedServices = response.data.sort((a, b) =>
           a.nom_service.localeCompare(b.nom_service)
@@ -28,7 +30,7 @@ const Donne = () => {
       });
 
     // Récupérer les services par Direction
-    axios.get('http://localhost:5001/api/services/by-direction')
+    axios.get(`${API_URL}/api/services/by-direction`)
       .then((response) => {
         const sortedServicesByDirection = response.data.sort((a, b) =>
           a.nom_service.localeCompare(b.nom_service)
@@ -41,7 +43,7 @@ const Donne = () => {
   }, []);
 
   const handleViewDetails = (serviceId) => {
-    axios.get(`http://localhost:5001/api/service/${serviceId}`)
+    axios.get(`${API_URL}/api/service/${serviceId}`)
         .then((response) => {
             setSelectedService(serviceId);
             setServiceDetails(response.data);
@@ -250,6 +252,13 @@ const Donne = () => {
                 <h4>Délai</h4>
                 <p>{serviceDetails.delai || "Sans delai"}</p>
               </div>
+              <button
+                  className="pdf-button"
+                  onClick={() => generatePDF(serviceDetails)}
+                >
+                  Télécharger en PDF
+                </button>
+
             </div>
           </div>
         </div>

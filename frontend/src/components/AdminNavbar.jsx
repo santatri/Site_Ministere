@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { FaSun, FaMoon, FaUserEdit, FaBars } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 import { useAuth } from '../context/authContext';
 import '../styles/AdminNavbar.css'; // Fichier CSS associé
-
+import { API_URL } from '../config';
 import UserProfileModal from './UserProfileModal'; // Import the modal component
 
 const Avatar = ({ src }) => {
   return src ? (
-    <img src={`http://localhost:5001/uploads/${src}`} alt="Avatar" className="avatar-frame" />
+    <img src={`${API_URL}/uploads/${src}`} alt="Avatar" className="avatar-frame" />
   ) : null;
 };
 
@@ -37,7 +37,7 @@ const AdminNavbar = ({ toggleTheme, isDarkMode, onToggleMenu }) => {
           <button className="menu-toggle" onClick={onToggleMenu}>
             <FaBars />
           </button>
-          <p className="navbar-title">Direction Génerale de la Fonction Publique</p>
+          <p className="navbar-title">Direction Générale de la Fonction Publique</p>
         </div>
 
         {/* Partie droite */}
@@ -46,9 +46,10 @@ const AdminNavbar = ({ toggleTheme, isDarkMode, onToggleMenu }) => {
             <div className="avatar-container">
               <Avatar src={user?.image} />
             </div>
-            <p className="user-name">
-              {user?.prenom} {user?.nom || 'Admin'}
-            </p>
+            <div className="user-details">
+              <p className="user-name">{user?.prenom} {user?.nom || 'Admin'}</p>
+              <p className="user-matricule">{user?.matricule}</p>
+            </div>
           </div>
         </div>
       </div>

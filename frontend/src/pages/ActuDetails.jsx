@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/ActuDetails.css';
-
+import { API_URL } from '../config';
 const ActuDetails = () => {
   const { id } = useParams();
   const [actualité, setActualité] = useState(null);
@@ -11,7 +11,7 @@ const ActuDetails = () => {
   useEffect(() => {
     const fetchActualité = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/actu/${id}`);
+        const response = await axios.get(`${API_URL}/api/actu/${id}`);
         setActualité(response.data);
       } catch (error) {
         setMessage('Erreur lors du chargement des détails de l’actualité.');
